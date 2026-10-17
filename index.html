@@ -4,276 +4,454 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Tidewater Tackle</title>
-<meta name="theme-color" content="#161a35">
+<meta name="theme-color" content="#120f2e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&family=Pixelify+Sans:wght@400;600&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap">
 <style>
-/* Layout: one-screen phone game. Header (coins) > pixel scene > Cast button > scrolling panel > tab bar.
-   Single dusk look on purpose: a lake that meets the sea at sunset. */
+/* Tidewater Tackle v6 look: a harbour at dusk. Chunky ink-outlined panels, lantern gold for money and the main action,
+   sea-glass teal for income and buying, coral for alerts, driftwood for the menu signs. Pixel font for anything "game". */
 :root{
-  color-scheme: dark;
-  --bg:#161a35;
-  --panel:#222750;
-  --panel2:#2c3262;
-  --line:#0c0e22;
-  --ink:#f3ead8;
-  --muted:#c6cbf0;
-  --amber:#ffb454;
-  --amber-d:#b86f17;
-  --teal:#4fd0c0;
-  --red:#ff6b6b;
+  color-scheme:dark;
+  --ink:#0a0820;--night:#120f2e;--plum:#221a4c;--plum2:#2e2464;--plum3:#3e3086;
+  --gold:#ffc845;--gold-d:#b57a12;--gold-l:#fff0b8;--teal:#38e0c4;--teal-d:#14806f;--coral:#ff5f7e;--coral-d:#a8243f;
+  --wood:#8a5a34;--wood-d:#5c3a20;--wood-l:#b07a48;--text:#f7efdc;--muted:#bdb8ea;--line:#3b3180;
   --f-ui:"Pixelify Sans","Trebuchet MS",system-ui,sans-serif;
   --f-text:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
   --f-num:"VT323","Courier New",monospace;
 }
 [hidden]{display:none!important}
+*{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-text);font-weight:500;font-size:16px;line-height:1.35;
-  padding-left:max(16px,env(safe-area-inset-left,0px));
-  padding-right:max(16px,env(safe-area-inset-right,0px));
-  padding-block:0;overflow-x:hidden;
-  -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  margin:0;color:var(--text);font-family:var(--f-text);font-weight:700;font-size:16px;line-height:1.35;
+  background:
+    radial-gradient(1px 1px at 12% 18%,#ffffff55 50%,transparent 51%),radial-gradient(1px 1px at 78% 9%,#ffffff44 50%,transparent 51%),
+    radial-gradient(1px 1px at 33% 72%,#ffffff33 50%,transparent 51%),radial-gradient(1px 1px at 91% 54%,#ffffff40 50%,transparent 51%),
+    radial-gradient(130% 70% at 50% -10%,#3a2a80 0%,#1d1650 45%,var(--night) 75%) fixed,var(--night);
+  padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));
+  overflow-x:hidden;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;touch-action:manipulation;
 }
-*{box-sizing:border-box}
 button{font:inherit;color:inherit;cursor:pointer}
-h1,#castBtn{font-family:var(--f-ui)}
-h2,h3,.mbtn,nav#tabs button,.up .t,.close,#card .nm{font-family:var(--f-text);font-weight:800}
 button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-#app{max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;gap:10px;padding-block:10px 22px}
+img.pix,.pix{image-rendering:pixelated;image-rendering:crisp-edges}
+.muted{color:var(--muted)}.small{font-size:14px}
+#app{max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;gap:10px;padding-block:calc(8px + env(safe-area-inset-top,0px)) calc(14px + env(safe-area-inset-bottom,0px))}
 
-header{display:flex;align-items:center;gap:12px;background:var(--panel);border:2px solid var(--line);box-shadow:0 4px 0 var(--line);padding:6px 10px}
-.coins{display:flex;align-items:baseline;gap:8px;min-width:0;flex:1;overflow:hidden}
-#coins{font-family:var(--f-num);font-size:40px;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
-.coins small,.rate small{color:var(--muted);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.rate{text-align:right;font-family:var(--f-num);font-size:30px;color:var(--teal);line-height:1;white-space:nowrap}
-@media (max-width:420px){#coins{font-size:35px}.rate{font-size:26px}}
-@media (max-width:460px){.coins small{display:none}.icon-btn{width:34px!important;height:34px!important}header{gap:8px}}
-.icon-btn{width:38px;height:38px;border:2px solid var(--line);background:var(--panel2);display:grid;place-items:center;padding:0}
-.icon-btn svg{width:20px;height:20px;fill:var(--ink)}
-.icon-btn[aria-pressed="false"] svg{opacity:.35}
+/* ---------- buttons ---------- */
+.btn{font-family:var(--f-ui);font-weight:600;font-size:18px;letter-spacing:.02em;border:3px solid var(--ink);border-radius:9px;padding:9px 14px;color:#2a1605;
+  background:linear-gradient(180deg,var(--gold-l) 0 14%,var(--gold) 14% 68%,#f0a91f 68%);box-shadow:inset 0 -4px 0 var(--gold-d),0 4px 0 var(--ink);
+  text-shadow:0 1px 0 rgba(255,255,255,.45);transition:transform .06s,box-shadow .06s;position:relative}
+.btn:active:not(:disabled){transform:translateY(3px);box-shadow:inset 0 -2px 0 var(--gold-d),0 1px 0 var(--ink)}
+.btn.teal{background:linear-gradient(180deg,#c4fff5 0 14%,var(--teal) 14% 68%,#20c2a8 68%);box-shadow:inset 0 -4px 0 var(--teal-d),0 4px 0 var(--ink);color:#03241f}
+.btn.teal:active:not(:disabled){box-shadow:inset 0 -2px 0 var(--teal-d),0 1px 0 var(--ink)}
+.btn.coral{background:linear-gradient(180deg,#ffc2cf 0 14%,var(--coral) 14% 68%,#e8445f 68%);box-shadow:inset 0 -4px 0 var(--coral-d),0 4px 0 var(--ink);color:#2a0610}
+.btn.wood{color:var(--text);text-shadow:0 2px 0 var(--wood-d);
+  background:linear-gradient(180deg,rgba(255,255,255,.18) 0 3px,transparent 3px),repeating-linear-gradient(180deg,var(--wood-l) 0 2px,var(--wood) 2px 10px,#7a4e2c 10px 12px);
+  box-shadow:inset 0 -4px 0 var(--wood-d),0 4px 0 var(--ink)}
+.btn.wood:active:not(:disabled){box-shadow:inset 0 -2px 0 var(--wood-d),0 1px 0 var(--ink)}
+.btn.ghost{background:linear-gradient(180deg,#3a2e7a,#2a2160);color:var(--muted);text-shadow:none;box-shadow:inset 0 -3px 0 #1a1440,0 4px 0 var(--ink)}
+.btn:disabled{filter:saturate(.15) brightness(.62);cursor:default}
+.btn .ci{width:18px;height:18px;vertical-align:-3px;margin-right:4px}
+.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:11px;background:var(--coral);color:#fff;border:2px solid var(--ink);font-family:var(--f-num);font-size:18px;line-height:1;text-shadow:none;vertical-align:1px;margin-left:4px}
 
-#stage{position:relative;width:100%;aspect-ratio:4/3;border:2px solid var(--line);box-shadow:0 4px 0 var(--line);background:#2f2860;overflow:hidden;flex:0 0 auto}
+/* ---------- HUD ---------- */
+header{display:flex;align-items:center;gap:8px}
+.plaque{flex:1;min-width:0;display:flex;align-items:center;gap:8px;padding:3px 12px 3px 5px;border-radius:999px;border:3px solid var(--ink);
+  background:linear-gradient(180deg,#1d1648,#0f0b2a);box-shadow:inset 0 0 0 2px var(--gold-d),inset 0 3px 0 rgba(255,255,255,.08),0 4px 0 var(--ink)}
+.plaque .ci{width:32px;height:32px;flex:0 0 32px;animation:float 3s ease-in-out infinite}
+.cwrap{min-width:0;display:flex;flex-direction:column;line-height:.9}
+#coins{font-family:var(--f-num);font-size:38px;color:var(--gold);text-shadow:0 2px 0 #6a4210;white-space:nowrap;display:inline-block}
+#coins.bump{animation:bump .3s ease-out}
+@keyframes bump{40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.rate{display:flex;align-items:center;gap:4px;font-family:var(--f-num);font-size:21px;color:var(--teal);white-space:nowrap}
+.rate img{width:18px;height:18px}
+.rate small{font-family:var(--f-text);font-size:12px;color:var(--muted);font-weight:800}
+.round{width:42px;height:42px;flex:0 0 42px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;padding:0;
+  background:radial-gradient(circle at 35% 30%,#6a5ac8,#2e2466 70%);box-shadow:inset 0 0 0 2px #7a6ad8,0 4px 0 var(--ink)}
+.round:active{transform:translateY(3px);box-shadow:inset 0 0 0 2px #7a6ad8,0 1px 0 var(--ink)}
+.round svg{width:20px;height:20px;fill:var(--text)}
+.round[aria-pressed="false"] svg{opacity:.35}
+.gainfx{position:fixed;z-index:70;font-family:var(--f-num);font-size:26px;pointer-events:none;text-shadow:0 2px 0 var(--ink),0 0 8px #000;animation:gainup 1.1s ease-out forwards}
+@keyframes gainup{0%{opacity:0;transform:translateY(6px)}15%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+
+/* ---------- stage ---------- */
+#stage{position:relative;width:calc(100% - 12px);margin:6px auto 10px;aspect-ratio:4/3;flex:0 0 auto;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:#2f2860;
+  box-shadow:0 0 0 4px var(--wood),0 0 0 7px var(--ink),0 9px 0 4px var(--ink)}
+#stage::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:7px;box-shadow:inset 0 0 0 2px rgba(255,214,120,.35),inset 0 0 28px rgba(0,0,0,.45);z-index:5}
+#stage.shake{animation:shake2 .5s}
+@keyframes shake2{10%,50%,90%{transform:translate(-4px,2px)}30%,70%{transform:translate(4px,-2px)}}
 #scene{display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
-#hint{position:absolute;left:8px;right:8px;bottom:8px;text-align:center;background:rgba(12,14,34,.78);padding:6px 8px;font-size:16px;font-weight:700;color:var(--ink)}
-#card{z-index:3;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(86%,300px);background:var(--panel);border:3px solid var(--rc,#fff);box-shadow:0 6px 0 var(--line);padding:10px 12px 12px;text-align:center}
-#card .tier{font-size:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--rc)}
-#card .pic{height:100px;display:grid;place-items:center;margin:4px 0}
-#card .pic img{image-rendering:pixelated;max-width:100%;max-height:100%}
-#card .nm{font-size:20px;font-weight:800}
-#card .mut{font-size:16px;margin-top:2px;font-weight:800}
-#card .res{margin-top:6px;font-family:var(--f-num);font-size:30px;line-height:1.05}
-#card.big{box-shadow:0 0 0 3px var(--rc),0 0 30px var(--rc);animation:pop .35s ease-out}
-.pop{position:absolute;z-index:4;left:50%;top:22%;transform:translateX(-50%);font-family:var(--f-num);font-size:34px;letter-spacing:.04em;text-shadow:0 3px 0 #140f24,0 0 12px #000;pointer-events:none;animation:popfx .9s ease-out forwards}
-@keyframes popfx{0%{opacity:0;transform:translateX(-50%) scale(.6)}20%{opacity:1;transform:translateX(-50%) scale(1.15)}100%{opacity:0;transform:translateX(-50%) translateY(-18px) scale(1)}}
-.flash{position:absolute;z-index:2;inset:0;pointer-events:none;opacity:0;animation:flashfx .8s ease-out}
-@keyframes flashfx{0%{opacity:.6}100%{opacity:0}}
-@keyframes pop{0%{transform:translate(-50%,-50%) scale(.8)}60%{transform:translate(-50%,-50%) scale(1.06)}100%{transform:translate(-50%,-50%) scale(1)}}
-#card .badge{display:inline-block;background:var(--amber);color:#2a1a05;font-size:14px;font-weight:800;padding:1px 6px;margin-right:6px;vertical-align:middle}
-
-#castBtn{border:3px solid var(--line);background:var(--amber);color:#2a1a05;font-size:22px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:12px;box-shadow:0 5px 0 var(--amber-d),0 8px 0 var(--line);transition:transform .05s}
-#castBtn:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 var(--amber-d),0 5px 0 var(--line)}
-#castBtn:disabled{background:#8a7a5c;box-shadow:0 5px 0 #5c5038,0 8px 0 var(--line);cursor:default}
-#castBtn.bite{background:var(--red);animation:shake .12s infinite}
-@keyframes shake{50%{transform:translateX(3px)}}
-
-#panel{flex:1 1 0;min-height:120px;overflow-y:auto;overflow-x:hidden;background:var(--panel);border:2px solid var(--line);padding:10px;-webkit-overflow-scrolling:touch}
-h2{margin:0 0 8px;font-size:20px;font-weight:800}
-.muted{color:var(--muted)}
-.small{font-size:15px}
-
-.up{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;background:var(--panel2);border:2px solid var(--line);padding:8px 10px;margin-bottom:8px}
-.up .t{font-weight:800;font-size:18px}
-.up .lv{color:var(--muted);font-size:14px;font-weight:700;margin-left:6px}
-.up .d{grid-column:1;color:#dfe2f8;font-size:15px;min-width:0}
-.up button{grid-column:2;grid-row:1/3;border:2px solid var(--line);background:var(--teal);color:#06221e;font-weight:600;padding:8px 10px;min-width:96px;font-family:var(--f-num);font-size:26px;line-height:1;box-shadow:0 3px 0 #1f7a70}
-.up button:disabled{background:#4a5080;color:#9aa0cf;box-shadow:0 3px 0 #323864;cursor:default}
-
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.fcard{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--panel2);border:2px solid var(--rc,#444);padding:6px 4px 6px;min-width:0;text-align:center}
-.fcard.unk{border-color:#3b4175}
-.fcard .spr{height:52px;display:grid;place-items:center}
-.fcard .spr img{image-rendering:pixelated}
-.fcard .nm{font-family:var(--f-text);font-size:15px;font-weight:800;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fcard .inc{font-family:var(--f-num);font-size:22px;color:var(--teal);line-height:1}
-.pips{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin-top:3px;align-items:center}
-.pip{width:7px;height:7px;background:#1a1e42;border:1px solid #3b4175}
-.pip.on{border-color:var(--line)}
-.pgap{width:4px}
-.legend{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 6px;font-size:14px;font-weight:700;color:var(--muted)}
-.legend .sw{display:inline-block;width:8px;height:8px;margin-right:4px;vertical-align:baseline}
-.legend em{font-style:normal;opacity:.7}
-h3.th{margin:14px 0 6px;font-size:19px;font-weight:800}
-#env{position:absolute;left:6px;top:6px;display:flex;flex-direction:column;gap:4px;align-items:flex-start;pointer-events:none}
-#env .chip{background:rgba(12,14,34,.78);padding:4px 8px;font-size:14px;font-weight:800;line-height:1.2;display:flex;align-items:center;gap:6px;color:var(--ink)}
-#env .chip small{color:#dfe2f8;font-size:13px;font-weight:700}
-#env .tbar{display:inline-block;width:26px;height:6px;background:#1a1e42;border:1px solid #3b4175}
+#hint{position:absolute;left:10px;right:10px;bottom:10px;z-index:4;text-align:center;background:rgba(10,8,32,.82);border:2px solid var(--gold-d);border-radius:8px;padding:6px 8px;font-size:15px;font-weight:800}
+#env{position:absolute;left:7px;top:7px;z-index:4;display:flex;flex-direction:column;gap:4px;align-items:flex-start;pointer-events:none}
+#env .chip{background:rgba(10,8,32,.8);border:2px solid rgba(255,255,255,.12);border-radius:7px;padding:3px 8px 3px 6px;font-size:13px;font-weight:900;line-height:1.2;display:flex;align-items:center;gap:6px;color:var(--text)}
+#env .chip small{color:#dfe2f8;font-size:12px;font-weight:700}
+#env .tbar{display:inline-block;width:26px;height:7px;background:#1a1e42;border:1px solid #4a4f8a;border-radius:2px;overflow:hidden}
 #env .tbar i{display:block;height:100%;background:var(--teal)}
-#env .wdot{width:8px;height:8px;background:var(--cc,#fff);display:inline-block}
-#ver{position:fixed;right:max(8px,env(safe-area-inset-right,0px));bottom:calc(3px + env(safe-area-inset-bottom,0px));z-index:60;font-family:var(--f-num);font-size:13px;line-height:1;color:var(--muted);opacity:.85;pointer-events:none}
-.var span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.logrow{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #343a70}
-.logrow img{image-rendering:pixelated;width:44px;height:auto;flex:0 0 auto}
-.logrow .tx{min-width:0;flex:1;font-size:16px;font-weight:700}
-.logrow .r{font-family:var(--f-num);font-size:23px;color:var(--teal);white-space:nowrap}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
-.stat{background:var(--panel2);border:2px solid var(--line);padding:6px 8px}
-.stat b{display:block;font-family:var(--f-num);font-size:30px;font-weight:400;line-height:1;color:var(--amber)}
-.stat span{font-size:14px;font-weight:700;color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:4px}
-.tchip{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800;padding:1px 6px 1px 3px;border:2px solid var(--tc);color:var(--tc);background:rgba(0,0,0,.25);white-space:nowrap}
-.tchip b{font-family:var(--f-num);font-weight:400;font-size:16px;color:var(--ink)}
+#env .wdot{width:9px;height:9px;border-radius:2px;background:var(--cc,#fff);box-shadow:0 0 6px var(--cc,#fff);display:inline-block}
+.pop{position:absolute;z-index:6;left:50%;top:20%;transform:translateX(-50%);font-family:var(--f-ui);font-weight:700;font-size:30px;letter-spacing:.04em;
+  text-shadow:0 3px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink);pointer-events:none;animation:popfx .9s ease-out forwards}
+@keyframes popfx{0%{opacity:0;transform:translateX(-50%) scale(.5)}20%{opacity:1;transform:translateX(-50%) scale(1.2)}100%{opacity:0;transform:translateX(-50%) translateY(-20px) scale(1)}}
+.flash{position:absolute;z-index:3;inset:0;pointer-events:none;opacity:0;animation:flashfx .8s ease-out}
+@keyframes flashfx{0%{opacity:.55}100%{opacity:0}}
+.confetti{position:absolute;z-index:7;top:-8px;width:7px;height:10px;pointer-events:none;animation:fall 1.8s cubic-bezier(.3,.6,.6,1) forwards}
+@keyframes fall{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(var(--dx),260px) rotate(var(--rot));opacity:0}}
+
+/* ---------- catch card ---------- */
+#card{z-index:6;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(88%,300px);text-align:center;border-radius:12px;overflow:hidden;
+  background:linear-gradient(180deg,#2c2266,#1b1446);border:3px solid var(--ink);box-shadow:inset 0 0 0 3px var(--rc,#fff),0 6px 0 var(--ink),0 0 0 2px var(--ink)}
+#card.in{animation:cardin .32s cubic-bezier(.2,1.6,.4,1)}
+@keyframes cardin{0%{transform:translate(-50%,-50%) scale(.6);opacity:0}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+#card.big{box-shadow:inset 0 0 0 3px var(--rc),0 6px 0 var(--ink),0 0 34px 4px var(--rc)}
+#card .ribbon{position:relative;z-index:1;background:var(--rc);color:#120c28;font-family:var(--f-ui);font-weight:700;font-size:15px;letter-spacing:.08em;padding:3px 0;border-bottom:3px solid var(--ink)}
+#card .body{position:relative;padding:4px 12px 12px}
+#card .rays{position:absolute;left:50%;top:52px;width:240px;height:240px;margin:-120px 0 0 -120px;border-radius:50%;pointer-events:none;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,var(--rc) 0 9deg,transparent 9deg 24deg);
+  -webkit-mask:radial-gradient(circle,#000 18%,transparent 66%);mask:radial-gradient(circle,#000 18%,transparent 66%);animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#card .pic{position:relative;height:98px;display:grid;place-items:center;margin:2px 0}
+#card .pic img{image-rendering:pixelated;max-width:100%;max-height:100%;filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
+#card .nm{position:relative;font-family:var(--f-ui);font-size:22px;font-weight:700;text-shadow:0 2px 0 var(--ink)}
+#card .mut{font-size:16px;margin-top:1px;font-weight:900}
+#card .res{margin-top:6px;font-family:var(--f-num);font-size:30px;line-height:1.05}
+#card .stamp{position:absolute;right:8px;top:30px;z-index:2;transform:rotate(14deg);font-family:var(--f-ui);font-weight:700;font-size:17px;color:#2a1605;background:var(--gold);border:3px solid var(--ink);border-radius:6px;padding:0 6px;box-shadow:0 3px 0 var(--ink);animation:stamp .4s .15s both cubic-bezier(.2,1.8,.4,1)}
+#card .stamp.better{background:var(--teal);color:#03241f}
+@keyframes stamp{0%{transform:rotate(14deg) scale(2.4);opacity:0}100%{transform:rotate(14deg) scale(1);opacity:1}}
+.cmprow{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2px;margin:4px 0 2px}
+.cmprow .arr{color:var(--gold);display:grid;place-items:center;padding-top:20px}
+.cmp{display:flex;flex-direction:column;align-items:center;min-width:0}
+.cmp .lab{font-size:12px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.cmp.new .lab{color:var(--teal)}
+.cmp.old{opacity:.75}
+.cmp .cpic{height:60px;display:grid;place-items:center}
+.cmp .cpic img{image-rendering:pixelated}
+.cmp .vn{font-size:14px;font-weight:900;white-space:nowrap}
+.cmp .vn b{font-family:var(--f-num);font-weight:400;font-size:16px;color:var(--text)}
+.cmp .pay{font-family:var(--f-num);font-size:23px;line-height:1.05;color:var(--teal)}
+.cmp.old .pay{color:var(--muted)}
+
+/* ---------- cast button ---------- */
+#castBtn{position:relative;overflow:hidden;font-size:27px;letter-spacing:.14em;text-transform:uppercase;padding:13px 12px 14px;border-radius:12px;
+  box-shadow:inset 0 -5px 0 var(--gold-d),0 5px 0 var(--ink),0 0 0 0 rgba(255,200,69,0)}
+#castBtn .bi{width:28px;height:28px;vertical-align:-5px;margin-right:8px;image-rendering:pixelated}
+#castBtn.idle{animation:castglow 2.2s ease-in-out infinite}
+@keyframes castglow{50%{box-shadow:inset 0 -5px 0 var(--gold-d),0 5px 0 var(--ink),0 0 22px 4px rgba(255,200,69,.45)}}
+#castBtn.idle::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 3.4s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+#castBtn.wait{background:linear-gradient(180deg,#c4fff5 0 14%,var(--teal) 14% 68%,#20c2a8 68%);box-shadow:inset 0 -5px 0 var(--teal-d),0 5px 0 var(--ink);color:#03241f}
+#castBtn.bite{background:linear-gradient(180deg,#ffc2cf 0 14%,var(--coral) 14% 68%,#e8445f 68%);box-shadow:inset 0 -5px 0 var(--coral-d),0 5px 0 var(--ink),0 0 26px 6px rgba(255,95,126,.6);color:#2a0610;animation:shake .12s infinite}
+@keyframes shake{50%{transform:translateX(3px)}}
+#castBtn:disabled{filter:saturate(.3) brightness(.75)}
+
+/* ---------- panel and tabs ---------- */
+#panel{flex:1 1 0;min-height:130px;overflow-y:auto;overflow-x:hidden;padding:10px;border:3px solid var(--ink);border-radius:10px;-webkit-overflow-scrolling:touch;
+  background:linear-gradient(180deg,#2a2064,#1e174c 60%);box-shadow:inset 0 2px 0 rgba(255,255,255,.1),0 4px 0 var(--ink)}
+nav#tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+nav#tabs button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 0 4px;border:3px solid var(--ink);border-radius:9px;
+  background:linear-gradient(180deg,#33286e,#231a52);box-shadow:inset 0 2px 0 rgba(255,255,255,.08),0 3px 0 var(--ink);font-family:var(--f-ui);font-weight:600;font-size:14px;color:var(--muted)}
+nav#tabs button img{width:24px;height:24px;image-rendering:pixelated;opacity:.75}
+nav#tabs button[aria-selected="true"]{background:linear-gradient(180deg,#5040aa,#362a84);color:var(--gold);transform:translateY(-3px);box-shadow:inset 0 0 0 2px var(--gold),0 6px 0 var(--ink)}
+nav#tabs button[aria-selected="true"] img{opacity:1}
+.dot{position:absolute;top:-7px;right:-3px;width:15px;height:15px;border-radius:50%;background:var(--coral);border:2px solid var(--ink);animation:dotp 1.1s ease-in-out infinite}
+@keyframes dotp{50%{transform:scale(1.3)}}
+
+/* section heads inside the panel */
+.sh{display:flex;align-items:center;gap:8px;margin:2px 0 8px}
+.sh img{width:30px;height:30px}
+.sh h2{margin:0;font-family:var(--f-ui);font-weight:700;font-size:23px;color:var(--gold);text-shadow:0 2px 0 var(--ink)}
+.sh .cnt{margin-left:auto;font-family:var(--f-num);font-size:22px;color:var(--muted)}
+.intro{margin:0 0 10px;font-size:14px;color:var(--muted);font-weight:700}
+.bar{height:10px;border:2px solid var(--ink);border-radius:5px;background:#120e30;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(180deg,#9afff0,var(--teal));border-radius:2px}
+.bar.gold i{background:linear-gradient(180deg,#fff0b8,var(--gold))}
+
+/* cards in the panel */
+.box{position:relative;border:3px solid var(--ink);border-radius:10px;padding:9px 10px;margin-bottom:10px;background:linear-gradient(180deg,#352a78,#281f5e);box-shadow:inset 0 2px 0 rgba(255,255,255,.1),0 4px 0 var(--ink)}
+.box.hot{background:linear-gradient(180deg,#4a3a20,#2e2244);box-shadow:inset 0 0 0 2px var(--gold),0 4px 0 var(--ink),0 0 16px rgba(255,200,69,.3)}
+
+/* upgrades */
+.upc{display:grid;grid-template-columns:48px 1fr auto;gap:4px 10px;align-items:center}
+.uic{width:48px;height:48px;border-radius:9px;border:3px solid var(--ink);display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#4c3c9a,#211a50)}
+.uic img{width:36px;height:36px}
+.ut{font-family:var(--f-ui);font-weight:700;font-size:19px;line-height:1.1}
+.ut .lv{font-family:var(--f-num);font-weight:400;font-size:20px;color:var(--gold);margin-left:6px;white-space:nowrap}
+.ud{font-size:13px;color:#dcd8fa;font-weight:700;margin:1px 0 5px}
+.upc .btn{min-width:88px;padding:8px 7px;font-family:var(--f-num);font-size:23px;line-height:1;white-space:nowrap}
+.upc .btn.max{font-family:var(--f-ui);font-size:17px}
+
+/* wheel box on the gear tab */
+.wbox{display:flex;align-items:center;gap:10px}
+.wmini{width:54px;height:54px;flex:0 0 54px;border-radius:50%;border:3px solid var(--ink);box-shadow:0 0 0 3px var(--gold),0 0 0 5px var(--ink);
+  background:conic-gradient(#ffc845 0 51deg,#1f2c66 0 103deg,#2b3d86 0 154deg,#1f2c66 0 206deg,#ffc845 0 257deg,#2b3d86 0 308deg,#1f2c66 0)}
+.wbox.ready .wmini{animation:spin 6s linear infinite}
+.wbox .tx{flex:1;min-width:0}
+.wbox .wt{font-family:var(--f-ui);font-weight:700;font-size:20px;color:var(--gold);text-shadow:0 2px 0 var(--ink)}
+.wbox .wd{font-size:13px;color:#dcd8fa}
+
+/* rebirth */
+.rb .ut{color:var(--teal)}
+.req{display:grid;grid-template-columns:auto 1fr auto;gap:4px 8px;align-items:center;font-size:13px;margin:6px 0 8px}
+.req b{font-family:var(--f-num);font-weight:400;font-size:18px}
+
+/* album */
+.legend{display:flex;flex-wrap:wrap;gap:4px 10px;margin:6px 0 2px;font-size:13px;font-weight:800;color:var(--muted)}
+.legend .sw{display:inline-block;width:9px;height:9px;margin-right:4px;border:1px solid var(--ink)}
+.legend em{font-style:normal;opacity:.7}
+details.mlist{margin:0 0 6px;border:2px solid var(--line);border-radius:8px;padding:5px 8px;background:#1d1648}
+details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;color:var(--text)}
+.tierh{display:flex;align-items:center;gap:8px;margin:14px 0 7px;padding:4px 10px;border:3px solid var(--ink);border-radius:8px;
+  background:linear-gradient(90deg,var(--tc) 0,color-mix(in srgb,var(--tc) 35%,#1d1648) 100%);box-shadow:0 3px 0 var(--ink)}
+.tierh b{font-family:var(--f-ui);font-weight:700;font-size:18px;color:#120c28}
+.tierh span{margin-left:auto;font-family:var(--f-num);font-size:21px;color:#120c28}
+.tnote{font-size:13px;color:var(--muted);margin:-3px 0 7px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fcard{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;padding:6px 4px 6px;text-align:center;border-radius:9px;border:3px solid var(--ink);
+  background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--rc) 30%,#2a2064) 0,#211a52 72%);box-shadow:inset 0 0 0 2px var(--rc),0 3px 0 var(--ink)}
+.fcard.unk{background:#1a1442;box-shadow:inset 0 0 0 2px #2e2766,0 3px 0 var(--ink)}
+.fcard.gone{opacity:.7}
+.fcard .spr{height:50px;display:grid;place-items:center}
+.fcard .spr img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.45))}
+.fcard .nm{font-size:14px;font-weight:900;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fcard .inc{font-family:var(--f-num);font-size:21px;color:var(--teal);line-height:1}
+.fcard.gone .inc{color:var(--muted);font-size:16px;font-family:var(--f-text)}
+.pips{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin-top:3px;align-items:center}
+.pip{width:6px;height:6px;background:#120e30;border:1px solid #3b3480}
+.pip.on{border-color:var(--ink)}
+.pgap{width:3px}
+
+/* traits */
 .ti{width:18px;height:18px;image-rendering:pixelated;display:block;flex:0 0 auto}
 .ticons{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;min-height:16px;margin-top:1px}
 .ticons .ti{width:16px;height:16px}
-.trow .ti{width:26px;height:26px;flex:0 0 26px}
-.trow.off .ti{filter:grayscale(1);opacity:.4}
+.chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:4px;position:relative}
+.tchip{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:900;padding:1px 6px 1px 3px;border:2px solid var(--tc);border-radius:6px;color:var(--tc);background:rgba(0,0,0,.35);white-space:nowrap}
+.tchip b{font-family:var(--f-num);font-weight:400;font-size:17px;color:var(--text)}
+.today{display:flex;align-items:center;gap:10px}
+.today .big{width:52px;height:52px;flex:0 0 52px;border-radius:10px;border:3px solid var(--ink);display:grid;place-items:center;background:radial-gradient(circle,#6a4a20,#2a1d40);box-shadow:0 0 14px rgba(255,200,69,.4)}
+.today .big img{width:36px;height:36px}
+.grp{display:flex;align-items:baseline;gap:8px;margin:14px 0 4px;padding-bottom:4px;border-bottom:2px solid var(--line)}
+.grp b{font-family:var(--f-ui);font-weight:700;font-size:18px}
+.grp span{font-size:13px;color:var(--muted)}
+.trow{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #30286e}
+.trow .tic{width:34px;height:34px;flex:0 0 34px;border-radius:8px;border:2px solid var(--ink);display:grid;place-items:center;background:#1a1442}
+.trow .tic .ti{width:24px;height:24px}
+.trow.off .tic .ti{filter:grayscale(1);opacity:.35}
+.trow .tn{font-weight:900;font-size:16px;flex:0 0 104px}
+.trow.off .tn{opacity:.6}
+.trow .td{flex:1;font-size:13px;color:var(--muted);font-weight:700}
 .trow .td.live{color:var(--teal)}
-.cmprow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2px;margin:4px 0 2px}
-.cmprow .arr{color:var(--amber);display:grid;place-items:center;padding-top:20px}
-.cmp{display:flex;flex-direction:column;align-items:center;min-width:0}
-.cmp .lab{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
-.cmp.new .lab{color:var(--teal)}
-.cmp.old{opacity:.8}
-.cmp .cpic{height:60px;display:grid;place-items:center}
-.cmp .cpic img{image-rendering:pixelated}
-.cmp .vn{font-size:14px;font-weight:800;white-space:nowrap}
-.cmp .vn b{font-family:var(--f-num);font-weight:400;font-size:16px;color:var(--ink)}
-.cmp .pay{font-family:var(--f-num);font-size:23px;line-height:1.05;color:var(--teal)}
-.cmp.old .pay{color:var(--muted)}
-.chip{font-size:13px;font-weight:800;padding:1px 6px;border:2px solid currentColor;background:rgba(0,0,0,.25);white-space:nowrap}
-.trow{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #343a70}
-.trow .tn{font-weight:800;font-size:16px;flex:0 0 112px}.trow .td{flex:1;font-size:14px;color:var(--muted);font-weight:700}
-.trow .tb{font-family:var(--f-num);font-size:23px;color:var(--teal)}.trow.off .tn{opacity:.55}
-.link-btn{border:2px solid var(--line);background:var(--panel2);padding:8px 12px;font-size:15px;font-weight:700;color:var(--muted)}
-.link-btn.warn{background:var(--red);color:#2a0808}
+.trow .tb{font-family:var(--f-num);font-size:23px;color:var(--gold)}
 
-nav#tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-nav#tabs button{border:2px solid var(--line);background:var(--panel);padding:10px 0;font-size:15px;white-space:nowrap;font-weight:800;color:var(--muted);box-shadow:0 3px 0 var(--line)}
-nav#tabs button[aria-selected="true"]{background:var(--panel2);color:var(--ink);border-color:var(--teal)}
-
-#modal{position:fixed;inset:0;background:rgba(8,9,24,.72);display:grid;place-items:center;z-index:50;
-  padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
-#modalBox{width:min(100%,380px);max-height:88%;overflow:auto;background:var(--panel);border:3px solid var(--rc,var(--teal));box-shadow:0 6px 0 var(--line);padding:14px}
-#modalBox h3{margin:0 0 6px;font-size:22px}
-#modalBox .big{display:grid;place-items:center;height:96px;margin:6px 0}
-#modalBox .big img{image-rendering:pixelated}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:16px;margin:8px 0}
-.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-weight:800}
-.vars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:8px 0}
-.var{background:var(--panel2);border:2px solid var(--line);padding:3px 1px;text-align:center;font-size:12px;font-weight:700;min-width:0}
-.var .vi{height:30px;display:grid;place-items:center}
-.var img{image-rendering:pixelated;max-width:100%;max-height:100%}
-.var.off{opacity:.9}
-#modalBox .close{width:100%;margin-top:6px;border:2px solid var(--line);background:var(--amber);color:#2a1a05;font-weight:800;padding:9px;font-size:16px}
-#menu{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;justify-content:center;overflow-y:auto;
-  padding:env(safe-area-inset-top,0px) max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
-#menuIn{width:100%;max-width:480px;display:flex;flex-direction:column;gap:14px;padding-block:14px;justify-content:center}
-#menuScene{display:block;width:100%;aspect-ratio:4/3;image-rendering:pixelated;image-rendering:crisp-edges;border:2px solid var(--line);box-shadow:0 4px 0 var(--line)}
-#menu h1{margin:4px 0 0;font-size:38px;line-height:1;font-weight:600;color:var(--amber);text-align:center;letter-spacing:.02em;text-shadow:0 3px 0 var(--line)}
-#menu .tag{margin:0;text-align:center;color:#dfe2f8;font-size:17px}
-.mbtns{display:flex;flex-direction:column;gap:10px;margin-top:4px}
-.mbtn{border:3px solid var(--line);background:var(--panel2);font-size:19px;font-weight:800;padding:11px;box-shadow:0 4px 0 var(--line)}
-.mbtn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line)}
-.mbtn.main{background:var(--amber);color:#2a1a05;font-size:24px;letter-spacing:.06em;text-transform:uppercase;padding:13px;box-shadow:0 5px 0 var(--amber-d),0 8px 0 var(--line)}
-.mbtn.warn{background:var(--red);color:#2a0808}
-.mrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mstat{text-align:center;font-size:16px;font-weight:700;color:#dfe2f8}
-.mstat b{color:var(--teal);font-weight:600}
-.howto{margin:8px 0 10px;padding-left:20px;font-size:17px;line-height:1.45}
-.howto li{margin-bottom:6px}
-.fcard.gone .spr{opacity:.45}
-.fcard.gone .inc{color:var(--muted);font-size:17px}
-.cbox{background:var(--panel2);border:2px solid var(--line);padding:8px 10px;margin-bottom:8px}
-.cbox.run{border-color:var(--teal)}
-.cbox.ready{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber)}
+/* craft */
+.machine{display:flex;align-items:center;gap:10px}
+.machine .mi{width:56px;height:56px;flex:0 0 56px;border-radius:12px;border:3px solid var(--ink);display:grid;place-items:center;
+  background:repeating-linear-gradient(135deg,#3a3060 0 6px,#2e2650 6px 12px);box-shadow:inset 0 0 0 2px #ff7ad9}
+.machine .mi img{width:38px;height:38px}
+.cjob .bar{height:14px}
+.cjob .bar i{background:repeating-linear-gradient(135deg,#9afff0 0 8px,var(--teal) 8px 16px);background-size:23px 23px;animation:stripes 1s linear infinite}
+@keyframes stripes{to{background-position:23px 0}}
 .crow{display:flex;gap:10px;align-items:center}
-.crow .cs{flex:0 0 64px;min-height:44px;display:grid;place-items:center}
-.crow .cs img{image-rendering:pixelated}
+.crow .cs{flex:0 0 70px;height:52px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(255,122,217,.45),transparent)}
+.crow .cs img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.5))}
 .crow .tx{min-width:0;flex:1}
-.cname{font-weight:800;font-size:18px;font-family:var(--f-text)}
-.cmeta{font-size:14px;font-weight:700;color:var(--muted)}
+.cname{font-family:var(--f-ui);font-weight:700;font-size:19px;color:#ff9ae0;text-shadow:0 2px 0 var(--ink)}
+.cmeta{font-size:13px;font-weight:800;color:var(--muted)}
 .cmeta b{font-family:var(--f-num);font-weight:400;font-size:19px;color:var(--teal)}
 .cins{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
-.cin{display:flex;align-items:center;gap:4px;border:2px solid #3b8f5a;background:#1a1e42;padding:2px 6px 2px 3px;font-size:13px;font-weight:800;min-width:0}
-.cin img{image-rendering:pixelated}
-.cin .sp{width:32px;height:22px;display:grid;place-items:center;flex:0 0 32px}
-.cin.miss{border-color:#8a3a46;color:#d4a0a8}
+.cin{display:flex;align-items:center;gap:4px;border:2px solid #3b9a62;border-radius:7px;background:#16123a;padding:2px 7px 2px 3px;font-size:13px;font-weight:900;min-width:0}
+.cin .sp{width:40px;height:22px;display:grid;place-items:center;flex:0 0 40px}
+.cin .sp img{image-rendering:pixelated;max-width:100%;height:auto}
+.cin.miss{border-color:#8a3a46;color:#e2a8b0}
 .cin.miss .sp{opacity:.6}
-.cbar{height:12px;background:#1a1e42;border:2px solid var(--line);margin:8px 0 4px}
-.cbar i{display:block;height:100%;background:var(--teal)}
-.cbtn{border:2px solid var(--line);background:var(--teal);color:#06221e;font-weight:800;padding:8px 12px;font-size:16px;box-shadow:0 3px 0 #1f7a70;width:100%}
-.cbtn:disabled{background:#4a5080;color:#9aa0cf;box-shadow:0 3px 0 #323864;cursor:default}
-.cbtn.go{background:var(--amber);color:#2a1a05;box-shadow:0 3px 0 var(--amber-d)}
-.codds{margin:6px 0}
+.box .btn.wide,.wide{width:100%}
 .codds .trow{padding:4px 0}
 .codds .pc{font-family:var(--f-num);font-size:22px;color:var(--teal);min-width:48px;text-align:right}
-.wheelwrap{position:relative;width:248px;height:248px;margin:14px auto 10px}
-.wheel{position:relative;width:248px;height:248px;border-radius:50%;border:4px solid #0c0e22;box-shadow:0 0 0 3px #ffd45a,0 0 24px rgba(255,212,90,.45);transition:transform 4s cubic-bezier(.1,.65,.12,1)}
-.wheel .hub{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#0c0e22;border:3px solid #ffd45a}
-.wl{position:absolute;left:50%;top:50%;width:0;height:0}
-.wl span{position:absolute;white-space:nowrap;font-family:var(--f-text);font-weight:800;font-size:13px;color:#10142c;transform:translate(-50%,-50%)}
-.wptr{position:absolute;left:50%;top:-12px;margin-left:-11px;width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid #ff5d5d;z-index:2;filter:drop-shadow(0 2px 0 #0c0e22)}
-.wodds{margin:6px 0 4px}
-.wodds .trow{padding:3px 0}
-.wodds .sw{display:inline-block;width:12px;height:12px;border:2px solid var(--line);flex:0 0 12px}
-.wres{min-height:44px;text-align:center;font-weight:800;font-size:17px;margin:4px 0}
-@media (prefers-reduced-motion:reduce){.wheel{transition-duration:.01s}}
-@media (prefers-reduced-motion:reduce){#castBtn.bite{animation:none}}
-</style>
 
+/* log */
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.stat{display:flex;align-items:center;gap:8px;border:3px solid var(--ink);border-radius:9px;padding:6px 8px;background:linear-gradient(180deg,#352a78,#281f5e);box-shadow:0 3px 0 var(--ink)}
+.stat img{width:26px;height:26px}
+.stat b{display:block;font-family:var(--f-num);font-size:28px;font-weight:400;line-height:1;color:var(--gold)}
+.stat span{font-size:12px;font-weight:800;color:var(--muted)}
+.logrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #30286e}
+.logrow .lp{width:50px;flex:0 0 50px;display:grid;place-items:center}
+.logrow img{image-rendering:pixelated;max-width:100%;height:auto}
+.logrow .tx{min-width:0;flex:1;font-size:15px;font-weight:900}
+.logrow .r{font-family:var(--f-num);font-size:23px;color:var(--teal);white-space:nowrap}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(6,5,20,.74);
+  padding:16px max(14px,env(safe-area-inset-right,0px)) 16px max(14px,env(safe-area-inset-left,0px))}
+#modalBox{position:relative;width:min(100%,390px);max-height:90%;overflow:auto;padding:14px;border-radius:14px;border:3px solid var(--ink);
+  background:linear-gradient(180deg,#2e2468,#1d164a);box-shadow:inset 0 0 0 3px var(--rc,var(--gold)),inset 0 0 0 5px var(--ink),0 8px 0 var(--ink),0 0 40px rgba(0,0,0,.6);animation:cardin2 .25s ease-out}
+@keyframes cardin2{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+#modalBox h3{margin:2px 0 6px;font-family:var(--f-ui);font-weight:700;font-size:25px;text-shadow:0 2px 0 var(--ink)}
+#modalBox .bigpic{display:grid;place-items:center;height:100px;margin:6px 0;border-radius:10px;background:radial-gradient(closest-side,color-mix(in srgb,var(--rc,#fff) 40%,transparent),transparent)}
+#modalBox .bigpic img{image-rendering:pixelated}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px;margin:8px 0}
+.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-weight:900}
+.vars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:8px 0}
+.var{background:#1a1442;border:2px solid var(--ink);border-radius:6px;padding:3px 1px;text-align:center;font-size:11px;font-weight:800;min-width:0}
+.var span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.var .vi{height:30px;display:grid;place-items:center}
+.var img{image-rendering:pixelated;max-width:100%;max-height:100%}
+.mbtnrow{display:grid;gap:8px;margin-top:12px}
+.howto{margin:8px 0 6px;padding-left:20px;font-size:15px;line-height:1.45}
+.howto li{margin-bottom:7px}
+
+/* ---------- wheel ---------- */
+.wtitle{text-align:center;font-family:var(--f-ui);font-weight:700;font-size:34px;line-height:1;margin:2px 0 0;color:var(--gold);letter-spacing:.04em;
+  text-shadow:0 3px 0 #6a4210,2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink),0 5px 0 var(--ink)}
+.wstage{position:relative;width:min(300px,82vw);aspect-ratio:1;margin:14px auto 8px}
+.wstage .glow{position:absolute;inset:-14%;border-radius:50%;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg,rgba(255,212,90,.22) 0 8deg,transparent 8deg 22deg);
+  -webkit-mask:radial-gradient(circle,#000 40%,transparent 70%);mask:radial-gradient(circle,#000 40%,transparent 70%);animation:spin 20s linear infinite}
+.wstage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#wheelSpin{transition:transform 4.2s cubic-bezier(.12,.66,.1,1)}
+.bulb{animation:bulb 1s steps(1) infinite}
+.bulb.b2{animation-delay:-.5s}
+.wstage.spinning .bulb{animation-duration:.25s}
+@keyframes bulb{0%{fill:#fff7c8}50%{fill:#8a5a10}}
+.wres{min-height:62px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:left;font-weight:900;font-size:16px;margin:2px 0 6px}
+.wres img{width:48px;height:48px;image-rendering:pixelated}
+.wres .won{animation:cardin .4s cubic-bezier(.2,1.6,.4,1)}
+.wres .pn{font-family:var(--f-ui);font-weight:700;font-size:22px;text-shadow:0 2px 0 var(--ink)}
+.wspinrow{display:flex;gap:8px}
+.wspinrow .btn{flex:1;font-size:22px}
+.wtimer{text-align:center;font-size:13px;color:var(--muted);margin:8px 0 2px}
+.prizes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
+.prize{display:flex;align-items:center;gap:6px;padding:4px 6px;border:2px solid var(--ink);border-radius:8px;background:#1a1442;font-size:12px;font-weight:800;min-width:0}
+.prize.rare{background:linear-gradient(180deg,#4a3a18,#2a2040);border-color:var(--gold-d)}
+.prize img{width:24px;height:24px;flex:0 0 24px}
+.prize .pt{min-width:0;flex:1;line-height:1.15}
+.prize .pt span{display:block;color:var(--muted);font-weight:700;font-size:11px}
+.prize b{font-family:var(--f-num);font-weight:400;font-size:19px;color:var(--gold)}
+
+/* ---------- title screen ---------- */
+#menu{position:fixed;inset:0;z-index:40;overflow:hidden;background:var(--night)}
+#menuScene{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.mshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,32,.15) 0%,rgba(10,8,32,0) 30%,rgba(10,8,32,.55) 58%,rgba(10,8,32,.92) 100%)}
+#menuIn{position:relative;height:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;
+  padding:calc(28px + env(safe-area-inset-top,0px)) 18px calc(16px + env(safe-area-inset-bottom,0px))}
+.logo{text-align:center;animation:logoin .9s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes logoin{0%{transform:translateY(-60px);opacity:0}100%{transform:none;opacity:1}}
+.logo .l1{position:relative;display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:clamp(46px,14vw,64px);line-height:.95;letter-spacing:.01em;
+  color:var(--gold);background:linear-gradient(180deg,#fff6c8 0%,#ffd860 38%,#ffb22e 62%,#e07a10 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(3px 0 0 var(--ink)) drop-shadow(-3px 0 0 var(--ink)) drop-shadow(0 3px 0 var(--ink)) drop-shadow(0 -3px 0 var(--ink)) drop-shadow(0 6px 0 #3a1d55);
+  animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-5px)}}
+.plank{position:relative;display:inline-block;margin-top:10px;padding:5px 26px 7px;border:3px solid var(--ink);border-radius:6px;transform:rotate(-3deg);transform-origin:50% 0;
+  background:linear-gradient(180deg,rgba(255,255,255,.18) 0 3px,transparent 3px),repeating-linear-gradient(180deg,var(--wood-l) 0 2px,var(--wood) 2px 11px,#7a4e2c 11px 13px);
+  box-shadow:inset 0 -4px 0 var(--wood-d),0 5px 0 var(--ink);animation:swing 3.2s ease-in-out infinite}
+@keyframes swing{50%{transform:rotate(2deg)}}
+.plank span{font-family:var(--f-ui);font-weight:700;font-size:34px;letter-spacing:.32em;margin-right:-.32em;color:#fff3dc;text-shadow:0 3px 0 var(--wood-d),0 0 0 var(--ink)}
+.plank::before,.plank::after{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-4px;border-radius:50%;background:#d8d0c0;border:2px solid var(--ink)}
+.plank::before{left:8px}.plank::after{right:8px}
+.hookline{position:absolute;right:30px;top:100%;width:2px;height:16px;background:#e8e4f0;transform-origin:top;animation:swing 2.4s ease-in-out infinite reverse}
+.hookline::after{content:"";position:absolute;left:-7px;bottom:-9px;width:8px;height:10px;border:3px solid #e8e4f0;border-top:0;border-radius:0 0 8px 8px}
+.tag{margin:38px 0 0;text-align:center;font-size:16px;font-weight:800;color:#fff3dc;text-shadow:0 2px 0 var(--ink)}
+.mspacer{flex:1}
+.mstat{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.mstat .mp{display:flex;align-items:center;gap:6px;padding:4px 10px;border:2px solid var(--ink);border-radius:999px;background:rgba(10,8,32,.82);font-size:14px;font-weight:900}
+.mstat .mp img{width:18px;height:18px}
+.mstat .mp b{font-family:var(--f-num);font-weight:400;font-size:20px;color:var(--gold)}
+.mbtns{display:flex;flex-direction:column;gap:11px}
+.mbtns .btn{font-size:19px;padding:11px}
+#mPlay{font-size:30px;letter-spacing:.14em;text-transform:uppercase;padding:14px;animation:castglow 2.2s ease-in-out infinite;overflow:hidden}
+#mPlay::after{content:"";position:absolute;top:0;bottom:0;width:35%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);animation:shine 3s ease-in-out infinite}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{margin-top:12px;text-align:center;font-size:12px;color:var(--muted);font-weight:800}
+#credits{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;background:rgba(8,6,26,.86);padding:calc(18px + env(safe-area-inset-top,0px)) 18px calc(16px + env(safe-area-inset-bottom,0px))}
+.cview{position:relative;flex:1;overflow:hidden;-webkit-mask:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
+.croll{position:absolute;left:0;right:0;top:100%;text-align:center;animation:roll 26s linear infinite}
+@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}
+.croll h4{margin:26px 0 4px;font-family:var(--f-ui);font-weight:600;font-size:15px;color:var(--teal);letter-spacing:.04em}
+.croll p{margin:0;font-size:20px;font-weight:900}
+.croll .ct{font-family:var(--f-ui);font-weight:700;font-size:40px;color:var(--gold);text-shadow:0 3px 0 var(--ink);margin-bottom:6px}
+.croll .fin{margin-top:40px;font-family:var(--f-ui);font-size:26px;color:var(--gold)}
+#ver{position:fixed;right:max(8px,env(safe-area-inset-right,0px));bottom:calc(2px + env(safe-area-inset-bottom,0px));z-index:60;font-family:var(--f-num);font-size:14px;color:var(--muted);opacity:.85;pointer-events:none}
+
+@media (max-width:380px){.prizes{grid-template-columns:1fr}.wmini{width:42px;height:42px;flex-basis:42px}.wbox .wt{font-size:17px}#coins{font-size:32px}.plaque .ci{width:26px;height:26px;flex-basis:26px}.round{width:38px;height:38px;flex-basis:38px}nav#tabs button{font-size:12px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+  #wheelSpin{transition-duration:.3s}
+}
+</style>
 </head>
 <body>
 <div id="app">
   <header>
-    <div class="coins"><span id="coins">0</span><small>coins</small></div>
-    <div class="rate"><span id="rate">0</span><small> /sec</small></div>
-    <button class="icon-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16v3H4zm0 5h16v3H4zm0 5h16v3H4z"/></svg></button>
-    <button class="icon-btn" id="snd" aria-label="Sound" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+    <div class="plaque">
+      <img class="ci pix" id="coinIc" alt="">
+      <div class="cwrap"><span id="coins">0</span><span class="rate"><img class="pix" id="rateIc" alt=""><span id="rate">0</span><small>per sec</small></span></div>
+    </div>
+    <button class="round" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 5h16v3H4zm0 6h16v3H4zm0 6h16v3H4z"/></svg></button>
+    <button class="round" id="snd" aria-label="Sound" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
   </header>
 
   <div id="stage">
     <canvas id="scene" width="160" height="120"></canvas>
     <div id="env"></div>
-    <div id="hint">Tap CAST. Every new fish pays coins every second.</div>
+    <div id="hint">Tap Cast. Every new fish pays coins every second.</div>
     <div id="card" hidden></div>
   </div>
 
-  <button id="castBtn">Cast</button>
+  <button id="castBtn" class="btn idle">Cast</button>
 
   <section id="panel" aria-live="polite"></section>
 
   <nav id="tabs" role="tablist">
-    <button role="tab" data-tab="up" aria-selected="true">Gear</button>
-    <button role="tab" data-tab="album" aria-selected="false">Album</button>
-    <button role="tab" data-tab="traits" aria-selected="false">Traits</button>
-    <button role="tab" data-tab="craft" aria-selected="false">Craft</button>
-    <button role="tab" data-tab="log" aria-selected="false">Log</button>
+    <button role="tab" data-tab="up" aria-selected="true"><img alt="" data-ic="u_rod">Gear</button>
+    <button role="tab" data-tab="album" aria-selected="false"><img alt="" data-ic="t_book">Album</button>
+    <button role="tab" data-tab="traits" aria-selected="false"><img alt="" data-ic="t_star">Traits</button>
+    <button role="tab" data-tab="craft" aria-selected="false"><img alt="" data-ic="t_anvil">Craft</button>
+    <button role="tab" data-tab="log" aria-selected="false"><img alt="" data-ic="t_scroll">Log</button>
   </nav>
 </div>
 <div id="ver"></div>
+
 <div id="menu">
+  <canvas id="menuScene" width="160" height="120"></canvas>
+  <div class="mshade"></div>
   <div id="menuIn">
-    <canvas id="menuScene" width="160" height="120"></canvas>
-    <div>
-      <h1>Tidewater Tackle</h1>
-      <p class="tag">Where the lake meets the sea. Cast, collect, relax.</p>
+    <div class="logo">
+      <div class="l1">Tidewater</div><br>
+      <div class="plank"><span>Tackle</span><i class="hookline"></i></div>
     </div>
+    <p class="tag">Where the lake meets the sea</p>
+    <div class="mspacer"></div>
     <div class="mstat" id="mstat"></div>
     <div class="mbtns">
-      <button class="mbtn main" id="mPlay">Play</button>
+      <button class="btn" id="mPlay">Play</button>
       <div class="mrow">
-        <button class="mbtn" id="mHow">How to play</button>
-        <button class="mbtn" id="mSound">Sound: On</button>
+        <button class="btn wood" id="mHow">How to play</button>
+        <button class="btn wood" id="mSound">Sound: On</button>
       </div>
-      <button class="mbtn" id="mCode">Save code (backup / move)</button>
-      <button class="mbtn" id="mNew" hidden>New game</button>
+      <div class="mrow">
+        <button class="btn wood" id="mCode">Save code</button>
+        <button class="btn wood" id="mCredits">Credits</button>
+      </div>
+      <button class="btn ghost" id="mNew" hidden>New game</button>
     </div>
+    <div class="mfoot" id="mfoot"></div>
+  </div>
+  <div id="credits" hidden>
+    <div class="cview"><div class="croll" id="croll">
+      <div class="ct">Tidewater Tackle</div>
+      <h4>A game by</h4><p>Ike</p>
+      <h4>Game design and ideas</h4><p>Ike</p>
+      <h4>Programming, pixel art and sound</h4><p>Claude, by Anthropic</p><p class="small muted">working from Ike's ideas, update by update</p>
+      <h4>Playtesting</h4><p>Ike</p>
+      <h4>Fonts</h4><p>Pixelify Sans</p><p>Nunito</p><p>VT323</p><p class="small muted">from Google Fonts</p>
+      <h4>Inspired by</h4><p>Lazy evenings by the water</p><p>Steal a Brainrot</p>
+      <h4>Fish caught while making this game</h4><p>Too many to count</p>
+      <p class="fin">Thanks for playing!</p>
+    </div></div>
+    <button class="btn wood wide" id="cBack" style="margin-top:12px">Back</button>
   </div>
 </div>
 <div id="modal" hidden><div id="modalBox"></div></div>
@@ -286,17 +464,17 @@ const $=s=>document.querySelector(s);
 /* ---------- data ---------- */
 const TIERS=[
   {n:"Common",w:60,c:"#b9c2d0"},{n:"Uncommon",w:25,c:"#7bd88f"},{n:"Rare",w:3,c:"#5aa9ff"},
-  {n:"Epic",w:.35,c:"#b77cff"},{n:"Legendary",w:.08,c:"#ffb454",g:5},{n:"Mythic",w:.006,c:"#ff5d8f",g:12},
+  {n:"Epic",w:.35,c:"#b77cff"},{n:"Legendary",w:.08,c:"#ffb454",g:5},{n:"Mythic",w:.02,c:"#ff5d8f",g:10},
   {n:"Crafted",w:0,c:"#ff7ad9"}];
 // g = Lucky Rod level needed before that tier can bite at all. Crafted (w:0) never bites: it only comes out of the Craft Machine.
 const MUTS=[
   {id:"shiny",n:"Shiny",m:2,p:1/40,ab:"Sh",c:"#8fe9ff"},
   {id:"giant",n:"Giant",m:3,p:1/120,ab:"Gi",c:"#8ff0a4"},
-  {id:"golden",n:"Golden",m:6,p:1/400,ab:"Go",c:"#ffd45a"},
-  {id:"glitch",n:"Glitched",m:15,p:1/2000,ab:"Gl",c:"#ff5dd8"},
-  {id:"diamond",n:"Diamond",m:8,p:1/800,ab:"Di",c:"#9ae8ff"},
-  {id:"rainbow",n:"Rainbow",m:10,p:1/1200,ab:"Rb",c:"#ff9ad5"},
-  {id:"galaxy",n:"Galaxy",m:25,p:1/5000,ab:"Ga",c:"#a58cff"}];
+  {id:"golden",n:"Golden",m:5,p:1/400,ab:"Go",c:"#ffd45a"},
+  {id:"glitch",n:"Glitched",m:15,p:1/2500,ab:"Gl",c:"#ff5dd8"},
+  {id:"diamond",n:"Diamond",m:8,p:1/900,ab:"Di",c:"#9ae8ff"},
+  {id:"rainbow",n:"Rainbow",m:10,p:1/1500,ab:"Rb",c:"#ff9ad5"},
+  {id:"galaxy",n:"Galaxy",m:25,p:1/6000,ab:"Ga",c:"#a58cff"}];
 const WMUTS=[
   {id:"rain",n:"Rain-kissed",m:4,p:1/22,wx:"rain",ab:"Ra",c:"#6ab8ff"},
   {id:"fog",n:"Ghostly",m:5,p:1/26,wx:"fog",ab:"Fo",c:"#e0e8f5"},
@@ -314,7 +492,7 @@ const XMUTS=[   // only from the Eclipse Wheel
 const ALL_MUTS=MUTS.concat(WMUTS,CMUTS,XMUTS);
 const MUT_BY={};ALL_MUTS.forEach(m=>MUT_BY[m.id]=m);
 const WX_NAME={rain:"Rain",fog:"Fog",snow:"Snow",storm:"Storm",aurora:"Aurora"};
-const VERSION="5.0";
+const VERSION="6.0";
 const ROLL_ORDER=["galaxy","glitch","rainbow","diamond","golden","giant","shiny"];   // rarest first
 
 const F=(id,n,w,t,inc,sp)=>({id,n,w,t,inc,sp});
@@ -450,10 +628,10 @@ const CR_BY={};CRAFTS.forEach(c=>CR_BY[c.id]=c);
 const TIER_COUNT=TIERS.map((_,i)=>FISH.filter(f=>f.t===i).length);
 
 const UPS=[
- {id:"rod",n:"Lucky Rod",base:6000,g:3.0,max:25,d:l=>`Luck x${(1+.06*l).toFixed(2)}. ${l<5?"Legendary fish start at Lv 5":l<12?"Mythic fish start at Lv 12":"Rarer fish bite more"}`},
- {id:"line",n:"Fast Line",base:2500,g:2.6,max:15,d:l=>`Fish bite sooner. Average wait ${avgWait(l).toFixed(1)}s`},
- {id:"bait",n:"Glow Bait",base:9000,g:2.8,max:20,d:l=>`Mutations show up more. Odds x${(1+.25*l).toFixed(2)}`},
- {id:"lamp",n:"Dock Lantern",base:25000,g:3.0,max:30,d:l=>`All fish pay more. Income x${(1+.1*l).toFixed(1)}`}
+ {id:"rod",n:"Lucky Rod",ic:"u_rod",base:8000,g:2.75,max:25,d:l=>`Luck x${(1+.06*l).toFixed(2)}. ${l<5?"Legendary fish bite from Lv 5":l<10?"Mythic fish bite from Lv 10":"Rare fish bite more often"}`},
+ {id:"line",n:"Fast Line",ic:"u_line",base:2000,g:2.4,max:15,d:l=>`Fish bite sooner. Average wait ${avgWait(l).toFixed(1)}s`},
+ {id:"bait",n:"Glow Bait",ic:"u_bait",base:8000,g:2.6,max:20,d:l=>`Mutations and traits show up more. Mutations x${(1+.25*l).toFixed(2)}`},
+ {id:"lamp",n:"Dock Lantern",ic:"u_lamp",base:20000,g:2.6,max:30,d:l=>`All fish pay more. Income x${(1+.1*l).toFixed(1)}`}
 ];
 const upCost=(u,l)=>Math.ceil(u.base*Math.pow(u.g,l));
 function waitBase(l){return Math.max(0.9,2.2*Math.pow(0.94,l));}
@@ -470,12 +648,14 @@ const WHEEL=[
   {id:"rush",n:"Craft Rush",lab:"Rush",w:8,c:"#ffb454",d:"Halves the time of one craft"},
   {id:"mega",n:"Mega Chest",lab:"Mega",w:2,c:"#ff8fb8",d:"2 hours of your income"},
   {id:"eclipse",n:"Eclipse Charge",lab:"Eclipse",w:3,c:"#ffd45a",d:"Your next catch is an Eclipse fish (x30)"}];
-const REBIRTH_NEED=35, REBIRTH_ROD=8, REBIRTH_STEP=.5;   // fish found, Lucky Rod level, permanent bonus per rebirth
+const REBIRTH_STEP=.75;   // permanent income bonus per rebirth
+// each rebirth asks for a bit more than the last, so the bonus can never outrun the requirement
+const rbNeedFound=()=>Math.min(75,40+5*(S.rb||0)), rbNeedRod=()=>Math.min(14,8+(S.rb||0));
 const HOOK_PERFECT=.4, HOOK_WINDOW=1.0;                  // seconds after the bite
 
 /* ---------- state ---------- */
-const KEY="tidewater_v3";
-const OLD_KEYS=["tidewater_v1","tidewater_v22"];
+const KEY="tidewater_v6";
+const OLD_KEYS=["tidewater_v1","tidewater_v22","tidewater_v3"];   // v6 rebalanced the economy, so older saves start fresh
 let wasReset=false;
 function fresh(){return{coins:0,fish:{},up:{rod:0,line:0,bait:0,lamp:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"up",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0};}
 let S=fresh();
@@ -505,41 +685,41 @@ const TRAITS=[
  {id:"ebbing",n:"Ebbing",m:2,g:"catch",p:0.011,ic:"ebb",d:"Caught at low tide",on:c=>c.lv<-.4},
  {id:"early",n:"Early Bird",m:2,g:"catch",p:0.014,ic:"sunrise",d:"Caught between 5 and 9 in the morning",on:c=>c.h>=5&&c.h<9},
  {id:"night",n:"Night Owl",m:2,g:"catch",p:0.014,ic:"moon",d:"Caught between 10 at night and 4 in the morning",on:c=>c.h>=22||c.h<4},
- {id:"patient",n:"Patient",m:3,g:"catch",p:0.022,ic:"hourglass",d:"Caught after an unusually long wait",on:c=>c.wait>=.8+2.2*c.m},
+ {id:"patient",n:"Patient",m:2.5,g:"catch",p:0.022,ic:"hourglass",d:"Caught after an unusually long wait",on:c=>c.wait>=.8+2.2*c.m},
  {id:"snap",n:"Snap",m:2,g:"catch",p:0.014,ic:"chevron",d:"Caught on a very quick bite",on:c=>c.wait<=.8+.25*c.m},
- {id:"lured",n:"Lured",m:3,g:"catch",p:0.018,ic:"bobber",d:"Tap the water 6 times while you wait",on:c=>c.taps>=6},
- {id:"soaked",n:"Soaked",m:3,g:"weather",p:0.014,ic:"drop",d:"Caught in the rain",on:c=>c.wx==="rain"},
- {id:"hazy",n:"Hazy",m:3,g:"weather",p:0.014,ic:"cloud",d:"Caught in the fog",on:c=>c.wx==="fog"},
- {id:"frosty",n:"Frosty",m:3,g:"weather",p:0.014,ic:"snow",d:"Caught in the snow",on:c=>c.wx==="snow"},
- {id:"zappy",n:"Zappy",m:4,g:"weather",p:0.014,ic:"bolt",d:"Caught in a storm",on:c=>c.wx==="storm"},
- {id:"dreamy",n:"Dreamy",m:5,g:"weather",p:0.017,ic:"sparkle",d:"Caught under an aurora",on:c=>c.wx==="aurora"},
- {id:"clover",n:"Clover",m:4,g:"day",p:0.016,ic:"clover",d:"Rotates in on some days",on:c=>c.day==="clover"},
- {id:"comet",n:"Comet",m:4,g:"day",p:0.016,ic:"comet",d:"Rotates in on some days",on:c=>c.day==="comet"},
- {id:"bubbly",n:"Bubbly",m:4,g:"day",p:0.016,ic:"bubble",d:"Rotates in on some days",on:c=>c.day==="bubbly"},
- {id:"lantern",n:"Lantern",m:4,g:"day",p:0.016,ic:"lantern",d:"Rotates in on some days",on:c=>c.day==="lantern"},
- {id:"breezy",n:"Breezy",m:4,g:"day",p:0.016,ic:"feather",d:"Rotates in on some days",on:c=>c.day==="breezy"},
- {id:"gemmy",n:"Gemmy",m:4,g:"day",p:0.016,ic:"gem",d:"Rotates in on some days",on:c=>c.day==="gemmy"},
- {id:"ember",n:"Ember",m:4,g:"day",p:0.016,ic:"flame",d:"Rotates in on some days",on:c=>c.day==="ember"},
- {id:"cosmic",n:"Cosmic",m:4,g:"day",p:0.016,ic:"planet",d:"Rotates in on some days",on:c=>c.day==="cosmic"},
- {id:"harvest",n:"Harvest",m:5,g:"season",p:0.015,ic:"leaf",d:"Harvest festival",on:c=>c.seasons.indexOf("harvest")>-1},
- {id:"spooky",n:"Spooky",m:5,g:"season",p:0.015,ic:"pumpkin",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
- {id:"festive",n:"Festive",m:5,g:"season",p:0.015,ic:"star",d:"Winter holidays",on:c=>c.seasons.indexOf("festive")>-1},
- {id:"lovestruck",n:"Lovestruck",m:5,g:"season",p:0.015,ic:"heart",d:"Lovestruck week",on:c=>c.seasons.indexOf("lovestruck")>-1},
- {id:"blossom",n:"Blossom",m:5,g:"season",p:0.015,ic:"flower",d:"Spring bloom",on:c=>c.seasons.indexOf("blossom")>-1},
- {id:"sunny",n:"Sunny",m:5,g:"season",p:0.015,ic:"sun",d:"Midsummer",on:c=>c.seasons.indexOf("sunny")>-1},
+ {id:"lured",n:"Lured",m:2.5,g:"catch",p:0.018,ic:"bobber",d:"Tap the water 6 times while you wait",on:c=>c.taps>=6},
+ {id:"soaked",n:"Soaked",m:2.5,g:"weather",p:0.014,ic:"drop",d:"Caught in the rain",on:c=>c.wx==="rain"},
+ {id:"hazy",n:"Hazy",m:2.5,g:"weather",p:0.014,ic:"cloud",d:"Caught in the fog",on:c=>c.wx==="fog"},
+ {id:"frosty",n:"Frosty",m:2.5,g:"weather",p:0.014,ic:"snow",d:"Caught in the snow",on:c=>c.wx==="snow"},
+ {id:"zappy",n:"Zappy",m:3,g:"weather",p:0.014,ic:"bolt",d:"Caught in a storm",on:c=>c.wx==="storm"},
+ {id:"dreamy",n:"Dreamy",m:4,g:"weather",p:0.017,ic:"sparkle",d:"Caught under an aurora",on:c=>c.wx==="aurora"},
+ {id:"clover",n:"Clover",m:3,g:"day",p:0.016,ic:"clover",d:"Rotates in on some days",on:c=>c.day==="clover"},
+ {id:"comet",n:"Comet",m:3,g:"day",p:0.016,ic:"comet",d:"Rotates in on some days",on:c=>c.day==="comet"},
+ {id:"bubbly",n:"Bubbly",m:3,g:"day",p:0.016,ic:"bubble",d:"Rotates in on some days",on:c=>c.day==="bubbly"},
+ {id:"lantern",n:"Lantern",m:3,g:"day",p:0.016,ic:"lantern",d:"Rotates in on some days",on:c=>c.day==="lantern"},
+ {id:"breezy",n:"Breezy",m:3,g:"day",p:0.016,ic:"feather",d:"Rotates in on some days",on:c=>c.day==="breezy"},
+ {id:"gemmy",n:"Gemmy",m:3,g:"day",p:0.016,ic:"gem",d:"Rotates in on some days",on:c=>c.day==="gemmy"},
+ {id:"ember",n:"Ember",m:3,g:"day",p:0.016,ic:"flame",d:"Rotates in on some days",on:c=>c.day==="ember"},
+ {id:"cosmic",n:"Cosmic",m:3,g:"day",p:0.016,ic:"planet",d:"Rotates in on some days",on:c=>c.day==="cosmic"},
+ {id:"harvest",n:"Harvest",m:4,g:"season",p:0.015,ic:"leaf",d:"Harvest festival",on:c=>c.seasons.indexOf("harvest")>-1},
+ {id:"spooky",n:"Spooky",m:4,g:"season",p:0.015,ic:"pumpkin",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
+ {id:"festive",n:"Festive",m:4,g:"season",p:0.015,ic:"star",d:"Winter holidays",on:c=>c.seasons.indexOf("festive")>-1},
+ {id:"lovestruck",n:"Lovestruck",m:4,g:"season",p:0.015,ic:"heart",d:"Lovestruck week",on:c=>c.seasons.indexOf("lovestruck")>-1},
+ {id:"blossom",n:"Blossom",m:4,g:"season",p:0.015,ic:"flower",d:"Spring bloom",on:c=>c.seasons.indexOf("blossom")>-1},
+ {id:"sunny",n:"Sunny",m:4,g:"season",p:0.015,ic:"sun",d:"Midsummer",on:c=>c.seasons.indexOf("sunny")>-1},
  // wild traits: no condition, weaker. They fill the chain after a first trait lands.
- {id:"sparkly",n:"Sparkly",m:1.5,g:"wild",p:0,ic:"spark",d:"Can show up on any catch",on:()=>false},
- {id:"speedy",n:"Speedy",m:1.5,g:"wild",p:0,ic:"arrow",d:"Can show up on any catch",on:()=>false},
- {id:"stubborn",n:"Stubborn",m:2,g:"wild",p:0,ic:"anchor",d:"Can show up on any catch",on:()=>false},
- {id:"dapper",n:"Dapper",m:2,g:"wild",p:0,ic:"hat",d:"Can show up on any catch",on:()=>false},
- {id:"sleepy",n:"Sleepy",m:1.5,g:"wild",p:0,ic:"zzz",d:"Can show up on any catch",on:()=>false},
- {id:"spicy",n:"Spicy",m:2,g:"wild",p:0,ic:"pepper",d:"Can show up on any catch",on:()=>false},
- {id:"fluffy",n:"Fluffy",m:1.5,g:"wild",p:0,ic:"paw",d:"Can show up on any catch",on:()=>false},
- {id:"salty",n:"Salty",m:1.5,g:"wild",p:0,ic:"salt",d:"Can show up on any catch",on:()=>false},
- {id:"cheerful",n:"Cheerful",m:2,g:"wild",p:0,ic:"smile",d:"Can show up on any catch",on:()=>false},
- {id:"mighty",n:"Mighty",m:2.5,g:"wild",p:0,ic:"sword",d:"Can show up on any catch",on:()=>false},
- {id:"wise",n:"Wise",m:2.5,g:"wild",p:0,ic:"eye",d:"Can show up on any catch",on:()=>false},
- {id:"shimmer",n:"Shimmering",m:2,g:"wild",p:0,ic:"ring",d:"Can show up on any catch",on:()=>false}
+ {id:"sparkly",n:"Sparkly",m:1.25,g:"wild",p:0,ic:"spark",d:"Can show up on any catch",on:()=>false},
+ {id:"speedy",n:"Speedy",m:1.25,g:"wild",p:0,ic:"arrow",d:"Can show up on any catch",on:()=>false},
+ {id:"stubborn",n:"Stubborn",m:1.5,g:"wild",p:0,ic:"anchor",d:"Can show up on any catch",on:()=>false},
+ {id:"dapper",n:"Dapper",m:1.5,g:"wild",p:0,ic:"hat",d:"Can show up on any catch",on:()=>false},
+ {id:"sleepy",n:"Sleepy",m:1.25,g:"wild",p:0,ic:"zzz",d:"Can show up on any catch",on:()=>false},
+ {id:"spicy",n:"Spicy",m:1.5,g:"wild",p:0,ic:"pepper",d:"Can show up on any catch",on:()=>false},
+ {id:"fluffy",n:"Fluffy",m:1.25,g:"wild",p:0,ic:"paw",d:"Can show up on any catch",on:()=>false},
+ {id:"salty",n:"Salty",m:1.25,g:"wild",p:0,ic:"salt",d:"Can show up on any catch",on:()=>false},
+ {id:"cheerful",n:"Cheerful",m:1.5,g:"wild",p:0,ic:"smile",d:"Can show up on any catch",on:()=>false},
+ {id:"mighty",n:"Mighty",m:2,g:"wild",p:0,ic:"sword",d:"Can show up on any catch",on:()=>false},
+ {id:"wise",n:"Wise",m:2,g:"wild",p:0,ic:"eye",d:"Can show up on any catch",on:()=>false},
+ {id:"shimmer",n:"Shimmering",m:1.75,g:"wild",p:0,ic:"ring",d:"Can show up on any catch",on:()=>false}
 ];
 const TR_BY={};TRAITS.forEach(t=>{TR_BY[t.id]=t;t.col=TGROUP[t.g].c;});
 
@@ -582,13 +762,33 @@ const ICONS={
  smile:{p:{a:"#ffd45a",k:"#2a1a05"},r:["..aaaaa..",".aaaaaaa.","aakaaakaa","aakaaakaa","aaaaaaaaa","akaaaaaka","aakkkkkaa",".aaaaaaa.","..aaaaa.."]},
  sword:{p:{a:"#d8e0f0",b:"#c9873a"},r:["......aaa",".....aaa.","....aaa..","...aaa...","b.aaa....",".baa.....","..bb.....",".b.b.....","b........"]},
  eye:{p:{a:"#ffffff",b:"#6a8aff",k:"#140f24"},r:[".........",".........","..aaaaa..",".aabbbaa.","aabbkbbaa",".aabbbaa.","..aaaaa..",".........","........."]},
- ring:{p:{a:"#ffd45a",g:"#7af0ff"},r:["....g....","...ggg...","....g....","..aaaaa..",".aa...aa.",".a.....a.",".aa...aa.","..aaaaa..","........."]}
+ ring:{p:{a:"#ffd45a",g:"#7af0ff"},r:["....g....","...ggg...","....g....","..aaaaa..",".aa...aa.",".a.....a.",".aa...aa.","..aaaaa..","........."]},
+// ---- 12x12 UI icons (v6) ----
+ coin:{p:{k:"#5a3a08",y:"#ffc845",w:"#fff6c8",o:"#d08a18"},r:["....kkkk....","..kkyyyykk..",".kyyyyyyyyk.",".kywwyyyyok.","kyywyyyyyyok","kyywyyyyyyok","kyywyyyyyyok","kyyyyyyyyyok",".kyyyyyyyok.",".kyyyyyyook.","..kkooookk..","....kkkk...."]},
+ fish:{p:{k:"#0a3a34",t:"#38e0c4",l:"#b8fff2",w:"#ffffff"},r:["............","............","....kkkk....","..kkttttkk.k",".kwkttttttkk",".ktttttttttk",".kllllllltkk","..kkllllkk.k","....kkkk....","............","............","............"]},
+ u_rod:{p:{b:"#b07a48",d:"#5c3a20",r:"#c0c8d8",k:"#2a2a3a",l:"#e8f0ff",h:"#ffc845"},r:["...........b","..........b.",".........b.l","........b..l",".......b...l","......b....l",".....b.....l","..rrb......l",".rkrr.....hl","..rr......h.",".d..........","d..........."]},
+ u_line:{p:{k:"#3a2412",w:"#d8a868",c:"#38e0c4",l:"#a8fff0"},r:["............","..kkkkkkkk..","..kwwwwwwk..","...kcllck...","...kcccck...","...kcllck...","...kcccck...","...kcllck...","..kwwwwwwk..","..kkkkkkkk..","............","............"]},
+ u_bait:{p:{g:"#c04a9a",y:"#ff9ad5",w:"#ffffff",k:"#c8d0e0"},r:["....gggg....","...gyyyyg...","..gyywyyyg..","..gywyyyyg..","..gyyyyyyg..","...gyyyyg...","....gggg....",".....kk.....","......k.....","...k..k.....","...kkkk.....","............"]},
+ u_lamp:{p:{k:"#6a4a1a",y:"#ffb43a",w:"#fff2a0"},r:[".....kk.....","....k..k....","...kkkkkk...","..kyyyyyyk..","..kywwwwyk..","..kywwwwyk..","..kywwwwyk..","..kyyyyyyk..","...kkkkkk...","....kkkk....","............","............"]},
+ t_book:{p:{k:"#1a1440",b:"#3a7ad8",d:"#2a5aa8",y:"#ffc845",w:"#f0e8d0"},r:[".kkkkkkkkk..",".kbbbbbbbbk.",".kbbbbbbbbk.",".kbbyyybbbk.",".kbyyyyyybk.",".kbbyyybbbk.",".kbbbbbbbbk.",".kddddddddk.",".kwwwwwwwwk.",".kkkkkkkkkk.","............","............"]},
+ t_star:{p:{y:"#c9a6ff",w:"#ffffff",k:"#3a2470"},r:[".....kk.....","....kyyk....","....kyyk....","kkkkywwykkkk","kyyyywwyyyyk",".kyyyyyyyyk.","..kyyyyyyk..","..kyykkyyk..",".kyyk..kyyk.",".kkk....kkk.","............","............"]},
+ t_anvil:{p:{g:"#9aa8c0",l:"#cfd8e8",k:"#2a3048",y:"#ffc845"},r:["..........y.",".........y.y","..........y.",".kkkkkkkkk..","kllllllllgk.",".kggggggggk.","...kggggk...","....kggk....","...kggggk...","..kkkkkkkk..","............","............"]},
+ t_scroll:{p:{w:"#f0e0b8",k:"#7a5a30",d:"#b89868"},r:["............","..kkkkkkkkk.",".kwwwwwwwwwk",".kwdddddwwk.",".kwwwwwwwwk.",".kwddddddwk.",".kwwwwwwwwk.",".kwddddwwwk.",".kwwwwwwwwwk","..kkkkkkkkk.","............","............"]},
+ p_pouch:{p:{k:"#5a3a12",y:"#d8a85a",l:"#f0c880",c:"#ffc845",w:"#fff6c8"},r:["....kkkk....",".....kk.....","....kyyk....","...kylyyk...","..kylyyyyk..",".kyyyccyyyk.",".kyycwccyyk.",".kyyccccyyk.",".kyyyccyyyk.","..kyyyyyyk..","...kkkkkk...","............"]},
+ p_chest:{p:{k:"#3a2010",w:"#a0663a",l:"#c88a50",y:"#ffc845",d:"#6a4020"},r:["............","..kkkkkkkk..",".kllllllllk.",".kwwwwwwwwk.","kkkkkkkkkkkk","kwwwwyywwwwk","kwwwwykwwwwk","kddddyyddddk","kwwwwwwwwwwk","kkkkkkkkkkkk","............","............"]},
+ p_mega:{p:{k:"#5a3a08",w:"#ffc845",l:"#fff0a0",y:"#ffffff",d:"#c88a18",g:"#ff5f7e",b:"#7af0ff"},r:["..g..b..g...",".ggg.bbbggg.","..kkkkkkkk..",".kllllllllk.","kkkkkkkkkkkk","kwwwwyywwwwk","kwwwwykwwwwk","kddddyyddddk","kwwwwwwwwwwk","kkkkkkkkkkkk","............","............"]},
+ p_clover:{p:{g:"#5ad27a",l:"#a8f0b8",d:"#2e8f4a",k:"#123a20"},r:["............","..gg...gg...",".gglg.gglg..",".ggggggggg..","..ggglggg...",".ggggggggg..",".gglg.gglg..","..gg..dgg...","......d.....",".....d......","............","............"]},
+ p_trait:{p:{a:"#c9a6ff",w:"#ffffff",b:"#7a4ae0"},r:[".....a......",".....a......","....aaa..w..","...aawaa.www","aaaawwwaaaw.","...aawaa....","....aaa.....",".....a...b..",".....a..bbb.",".........b..","............","............"]},
+ p_rush:{p:{k:"#3a2470",g:"#e7a6ff",s:"#ffe9a0"},r:["kkkkkkkkkkkk",".kggggggggk.","..ksssssk...","...kssssk...","....kssk....",".....kk.....",".....kk.....","....kgsk....","...kgggsk...","..kgsssssk..",".ksssssssk..","kkkkkkkkkkkk"]},
+ p_eclipse:{p:{k:"#1a1030",y:"#ffd45a",w:"#fff2a0",o:"#ff9f3a"},r:["....yyyy....","..yywwwwyy..",".ywwkkkkwwy.",".ywkkkkkkwy.","ywkkkkkkkkwy","ywkkkkkkkkwo","ywkkkkkkkkwo","ywkkkkkkkkwo",".ywkkkkkkwo.",".yowkkkkwoo.","..oowwwwoo..","....oooo...."]},
+ i_rebirth:{p:{t:"#38e0c4",l:"#b8fff2",k:"#0a3a34"},r:["....tttt....","..tt....tt..",".t........t.",".t.......ttt","t.........t.","t...llll....","t..l....l...","t..l....l...",".t..llll..t.",".t........t.","..tt....tt..","....tttt...."]},
+ i_trophy:{p:{y:"#ffc845",d:"#b57a12",w:"#fff6c8"},r:["yyyyyyyyyyyy","yywyyyyyyyyy",".ywyyyyyyyy.","y.yyyyyyyy.y",".yyyyyyyyyy.","..yyyyyyyy..","...yyyyyy...",".....yy.....",".....yy.....","....dddd....","...dddddd...","............"]}
 };
 const iconCache={};
 function iconURL(k){
   if(iconCache[k])return iconCache[k];
-  const ic=ICONS[k],c=document.createElement("canvas");c.width=9;c.height=9;const x=c.getContext("2d");
-  ic.r.forEach((row,y)=>{for(let i=0;i<9;i++){const ch=row[i];if(ch!=="."&&ic.p[ch]){x.fillStyle=ic.p[ch];x.fillRect(i,y,1,1);}}});
+  const ic=ICONS[k],W=ic.r[0].length,H=ic.r.length,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+  ic.r.forEach((row,y)=>{for(let i=0;i<W;i++){const ch=row[i];if(ch!=="."&&ic.p[ch]){x.fillStyle=ic.p[ch];x.fillRect(i,y,1,1);}}});
   return iconCache[k]=c.toDataURL();
 }
 function iconImg(id){const t=TR_BY[id];return t?`<img class="ti" src="${iconURL(t.ic)}" alt="${t.n}" title="${t.n} x${t.m}">`:"";}
@@ -623,7 +823,7 @@ function traitCtx(){
 function rollTraits(c,force){
   c=c||traitCtx();
   const act=TRAITS.filter(t=>t.g!=="wild"&&t.on(c)),wild=TRAITS.filter(t=>t.g==="wild");
-  const bait=S.up.bait,start=Math.min(.5,.035*(1+.3*act.length)*hookF*(1+.05*bait));
+  const bait=S.up.bait,start=Math.min(.5,.025*(1+.3*act.length)*hookF*(1+.05*bait));
   if(!force&&Math.random()>=start)return [];
   const cont=Math.min(.45,(force?.35:.25)*(1+.015*bait));
   const pool=act.map(t=>({t,w:8})).concat(wild.map(t=>({t,w:1}))),out=[];
@@ -940,15 +1140,158 @@ const sfx={
 };
 function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms);}catch(e){}}
 
-/* ---------- scene ---------- */
+/* ---------- scene: real-clock sky, lighting and life ---------- */
 const cv=$("#scene"),cx=cv.getContext("2d");cx.imageSmoothingEnabled=false;
-const ROD={x:41,y:62},IDLE={x:60,y:88},TARGET={x:108,y:84};
+const IDLE={x:60,y:88},TARGET={x:108,y:84};
 let hookF=1;
-let phase="idle",pt0=0,waitDur=0,lureTaps=0,bob={x:IDLE.x,y:IDLE.y},ripples=[],cardTimer=0,cardShown=false;
+let phase="idle",pt0=0,waitDur=0,lureTaps=0,bob={x:IDLE.x,y:IDLE.y},ripples=[],cardTimer=0,cardShown=false,revealing=false;
+let parts=[],jumpers=[],leap=null,nextJump=0,lastT=0,sunX=null,moonX=null;
 function R(x,y,w,h,c){cx.fillStyle=c;cx.fillRect(Math.round(x),Math.round(y),w,h);}
-const SKY=["#241f4d","#2f2860","#43336f","#5d3d79","#80497f","#a85a80","#d07a7e","#eda07c","#f8c58a"];
-const DEPTH=["#2a4f7a","#244a74","#1f4068","#1a3860","#16305a","#122850"];
-const STARS=[[12,5],[40,9],[70,4],[96,12],[130,7],[150,16],[24,19],[84,22],[56,15]];
+const STARS=[[12,5],[40,9],[70,4],[96,12],[130,7],[150,16],[24,19],[84,22],[56,15],[6,28],[118,26],[142,3],[33,2],[103,30]];
+// four looks that blend into each other with the real hour of the day
+const PALS={
+  night:{sky:["#07061a","#0a0922","#0e0c2b","#121034","#16143d","#1b1845","#201c4d","#262155","#2c265c"],
+    water:["#1b2a55","#17254d","#132044","#0f1b3c","#0c1634","#09112c"],hill:"#15123a",pine:"#0a0f22",pine2:"#0e1429",cloud:"#2a2858",dark:1},
+  dawn:{sky:["#2a2c6a","#3d3c80","#5a4a92","#8a5a98","#c06a8e","#e88a86","#f6a882","#fbc58c","#fde0a0"],
+    water:["#4a5a9a","#3f5290","#354884","#2c3e78","#24346a","#1c2a5c"],hill:"#4a3a72",pine:"#22264a",pine2:"#2a2e56",cloud:"#ffc6b0",dark:.35},
+  day:{sky:["#2f7fd6","#3a8bdc","#4797e2","#56a3e7","#66afeb","#78baef","#8cc5f2","#a2d0f5","#b8dbf7"],
+    water:["#2f86c2","#2a7cb8","#2471ac","#1f669f","#1a5a92","#154e84"],hill:"#4f7f96",pine:"#1d5546",pine2:"#245f50",cloud:"#ffffff",dark:0},
+  dusk:{sky:["#241f4d","#2f2860","#43336f","#5d3d79","#80497f","#a85a80","#d07a7e","#eda07c","#f8c58a"],
+    water:["#2a4f7a","#244a74","#1f4068","#1a3860","#16305a","#122850"],hill:"#352a5e",pine:"#17294a",pine2:"#1b3254",cloud:"#f09a96",dark:.5}};
+const DAYKEYS=[[0,"night"],[5,"night"],[6.5,"dawn"],[8.5,"day"],[16.5,"day"],[18.5,"dusk"],[20.5,"dusk"],[22,"night"],[24,"night"]];
+function hourNow(){if(window.__hour!==undefined)return window.__hour;const d=new Date();return d.getHours()+d.getMinutes()/60;}
+let palCache=null,palKey=-1;
+function pal(){
+  const h=hourNow(),key=Math.round(h*60);if(palCache&&key===palKey)return palCache;
+  let i=0;while(i<DAYKEYS.length-2&&h>=DAYKEYS[i+1][0])i++;
+  const [h0,a]=DAYKEYS[i],[h1,b]=DAYKEYS[i+1],t=h1>h0?Math.min(1,Math.max(0,(h-h0)/(h1-h0))):0,A=PALS[a],B=PALS[b],m=(x,y)=>mix(x,y,t);
+  palCache={sky:A.sky.map((c,k)=>m(c,B.sky[k])),water:A.water.map((c,k)=>m(c,B.water[k])),hill:m(A.hill,B.hill),pine:m(A.pine,B.pine),
+    pine2:m(A.pine2,B.pine2),cloud:m(A.cloud,B.cloud),dark:A.dark+(B.dark-A.dark)*t,h};
+  palKey=key;return palCache;
+}
+function glowDot(x,y,r,rgb,a){
+  if(a<=0.01)return;
+  const g=cx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${rgb},${a})`);g.addColorStop(1,`rgba(${rgb},0)`);
+  cx.save();cx.globalCompositeOperation="lighter";cx.fillStyle=g;cx.fillRect(x-r,y-r,r*2,r*2);cx.restore();
+}
+let vignette=null;
+function drawSky(t,P){
+  P.sky.forEach((c,i)=>R(0,i*7,160,7,c));
+  if(P.dark>.15){cx.globalAlpha=Math.min(1,P.dark*1.2);STARS.forEach(([x,y],i)=>{if(Math.sin(t*2+i*1.7)>-.3)R(x,y,1,1,"#fff6dc");});cx.globalAlpha=1;}
+  const h=P.h;sunX=moonX=null;
+  if(h>5.3&&h<20.7){
+    const p=Math.min(1,Math.max(0,(h-5.5)/15)),s=Math.sin(Math.PI*p),x=8+144*p,y=60-40*s,low=1-s,r=Math.round(6+4*low);
+    glowDot(x,y,r*3.4,low>.5?"255,160,90":"255,240,190",.32);
+    const core=mix("#fff6c8","#ffd286",low),rim=mix("#ffe9a0","#ff8a4a",low);
+    for(let dy=-r;dy<=r;dy++){const w=Math.round(Math.sqrt(r*r-dy*dy));if(y+dy<60)R(x-w,y+dy,w*2,1,dy>-r/3?core:rim);}
+    sunX=x;
+  }
+  const mh=h>=19.5?h-19.5:h<6.5?h+4.5:null;
+  if(mh!==null){
+    const p=mh/11,x=150-140*p,y=58-38*Math.sin(Math.PI*p);
+    glowDot(x,y,18,"190,205,255",.18+.2*P.dark);
+    for(let dy=-5;dy<=5;dy++){const w=Math.round(Math.sqrt(25-dy*dy));if(y+dy<60)R(x-w,y+dy,w*2,1,"#ecebfa");}
+    R(x-2,y-2,2,2,"#c4c4e0");R(x+1,y+1,2,1,"#c4c4e0");R(x-1,y+2,1,1,"#c4c4e0");
+    moonX=x;
+  }
+}
+const CLOUDS=[[10,14,18],[70,22,24],[120,10,14],[40,31,12],[100,36,16]];
+function drawClouds(t,P){
+  cx.globalAlpha=P.dark>.8?.3:.8;
+  CLOUDS.forEach(([x0,y,w],i)=>{
+    const x=Math.round(((x0+t*(1.1+i*.35))%210)-30);
+    cx.fillStyle=P.cloud;cx.fillRect(x,y,w,3);cx.fillRect(x+3,y-2,w-7,2);cx.fillRect(x+6,y-3,Math.max(3,w-14),1);
+    cx.fillStyle=shade(P.cloud,-.18);cx.fillRect(x+1,y+3,w-2,1);
+  });
+  cx.globalAlpha=1;
+}
+function drawLand(t,P){
+  for(let x=0;x<160;x++){let h=6+5*Math.sin(x*.07)+4*Math.sin(x*.19+1);if(x<64)h+=12*(1-x/64);R(x,60-h,1,h,P.hill);}
+  [[5,22],[15,17],[25,24],[36,15],[46,19]].forEach(([x,h])=>{
+    for(let k=0;k<h;k++){const w=Math.round(1+k*.32);R(x-w,60-h+k,w*2+1,1,k%5<2?P.pine:P.pine2);}
+    R(x,60,1,2,P.pine);
+  });
+  // lighthouse
+  const lit=P.dark>.15,blink=Math.sin(t*1.6)>-.6;
+  R(145,42,5,18,mix("#e8e0d0","#7a7690",P.dark*.5));R(145,47,5,3,"#c0392b");R(145,53,5,3,"#c0392b");
+  R(144,38,7,4,lit&&blink?"#ffe08a":"#9a7a3a");R(145,35,5,3,"#8a2f3f");R(143,42,9,1,"#5a2030");
+}
+function drawWater(t,P){
+  for(let i=0;i<6;i++)R(0,60+i*10,160,10,P.water[i]);
+  // reflection column under the sun or the moon
+  const rx=sunX!==null?sunX:moonX;
+  if(rx!==null){
+    cx.fillStyle=sunX!==null?(P.dark>.25?"rgba(255,190,130,.55)":"rgba(255,250,220,.45)"):"rgba(220,225,255,.35)";
+    for(let y=61;y<94;y+=2){const w=Math.max(2,14-(y-60)*.35+Math.sin(t*2.2+y)*3);cx.fillRect(Math.round(rx-w/2),y,Math.round(w),1);}
+  }
+  cx.fillStyle=P.dark<.3?"rgba(255,255,255,.2)":"rgba(255,255,255,.12)";
+  for(let r=0;r<15;r++){const y=62+r*4;for(let k=0;k<5;k++){const x=((k*37+r*13+t*(5+r*.9))%172)-6;cx.fillRect(Math.round(x),y,4+(r>>1),1);}}
+  if(P.dark<.3){for(let k=0;k<8;k++){if(Math.sin(t*3+k*2.3)>.85)R(((k*41+Math.floor(t))%150)+5,64+(k*7)%26,1,1,"#ffffff");}}
+  for(let k=0;k<3;k++){
+    const y=72+k*14,dir=k%2?-1:1,x=((t*(7+k*3)*dir+k*60)%190+190)%190-15;
+    cx.fillStyle="rgba(10,18,50,.45)";cx.fillRect(Math.round(x),y,8,3);cx.fillRect(Math.round(x)-(dir>0?3:-8),y-1,3,5);
+  }
+}
+function splash(x,y,n,col){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*34,vy:-18-Math.random()*32,g:110,life:0,max:.45+Math.random()*.35,c:col||"#e4f6ff"});}
+function sparkle(x,y,n,col){for(let i=0;i<n;i++){const a=Math.random()*6.283,s=8+Math.random()*26;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,g:0,life:0,max:.5+Math.random()*.5,c:col});}}
+function drawParts(dt){
+  parts=parts.filter(p=>{p.life+=dt;if(p.life>p.max)return false;p.vy+=p.g*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;cx.globalAlpha=Math.max(0,1-p.life/p.max);R(p.x,p.y,1,1,p.c);return true;});
+  cx.globalAlpha=1;
+}
+function drawJumpers(now,P){
+  if(now>nextJump&&!menuOpen){jumpers.push({x:66+Math.random()*84,y:68+Math.random()*20,t0:now,dur:850+Math.random()*350,dir:Math.random()<.5?-1:1,h:7+Math.random()*7});nextJump=now+6000+Math.random()*9000;}
+  else if(now>nextJump){jumpers.push({x:66+Math.random()*84,y:68+Math.random()*20,t0:now,dur:850+Math.random()*350,dir:Math.random()<.5?-1:1,h:7+Math.random()*7});nextJump=now+3500+Math.random()*4000;}
+  const col=P.dark>.6?"#0c1634":"#16264a";
+  jumpers=jumpers.filter(j=>{
+    const p=(now-j.t0)/j.dur;
+    if(!j.s){j.s=1;splash(j.x,j.y,5);}
+    if(p>=1){splash(j.x+j.dir*14,j.y,6);return false;}
+    const x=Math.round(j.x+j.dir*14*p),y=Math.round(j.y-j.h*Math.sin(Math.PI*p)),up=p<.5;
+    R(x-3,y-1,6,3,col);R(j.dir>0?x-5:x+3,y+(up?0:-2),2,3,col);R(j.dir>0?x+2:x-3,y-2,2,1,col);
+    return true;
+  });
+}
+function rodTip(now){
+  const el=(now-pt0)/1000;let x=41,y=62;
+  if(phase==="cast"){const p=Math.min(1,el/.7);if(p<.35){const q=p/.35;x=41-12*q;y=62-6*q;}else{const q=Math.min(1,(p-.35)/.3);x=29+14*q;y=56+7*q;}}
+  else if(phase==="bite"){x=42;y=63+(Math.sin(now/28)>0?2:0);}
+  else if(phase==="reel"){const p=Math.min(1,el/.5);x=41-7*Math.sin(p*Math.PI);y=62-6*Math.sin(p*Math.PI);}
+  return {x,y};
+}
+function drawDockAndFisher(t,now,P){
+  const wood=mix("#6b4a2e","#2e2238",P.dark*.5),woodd=mix("#4a321f","#1e1628",P.dark*.5);
+  R(0,94,52,5,wood);for(let x=6;x<52;x+=8)R(x,94,1,5,woodd);R(0,94,52,1,mix("#8a6440","#3a2a40",P.dark*.5));
+  R(8,99,3,16,woodd);R(38,99,3,16,woodd);
+  // lantern post: the lantern gets brighter as you level the Dock Lantern
+  R(47,79,2,15,woodd);R(47,79,5,1,woodd);
+  const lit=P.dark>.1||S.up.lamp>0;R(50,80,3,1,"#3a2a18");R(50,81,3,4,lit?"#ffd27a":"#8a6a3a");R(51,82,1,2,lit?"#fff6c8":"#a08050");R(50,85,3,1,"#3a2a18");
+  // tide: water rises and falls around the posts
+  const lvl=tideInfo(Date.now()).lv,wl=Math.round(103-lvl*5);
+  cx.fillStyle=`rgba(${P.dark>.5?"10,22,50":"20,44,86"},.8)`;cx.fillRect(0,wl,160,120-wl);
+  cx.fillStyle="rgba(255,255,255,.28)";for(let k=0;k<8;k++){const x=((k*23+t*6)%166)-6;cx.fillRect(Math.round(x),wl,5,1);}
+  // fisher, breathing a little while idle
+  const by=phase==="idle"&&Math.sin(t*1.6)>.6?1:0,skin=mix("#f0c8a0","#8a7088",P.dark*.45),coat=mix("#c9573a","#6a3050",P.dark*.4);
+  R(17,86,2,8,"#252a52");R(20,86,2,8,"#252a52");
+  R(16,76+by,7,10-by,coat);R(16,76+by,7,2,mix("#e07a5a","#8a4060",P.dark*.4));
+  R(17,70+by,5,5,skin);R(16,67+by,7,3,"#e0b050");R(15,70+by,9,1,"#e0b050");R(20,72+by,1,1,"#2a1a10");
+  const tip=rodTip(now);
+  cx.strokeStyle="#7a5530";cx.lineWidth=1;cx.beginPath();cx.moveTo(23,80);cx.lineTo(tip.x,tip.y);cx.stroke();
+  R(22,79,2,2,"#3a3a4a");
+  return tip;
+}
+function drawLights(t,P){
+  const d=P.dark,fl=.86+.14*Math.sin(t*9)*Math.sin(t*3.3),lr=9+Math.min(30,S.up.lamp)*.7;
+  glowDot(51,83,lr,"255,190,90",(.12+.55*d)*fl*(S.up.lamp>0||d>.1?1:.4));
+  if(d>.15){
+    const lx=147,ly=40;glowDot(lx,ly,11,"255,230,150",.6*d);
+    const ang=Math.PI+Math.sin(t*.6)*.5,len=95,sp=.085;
+    cx.save();cx.globalCompositeOperation="lighter";
+    const g=cx.createLinearGradient(lx,ly,lx+Math.cos(ang)*len,ly+Math.sin(ang)*len);g.addColorStop(0,`rgba(255,235,170,${.32*d})`);g.addColorStop(1,"rgba(255,235,170,0)");
+    cx.fillStyle=g;cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(lx+Math.cos(ang-sp)*len,ly+Math.sin(ang-sp)*len);cx.lineTo(lx+Math.cos(ang+sp)*len,ly+Math.sin(ang+sp)*len);cx.closePath();cx.fill();cx.restore();
+  }
+  if(d>.3)for(let k=0;k<6;k++){if(Math.sin(t*1.3+k*2.1)>0){const fx=8+k*9+Math.sin(t+k)*4,fy=48+Math.cos(t*.8+k*3)*7;glowDot(fx,fy,4,"255,240,140",.55*d);R(fx,fy,1,1,"#fff2a0");}}
+  if(phase==="wait"||phase==="bite")glowDot(bob.x,bob.y,phase==="bite"?9:6,phase==="bite"?"255,110,120":"255,210,210",.15+.3*d);
+}
 function drawWeather(t){
   const w=weatherInfo(Date.now()).kind;if(!w)return;
   if(w==="rain"||w==="storm"){
@@ -974,70 +1317,42 @@ function drawWeather(t){
     }
   }
 }
+// the caught fish jumps out of the water toward the dock before the card shows
+const imgCache={};
+function spriteImage(fi,mut){const s=getSprite(fi,mut,false),k=s.url;if(!imgCache[k]){const im=new Image();im.src=s.url;imgCache[k]=im;}return {im:imgCache[k],W:s.W,H:s.H};}
+function startLeap(fi,mut,tier){const s=spriteImage(fi,mut);leap={...s,t0:performance.now(),dur:600,tier};splash(TARGET.x,TARGET.y,12);if(tier>=2)sparkle(TARGET.x,TARGET.y,10,TIERS[tier].c);}
+function drawLeap(now){
+  if(!leap)return;
+  const p=(now-leap.t0)/leap.dur;if(p>1){leap=null;return;}
+  const x=TARGET.x+(78-TARGET.x)*p,y=TARGET.y-6-44*Math.sin(Math.PI*p),sc=Math.min(1,30/leap.W);
+  if(leap.tier>=2&&Math.random()<.7)parts.push({x:x+(Math.random()-.5)*8,y:y+(Math.random()-.5)*6,vx:0,vy:4,g:0,life:0,max:.5,c:TIERS[leap.tier].c});
+  if(leap.im.complete&&leap.im.naturalWidth){cx.save();cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(-sc,sc);cx.drawImage(leap.im,-leap.W/2,-leap.H/2);cx.restore();}
+}
 function drawScene(t,now){
-  for(let i=0;i<SKY.length;i++)R(0,i*7,160,7,SKY[i]);
-  STARS.forEach(([x,y],i)=>{if(Math.sin(t*2+i*1.7)>-.3)R(x,y,1,1,"#fff6dc");});
-  // sun
-  for(let dy=-10;dy<=0;dy++){const w=Math.round(Math.sqrt(100-dy*dy));R(112-w,60+dy,w*2,1,dy>-4?"#ffe3a0":"#ffd286");}
-  // far hills
-  for(let x=0;x<160;x++){
-    let h=6+5*Math.sin(x*.07)+4*Math.sin(x*.19+1);if(x<64)h+=12*(1-x/64);
-    R(x,60-h,1,h,"#352a5e");
-  }
-  // pines
-  [[5,22],[15,17],[25,24],[36,15],[46,19]].forEach(([x,h])=>{
-    for(let k=0;k<h;k++){const w=Math.round(1+k*.32);R(x-w,60-h+k,w*2+1,1,k%5<2?"#17294a":"#1b3254");}
-    R(x,60,1,2,"#17294a");
-  });
-  // lighthouse
-  const blink=Math.sin(t*1.6)>0;
-  R(145,42,5,18,"#e8e0d0");R(145,47,5,3,"#c0392b");R(145,53,5,3,"#c0392b");
-  R(144,38,7,4,blink?"#ffe08a":"#9a7a3a");R(145,35,5,3,"#8a2f3f");
-  if(blink){cx.fillStyle="rgba(255,226,138,.22)";cx.fillRect(100,39,44,2);}
-  // water
-  for(let i=0;i<6;i++)R(0,60+i*10,160,10,DEPTH[i]);
-  cx.fillStyle="rgba(248,197,138,.55)";
-  for(let y=61;y<92;y+=2){const w=Math.max(2,14-(y-60)*.35+Math.sin(t*2.2+y)*3);cx.fillRect(Math.round(112-w/2),y,Math.round(w),1);}
-  cx.fillStyle="rgba(255,255,255,.13)";
-  for(let r=0;r<15;r++){const y=62+r*4;for(let k=0;k<5;k++){const x=((k*37+r*13+t*(5+r*.9))%172)-6;cx.fillRect(Math.round(x),y,4+(r>>1),1);}}
-  // background swimmers
-  for(let k=0;k<3;k++){
-    const y=72+k*14,dir=k%2?-1:1,x=((t*(7+k*3)*dir+k*60)%190+190)%190-15;
-    cx.fillStyle="rgba(10,18,50,.45)";cx.fillRect(Math.round(x),y,8,3);cx.fillRect(Math.round(x)-(dir>0?3:-8),y-1,3,5);
-  }
-  // dock
-  R(0,94,52,5,"#6b4a2e");for(let x=6;x<52;x+=8)R(x,94,1,5,"#4a321f");R(0,94,52,1,"#8a6440");
-  R(8,99,3,16,"#4a321f");R(38,99,3,16,"#4a321f");
-  // fireflies
-  for(let k=0;k<6;k++){if(Math.sin(t*1.3+k*2.1)>0){R(8+k*9+Math.sin(t+k)*4,48+Math.cos(t*.8+k*3)*7,1,1,"#ffe98a");}}
-  // tide: water rises and falls around the dock posts
-  const lvl=tideInfo(Date.now()).lv,wl=Math.round(103-lvl*5);
-  cx.fillStyle="rgba(20,44,86,.8)";cx.fillRect(0,wl,160,120-wl);
-  cx.fillStyle="rgba(255,255,255,.28)";for(let k=0;k<8;k++){const x=((k*23+t*6)%166)-6;cx.fillRect(Math.round(x),wl,5,1);}
-  // fisher
-  R(17,86,2,8,"#252a52");R(20,86,2,8,"#252a52");
-  R(16,76,7,10,"#c9573a");R(16,76,7,2,"#e07a5a");
-  R(17,70,5,5,"#f0c8a0");R(16,67,7,3,"#e0b050");R(15,70,9,1,"#e0b050");
-  // rod
-  cx.strokeStyle="#7a5530";cx.lineWidth=1;cx.beginPath();cx.moveTo(23,80);cx.lineTo(ROD.x,ROD.y);cx.stroke();
-  // bobber position
+  const dt=lastT?Math.min(.05,(now-lastT)/1000):.016;lastT=now;
+  const P=pal();
+  drawSky(t,P);drawClouds(t,P);drawLand(t,P);drawWater(t,P);drawJumpers(now,P);
+  const tip=drawDockAndFisher(t,now,P);
   const el=(now-pt0)/1000;
-  if(phase==="cast"){const p=Math.min(1,el/.7);bob.x=ROD.x+(TARGET.x-ROD.x)*p;bob.y=ROD.y+(TARGET.y-ROD.y)*p-Math.sin(p*Math.PI)*34;}
+  if(phase==="cast"){const p=Math.min(1,el/.7);bob.x=tip.x+(TARGET.x-tip.x)*p;bob.y=tip.y+(TARGET.y-tip.y)*p-Math.sin(p*Math.PI)*34;}
   else if(phase==="wait"){bob.x=TARGET.x;bob.y=TARGET.y+Math.sin(t*3)*.8;}
   else if(phase==="bite"){bob.x=TARGET.x;bob.y=TARGET.y+(Math.sin(t*45)>0?2:4);}
   else if(phase==="reel"){const p=Math.min(1,el/.5);bob.x=TARGET.x+(IDLE.x-TARGET.x)*p;bob.y=TARGET.y+(IDLE.y-TARGET.y)*p-Math.sin(p*Math.PI)*8;}
   else{bob.x=IDLE.x;bob.y=IDLE.y+Math.sin(t*2.4)*.8;}
-  // line
-  cx.strokeStyle="rgba(240,240,240,.85)";cx.beginPath();cx.moveTo(ROD.x,ROD.y);
+  cx.strokeStyle="rgba(240,240,240,.85)";cx.beginPath();cx.moveTo(tip.x,tip.y);
   const sag=(phase==="wait"||phase==="bite")?6:3;
-  cx.quadraticCurveTo((ROD.x+bob.x)/2,(ROD.y+bob.y)/2+sag,bob.x,bob.y-1);cx.stroke();
-  // ripples
+  cx.quadraticCurveTo((tip.x+bob.x)/2,(tip.y+bob.y)/2+sag,bob.x,bob.y-1);cx.stroke();
   ripples=ripples.filter(r=>now-r.t0<1200);
   ripples.forEach(r=>{const p=(now-r.t0)/1200;cx.strokeStyle=`rgba(255,255,255,${.5*(1-p)})`;cx.beginPath();cx.ellipse(r.x,r.y+2,3+p*14,1+p*4,0,0,Math.PI*2);cx.stroke();});
+  drawParts(dt);
   drawWeather(t);
-  // bobber
+  if(P.dark>0){cx.fillStyle=`rgba(8,6,32,${(.36*P.dark).toFixed(3)})`;cx.fillRect(0,0,160,120);}
+  drawLights(t,P);
   R(bob.x-1,bob.y-2,3,2,"#f2f2f2");R(bob.x-1,bob.y,3,2,"#e0383e");
-  if(phase==="bite"){R(bob.x,bob.y-16,2,7,"#fff");R(bob.x,bob.y-7,2,2,"#fff");}
+  if(phase==="bite"){const jy=Math.round(Math.sin(t*20)*1.5);R(bob.x,bob.y-16+jy,2,7,"#fff");R(bob.x,bob.y-7+jy,2,2,"#fff");}
+  drawLeap(now);
+  if(!vignette){vignette=cx.createRadialGradient(80,60,40,80,60,105);vignette.addColorStop(0,"rgba(0,0,0,0)");vignette.addColorStop(1,"rgba(6,4,24,.45)");}
+  cx.fillStyle=vignette;cx.fillRect(0,0,160,120);
 }
 
 /* ---------- cast flow ---------- */
@@ -1047,20 +1362,24 @@ function refreshEnv(){
   const now=Date.now(),td=tideInfo(now),w=weatherInfo(now);
   let h=`<div class="chip"><span class="tbar"><i style="width:${Math.round((td.lv+1)/2*100)}%"></i></span>${td.label} <small>${td.sub}</small></div>`;
   if(w.kind){const m=WMUTS.find(x=>x.wx===w.kind);h+=`<div class="chip" style="--cc:${m.c}"><span class="wdot"></span>${WX_NAME[w.kind]} <small>${clock(w.left)}</small></div>`;}
-  if((S.luckLeft||0)>0)h+=`<div class="chip" style="--cc:#7ab8ff"><span class="wdot"></span>2x Luck <small>${clock(S.luckLeft)}</small></div>`;
+  if((S.luckLeft||0)>0)h+=`<div class="chip" style="--cc:#5ad27a"><span class="wdot"></span>2x Luck <small>${clock(S.luckLeft)}</small></div>`;
   if(S.charge)h+=`<div class="chip" style="--cc:#c9a6ff"><span class="wdot"></span>Trait charged <small>next catch</small></div>`;
   if(S.eclipse)h+=`<div class="chip" style="--cc:#ffd45a"><span class="wdot"></span>Eclipse ready <small>next catch</small></div>`;
   if(envEl._h!==h){envEl.innerHTML=h;envEl._h=h;}
 }
 const btn=$("#castBtn");
+let btnKey="";
 function setBtn(){
-  btn.classList.toggle("bite",phase==="bite");
-  btn.disabled=!(phase==="idle"||phase==="wait"||phase==="bite");
-  btn.textContent=phase==="idle"?"Cast":phase==="cast"?"Casting...":phase==="wait"?"Tap to lure":phase==="bite"?"HOOK!":"Reeling...";
+  const k=phase+(revealing?"r":"");if(k===btnKey)return;btnKey=k;
+  btn.classList.toggle("idle",phase==="idle"&&!revealing);btn.classList.toggle("wait",phase==="wait");btn.classList.toggle("bite",phase==="bite");
+  btn.disabled=revealing||!(phase==="idle"||phase==="wait"||phase==="bite");
+  const txt=phase==="idle"?"Cast":phase==="cast"?"Casting":phase==="wait"?"Tap to lure":phase==="bite"?"Hook!":"Reeling";
+  btn.innerHTML=(phase==="idle"?`<img class="bi" src="${iconURL("u_rod")}" alt="">`:"")+txt;
 }
 function go(p,now){phase=p;pt0=now;setBtn();}
 function startCast(){
-  if(phase==="wait"){pt0-=250;lureTaps++;return;}
+  if(revealing)return;
+  if(phase==="wait"){pt0-=250;lureTaps++;ripples.push({x:TARGET.x,y:TARGET.y,t0:performance.now()});return;}
   if(phase==="bite"){hook();return;}
   if(phase!=="idle")return;
   hideCard();$("#hint").hidden=true;
@@ -1070,14 +1389,14 @@ function startCast(){
 function pop(txt,col){const d=document.createElement("div");d.className="pop";d.textContent=txt;d.style.color=col;$("#stage").appendChild(d);setTimeout(()=>d.remove(),900);}
 function hook(){
   const el=(performance.now()-pt0)/1000;
-  if(el<HOOK_PERFECT){hookF=1.5;pop("PERFECT!","#5dffb0");sfx.catch(3);buzz(60);}
+  if(el<HOOK_PERFECT){hookF=1.5;pop("PERFECT!","#5dffb0");sfx.catch(3);buzz(60);sparkle(TARGET.x,TARGET.y,12,"#5dffb0");}
   else{hookF=1;pop("Good","#ffd45a");}
   go("reel",performance.now());
 }
 function stepPhase(now){
   const el=(now-pt0)/1000;
-  if(phase==="cast"&&el>=.7){ripples.push({x:TARGET.x,y:TARGET.y,t0:now});go("wait",now);}
-  else if(phase==="wait"&&el>=waitDur){ripples.push({x:TARGET.x,y:TARGET.y,t0:now});sfx.bite();buzz(40);go("bite",now);}
+  if(phase==="cast"&&el>=.7){ripples.push({x:TARGET.x,y:TARGET.y,t0:now});splash(TARGET.x,TARGET.y,6);go("wait",now);}
+  else if(phase==="wait"&&el>=waitDur){ripples.push({x:TARGET.x,y:TARGET.y,t0:now});splash(TARGET.x,TARGET.y,8);sfx.bite();buzz(40);go("bite",now);}
   else if(phase==="bite"&&el>=HOOK_WINDOW){hookF=.6;pop("Missed","#9aa0c8");go("reel",now);}
   else if(phase==="reel"&&el>=.5){go("idle",now);doCatch();}
 }
@@ -1096,13 +1415,35 @@ function doCatch(){
   else if(mult>e.best){old={mut:bestMutId(e),tr:e.tr||[],best:e.best};gain=f.inc*(mult-e.best)*lampMult()*rbMult();e.best=mult;e.bm=mut?mut.id:null;e.tr=tr;kind="better";}
   else{gain=Math.round(f.inc*mult*SELL_X);S.coins+=gain;kind="sold";}
   S.log.unshift({fi,mut:mut?mut.id:null,tr,kind,gain});if(S.log.length>40)S.log.length=40;
-  sfx.catch(f.t+(mut?1:0)+(tr.length>1?1:0));buzz(f.t>=3?120:30);
-  showCard(fi,mut,kind,gain,tr,mult,old);
-  if(f.t>=3||(mut&&mut.m>=6)||tr.length>=2||traitMult(tr)>=4)flash(TIERS[f.t].c);
   save();refreshAll();
+  revealing=true;setBtn();startLeap(fi,mut?mut.id:null,f.t);
+  setTimeout(()=>{
+    revealing=false;setBtn();
+    sfx.catch(f.t+(mut?1:0)+(tr.length>1?1:0));buzz(f.t>=3?120:30);
+    showCard(fi,mut,kind,gain,tr,mult,old);
+    gainFx(kind==="sold"?"+"+fmt(gain):"+"+fmt(gain)+"/s",kind==="sold"?"var(--gold)":"var(--teal)");
+    celebrate(f.t,mult,tr.length);
+  },600);
+}
+function celebrate(tier,mult,ntr){
+  const col=TIERS[tier].c;
+  if(tier>=3||mult>=6||ntr>=2)flash(col);
+  if(tier>=3||mult>=10||ntr>=3)confetti(tier>=4?40:24,[col,"#ffc845","#38e0c4","#ffffff","#ff5f7e"]);
+  if(tier>=4||mult>=25){const st=$("#stage");st.classList.remove("shake");void st.offsetWidth;st.classList.add("shake");}
+}
+function confetti(n,cols){
+  const st=$("#stage");
+  for(let i=0;i<n;i++){const d=document.createElement("i");d.className="confetti";d.style.left=(4+Math.random()*92)+"%";d.style.background=cols[i%cols.length];
+    d.style.setProperty("--dx",((Math.random()-.5)*90).toFixed(0)+"px");d.style.setProperty("--rot",(Math.random()*720-360).toFixed(0)+"deg");d.style.animationDelay=(Math.random()*.35).toFixed(2)+"s";
+    st.appendChild(d);setTimeout(()=>d.remove(),2400);}
+}
+function gainFx(txt,col){
+  const c=$("#coins"),r=c.getBoundingClientRect(),d=document.createElement("div");
+  d.className="gainfx";d.textContent=txt;d.style.color=col;d.style.left=(r.left+4)+"px";d.style.top=(r.bottom-8)+"px";document.body.appendChild(d);setTimeout(()=>d.remove(),1150);
+  c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
 }
 function showCard(fi,mut,kind,gain,tr,val,old){
-  const f=FISH[fi],T=TIERS[f.t],c=$("#card"),lm=lampMult()*rbMult();
+  const f=FISH[fi],T=TIERS[f.t],c=$("#card"),lm=lampMult()*rbMult(),fancy=f.t>=2||val>=4;
   c.style.setProperty("--rc",T.c);
   let inner;
   if(kind==="better"&&old){
@@ -1111,18 +1452,20 @@ function showCard(fi,mut,kind,gain,tr,val,old){
         <div class="vn" style="color:${mm?mm.c:"var(--muted)"}">${mm?mm.n:"Normal"}${mx>1?` <b>x${xm(mx)}</b>`:""}</div>
         <div class="ticons">${(t2||[]).map(iconImg).join("")}</div><div class="pay">${fmt(f.inc*mx*lm)}/s</div></div>`;};
     const arrow=`<svg viewBox="0 0 8 8" width="24" height="24" shape-rendering="crispEdges"><path d="M0 3h5V1h1v1h1v1h1v2H7v1H6v1H5V5H0z" fill="currentColor"/></svg>`;
-    inner=`<div class="tier">${tierTag(f)}</div><div class="nm" style="color:${T.c}">${f.n}</div>
+    inner=`<div class="nm" style="color:${T.c}">${f.n}</div>
       <div class="cmprow">${side("OLD",old.mut,old.tr,old.best,92,"old")}<div class="arr">${arrow}</div>${side("NEW",mut?mut.id:null,tr,val,108,"new")}</div>
-      <div class="res" style="color:var(--teal)"><span class="badge">BETTER</span>+${fmt(gain)}/sec</div>`;
+      <div class="res" style="color:var(--teal)">+${fmt(gain)}/sec</div>`;
   }else{
-    const res=kind==="sold"?`Sold +${fmt(gain)} coins`:`<span class="badge">NEW</span>+${fmt(gain)}/sec`;
-    inner=`<div class="tier">${tierTag(f)}</div><div class="pic">${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?250:190,f.n,(mut||tr.length)?70:96)}</div>
-      <div class="nm" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut?`<div class="mut" style="color:${mut.c}">${mut.n} x${mut.m}</div>`:""}${chipHTML(tr)}${val>1?`<div class="mut" style="color:var(--amber)">Total x${xm(val)}</div>`:""}
-      <div class="res" style="color:${kind==="sold"?"var(--amber)":"var(--teal)"}">${res}</div>`;
+    const res=kind==="sold"?`<span style="color:var(--gold)">Sold +${fmt(gain)}</span>`:`+${fmt(gain)}/sec`;
+    inner=`<div class="pic">${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?250:190,f.n,(mut||tr.length)?72:96)}</div>
+      <div class="nm" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut?`<div class="mut" style="color:${mut.c}">${mut.n} x${mut.m}</div>`:""}${chipHTML(tr)}${val>1?`<div class="mut" style="color:var(--gold)">Total x${xm(val)}</div>`:""}
+      <div class="res" style="color:var(--teal)">${res}</div>`;
   }
-  c.innerHTML=inner;
-  c.classList.toggle("big",f.t>=3);
-  c.style.transform="";c.hidden=false;cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5000:3000);
+  const stamp=kind==="new"?`<div class="stamp">New!</div>`:kind==="better"?`<div class="stamp better">Better!</div>`:"";
+  c.innerHTML=`<div class="ribbon">${tierTag(f)}</div><div class="body">${fancy?'<div class="rays"></div>':""}${inner}</div>${stamp}`;
+  c.classList.toggle("big",f.t>=3||val>=10);
+  c.style.transform="";c.hidden=false;c.classList.remove("in");void c.offsetWidth;c.classList.add("in");
+  cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5500:3200);
   const room=$("#stage").clientHeight-8,ch=c.offsetHeight;if(ch>room)c.style.transform=`translate(-50%,-50%) scale(${(room/ch).toFixed(3)})`;
 }
 function hideCard(){$("#card").hidden=true;cardShown=false;}
@@ -1131,41 +1474,53 @@ function flash(col){const d=document.createElement("div");d.className="flash";d.
 /* ---------- economy ---------- */
 let lastWall=Date.now();
 let menuOpen=true,pendingModal=null;
-function showModal(html,rc){if(menuOpen&&(html.indexOf("Welcome back")>-1||html.indexOf("data-defer")>-1)){pendingModal={html,rc};return;}const m=$("#modal");$("#modalBox").style.setProperty("--rc",rc||"var(--teal)");$("#modalBox").innerHTML=html;m.hidden=false;}
+function showModal(html,rc){
+  if(menuOpen&&(html.indexOf("Welcome back")>-1||html.indexOf("data-defer")>-1)){pendingModal={html,rc};return;}
+  const m=$("#modal"),b=$("#modalBox");b.style.setProperty("--rc",rc||"var(--gold)");b.innerHTML=html;b.style.animation="none";void b.offsetWidth;b.style.animation="";m.hidden=false;
+  const c=$("#mclose");if(c)c.onclick=closeModal;
+}
 function closeModal(){$("#modal").hidden=true;}
 function econTick(){
   const now=Date.now(),dt=(now-lastWall)/1000;lastWall=now;
   const inc=income();
   if(dt>8&&inc>0){
     const eff=Math.min(dt,OFFLINE_CAP),earn=inc*eff*OFFLINE_RATE;S.coins+=earn;
-    showModal(`<h3>Welcome back</h3><p class="muted">You were away ${fmtTime(dt)}.${dt>OFFLINE_CAP?" Earnings stop after 4 hours away.":""}</p>
-      <div class="big" style="font-family:var(--f-num);font-size:40px;color:var(--amber)">+${fmt(earn)}</div>
-      <p class="small muted">While you are away your fish pay half rate.</p><button class="close" id="mclose">Collect</button>`);
-    if($("#mclose"))$("#mclose").onclick=closeModal;
+    showModal(`<h3 style="color:var(--gold)">Welcome back</h3><p class="muted">You were away ${fmtTime(dt)}.${dt>OFFLINE_CAP?" Earnings stop after 4 hours away.":""}</p>
+      <div class="bigpic" style="--rc:#ffc845"><div style="display:flex;align-items:center;gap:10px;font-family:var(--f-num);font-size:46px;color:var(--gold);text-shadow:0 3px 0 var(--ink)"><img class="pix" src="${iconURL("coin")}" width="44" height="44" alt="">+${fmt(earn)}</div></div>
+      <p class="small muted">While you are away your fish pay half rate. The Eclipse Wheel timer only runs while you play.</p><button class="btn wide" id="mclose">Collect</button>`);
   }else if(dt<=8){S.coins+=inc*dt;}
 }
 
 /* ---------- UI ---------- */
 const panel=$("#panel");
-function renderUp(){
-  panel.innerHTML=wheelBoxHTML()+UPS.map(u=>{
-    const l=S.up[u.id],maxed=l>=u.max,cost=upCost(u,l);
-    return `<div class="up"><div><span class="t">${u.n}</span><span class="lv">Lv ${l}${maxed?" MAX":""}</span></div>
-      <button data-up="${u.id}" ${maxed||S.coins<cost?"disabled":""}>${maxed?"MAX":fmt(cost)}</button><div class="d">${u.d(l)}</div></div>`;
-  }).join("")+`<p class="small muted">Each new fish you catch pays coins every second. A better variant of a fish you own raises its pay. Duplicates sell for coins.</p>`+rebirthHTML();
+const foundCount=()=>FISH.filter(f=>S.fish[f.id]).length;
+const coinImg=()=>`<img class="ci pix" src="${iconURL("coin")}" alt="">`;
+function head(ic,title,cnt){return `<div class="sh"><img class="pix" src="${iconURL(ic)}" alt=""><h2>${title}</h2>${cnt!==undefined?`<span class="cnt">${cnt}</span>`:""}</div>`;}
+function upHTML(u){
+  const l=S.up[u.id],maxed=l>=u.max,cost=upCost(u,l);
+  return `<div class="box upc"><div class="uic"><img class="pix" src="${iconURL(u.ic)}" alt=""></div>
+    <div style="min-width:0"><div class="ut">${u.n}<span class="lv">Lv ${l}</span></div><div class="ud">${u.d(l)}</div><div class="bar gold"><i style="width:${(l/u.max*100).toFixed(1)}%"></i></div></div>
+    <button class="btn teal${maxed?" max":""}" data-up="${u.id}" ${maxed||S.coins<cost?"disabled":""}>${maxed?"Max":coinImg()+fmt(cost)}</button></div>`;
 }
-function rbReady(){return FISH.filter(f=>S.fish[f.id]).length>=REBIRTH_NEED&&S.up.rod>=REBIRTH_ROD;}
+function renderUp(){
+  panel.innerHTML=wheelBoxHTML()+head("u_rod","Gear")+UPS.map(upHTML).join("")+rebirthHTML()+
+    `<p class="intro" style="margin-top:4px">Each new fish pays coins every second. A better version of a fish you own raises its pay, and duplicates sell for coins.</p>`;
+}
+function rbReady(){return foundCount()>=rbNeedFound()&&S.up.rod>=rbNeedRod();}
 function rebirthHTML(){
-  const found=FISH.filter(f=>S.fish[f.id]).length,n=S.rb||0;
+  const found=foundCount(),n=S.rb||0,nf=rbNeedFound(),nr=rbNeedRod(),ready=rbReady();
   if(!n&&found<12&&S.up.rod<4)return "";
-  return `<div class="up rbox"><div><span class="t" style="color:var(--teal)">Tidal Rebirth</span><span class="lv">${n?"x"+rbMult().toFixed(1)+" now":"not yet"}</span></div>
-    <button data-rb="1" ${rbReady()?"":"disabled"}>${rbReady()?(S.rbArm?"Sure?":"Rebirth"):"Locked"}</button>
-    <div class="d">Start over with a permanent <b>+${Math.round(REBIRTH_STEP*100)}%</b> to all fish income (next: x${(rbMult()+REBIRTH_STEP).toFixed(1)}). You keep your traits and legendary luck. Needs ${REBIRTH_NEED} fish found (${found}) and Lucky Rod Lv ${REBIRTH_ROD} (${S.up.rod}).</div></div>`;
+  return `<div class="box rb${ready?" hot":""}"><div class="upc" style="grid-template-columns:48px 1fr"><div class="uic"><img class="pix" src="${iconURL("i_rebirth")}" alt=""></div>
+    <div><div class="ut">Tidal Rebirth${n?`<span class="lv">x${rbMult().toFixed(2)}</span>`:""}</div><div class="ud">Start over with a permanent +${Math.round(REBIRTH_STEP*100)}% to all income (next x${(rbMult()+REBIRTH_STEP).toFixed(2)}). You keep traits you discovered, wheel spins and legendary luck. Each rebirth asks for a little more.</div></div></div>
+    <div class="req"><span>Fish found</span><div class="bar"><i style="width:${Math.min(100,found/nf*100).toFixed(0)}%"></i></div><b>${found}/${nf}</b>
+    <span>Lucky Rod</span><div class="bar"><i style="width:${Math.min(100,S.up.rod/nr*100).toFixed(0)}%"></i></div><b>Lv ${S.up.rod}/${nr}</b></div>
+    <button class="btn teal wide" data-rb="1" ${ready?"":"disabled"}>${ready?(S.rbArm?"Tap again to rebirth":"Rebirth"):"Not ready yet"}</button></div>`;
 }
 function doRebirth(){
   const keep={rb:(S.rb||0)+1,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"up",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft};
   S=Object.assign(fresh(),keep);S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
-  showModal(`<h3 style="color:var(--teal)">Reborn!</h3><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(1)}</b>.</p><button class="close" id="mclose">Back to the water</button>`);$("#mclose").onclick=closeModal;
+  confetti(40,["#38e0c4","#ffc845","#ffffff"]);
+  showModal(`<h3 style="color:var(--teal)">Reborn!</h3><div class="bigpic" style="--rc:#38e0c4"><img class="pix" src="${iconURL("i_rebirth")}" width="72" height="72" alt=""></div><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(2)}</b>.</p><button class="btn teal wide" id="mclose">Back to the water</button>`,"#38e0c4");
 }
 function refreshUpButtons(){
   panel.querySelectorAll("button[data-up]").forEach(b=>{const u=UPS.find(x=>x.id===b.dataset.up);const l=S.up[u.id];b.disabled=l>=u.max||S.coins<upCost(u,l);});
@@ -1174,20 +1529,23 @@ function pipHTML(e,list){
   return list.map(m=>`<span class="pip ${e&&e.muts[m.id]?"on":""}" ${e&&e.muts[m.id]?`style="background:${m.c}"`:""} title="${m.n}"></span>`).join("");
 }
 function renderAlbum(){
-  const found=FISH.filter(f=>S.fish[f.id]).length;
-  let muts=0;FISH.forEach(f=>{const e=S.fish[f.id];if(e)muts+=Object.keys(e.muts).length;});
-  let h=`<h2>Album ${found}/${FISH.length} <span class="muted small">· variants ${muts}/${FISH.length*ALL_MUTS.length}</span></h2>
-   <div class="legend">${MUTS.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m}</span>`).join("")}</div>
-   <div class="legend">${WMUTS.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m} <em>${WX_NAME[m.wx]}</em></span>`).join("")}</div>
-   <div class="legend">${CMUTS.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m} <em>${m.d}</em></span>`).join("")}${XMUTS.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m} <em>Wheel only</em></span>`).join("")}</div>`;
+  const found=foundCount();let muts=0;FISH.forEach(f=>{const e=S.fish[f.id];if(e)muts+=Object.keys(e.muts).length;});
+  const lg=(list,tag)=>list.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m}${tag?` <em>${tag(m)}</em>`:""}</span>`).join("");
+  let h=head("t_book","Album",`${found}/${FISH.length}`)+`<div class="bar gold" style="margin-bottom:10px"><i style="width:${(found/FISH.length*100).toFixed(1)}%"></i></div>
+   <details class="mlist"><summary>Mutations: ${muts} of ${FISH.length*ALL_MUTS.length} variants found</summary>
+   <div class="legend">${lg(MUTS)}</div><div class="legend">${lg(WMUTS,m=>WX_NAME[m.wx])}</div><div class="legend">${lg(CMUTS,m=>m.d)}${lg(XMUTS,()=>"Wheel only")}</div></details>`;
+  const later=WMUTS.concat(CMUTS,XMUTS);
   TIERS.forEach((T,ti)=>{
     const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.fish[o.f.id]).length;
-    h+=`<h3 class="th" style="color:${T.c}">${T.n} <span class="muted small">${have}/${list.length}</span></h3>${T.g&&S.up.rod<T.g?`<div class="small muted" style="margin:-4px 0 6px">Starts biting at Lucky Rod Lv ${T.g}</div>`:""}${ti===6?`<div class="small muted" style="margin:-4px 0 6px">Cannot be caught. Made in the Craft tab.</div>`:""}<div class="grid">`;
+    h+=`<div class="tierh" style="--tc:${T.c}"><b>${T.n}</b><span>${have}/${list.length}</span></div>`;
+    if(T.g&&S.up.rod<T.g)h+=`<div class="tnote">Starts biting at Lucky Rod Lv ${T.g}</div>`;
+    if(ti===6)h+=`<div class="tnote">Cannot be caught. Made in the Craft tab.</div>`;
+    h+=`<div class="grid">`;
     list.forEach(({f,i})=>{
       const e=S.fish[f.id];
-      if(!e){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,66,"",44)}</div><div class="nm muted">???</div><div class="inc muted">${f.t===6?"Craft":f.w}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,WMUTS.concat(CMUTS,XMUTS))}</div></button>`;return;}
+      if(!e){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,66,"",44)}</div><div class="nm muted">???</div><div class="inc muted">${f.t===6?"Craft":f.w}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
       h+=`<button class="fcard${e.best?"":" gone"}" data-fi="${i}" style="--rc:${T.c}"><div class="spr">${spriteImg(i,bestMutId(e),false,66,f.n,44)}</div><div class="nm">${f.n}</div>
-        <div class="inc">${e.best?fmt(f.inc*e.best*lampMult()*rbMult())+"/s":"used up"}</div><div class="ticons">${(e.tr||[]).map(iconImg).join("")}</div><div class="pips">${pipHTML(e,MUTS)}<span class="pgap"></span>${pipHTML(e,WMUTS.concat(CMUTS,XMUTS))}</div></button>`;
+        <div class="inc">${e.best?fmt(f.inc*e.best*lampMult()*rbMult())+"/s":"used up"}</div><div class="ticons">${(e.tr||[]).map(iconImg).join("")}</div><div class="pips">${pipHTML(e,MUTS)}<span class="pgap"></span>${pipHTML(e,later)}</div></button>`;
     });
     h+=`</div>`;
   });
@@ -1195,23 +1553,24 @@ function renderAlbum(){
 }
 function bestMutId(e){if(e.bm!==undefined)return e.bm;const m=MUTS.find(x=>x.m===e.best);return m?m.id:null;}
 function renderTraits(){
-  const seen=TRAITS.filter(t=>S.tseen[t.id]).length,now=new Date(),wk=dayInfo(now);
-  let h=`<h2>Traits ${seen}/${TRAITS.length}</h2><p class="small muted" style="margin:0 0 8px">Traits are rare. You earn them by how, when and where you fish. A fish can carry any number of traits: once one lands, each extra trait is about 4 times rarer. Traits for the current weather, tide, hour or day make a first trait more likely and show up most often. Wild traits are weaker but can appear on any catch. Everything multiplies, with each other and with the mutation.</p>`;
+  const seen=TRAITS.filter(t=>S.tseen[t.id]).length,now=new Date(),wk=dayInfo(now),td=TR_BY[wk.id];
+  let h=head("t_star","Traits",`${seen}/${TRAITS.length}`)+`<p class="intro">A fish can carry any number of traits: once one lands, each extra one is about 4 times rarer. Traits for the current weather, tide, hour or day make a first trait more likely. Wild traits are weaker but can appear on any catch. Everything multiplies.</p>
+    <div class="box hot today"><div class="big"><img class="pix" src="${iconURL(td.ic)}" alt=""></div><div style="min-width:0"><div class="ut" style="color:var(--gold)">Today: ${td.n} x${td.m}</div><div class="ud">Only today. A new daily trait in ${fmtLeft(wk.left)}.</div></div></div>`;
   Object.keys(TGROUP).forEach(gk=>{
     const G=TGROUP[gk];
-    h+=`<h3 class="th" style="color:${G.c}">${G.n} <span class="muted small">${G.sub}</span></h3>`;
-    if(gk==="day")h+=`<div class="small" style="margin:-2px 0 4px;color:${G.c}">Today: <b>${TR_BY[wk.id].n}</b> · changes in ${fmtLeft(wk.left)}</div>`;
+    h+=`<div class="grp"><b style="color:${G.c}">${G.n}</b><span>${G.sub}</span></div>`;
     TRAITS.filter(t=>t.g===gk).forEach(t=>{
       const got=!!S.tseen[t.id];let d=t.d,live="";
       if(gk==="day"){const on=wk.id===t.id;d=on?"Active now":"Back on another day";live=on?"on":"";}
       if(gk==="season"){const se=SEASONS.find(x=>x.id===t.id),si=seasonInfo(se,now);
-        d=`${MONTHS[se.f[0]-1]} ${se.f[1]} to ${MONTHS[se.t[0]-1]} ${se.t[1]}`+(si.on?` · ${fmtLeft(si.left)} left`:` · in ${fmtLeft(si.in)}`);live=si.on?"on":"";}
-      h+=`<div class="trow ${got?"":"off"}"><img class="ti" src="${iconURL(t.ic)}" alt=""><span class="tn" style="color:${t.col}">${t.n}${got?" ✓":""}</span><span class="td${live?" live":""}">${d}</span><span class="tb">x${t.m}</span></div>`;
+        d=`${MONTHS[se.f[0]-1]} ${se.f[1]} to ${MONTHS[se.t[0]-1]} ${se.t[1]}`+(si.on?`, ${fmtLeft(si.left)} left`:`, in ${fmtLeft(si.in)}`);live=si.on?"on":"";}
+      h+=`<div class="trow ${got?"":"off"}"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n}${got?" ✓":""}</span><span class="td${live?" live":""}">${d}</span><span class="tb">x${t.m}</span></div>`;
     });
   });
   panel.innerHTML=h;
 }
-/* ---------- Craft Machine: logic ---------- */
+
+/* ---------- Craft Machine ---------- */
 function dayNum(now){now=now||new Date();return Math.round(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);}
 // 5 recipes a day: 2 from the four easy ones, 3 from the rest. Same for everyone on the same date.
 function craftToday(now){
@@ -1233,13 +1592,13 @@ function craftOdds(ins){
 function craftRoll(ins){
   const o=craftOdds(ins);let mut=null;
   for(const x of o.mut){if(Math.random()<x.p){mut=x.id;break;}}   // best mutation that passes wins; a fish holds one
-  const tr=o.tr.filter(x=>Math.random()<x.p).map(x=>x.id);   // no cap: every trait that rolls through is kept
+  const tr=o.tr.filter(x=>Math.random()<x.p).map(x=>x.id);       // no cap on traits
   return {mut,tr};
 }
 function startCraft(id){
   const c=CR_BY[id];if(!c||S.craft.job||!c.in.every(owns)||craftToday().indexOf(c)<0)return false;
   const ins=craftIns(c);
-  c.in.forEach(i=>{const e=S.fish[i];e.best=0;e.bm=null;e.tr=[];});   // used up: no pay, no mutation, no traits (album keeps the discovery)
+  c.in.forEach(i=>{const e=S.fish[i];e.best=0;e.bm=null;e.tr=[];});   // used up: no pay, no mutation, no traits (the album keeps the discovery)
   let secs=c.time;if(S.rush){secs=Math.round(secs/2);S.rush=0;}   // Craft Rush from the wheel
   S.craft.job={id,end:Date.now()+secs*1000,ins};
   sfx.buy();save();refreshAll();return true;
@@ -1257,7 +1616,7 @@ function collectCraft(){
   else{gain=Math.round(f.inc*mult*SELL_X);S.coins+=gain;kind="sold";}
   S.craft.job=null;S.craft.n=(S.craft.n||0)+1;
   S.log.unshift({fi,mut:mut?mut.id:null,tr,kind,gain});if(S.log.length>40)S.log.length=40;
-  sfx.catch(6);buzz(150);showCard(fi,mut,kind,gain,tr,mult,old);flash(TIERS[6].c);
+  sfx.catch(6);buzz(150);showCard(fi,mut,kind,gain,tr,mult,old);celebrate(f.t,mult,tr.length);
   save();refreshAll();
 }
 function insChip(id,have,mutId){
@@ -1265,26 +1624,26 @@ function insChip(id,have,mutId){
   return `<span class="cin ${have?"":"miss"}"><span class="sp">${spriteImg(FISH.indexOf(g),have?mutId:null,!have,40,"",24)}</span><span>${g.n}${have&&m?` <span style="color:${m.c}">${m.n}</span>`:""}${have?"":" ✕"}</span></span>`;
 }
 function recipeHTML(c){
-  const f=FISH_BY[c.id],fi=FISH.indexOf(f),have=c.in.every(owns),e=S.fish[c.id],busy=!!S.craft.job,T=TIERS[6];
+  const f=FISH_BY[c.id],fi=FISH.indexOf(f),have=c.in.every(owns),e=S.fish[c.id],busy=!!S.craft.job;
   const ins=c.in.map(id=>{const o=owns(id);return insChip(id,o,o?bestMutId(S.fish[id]):null);}).join("");
-  return `<div class="cbox"><div class="crow"><div class="cs">${spriteImg(fi,e&&e.best?bestMutId(e):null,false,64,f.n,44)}</div>
-    <div class="tx"><div class="cname" style="color:${T.c}">${f.n}${e&&e.best?" ✓":""}</div>
-    <div class="cmeta">Pays <b>${fmt(f.inc*lampMult()*rbMult())}/s</b> · takes ${fmtTime(c.time)}</div></div></div>
+  return `<div class="box"><div class="crow"><div class="cs">${spriteImg(fi,e&&e.best?bestMutId(e):null,false,66,f.n,44)}</div>
+    <div class="tx"><div class="cname">${f.n}${e&&e.best?" ✓":""}</div>
+    <div class="cmeta">Pays <b>${fmt(f.inc*lampMult()*rbMult())}/s</b>, takes ${fmtTime(c.time)}</div></div></div>
     <div class="cins">${ins}</div>
-    <button class="cbtn" data-craft="${c.id}" ${have&&!busy?"":"disabled"}>${busy?"Machine is busy":have?"Craft":"Missing fish"}</button></div>`;
+    <button class="btn wide${have&&!busy?"":" ghost"}" data-craft="${c.id}" ${have&&!busy?"":"disabled"}>${busy?"Machine is busy":have?"Craft":"Missing fish"}</button></div>`;
 }
 function renderCraft(){
-  const now=new Date(),day=dayInfo(now),list=craftToday(now),j=S.craft.job,T=TIERS[6];
-  let h=`<h2>Craft Machine <span class="muted small">· made ${S.craft.n||0}</span></h2>
-   <p class="small muted" style="margin:0 0 8px">Trade fish from your album for a stronger <b style="color:${T.c}">Crafted</b> fish you cannot catch. The fish you use are <b>lost</b> and their mutations and traits go with them, but each one can pass on: the more used fish share a mutation or trait, the better the chance. If all of them share it, it always passes on, and there is no limit to how many traits can pass.</p>`;
+  const now=new Date(),day=dayInfo(now),list=craftToday(now),j=S.craft.job;
+  let h=`<div class="box machine"><div class="mi"><img class="pix" src="${iconURL("t_anvil")}" alt=""></div><div style="min-width:0"><div class="ut" style="color:#ff9ae0">Craft Machine</div><div class="ud">${S.craft.n||0} crafted so far. New recipes in ${fmtLeft(day.left)}.</div></div></div>
+   <p class="intro">Trade fish you own for a stronger Crafted fish that cannot be caught. The fish you use are lost, but each mutation and trait on them can pass on: the more of them share it, the better the chance, and if all of them do it always passes on.</p>`;
   if(j){
     const c=CR_BY[j.id],f=FISH_BY[j.id],fi=FISH.indexOf(f),left=(j.end-Date.now())/1000,done=left<=0;
-    h+=`<div class="cbox ${done?"ready":"run"}" id="cjob" data-done="${done?1:0}"><div class="crow"><div class="cs">${spriteImg(fi,null,!done,64,"",44)}</div>
-      <div class="tx"><div class="cname" style="color:${done?T.c:"var(--ink)"}">${done?f.n+" is ready!":"Crafting a mystery fish..."}</div>
+    h+=`<div class="box cjob${done?" hot":""}" id="cjob" data-done="${done?1:0}"><div class="crow"><div class="cs">${spriteImg(fi,null,!done,66,"",44)}</div>
+      <div class="tx"><div class="cname">${done?f.n+" is ready!":"Crafting a mystery fish"}</div>
       <div class="cmeta">${done?"Collect it to see which mutations and traits passed on.":`<b id="ctime">${fmtTime(left)}</b> left. It keeps going while you are away.`}</div></div></div>
-      ${done?`<button class="cbtn go" data-collect="1" style="margin-top:8px">Collect</button>`:`<div class="cbar"><i id="cbar" style="width:${Math.min(100,100*(1-left/c.time)).toFixed(1)}%"></i></div>`}</div>`;
+      ${done?`<button class="btn wide" data-collect="1" style="margin-top:8px">Collect</button>`:`<div class="bar" style="margin-top:8px"><i id="cbar" style="width:${Math.min(100,100*(1-left/c.time)).toFixed(1)}%"></i></div>`}</div>`;
   }
-  h+=`<h3 class="th">Today's recipes <span class="muted small">new ones in ${fmtLeft(day.left)}</span></h3>`;
+  h+=`<div class="grp"><b style="color:#ff9ae0">Today's recipes</b><span>5 of 12, they change every day</span></div>`;
   h+=list.map(recipeHTML).join("");
   panel.innerHTML=h;
 }
@@ -1293,47 +1652,53 @@ function openCraft(id){
   if(!c||S.craft.job||!c.in.every(owns))return;
   const ins=craftIns(c),o=craftOdds(ins),pc=p=>Math.round(p*100)+"%";
   const rows=o.mut.map(x=>{const m=MUT_BY[x.id];return `<div class="trow"><span class="tn" style="color:${m.c}">${m.n} x${m.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("")
-    +o.tr.map(x=>{const t=TR_BY[x.id];return `<div class="trow"><img class="ti" src="${iconURL(t.ic)}" alt=""><span class="tn" style="color:${t.col}">${t.n} x${t.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("");
+    +o.tr.map(x=>{const t=TR_BY[x.id];return `<div class="trow"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n} x${t.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("");
   showModal(`<h3 style="color:${T.c}">Craft ${f.n}</h3>
-   <div class="big">${spriteImg(fi,null,false,170,f.n,88)}</div>
-   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc*lampMult()*rbMult())}/sec base</dd><dt>Takes</dt><dd>${fmtTime(c.time)}</dd></dl>
+   <div class="bigpic">${spriteImg(fi,null,false,170,f.n,88)}</div>
+   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Takes</dt><dd>${fmtTime(S.rush?Math.round(c.time/2):c.time)}${S.rush?" (Craft Rush)":""}</dd></dl>
    <div class="small muted">These fish are used up:</div><div class="cins">${ins.map(x=>insChip(x.id,true,x.m)).join("")}</div>
    <div class="small muted">Chance to pass on</div>
    <div class="codds">${rows||`<div class="small muted">None of these fish have a mutation or a trait, so nothing can pass on.</div>`}</div>
-   ${e&&e.best?`<div class="small" style="color:var(--amber)">You already own ${f.n}. The new one only replaces it if it is better, otherwise it sells for coins.</div>`:""}
-   <button class="close" id="cgo">Start crafting</button><button class="close" id="mclose" style="margin-top:8px;background:var(--panel2);color:var(--ink)">Cancel</button>`,T.c);
-  $("#mclose").onclick=closeModal;
+   ${e&&e.best?`<div class="small" style="color:var(--gold)">You already own ${f.n}. The new one only replaces it if it is better, otherwise it sells for coins.</div>`:""}
+   <div class="mbtnrow"><button class="btn" id="cgo">Start crafting</button><button class="btn ghost" id="mclose">Cancel</button></div>`,T.c);
   $("#cgo").onclick=()=>{closeModal();startCraft(id);};
+}
+function setDot(tab,on){
+  const b=document.querySelector(`#tabs button[data-tab="${tab}"]`);if(!b)return;
+  const d=b.querySelector(".dot");
+  if(on&&!d){const s=document.createElement("span");s.className="dot";b.appendChild(s);}
+  else if(!on&&d)d.remove();
 }
 // keeps the Craft tab's dot, timer and progress bar current without redrawing the whole panel
 function refreshCraft(){
-  const j=S.craft&&S.craft.job,cb=document.querySelector('#tabs button[data-tab="craft"]');
-  const ready=!!(j&&Date.now()>=j.end),txt=ready?"Craft ●":"Craft";
-  if(cb.textContent!==txt)cb.textContent=txt;
+  const j=S.craft&&S.craft.job,ready=!!(j&&Date.now()>=j.end);
+  setDot("craft",ready);
   if(S.tab!=="craft"||!j)return;
   const el=$("#cjob");if(!el)return;
   if(el.dataset.done!==(ready?"1":"0")){renderPanel();return;}
   if(!ready&&$("#ctime")){const left=(j.end-Date.now())/1000;$("#ctime").textContent=fmtTime(left);$("#cbar").style.width=Math.min(100,100*(1-left/CR_BY[j.id].time)).toFixed(1)+"%";}
 }
+
 /* ---------- Eclipse Wheel ---------- */
 // Spins are earned by PLAYING: the timer only runs while the game screen is open, so nothing builds up while you are away.
+const PRIZE_IC={pouch:"p_pouch",chest:"p_chest",luck:"p_clover",charge:"p_trait",rush:"p_rush",mega:"p_mega",eclipse:"p_eclipse"};
 function gameTick(d){
   if(S.luckLeft>0)S.luckLeft=Math.max(0,S.luckLeft-d);
   const w=S.wheel;
   if(w.spins<WHEEL_MAX){w.left-=d;if(w.left<=0){w.spins++;w.left=WHEEL_EVERY;sfx.buy();}}
 }
-function wheelText(){const w=S.wheel;return w.spins>=WHEEL_MAX?"Wheel is full. Use a spin!":`Next free spin in ${fmtTime(w.left)} of playing`;}
+function wheelText(){const w=S.wheel;return w.spins>=WHEEL_MAX?"The wheel is full. Use a spin!":`Next free spin in ${fmtTime(w.left)} of playing`;}
 function wheelBoxHTML(){
   const w=S.wheel;
-  return `<div class="cbox ${w.spins?"ready":""}"><div class="crow"><div class="tx"><div class="cname" style="color:#ffd45a">Eclipse Wheel</div><div class="cmeta" id="wtext">${wheelText()}</div></div>
-    <div style="flex:0 0 112px"><button class="cbtn ${w.spins?"go":""}" data-wheel="1" ${w.spins?"":"disabled"}>Spin (${w.spins})</button></div></div></div>`;
+  return `<div class="box wbox${w.spins?" ready hot":""}"><div class="wmini"></div><div class="tx"><div class="wt">Eclipse Wheel</div><div class="wd" id="wtext">${wheelText()}</div></div>
+    <button class="btn" data-wheel="1" data-n="${w.spins}" ${w.spins?"":"disabled"}>Spin${w.spins?`<span class="badge">${w.spins}</span>`:""}</button></div>`;
 }
 function refreshWheel(){
-  const w=S.wheel,gb=document.querySelector('#tabs button[data-tab="up"]'),txt=w.spins?"Gear ●":"Gear";
-  if(gb.textContent!==txt)gb.textContent=txt;
+  const w=S.wheel;setDot("up",w.spins>0);
+  const t=$("#wtimer");if(t)t.textContent=wheelText();
   if(S.tab!=="up")return;
-  const t=$("#wtext");if(t)t.textContent=wheelText();
-  const b=document.querySelector("button[data-wheel]");if(b&&b.textContent!==`Spin (${w.spins})`)renderPanel();
+  const wt=$("#wtext");if(wt)wt.textContent=wheelText();
+  const b=document.querySelector("button[data-wheel]");if(b&&b.dataset.n!==String(w.spins))renderPanel();
 }
 let wheelBusy=false,wheelRot=0;
 function grantPrize(pz){
@@ -1343,7 +1708,7 @@ function grantPrize(pz){
     case"pouch":return coins(5,300);
     case"chest":return coins(20,1500);
     case"mega":return coins(120,8000);
-    case"luck":S.luckLeft=Math.min(3600,(S.luckLeft||0)+900);return "2x Luck for 15 minutes";
+    case"luck":S.luckLeft=Math.min(3600,(S.luckLeft||0)+900);return "2x Luck for 15 minutes of play";
     case"charge":S.charge=1;return "Your next catch gets a trait";
     case"eclipse":S.eclipse=1;return "Your next catch is an Eclipse fish!";
     case"rush":{const j=S.craft.job;
@@ -1352,19 +1717,43 @@ function grantPrize(pz){
   }
   return "";
 }
+function wheelSVG(){
+  const N=WHEEL.length,seg=360/N,Rw=128,C=150,pt=(a,r)=>[C+r*Math.sin(a*Math.PI/180),C-r*Math.cos(a*Math.PI/180)],f1=v=>v.toFixed(1);
+  let defs=`<defs><linearGradient id="wgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".5" stop-color="#ffc845"/><stop offset="1" stop-color="#d88a10"/></linearGradient>
+    <radialGradient id="wspace" cx="150" cy="150" r="130" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3a4ea8"/><stop offset="1" stop-color="#16205a"/></radialGradient>
+    <radialGradient id="wspace2" cx="150" cy="150" r="130" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a5ec0"/><stop offset="1" stop-color="#1e2a70"/></radialGradient></defs>`;
+  let g="",stars="";
+  WHEEL.forEach((pz,i)=>{
+    const a0=i*seg,a1=(i+1)*seg,[x0,y0]=pt(a0,Rw),[x1,y1]=pt(a1,Rw),rare=pz.w<=3;
+    g+=`<path d="M${C} ${C}L${f1(x0)} ${f1(y0)}A${Rw} ${Rw} 0 0 1 ${f1(x1)} ${f1(y1)}Z" fill="${rare?"url(#wgold)":i%2?"url(#wspace2)":"url(#wspace)"}" stroke="#0a0820" stroke-width="3"/>`;
+    if(!rare)for(let k=0;k<7;k++){const a=a0+6+((hash(i,k,3)%1000)/1000)*(seg-12),r=30+((hash(i,k,9)%1000)/1000)*90,[sx,sy]=pt(a,r);stars+=`<rect x="${f1(sx)}" y="${f1(sy)}" width="2" height="2" fill="#fff" opacity="${(.35+((hash(k,i,5)%60)/100)).toFixed(2)}"/>`;}
+    const am=(i+.5)*seg,[ix,iy]=pt(am,Rw*.67),[px,py]=pt(am,Rw*.45),[lx,ly]=pt(am,Rw*.89);
+    g+=`<image href="${iconURL(PRIZE_IC[pz.id])}" x="${f1(ix-18)}" y="${f1(iy-18)}" width="36" height="36" transform="rotate(${am} ${f1(ix)} ${f1(iy)})" style="image-rendering:pixelated"/>`;
+    g+=`<text x="${f1(px)}" y="${f1(py)}" text-anchor="middle" dominant-baseline="middle" font-family="VT323,monospace" font-size="21" fill="${rare?"#2a1605":"#ffe9a0"}" stroke="${rare?"none":"#0a0820"}" stroke-width="3" paint-order="stroke">${pz.w}%</text>`;
+    g+=`<text x="${f1(lx)}" y="${f1(ly)}" transform="rotate(${am} ${f1(lx)} ${f1(ly)})" text-anchor="middle" dominant-baseline="middle" font-family="Pixelify Sans,sans-serif" font-weight="700" font-size="13" fill="#ffffff" stroke="#0a0820" stroke-width="3" paint-order="stroke">${pz.lab}</text>`;
+  });
+  const spin=`<svg id="wheelSpin" viewBox="0 0 300 300" style="transform:rotate(${wheelRot}deg)">${defs}${g}${stars}</svg>`;
+  let bulbs="";for(let k=0;k<24;k++){const [bx,by]=pt(k*15+7.5,138);bulbs+=`<circle class="bulb${k%2?" b2":""}" cx="${f1(bx)}" cy="${f1(by)}" r="3.6" stroke="#0a0820" stroke-width="1.5"/>`;}
+  const rim=`<svg viewBox="0 0 300 300" aria-hidden="true">
+    <circle cx="150" cy="150" r="138" fill="none" stroke="#0a0820" stroke-width="18"/><circle cx="150" cy="150" r="138" fill="none" stroke="url(#rimg)" stroke-width="13"/>
+    <defs><linearGradient id="rimg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".45" stop-color="#ffc845"/><stop offset="1" stop-color="#a86a10"/></linearGradient>
+    <radialGradient id="hubg"><stop offset="0" stop-color="#3a2a70"/><stop offset="1" stop-color="#120c30"/></radialGradient></defs>
+    ${bulbs}
+    <circle cx="150" cy="150" r="27" fill="url(#hubg)" stroke="#0a0820" stroke-width="3"/><circle cx="150" cy="150" r="23" fill="none" stroke="#ffc845" stroke-width="3"/>
+    <image href="${iconURL("p_eclipse")}" x="135" y="135" width="30" height="30" style="image-rendering:pixelated"/>
+    <path d="M150 40 L134 14 Q150 -8 166 14 Z" fill="#ff3b5c" stroke="#0a0820" stroke-width="3.5" stroke-linejoin="round"/><circle cx="150" cy="13" r="5" fill="#ffd0d8"/><circle cx="148" cy="11" r="2" fill="#fff"/>
+  </svg>`;
+  return spin+rim;
+}
 function openWheel(){
-  if(S.wheel.spins<=0)return;
-  const N=WHEEL.length,seg=360/N;wheelRot=0;wheelBusy=false;
-  let acc=0,stops=WHEEL.map((pz,i)=>{const a=acc;acc+=seg;return `${pz.c} ${a}deg ${acc}deg`;}).join(",");
-  const labels=WHEEL.map((pz,i)=>`<div class="wl" style="transform:rotate(${(i+.5)*seg}deg)"><span style="transform:translate(-50%,-50%) translateY(-84px)">${pz.lab}</span></div>`).join("");
-  showModal(`<h3 style="color:#ffd45a;text-align:center">Eclipse Wheel</h3>
-    <div class="wheelwrap"><div class="wptr"></div><div class="wheel" id="wheel" style="background:conic-gradient(from 0deg,${stops})">${labels}<div class="hub"></div></div></div>
-    <div class="wres" id="wres">Spins left: <b id="wleft">${S.wheel.spins}</b></div>
-    <button class="close" id="wspin">Spin</button>
-    <div class="small muted" style="margin-top:8px">Prizes and odds</div>
-    <div class="wodds">${WHEEL.map(pz=>`<div class="trow"><span class="sw" style="background:${pz.c}"></span><span class="tn" style="flex:0 0 108px">${pz.n}</span><span class="td">${pz.d}</span><span class="tb">${pz.w}%</span></div>`).join("")}</div>
-    <button class="close" id="mclose" style="margin-top:8px;background:var(--panel2);color:var(--ink)">Close</button>`,"#ffd45a");
-  $("#mclose").onclick=closeModal;
+  wheelBusy=false;
+  showModal(`<div class="wtitle">Eclipse Wheel</div>
+    <div class="wstage" id="wstage"><div class="glow"></div>${wheelSVG()}</div>
+    <div class="wres" id="wres"><span class="muted">${S.wheel.spins?"Tap Spin to try your luck":"No spins right now"}</span></div>
+    <div class="wspinrow"><button class="btn" id="wspin" ${S.wheel.spins?"":"disabled"}>Spin<span class="badge" id="wleft">${S.wheel.spins}</span></button></div>
+    <div class="wtimer" id="wtimer">${wheelText()}</div>
+    <div class="prizes">${WHEEL.map(pz=>`<div class="prize${pz.w<=3?" rare":""}"><img class="pix" src="${iconURL(PRIZE_IC[pz.id])}" alt=""><div class="pt">${pz.n}<span>${pz.d}</span></div><b>${pz.w}%</b></div>`).join("")}</div>
+    <button class="btn ghost wide" id="mclose" style="margin-top:12px">Close</button>`,"#ffc845");
   $("#wspin").onclick=doSpin;
 }
 function doSpin(){
@@ -1372,33 +1761,40 @@ function doSpin(){
   wheelBusy=true;S.wheel.spins--;
   let r=Math.random()*100,i=0;for(;i<WHEEL.length-1;i++){if(r<WHEEL[i].w)break;r-=WHEEL[i].w;}
   const pz=WHEEL[i],seg=360/WHEEL.length,center=(i+.5)*seg,jit=(Math.random()-.5)*seg*.7;
-  const msg=grantPrize(pz);save();refreshAll();               // the prize is yours the moment you spin
-  wheelRot+=360*5+((360-(center+jit))-(wheelRot%360)+360)%360;
-  const wh=$("#wheel");if(wh)wh.style.transform=`rotate(${wheelRot}deg)`;
-  $("#wspin").disabled=true;$("#wres").innerHTML="Spinning...";beep(520,.2,"triangle",.05,880);
+  const msg=grantPrize(pz);save();refreshAll();                // the prize is yours the moment you spin
+  wheelRot+=360*6+((360-(center+jit))-(wheelRot%360)+360)%360;
+  const wh=$("#wheelSpin");if(wh)wh.style.transform=`rotate(${wheelRot}deg)`;
+  const st=$("#wstage");if(st)st.classList.add("spinning");
+  $("#wspin").disabled=true;$("#wleft").textContent=S.wheel.spins;$("#wres").innerHTML=`<span class="muted">Spinning...</span>`;
+  let tt=0;for(let k=0;k<26;k++){tt+=40+k*k*.55;setTimeout(()=>beep(1300-k*25,.025,"square",.03),tt);}   // ticks that slow down with the wheel
   setTimeout(()=>{
-    wheelBusy=false;sfx.catch(pz.id==="eclipse"?5:pz.w<=3?4:2);buzz(pz.w<=10?120:40);
-    if(pz.id==="eclipse")flash("#ffd45a");
-    const res=$("#wres");if(!res)return;                        // modal was closed meanwhile
-    res.innerHTML=`<span style="color:${pz.c}">${pz.n}</span><br><span class="small muted">${msg}</span><br><span class="small muted">Spins left: ${S.wheel.spins}</span>`;
+    wheelBusy=false;
+    const s2=$("#wstage");if(s2)s2.classList.remove("spinning");
+    sfx.catch(pz.id==="eclipse"?5:pz.w<=3?4:2);buzz(pz.w<=10?120:40);
+    const res=$("#wres");if(!res)return;                          // the window was closed meanwhile
+    res.innerHTML=`<img class="pix won" src="${iconURL(PRIZE_IC[pz.id])}" alt=""><div class="won"><div class="pn" style="color:${pz.c}">${pz.n}</div><div class="small muted">${msg}</div></div>`;
     const b=$("#wspin");if(b)b.disabled=S.wheel.spins<=0;
-  },4100);
+  },4300);
 }
+
 function renderLog(){
-  const found=FISH.filter(f=>S.fish[f.id]).length;
-  let h=`<div class="stats"><div class="stat"><b>${S.casts}</b><span>casts</span></div><div class="stat"><b>${found}/${FISH.length}</b><span>fish found</span></div>${S.up.rod>=TIERS[4].g?`<div class="stat"><b>+${Math.round((pityMult()-1)*100)}%</b><span>legendary luck</span></div>`:""}${S.rb?`<div class="stat"><b>x${rbMult().toFixed(1)}</b><span>rebirth ${S.rb}</span></div>`:""}</div>`;
-  h+=`<h2>Recent catches</h2>`;
-  if(!S.log.length)h+=`<p class="muted">Nothing yet. Tap Cast.</p>`;
+  const found=foundCount();let best=null;
+  FISH.forEach((f,i)=>{const e=S.fish[f.id];if(e&&e.best){const v=f.inc*e.best;if(!best||v>best.v)best={v,i,e};}});
+  const st=(ic,v,l)=>`<div class="stat"><img class="pix" src="${iconURL(ic)}" alt=""><div><b>${v}</b><span>${l}</span></div></div>`;
+  let h=head("t_scroll","Fishing log")+`<div class="stats">${st("fish",S.casts,"casts")}${st("t_book",found+"/"+FISH.length,"fish found")}${st("t_anvil",S.craft.n||0,"crafted")}${st("i_rebirth",S.rb||0,"rebirths")}
+    ${S.up.rod>=TIERS[4].g?st("p_clover","+"+Math.round((pityMult()-1)*100)+"%","legendary luck"):""}${best?st("i_trophy","x"+xm(best.e.best),"best: "+FISH[best.i].n):""}</div>`;
+  h+=`<div class="grp"><b style="color:var(--gold)">Recent catches</b></div>`;
+  if(!S.log.length)h+=`<p class="intro">Nothing yet. Tap Cast to catch your first fish.</p>`;
   S.log.slice(0,20).forEach(r=>{
-    const f=FISH[r.fi],T=TIERS[f.t],m=r.mut?MUT_BY[r.mut]:null;
-    h+=`<div class="logrow">${spriteImg(r.fi,r.mut,false,44,f.n,28)}<div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.kind==="new"?" · new":r.kind==="better"?" · better":""}${r.tr&&r.tr.length?" · "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
+    const f=FISH[r.fi];if(!f)return;const T=TIERS[f.t],m=r.mut?MUT_BY[r.mut]:null;
+    h+=`<div class="logrow"><span class="lp">${spriteImg(r.fi,r.mut,false,48,f.n,28)}</span><div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.kind==="new"?", new":r.kind==="better"?", better":""}${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
       <div class="r">${r.kind==="sold"?"+"+fmt(r.gain):"+"+fmt(r.gain)+"/s"}</div></div>`;
   });
-  h+=`<p style="margin-top:14px"><button class="link-btn" id="reset">Reset save</button></p>`;
+  h+=`<p style="margin-top:16px"><button class="btn ghost" id="reset">Reset save</button></p>`;
   panel.innerHTML=h;
   $("#reset").onclick=function(){
-    if(this.dataset.armed){S=fresh();save();lastWall=Date.now();hideCard();refreshAll();}
-    else{this.dataset.armed=1;this.classList.add("warn");this.textContent="Tap again to erase everything";}
+    if(this.dataset.armed){S=fresh();S.seenV="6";save();lastWall=Date.now();hideCard();refreshAll();}
+    else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
   };
 }
 function renderPanel(){
@@ -1415,19 +1811,18 @@ function openFish(i){
   const vars=[{id:null,n:"Normal",c:"#fff",got:e&&e.norm}].concat(ALL_MUTS.map(m=>({id:m.id,n:m.n,c:m.c,got:e&&e.muts[m.id]})));
   const tideTxt=f.w==="Sea"?"High tide":f.w==="Lake"?"Low tide":"Any tide";
   showModal(`<h3 style="color:${e?T.c:"var(--muted)"}">${e?f.n:"Unknown fish"}</h3><div class="small muted">${tierTag(f)}</div>
-   <div class="big">${spriteImg(i,e?bestMutId(e):null,!e,170,f.n,88)}</div>
-   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Your best</dt><dd>${e&&e.best?"x"+xm(e.best)+" · "+fmt(f.inc*e.best*lampMult()*rbMult())+"/sec":e?"used in a craft":f.t===6?"not crafted":"not caught"}</dd>
+   <div class="bigpic" style="--rc:${e?T.c:"#3b3180"}">${spriteImg(i,e?bestMutId(e):null,!e,170,f.n,88)}</div>
+   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Your best</dt><dd>${e&&e.best?"x"+xm(e.best)+" ("+fmt(f.inc*e.best*lampMult()*rbMult())+"/sec)":e?"used in a craft":f.t===6?"not crafted":"not caught"}</dd>
    ${f.t===6?`<dt>Crafted</dt><dd>${e?e.count:0} time${e&&e.count===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:`<dt>Caught</dt><dd>${e?e.count:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}</dl>
-   ${e?(e.tr&&e.tr.length?`<div class="small muted">Best traits (x${+traitMult(e.tr).toFixed(2)})</div>`+chipHTML(e.tr):`<div class="small muted">Best version has no traits</div>`):""}
-   <div class="vars">${vars.map(v=>`<div class="var ${v.got?"":"off"}"><div class="vi">${spriteImg(i,v.id,!v.got,50,"",28)}</div><span style="color:${v.got?v.c:"var(--muted)"}">${v.n}</span></div>`).join("")}</div>
-   <button class="close" id="mclose">Close</button>`,e?T.c:"#3b4175");
-  $("#mclose").onclick=closeModal;
+   ${e?(e.tr&&e.tr.length?`<div class="small muted">Best traits (x${xm(traitMult(e.tr))})</div>`+chipHTML(e.tr):`<div class="small muted">Best version has no traits</div>`):""}
+   <div class="vars">${vars.map(v=>`<div class="var"><div class="vi">${spriteImg(i,v.id,!v.got,50,"",28)}</div><span style="color:${v.got?v.c:"var(--muted)"}">${v.n}</span></div>`).join("")}</div>
+   <button class="btn wide" id="mclose">Close</button>`,e?T.c:"#3b3180");
 }
 
 /* ---------- events ---------- */
 btn.addEventListener("click",startCast);
 $("#stage").addEventListener("click",()=>{if(cardShown)hideCard();else startCast();});
-$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(!b)return;S.tab=b.dataset.tab;renderPanel();save();});
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(!b)return;S.tab=b.dataset.tab;beep(520,.04,"square",.03);renderPanel();save();});
 panel.addEventListener("click",e=>{
   const rb=e.target.closest("button[data-rb]");
   if(rb){if(!rbReady())return;if(S.rbArm){S.rbArm=0;doRebirth();}else{S.rbArm=1;renderPanel();setTimeout(()=>{if(S.rbArm){S.rbArm=0;renderPanel();}},4000);}return;}
@@ -1438,44 +1833,62 @@ panel.addEventListener("click",e=>{
   if(e.target.closest("button[data-collect]")){collectCraft();return;}
   const f=e.target.closest("button[data-fi]");if(f)openFish(+f.dataset.fi);
 });
-$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal();});
+$("#modal").addEventListener("click",e=>{if(e.target.id==="modal"&&!wheelBusy)closeModal();});
 $("#snd").addEventListener("click",function(){S.sound=!S.sound;this.setAttribute("aria-pressed",String(S.sound));save();});
 document.addEventListener("visibilitychange",()=>{if(document.hidden)save();else{econTick();refreshAll();}});
 addEventListener("pagehide",save);
 
-/* ---------- menu ---------- */
+/* ---------- title screen ---------- */
 const menu=$("#menu"),mctx=$("#menuScene").getContext("2d");mctx.imageSmoothingEnabled=false;
 function hasProgress(){return S.casts>0||Object.keys(S.fish).length>0;}
+const mcv=$("#menuScene");let mH=0,mTop=0;
+function sizeMenu(){const r=innerHeight/Math.max(1,innerWidth);mH=Math.max(120,Math.min(400,Math.round(160*r)));mcv.width=160;mcv.height=mH;mctx.imageSmoothingEnabled=false;mTop=Math.round((mH-120)*.46);}
+function drawMenuBg(t){
+  if(!mH)sizeMenu();
+  const P=pal(),top=P.sky[0],bot=P.water[5];
+  const g=mctx.createLinearGradient(0,0,0,mTop+1);g.addColorStop(0,mix(top,"#05040f",.55));g.addColorStop(1,top);
+  mctx.fillStyle=g;mctx.fillRect(0,0,160,mTop+1);
+  mctx.globalAlpha=Math.min(1,.35+P.dark);
+  for(let i=0;i<40;i++){const x=hash(i,1,7)%160,y=hash(i,2,7)%Math.max(1,mTop);if(Math.sin(t*1.7+i*2.3)>-.4){mctx.fillStyle=i%5?"#fff6dc":"#ffd27a";mctx.fillRect(x,y,1,1);}}
+  mctx.globalAlpha=1;
+  mctx.drawImage(cv,0,mTop);
+  const g2=mctx.createLinearGradient(0,mTop+119,0,mH);g2.addColorStop(0,bot);g2.addColorStop(1,"#05040f");
+  mctx.fillStyle=g2;mctx.fillRect(0,mTop+120,160,mH-mTop-120);
+  mctx.fillStyle="rgba(255,255,255,.08)";for(let r=0;r<10;r++){const y=mTop+124+r*6;if(y>=mH)break;for(let k=0;k<3;k++){const x=((k*53+r*17+t*(3+r*.5))%180)-10;mctx.fillRect(Math.round(x),y,5,1);}}
+}
+addEventListener("resize",()=>{mH=0;});
 function refreshMenu(){
-  const found=FISH.filter(f=>S.fish[f.id]).length;
+  const found=foundCount();
   $("#mPlay").textContent=hasProgress()?"Continue":"Play";
   $("#mNew").hidden=!hasProgress();
-  $("#mNew").textContent="New game";$("#mNew").classList.remove("warn");delete $("#mNew").dataset.armed;
-  $("#mstat").innerHTML=hasProgress()?`Fish found <b>${found}/${FISH.length}</b> · Earning <b>${fmt(income())}/sec</b>`:"Your first fish is waiting.";
+  $("#mNew").textContent="New game";$("#mNew").classList.remove("coral");$("#mNew").classList.add("ghost");delete $("#mNew").dataset.armed;
+  const pill=(ic,b,l)=>`<span class="mp"><img class="pix" src="${iconURL(ic)}" alt=""><b>${b}</b>${l}</span>`;
+  $("#mstat").innerHTML=hasProgress()?pill("t_book",found+"/"+FISH.length,"found")+pill("coin",fmt(income()),"per sec")+(S.rb?pill("i_rebirth",S.rb,"rebirths"):""):"";
   $("#mSound").textContent="Sound: "+(S.sound?"On":"Off");
+  $("#mfoot").textContent=`Version ${VERSION}. Made by Ike.`;
 }
-function openMenu(){menuOpen=true;menu.hidden=false;refreshMenu();}
+function openMenu(){menuOpen=true;menu.hidden=false;$("#credits").hidden=true;refreshMenu();}
 function closeMenu(){
   menuOpen=false;menu.hidden=true;
-  if(pendingModal){const m=pendingModal;pendingModal=null;showModal(m.html,m.rc);if($("#mclose"))$("#mclose").onclick=closeModal;}
+  if(pendingModal){const m=pendingModal;pendingModal=null;showModal(m.html,m.rc);}
 }
-$("#mPlay").onclick=()=>{beep(660,.08,"square",.05);closeMenu();};
+$("#mPlay").onclick=()=>{beep(660,.08,"square",.05);setTimeout(()=>beep(990,.1,"square",.05),80);closeMenu();};
 $("#menuBtn").onclick=openMenu;
 $("#mSound").onclick=()=>{S.sound=!S.sound;$("#snd").setAttribute("aria-pressed",String(S.sound));save();refreshMenu();beep(660,.08,"square",.05);};
+$("#mCredits").onclick=()=>{const c=$("#credits"),r=$("#croll");c.hidden=false;r.style.animation="none";void r.offsetWidth;r.style.animation="";beep(520,.06,"triangle",.05);};
+$("#cBack").onclick=()=>{$("#credits").hidden=true;};
 $("#mHow").onclick=()=>{
-  showModal(`<h3>How to play</h3><ol class="howto">
-    <li>Tap <b>Cast</b>. Fish bite at random, so tap the water to lure them faster. When the bobber jumps, tap <b>HOOK!</b> fast: a quick hook makes rare variants and traits more likely, missing makes them less likely.</li>
-    <li>Every new fish you catch is added to your album and <b>pays coins every second</b>.</li>
-    <li>Rarer fish pay far more. Shiny, Giant, Golden and Glitched versions pay even more, but they are very rare.</li>
-    <li><b>Tides</b> rise and fall every 5 minutes. High tide brings sea fish, low tide brings lake fish.</li>
-    <li><b>Weather</b> comes and goes. Some fish caught in rain, fog, snow, storms or an aurora can get a weather mutation that you cannot get any other way.</li>
-    <li><b>Traits</b> are rare bonuses earned by how and when you fish: the tide, the hour, how long you waited, the weather. A few are limited-time: one rotates in every day and some only appear on certain dates. A fish can carry any number of traits: once one lands, each extra one is about 4 times rarer. They multiply together and with mutations. See the Traits tab.</li>
-    <li>Spend coins on <b>Gear</b> to find rare fish and variants more often. <b>Legendary fish only start biting at Lucky Rod Lv 5.</b></li>
-    <li>Catch a duplicate and it sells for coins. When you leave, your fish keep earning at half rate for up to 4 hours.</li>
-    <li>The <b>Eclipse Wheel</b> (top of the Gear tab) gives you a free spin every 30 minutes you spend playing. It does not count while the game is closed. Prizes: coins, double luck, a guaranteed trait, a craft speed-up, and the wheel-only <b>Eclipse</b> mutation.</li>
-    <li>The <b>Craft</b> tab turns fish you own into stronger Crafted fish that cannot be caught. Each recipe needs specific fish, which are used up (they lose their mutations and traits). Every mutation or trait on them has a chance to pass on: the more of the fish share it, the likelier it is, and if all of them do it always passes on. Five recipes are on offer each day and crafting keeps going while you are away.</li></ol>
-    <button class="close" id="mclose">Got it</button>`);
-  $("#mclose").onclick=closeModal;
+  showModal(`<h3 style="color:var(--gold)">How to play</h3><ol class="howto">
+    <li>Tap <b>Cast</b>. Tap the water while you wait to lure fish faster. When the bobber jumps, tap <b>Hook!</b> fast: a quick hook makes rare variants and traits more likely, missing makes them less likely.</li>
+    <li>Every new fish goes into your album and <b>pays coins every second</b>. Catch a better version and its pay goes up. Duplicates sell for coins.</li>
+    <li>Rarer fish pay far more. <b>Legendary fish bite from Lucky Rod Lv 5, Mythic fish from Lv 10.</b></li>
+    <li><b>Mutations</b> like Shiny, Golden or Galaxy multiply a fish's pay. Some only happen in certain weather, at night, during events, or from the wheel.</li>
+    <li><b>Traits</b> are earned by how and when you fish: the tide, the hour, the weather, today's trait. A fish can carry any number, each extra one about 4 times rarer. They all multiply.</li>
+    <li>The sky follows your real clock. <b>Tides</b> turn every 5 minutes: high tide brings sea fish, low tide lake fish.</li>
+    <li>The <b>Eclipse Wheel</b> (Gear tab) gives a free spin every 30 minutes you spend playing.</li>
+    <li>The <b>Craft</b> tab turns fish you own into stronger Crafted fish. The fish you use are lost, but their mutations and traits can pass on.</li>
+    <li><b>Tidal Rebirth</b> starts you over with a permanent income bonus. While you are away, fish keep earning at half rate for up to 4 hours.</li></ol>
+    <button class="btn wide" id="mclose">Got it</button>`);
 };
 function saveCode(){save();return "TW1:"+btoa(unescape(encodeURIComponent(JSON.stringify(S))));}
 function readCode(txt){
@@ -1484,13 +1897,14 @@ function readCode(txt){
   if(!o||typeof o.coins!=="number"||typeof o.fish!=="object")throw 0;return o;
 }
 $("#mCode").onclick=()=>{
-  showModal(`<h3>Save code</h3><p class="small muted">Copy this code to back up your game or move it to another device. To restore, paste a code below and tap Import.</p>
-    <textarea id="codeOut" readonly rows="3" style="width:100%;font-size:12px;background:var(--panel2);color:var(--ink);border:2px solid var(--line)"></textarea>
-    <button class="close" id="codeCopy">Copy code</button>
-    <textarea id="codeIn" rows="3" placeholder="Paste a code here" style="width:100%;margin-top:10px;font-size:12px;background:var(--panel2);color:var(--ink);border:2px solid var(--line)"></textarea>
+  const ta=`width:100%;font-size:12px;background:#120e30;color:var(--text);border:2px solid var(--ink);border-radius:8px;padding:6px`;
+  showModal(`<h3 style="color:var(--gold)">Save code</h3><p class="small muted">Copy this code to back up your game or move it to another device. To restore, paste a code below and tap Import.</p>
+    <textarea id="codeOut" readonly rows="3" style="${ta}"></textarea>
+    <div class="mbtnrow"><button class="btn teal" id="codeCopy">Copy code</button></div>
+    <textarea id="codeIn" rows="3" placeholder="Paste a code here" style="${ta};margin-top:12px"></textarea>
     <div id="codeMsg" class="small muted" style="min-height:18px"></div>
-    <button class="close" id="codeGo">Import</button><button class="close" id="mclose" style="margin-top:8px">Close</button>`);
-  $("#codeOut").value=saveCode();$("#mclose").onclick=closeModal;
+    <div class="mbtnrow"><button class="btn" id="codeGo">Import</button><button class="btn ghost" id="mclose">Close</button></div>`);
+  $("#codeOut").value=saveCode();
   $("#codeCopy").onclick=()=>{const t=$("#codeOut");t.select();let ok=false;try{ok=document.execCommand("copy");}catch(e){}try{navigator.clipboard.writeText(t.value);ok=true;}catch(e){}$("#codeMsg").textContent=ok?"Copied.":"Select the code and copy it by hand.";};
   $("#codeGo").onclick=function(){
     if(!this.dataset.armed){try{readCode($("#codeIn").value);}catch(e){$("#codeMsg").textContent="That code does not look right.";return;}
@@ -1500,34 +1914,37 @@ $("#mCode").onclick=()=>{
   };
 };
 $("#mNew").onclick=function(){
-  if(this.dataset.armed){S=fresh();save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
-  else{this.dataset.armed=1;this.classList.add("warn");this.textContent="Tap again to erase everything";}
+  if(this.dataset.armed){S=fresh();S.seenV="6";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
+  else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
 };
 
 /* ---------- boot ---------- */
 load();
+$("#coinIc").src=iconURL("coin");$("#rateIc").src=iconURL("fish");
+document.querySelectorAll("#tabs img[data-ic]").forEach(im=>{im.src=iconURL(im.dataset.ic);im.classList.add("pix");});
 $("#snd").setAttribute("aria-pressed",String(S.sound));
 if(S.casts>0)$("#hint").hidden=true;
 lastWall=S.last||Date.now();
 econTick();           // pays offline earnings
 $("#ver").textContent="v"+VERSION;
 refreshAll();setBtn();refreshMenu();refreshEnv();
-if(wasReset){showModal(`<h3 data-defer>Fresh start in v${VERSION}</h3><p>This update rebalances the whole game: a slower economy, rarer fish and rarer, stronger traits. Every save was reset, so you start over with an empty album. Thanks for playing!</p><button class="close" id="mclose">Let's fish</button>`);}
-else if(S.seenV!=="5"&&hasProgress()){S.wheel.spins=Math.max(S.wheel.spins,1);showModal(`<h3 data-defer>Update 5.0</h3><p><b>Traits have no limit now.</b> After one lands, each extra trait is about 4 times rarer, and 12 weaker wild traits can show up on any catch. There are <b>8 new mutations</b> and the <b>Eclipse Wheel</b> at the top of the Gear tab: a free spin every 30 minutes of playing, and you have one waiting. Your save is safe.</p><button class="close" id="mclose">Let's fish</button>`);}
-S.seenV="5";save();
+if(wasReset){showModal(`<h3 data-defer style="color:var(--gold)">Welcome to v${VERSION}</h3><p>The biggest update yet: a new look, a sky that follows your real clock, a decorated Eclipse Wheel and a rebalanced economy. Because the whole economy changed, every save starts fresh.</p><p class="small muted">Each rebirth now asks for a bit more, Mythic fish bite from Lucky Rod Lv 10, and traits are a little rarer but still stack without limit.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
+if(!S.seenV){S.seenV="6";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
+save();
 let lastUI=0,lastSave=0;
 function frame(){
   const now=performance.now(),t=now/1000;
-  stepPhase(now);drawScene(t,now);if(menuOpen)mctx.drawImage(cv,0,0);
-  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();refreshUpButtons2();refreshEnv();refreshCraft();refreshWheel();}
+  stepPhase(now);drawScene(t,now);if(menuOpen)drawMenuBg(t);
+  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();}
   if(now-lastSave>5000){save();lastSave=now;}
   requestAnimationFrame(frame);
 }
-function refreshUpButtons2(){if(S.tab==="up")refreshUpButtons();}
 requestAnimationFrame(frame);
-window.__tw={WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,pityMult,rbMult,rbReady,doRebirth,hook,pop,dayInfo,DAILY,saveCode,readCode,setHookF(v){hookF=v;},TRAITS,TR_BY,rollTraits,traitCtx,traitMult,dayInfo,seasonInfo,SEASONS,ICONS,get S(){return S;},FISH,TIERS,MUTS,WMUTS,ALL_MUTS,tideInfo,weatherInfo,fishChance,rollFish,rollMut,tierWeights,income,upCost,UPS,getSprite,doCatch,startCast,get phase(){return phase;},refreshAll,econTick,setLast(t){lastWall=t;}};
+window.__tw={WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,
+  pityMult,rbMult,rbReady,doRebirth,hook,pop,dayInfo,DAILY,saveCode,readCode,setHookF(v){hookF=v;},TRAITS,TR_BY,rollTraits,traitCtx,traitMult,seasonInfo,SEASONS,ICONS,iconURL,
+  get S(){return S;},FISH,TIERS,MUTS,WMUTS,ALL_MUTS,tideInfo,weatherInfo,fishChance,rollFish,rollMut,tierWeights,income,upCost,UPS,getSprite,doCatch,startCast,showCard,celebrate,
+  get phase(){return phase;},refreshAll,econTick,openFish,openMenu,closeMenu,setLast(t){lastWall=t;}};
 })();
 </script>
-<script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol)){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
 </body>
 </html>
