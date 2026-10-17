@@ -150,7 +150,7 @@ header{display:flex;align-items:center;gap:8px}
 /* ---------- panel and tabs ---------- */
 #panel{flex:1 1 0;min-height:130px;overflow-y:auto;overflow-x:hidden;padding:10px;border:3px solid var(--ink);border-radius:10px;-webkit-overflow-scrolling:touch;
   background:linear-gradient(180deg,#2a2064,#1e174c 60%);box-shadow:inset 0 2px 0 rgba(255,255,255,.1),0 4px 0 var(--ink)}
-nav#tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+nav#tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
 nav#tabs button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 0 4px;border:3px solid var(--ink);border-radius:9px;
   background:linear-gradient(180deg,#33286e,#231a52);box-shadow:inset 0 2px 0 rgba(255,255,255,.08),0 3px 0 var(--ink);font-family:var(--f-ui);font-weight:600;font-size:14px;color:var(--muted)}
 nav#tabs button img{width:24px;height:24px;image-rendering:pixelated;opacity:.75}
@@ -375,6 +375,82 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .croll .fin{margin-top:40px;font-family:var(--f-ui);font-size:26px;color:var(--gold)}
 #ver{position:fixed;right:max(8px,env(safe-area-inset-right,0px));bottom:calc(2px + env(safe-area-inset-bottom,0px));z-index:60;font-family:var(--f-num);font-size:14px;color:var(--muted);opacity:.85;pointer-events:none}
 
+/* ---------- v7 base ---------- */
+#colPill{position:absolute;right:7px;top:7px;z-index:7;display:flex;align-items:center;gap:5px;padding:3px 10px 3px 5px;border:3px solid var(--ink);border-radius:20px;
+  background:linear-gradient(180deg,#5a4a20,#3a2c10);color:var(--gold);font-family:var(--f-num);font-size:22px;line-height:1;box-shadow:0 3px 0 var(--ink)}
+#colPill img{width:20px;height:20px}
+#colPill.ready{background:linear-gradient(180deg,#fff0a0 0 14%,var(--gold) 14% 68%,#e8a820 68%);color:#2a1605;animation:pillp 1.6s ease-in-out infinite}
+@keyframes pillp{50%{transform:scale(1.07)}}
+#card .csub{font-size:13px;color:var(--muted);margin-top:2px}
+.colbox{display:flex;align-items:center;gap:10px}
+.colbox>div{flex:1}
+.colamt{display:flex;align-items:center;gap:6px;font-family:var(--f-num);font-size:34px;line-height:1;color:var(--gold);text-shadow:0 2px 0 var(--ink)}
+.colamt img,.tk-amt img{width:22px;height:22px;image-rendering:pixelated}
+.tanks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:6px}
+.tank{position:relative;min-width:0;border:3px solid var(--ink);border-radius:11px;padding:5px 6px 6px;cursor:pointer;
+  background:linear-gradient(180deg,#3a2f80,#2a2164);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--rc,#5a4aa8) 60%,transparent),0 4px 0 var(--ink)}
+.tank:active{transform:translateY(2px)}
+.tank.full{box-shadow:inset 0 0 0 2px var(--gold),0 4px 0 var(--ink),0 0 14px rgba(255,200,69,.45)}
+.tk-top{display:flex;align-items:center;gap:4px;min-height:22px}
+.tk-n{flex:1;min-width:0;font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-n i{font-style:normal;font-family:var(--f-num);font-size:16px}
+.tk-sw{flex:0 0 auto;font-family:var(--f-ui);font-size:11px;font-weight:700;padding:1px 6px;border:2px solid var(--ink);border-radius:6px;background:#4a3ca0;color:var(--text)}
+.tk-water{position:relative;height:58px;margin:3px 0 4px;border:2px solid var(--ink);border-radius:7px;overflow:hidden;
+  background:linear-gradient(180deg,#5fc4ff 0,#2a7fd0 55%,#1a4f9a 80%,#d8b870 80% 88%,#b8955a 88%)}
+.tk-water::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:rgba(255,255,255,.35)}
+.tk-water::after{content:"";position:absolute;left:8%;bottom:12%;width:4px;height:16px;background:#3ab060;border-radius:2px;box-shadow:6px 4px 0 -1px #2e8f4a}
+.tk-fish{position:absolute;inset:0 0 18% 0;display:grid;place-items:center;animation:swim 3.2s ease-in-out infinite}
+.tk-fish img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
+.tank:nth-child(2n) .tk-fish{animation-delay:-1.4s}
+@keyframes swim{0%,100%{transform:translate(-5px,0)}50%{transform:translate(5px,-3px)}}
+.bub{position:absolute;bottom:16px;left:72%;width:4px;height:4px;border-radius:50%;border:1px solid rgba(255,255,255,.8);animation:bub 2.6s linear infinite}
+.bub.b2{left:80%;animation-delay:-1.3s;width:3px;height:3px}
+@keyframes bub{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-44px);opacity:0}}
+.tk-mid{display:flex;align-items:center;gap:4px;min-height:18px}
+.tk-pay{font-family:var(--f-num);font-size:20px;color:var(--teal);line-height:1}
+.tk-mid .ticons{justify-content:flex-end;flex:1;min-height:0;margin:0}
+.tk-mid .ticons .ti{width:13px;height:13px}
+.tk-col{display:flex;align-items:center;gap:5px;margin-top:3px}
+.tk-col .bar{flex:1;margin:0;height:9px}
+.tk-amt{display:flex;align-items:center;gap:2px;font-family:var(--f-num);font-size:19px;color:var(--gold);line-height:1;white-space:nowrap}
+.tk-amt img{width:15px;height:15px}
+.tkpop{position:absolute;left:50%;top:40%;transform:translateX(-50%);font-family:var(--f-num);font-size:26px;color:var(--gold);text-shadow:0 2px 0 var(--ink);pointer-events:none;animation:gainup .9s ease-out forwards}
+.tank.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:136px;color:var(--muted);font-weight:900;font-size:14px;
+  background:repeating-linear-gradient(135deg,#221a52 0 8px,#281f5e 8px 16px);box-shadow:inset 0 0 0 2px #4a3ca0,0 4px 0 var(--ink)}
+.tank.empty .plus{font-family:var(--f-ui);font-size:34px;line-height:1;color:var(--teal)}
+.tank.locked{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:136px;cursor:default;opacity:.75;text-align:center;
+  font-size:12px;color:var(--muted);background:#1a1442;box-shadow:inset 0 0 0 2px #2e2766,0 4px 0 var(--ink)}
+.tank.locked img{width:30px;height:30px}
+.bbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+.bbtns .btn{font-size:15px;padding:8px 6px}
+.fcard.bk .bmut{font-size:11px;font-weight:900;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fcard.up{box-shadow:inset 0 0 0 2px var(--gold),0 3px 0 var(--ink)}
+.fcard{position:relative}
+.upb{position:absolute;right:4px;top:3px;font-size:12px;color:var(--gold);text-shadow:0 1px 0 var(--ink)}
+.vhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0 6px;font-size:14px;color:var(--muted)}
+.tgl{display:flex;align-items:center;gap:6px;padding:3px 9px 3px 4px;border:2px solid var(--ink);border-radius:14px;background:#2a2160;color:var(--muted);font-size:13px;font-weight:900}
+.tgl i{position:relative;width:30px;height:16px;border-radius:8px;background:#141034;border:2px solid var(--ink)}
+.tgl i::after{content:"";position:absolute;top:1px;left:1px;width:10px;height:10px;border-radius:50%;background:var(--muted);transition:left .15s}
+.tgl.on{color:var(--teal)}.tgl.on i{background:var(--teal-d)}.tgl.on i::after{left:15px;background:#fff}
+.vlist,.plist{display:grid;gap:6px}
+.plist{max-height:46vh;overflow:auto;padding:2px}
+.vrow,.prow,.tnow{display:flex;align-items:center;gap:8px;padding:5px 8px 5px 5px;border:2px solid var(--ink);border-radius:8px;background:#1a1442;text-align:left;min-width:0;width:100%}
+.prow.up{box-shadow:inset 0 0 0 2px var(--gold)}
+.vs{flex:0 0 60px;height:32px;display:grid;place-items:center}
+.vs img{image-rendering:pixelated;max-width:100%;max-height:100%}
+.vt{flex:1;min-width:0;font-size:14px}
+.vt em{font-style:normal;font-family:var(--f-num);font-size:17px;color:var(--gold)}
+.vt .prow em,.prow .vt em{font-family:var(--f-text);font-size:12px;font-weight:900}
+.ticons.left{justify-content:flex-start}
+.ticons.off .ti{opacity:.25;filter:grayscale(1)}
+.nt{font-size:11px;color:var(--muted)}
+.vp{flex:0 0 auto;text-align:right;min-width:70px}
+.vp b{display:block;font-family:var(--f-num);font-size:20px;font-weight:400;color:var(--teal);line-height:1}
+.vp em{font-style:normal;font-family:var(--f-num);font-size:16px;color:var(--gold)}
+.vp .bar{height:6px;margin-top:3px}
+.cin.pick{cursor:pointer;box-shadow:0 2px 0 var(--ink)}
+.ondisp{font-style:normal;font-size:11px;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:0 3px}
+@media (max-width:380px){nav#tabs button{font-size:11px}.tk-n{font-size:12px}}
 @media (max-width:380px){.prizes{grid-template-columns:1fr}.wmini{width:42px;height:42px;flex-basis:42px}.wbox .wt{font-size:17px}#coins{font-size:32px}.plaque .ci{width:26px;height:26px;flex-basis:26px}.round{width:38px;height:38px;flex-basis:38px}nav#tabs button{font-size:12px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
@@ -396,7 +472,8 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
   <div id="stage">
     <canvas id="scene" width="160" height="120"></canvas>
     <div id="env"></div>
-    <div id="hint">Tap Cast. Every new fish pays coins every second.</div>
+    <div id="hint">Tap Cast. Fish on display in your Base earn coins.</div>
+    <button id="colPill" hidden aria-label="Collect all coins"></button>
     <div id="card" hidden></div>
   </div>
 
@@ -405,7 +482,8 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
   <section id="panel" aria-live="polite"></section>
 
   <nav id="tabs" role="tablist">
-    <button role="tab" data-tab="up" aria-selected="true"><img alt="" data-ic="u_rod">Gear</button>
+    <button role="tab" data-tab="up" aria-selected="false"><img alt="" data-ic="u_rod">Gear</button>
+    <button role="tab" data-tab="base" aria-selected="true"><img alt="" data-ic="t_tank">Base</button>
     <button role="tab" data-tab="album" aria-selected="false"><img alt="" data-ic="t_book">Album</button>
     <button role="tab" data-tab="traits" aria-selected="false"><img alt="" data-ic="t_star">Traits</button>
     <button role="tab" data-tab="craft" aria-selected="false"><img alt="" data-ic="t_anvil">Craft</button>
@@ -468,31 +546,31 @@ const TIERS=[
   {n:"Crafted",w:0,c:"#ff7ad9"}];
 // g = Lucky Rod level needed before that tier can bite at all. Crafted (w:0) never bites: it only comes out of the Craft Machine.
 const MUTS=[
-  {id:"shiny",n:"Shiny",m:2,p:1/40,ab:"Sh",c:"#8fe9ff"},
-  {id:"giant",n:"Giant",m:3,p:1/120,ab:"Gi",c:"#8ff0a4"},
-  {id:"golden",n:"Golden",m:5,p:1/400,ab:"Go",c:"#ffd45a"},
-  {id:"glitch",n:"Glitched",m:15,p:1/2500,ab:"Gl",c:"#ff5dd8"},
-  {id:"diamond",n:"Diamond",m:8,p:1/900,ab:"Di",c:"#9ae8ff"},
-  {id:"rainbow",n:"Rainbow",m:10,p:1/1500,ab:"Rb",c:"#ff9ad5"},
-  {id:"galaxy",n:"Galaxy",m:25,p:1/6000,ab:"Ga",c:"#a58cff"}];
+  {id:"shiny",n:"Shiny",m:3,p:1/40,ab:"Sh",c:"#8fe9ff"},
+  {id:"giant",n:"Giant",m:5,p:1/120,ab:"Gi",c:"#8ff0a4"},
+  {id:"golden",n:"Golden",m:10,p:1/400,ab:"Go",c:"#ffd45a"},
+  {id:"glitch",n:"Glitched",m:50,p:1/2500,ab:"Gl",c:"#ff5dd8"},
+  {id:"diamond",n:"Diamond",m:20,p:1/900,ab:"Di",c:"#9ae8ff"},
+  {id:"rainbow",n:"Rainbow",m:30,p:1/1500,ab:"Rb",c:"#ff9ad5"},
+  {id:"galaxy",n:"Galaxy",m:100,p:1/6000,ab:"Ga",c:"#a58cff"}];
 const WMUTS=[
-  {id:"rain",n:"Rain-kissed",m:4,p:1/22,wx:"rain",ab:"Ra",c:"#6ab8ff"},
-  {id:"fog",n:"Ghostly",m:5,p:1/26,wx:"fog",ab:"Fo",c:"#e0e8f5"},
-  {id:"snow",n:"Frosted",m:6,p:1/30,wx:"snow",ab:"Sn",c:"#bfe8ff"},
-  {id:"storm",n:"Charged",m:8,p:1/40,wx:"storm",ab:"St",c:"#ffe45a"},
-  {id:"aurora",n:"Auroral",m:12,p:1/70,wx:"aurora",ab:"Au",c:"#5dffb0"}];
+  {id:"rain",n:"Rain-kissed",m:6,p:1/22,wx:"rain",ab:"Ra",c:"#6ab8ff"},
+  {id:"fog",n:"Ghostly",m:8,p:1/26,wx:"fog",ab:"Fo",c:"#e0e8f5"},
+  {id:"snow",n:"Frosted",m:10,p:1/30,wx:"snow",ab:"Sn",c:"#bfe8ff"},
+  {id:"storm",n:"Charged",m:15,p:1/40,wx:"storm",ab:"St",c:"#ffe45a"},
+  {id:"aurora",n:"Auroral",m:25,p:1/70,wx:"aurora",ab:"Au",c:"#5dffb0"}];
 // Conditional mutations: like weather ones, they can only happen while their condition is true (c = catch context)
 const CMUTS=[
-  {id:"lava",n:"Lava",m:7,p:1/30,ab:"La",c:"#ff7a2a",d:"Low tide, after dark",on:c=>(c.h>=22||c.h<4)&&c.lv<-.4},
-  {id:"candy",n:"Candy",m:6,p:1/25,ab:"Ca",c:"#ff9ecb",d:"Festive and Lovestruck",on:c=>c.seasons.indexOf("festive")>-1||c.seasons.indexOf("lovestruck")>-1},
-  {id:"cursed",n:"Cursed",m:9,p:1/25,ab:"Cu",c:"#ff4a5a",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
-  {id:"radio",n:"Radioactive",m:10,p:1/25,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4}];
+  {id:"lava",n:"Lava",m:12,p:1/30,ab:"La",c:"#ff7a2a",d:"Low tide, after dark",on:c=>(c.h>=22||c.h<4)&&c.lv<-.4},
+  {id:"candy",n:"Candy",m:10,p:1/25,ab:"Ca",c:"#ff9ecb",d:"Festive and Lovestruck",on:c=>c.seasons.indexOf("festive")>-1||c.seasons.indexOf("lovestruck")>-1},
+  {id:"cursed",n:"Cursed",m:15,p:1/25,ab:"Cu",c:"#ff4a5a",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
+  {id:"radio",n:"Radioactive",m:20,p:1/25,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4}];
 const XMUTS=[   // only from the Eclipse Wheel
-  {id:"eclipse",n:"Eclipse",m:30,ab:"Ec",c:"#ffd45a"}];
+  {id:"eclipse",n:"Eclipse",m:75,ab:"Ec",c:"#ffd45a"}];
 const ALL_MUTS=MUTS.concat(WMUTS,CMUTS,XMUTS);
 const MUT_BY={};ALL_MUTS.forEach(m=>MUT_BY[m.id]=m);
 const WX_NAME={rain:"Rain",fog:"Fog",snow:"Snow",storm:"Storm",aurora:"Aurora"};
-const VERSION="6.0";
+const VERSION="7.0";
 const ROLL_ORDER=["galaxy","glitch","rainbow","diamond","golden","giant","shiny"];   // rarest first
 
 const F=(id,n,w,t,inc,sp)=>({id,n,w,t,inc,sp});
@@ -631,14 +709,16 @@ const UPS=[
  {id:"rod",n:"Lucky Rod",ic:"u_rod",base:8000,g:2.75,max:25,d:l=>`Luck x${(1+.06*l).toFixed(2)}. ${l<5?"Legendary fish bite from Lv 5":l<10?"Mythic fish bite from Lv 10":"Rare fish bite more often"}`},
  {id:"line",n:"Fast Line",ic:"u_line",base:2000,g:2.4,max:15,d:l=>`Fish bite sooner. Average wait ${avgWait(l).toFixed(1)}s`},
  {id:"bait",n:"Glow Bait",ic:"u_bait",base:8000,g:2.6,max:20,d:l=>`Mutations and traits show up more. Mutations x${(1+.25*l).toFixed(2)}`},
- {id:"lamp",n:"Dock Lantern",ic:"u_lamp",base:20000,g:2.6,max:30,d:l=>`All fish pay more. Income x${(1+.1*l).toFixed(1)}`}
+ {id:"lamp",n:"Dock Lantern",ic:"u_lamp",base:20000,g:2.6,max:30,d:l=>`All fish on display pay more. Income x${(1+.1*l).toFixed(1)}`},
+ {id:"bucket",n:"Bigger Bucket",ic:"u_bucket",base:3000,g:2.3,max:15,d:l=>`Your bucket holds ${20+4*l} fish${l<15?`, next level ${24+4*l}`:""}`}
 ];
 const upCost=(u,l)=>Math.ceil(u.base*Math.pow(u.g,l));
 function waitBase(l){return Math.max(0.9,2.2*Math.pow(0.94,l));}
 function avgWait(l){return 0.8+0.8*waitBase(l);}
 function rollWait(){const m=0.8*waitBase(S.up.line);return 0.8+Math.min(3*m,-Math.log(1-Math.random())*m);}
 
-const OFFLINE_CAP=4*3600, OFFLINE_RATE=0.5, SELL_X=.75;
+// v7: only fish on display in your base earn. Their coins pile up in the tank until you collect them (up to TANK_CAP seconds of pay).
+const SELL_SECS=30, TANK_CAP=3*3600, SPOT_MAX=25;
 const WHEEL_EVERY=1800, WHEEL_MAX=3;   // a spin every 30 minutes of PLAYING time (never offline), up to 3 stored
 const WHEEL=[
   {id:"pouch",n:"Coin Pouch",lab:"Pouch",w:38,c:"#6fd08c",d:"5 minutes of your income"},
@@ -647,17 +727,17 @@ const WHEEL=[
   {id:"charge",n:"Trait Charge",lab:"Trait",w:10,c:"#c9a6ff",d:"Your next catch is guaranteed a trait"},
   {id:"rush",n:"Craft Rush",lab:"Rush",w:8,c:"#ffb454",d:"Halves the time of one craft"},
   {id:"mega",n:"Mega Chest",lab:"Mega",w:2,c:"#ff8fb8",d:"2 hours of your income"},
-  {id:"eclipse",n:"Eclipse Charge",lab:"Eclipse",w:3,c:"#ffd45a",d:"Your next catch is an Eclipse fish (x30)"}];
+  {id:"eclipse",n:"Eclipse Charge",lab:"Eclipse",w:3,c:"#ffd45a",d:"Your next catch is an Eclipse fish (x75)"}];
 const REBIRTH_STEP=.75;   // permanent income bonus per rebirth
 // each rebirth asks for a bit more than the last, so the bonus can never outrun the requirement
 const rbNeedFound=()=>Math.min(75,40+5*(S.rb||0)), rbNeedRod=()=>Math.min(14,8+(S.rb||0));
 const HOOK_PERFECT=.4, HOOK_WINDOW=1.0;                  // seconds after the bite
 
 /* ---------- state ---------- */
-const KEY="tidewater_v6";
-const OLD_KEYS=["tidewater_v1","tidewater_v22","tidewater_v3"];   // v6 rebalanced the economy, so older saves start fresh
+const KEY="tidewater_v7";
+const OLD_KEYS=["tidewater_v1","tidewater_v22","tidewater_v3","tidewater_v6"];   // v7 changed how fish are kept, so older saves start fresh
 let wasReset=false;
-function fresh(){return{coins:0,fish:{},up:{rod:0,line:0,bait:0,lamp:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"up",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0};}
+function fresh(){return{coins:0,dex:{},run:{},bucket:[],base:[0,1,2,3,4].map(()=>({f:null,c:0})),uid:0,up:{rod:0,line:0,bait:0,lamp:0,bucket:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"base",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0};}
 let S=fresh();
 function load(){try{for(const k of OLD_KEYS){if(localStorage.getItem(k)!==null){wasReset=true;localStorage.removeItem(k);}}}catch(e){}
   try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S=Object.assign(fresh(),o);if(!S.tseen)S.tseen={};S.up=Object.assign(fresh().up,o.up||{});migrate();}}catch(e){}}
@@ -681,32 +761,32 @@ const SEASONS=[   // f = first day [month,day], t = last day [month,day]
   {id:"blossom",f:[3,20],t:[4,12],n:"Blossom"},{id:"sunny",f:[6,15],t:[7,5],n:"Sunny"}];
 const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const TRAITS=[
- {id:"tidal",n:"Tidal",m:2,g:"catch",p:0.011,ic:"wave",d:"Caught at high tide",on:c=>c.lv>.4},
- {id:"ebbing",n:"Ebbing",m:2,g:"catch",p:0.011,ic:"ebb",d:"Caught at low tide",on:c=>c.lv<-.4},
- {id:"early",n:"Early Bird",m:2,g:"catch",p:0.014,ic:"sunrise",d:"Caught between 5 and 9 in the morning",on:c=>c.h>=5&&c.h<9},
- {id:"night",n:"Night Owl",m:2,g:"catch",p:0.014,ic:"moon",d:"Caught between 10 at night and 4 in the morning",on:c=>c.h>=22||c.h<4},
- {id:"patient",n:"Patient",m:2.5,g:"catch",p:0.022,ic:"hourglass",d:"Caught after an unusually long wait",on:c=>c.wait>=.8+2.2*c.m},
- {id:"snap",n:"Snap",m:2,g:"catch",p:0.014,ic:"chevron",d:"Caught on a very quick bite",on:c=>c.wait<=.8+.25*c.m},
- {id:"lured",n:"Lured",m:2.5,g:"catch",p:0.018,ic:"bobber",d:"Tap the water 6 times while you wait",on:c=>c.taps>=6},
- {id:"soaked",n:"Soaked",m:2.5,g:"weather",p:0.014,ic:"drop",d:"Caught in the rain",on:c=>c.wx==="rain"},
- {id:"hazy",n:"Hazy",m:2.5,g:"weather",p:0.014,ic:"cloud",d:"Caught in the fog",on:c=>c.wx==="fog"},
- {id:"frosty",n:"Frosty",m:2.5,g:"weather",p:0.014,ic:"snow",d:"Caught in the snow",on:c=>c.wx==="snow"},
- {id:"zappy",n:"Zappy",m:3,g:"weather",p:0.014,ic:"bolt",d:"Caught in a storm",on:c=>c.wx==="storm"},
- {id:"dreamy",n:"Dreamy",m:4,g:"weather",p:0.017,ic:"sparkle",d:"Caught under an aurora",on:c=>c.wx==="aurora"},
- {id:"clover",n:"Clover",m:3,g:"day",p:0.016,ic:"clover",d:"Rotates in on some days",on:c=>c.day==="clover"},
- {id:"comet",n:"Comet",m:3,g:"day",p:0.016,ic:"comet",d:"Rotates in on some days",on:c=>c.day==="comet"},
- {id:"bubbly",n:"Bubbly",m:3,g:"day",p:0.016,ic:"bubble",d:"Rotates in on some days",on:c=>c.day==="bubbly"},
- {id:"lantern",n:"Lantern",m:3,g:"day",p:0.016,ic:"lantern",d:"Rotates in on some days",on:c=>c.day==="lantern"},
- {id:"breezy",n:"Breezy",m:3,g:"day",p:0.016,ic:"feather",d:"Rotates in on some days",on:c=>c.day==="breezy"},
- {id:"gemmy",n:"Gemmy",m:3,g:"day",p:0.016,ic:"gem",d:"Rotates in on some days",on:c=>c.day==="gemmy"},
- {id:"ember",n:"Ember",m:3,g:"day",p:0.016,ic:"flame",d:"Rotates in on some days",on:c=>c.day==="ember"},
- {id:"cosmic",n:"Cosmic",m:3,g:"day",p:0.016,ic:"planet",d:"Rotates in on some days",on:c=>c.day==="cosmic"},
- {id:"harvest",n:"Harvest",m:4,g:"season",p:0.015,ic:"leaf",d:"Harvest festival",on:c=>c.seasons.indexOf("harvest")>-1},
- {id:"spooky",n:"Spooky",m:4,g:"season",p:0.015,ic:"pumpkin",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
- {id:"festive",n:"Festive",m:4,g:"season",p:0.015,ic:"star",d:"Winter holidays",on:c=>c.seasons.indexOf("festive")>-1},
- {id:"lovestruck",n:"Lovestruck",m:4,g:"season",p:0.015,ic:"heart",d:"Lovestruck week",on:c=>c.seasons.indexOf("lovestruck")>-1},
- {id:"blossom",n:"Blossom",m:4,g:"season",p:0.015,ic:"flower",d:"Spring bloom",on:c=>c.seasons.indexOf("blossom")>-1},
- {id:"sunny",n:"Sunny",m:4,g:"season",p:0.015,ic:"sun",d:"Midsummer",on:c=>c.seasons.indexOf("sunny")>-1},
+ {id:"tidal",n:"Tidal",m:2.5,g:"catch",p:0.011,ic:"wave",d:"Caught at high tide",on:c=>c.lv>.4},
+ {id:"ebbing",n:"Ebbing",m:2.5,g:"catch",p:0.011,ic:"ebb",d:"Caught at low tide",on:c=>c.lv<-.4},
+ {id:"early",n:"Early Bird",m:2.5,g:"catch",p:0.014,ic:"sunrise",d:"Caught between 5 and 9 in the morning",on:c=>c.h>=5&&c.h<9},
+ {id:"night",n:"Night Owl",m:2.5,g:"catch",p:0.014,ic:"moon",d:"Caught between 10 at night and 4 in the morning",on:c=>c.h>=22||c.h<4},
+ {id:"patient",n:"Patient",m:3,g:"catch",p:0.022,ic:"hourglass",d:"Caught after an unusually long wait",on:c=>c.wait>=.8+2.2*c.m},
+ {id:"snap",n:"Snap",m:2.5,g:"catch",p:0.014,ic:"chevron",d:"Caught on a very quick bite",on:c=>c.wait<=.8+.25*c.m},
+ {id:"lured",n:"Lured",m:3,g:"catch",p:0.018,ic:"bobber",d:"Tap the water 6 times while you wait",on:c=>c.taps>=6},
+ {id:"soaked",n:"Soaked",m:3,g:"weather",p:0.014,ic:"drop",d:"Caught in the rain",on:c=>c.wx==="rain"},
+ {id:"hazy",n:"Hazy",m:3,g:"weather",p:0.014,ic:"cloud",d:"Caught in the fog",on:c=>c.wx==="fog"},
+ {id:"frosty",n:"Frosty",m:3,g:"weather",p:0.014,ic:"snow",d:"Caught in the snow",on:c=>c.wx==="snow"},
+ {id:"zappy",n:"Zappy",m:4,g:"weather",p:0.014,ic:"bolt",d:"Caught in a storm",on:c=>c.wx==="storm"},
+ {id:"dreamy",n:"Dreamy",m:5,g:"weather",p:0.017,ic:"sparkle",d:"Caught under an aurora",on:c=>c.wx==="aurora"},
+ {id:"clover",n:"Clover",m:4,g:"day",p:0.016,ic:"clover",d:"Rotates in on some days",on:c=>c.day==="clover"},
+ {id:"comet",n:"Comet",m:4,g:"day",p:0.016,ic:"comet",d:"Rotates in on some days",on:c=>c.day==="comet"},
+ {id:"bubbly",n:"Bubbly",m:4,g:"day",p:0.016,ic:"bubble",d:"Rotates in on some days",on:c=>c.day==="bubbly"},
+ {id:"lantern",n:"Lantern",m:4,g:"day",p:0.016,ic:"lantern",d:"Rotates in on some days",on:c=>c.day==="lantern"},
+ {id:"breezy",n:"Breezy",m:4,g:"day",p:0.016,ic:"feather",d:"Rotates in on some days",on:c=>c.day==="breezy"},
+ {id:"gemmy",n:"Gemmy",m:4,g:"day",p:0.016,ic:"gem",d:"Rotates in on some days",on:c=>c.day==="gemmy"},
+ {id:"ember",n:"Ember",m:4,g:"day",p:0.016,ic:"flame",d:"Rotates in on some days",on:c=>c.day==="ember"},
+ {id:"cosmic",n:"Cosmic",m:4,g:"day",p:0.016,ic:"planet",d:"Rotates in on some days",on:c=>c.day==="cosmic"},
+ {id:"harvest",n:"Harvest",m:5,g:"season",p:0.015,ic:"leaf",d:"Harvest festival",on:c=>c.seasons.indexOf("harvest")>-1},
+ {id:"spooky",n:"Spooky",m:5,g:"season",p:0.015,ic:"pumpkin",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
+ {id:"festive",n:"Festive",m:5,g:"season",p:0.015,ic:"star",d:"Winter holidays",on:c=>c.seasons.indexOf("festive")>-1},
+ {id:"lovestruck",n:"Lovestruck",m:5,g:"season",p:0.015,ic:"heart",d:"Lovestruck week",on:c=>c.seasons.indexOf("lovestruck")>-1},
+ {id:"blossom",n:"Blossom",m:5,g:"season",p:0.015,ic:"flower",d:"Spring bloom",on:c=>c.seasons.indexOf("blossom")>-1},
+ {id:"sunny",n:"Sunny",m:5,g:"season",p:0.015,ic:"sun",d:"Midsummer",on:c=>c.seasons.indexOf("sunny")>-1},
  // wild traits: no condition, weaker. They fill the chain after a first trait lands.
  {id:"sparkly",n:"Sparkly",m:1.25,g:"wild",p:0,ic:"spark",d:"Can show up on any catch",on:()=>false},
  {id:"speedy",n:"Speedy",m:1.25,g:"wild",p:0,ic:"arrow",d:"Can show up on any catch",on:()=>false},
@@ -782,6 +862,9 @@ const ICONS={
  p_rush:{p:{k:"#3a2470",g:"#e7a6ff",s:"#ffe9a0"},r:["kkkkkkkkkkkk",".kggggggggk.","..ksssssk...","...kssssk...","....kssk....",".....kk.....",".....kk.....","....kgsk....","...kgggsk...","..kgsssssk..",".ksssssssk..","kkkkkkkkkkkk"]},
  p_eclipse:{p:{k:"#1a1030",y:"#ffd45a",w:"#fff2a0",o:"#ff9f3a"},r:["....yyyy....","..yywwwwyy..",".ywwkkkkwwy.",".ywkkkkkkwy.","ywkkkkkkkkwy","ywkkkkkkkkwo","ywkkkkkkkkwo","ywkkkkkkkkwo",".ywkkkkkkwo.",".yowkkkkwoo.","..oowwwwoo..","....oooo...."]},
  i_rebirth:{p:{t:"#38e0c4",l:"#b8fff2",k:"#0a3a34"},r:["....tttt....","..tt....tt..",".t........t.",".t.......ttt","t.........t.","t...llll....","t..l....l...","t..l....l...",".t..llll..t.",".t........t.","..tt....tt..","....tttt...."]},
+ u_bucket:{p:{k:"#1a1440",g:"#c0c8d8",l:"#f0f6ff",d:"#7a8498",w:"#38e0c4",h:"#9a8a6a"},r:["....hhhh....","...h....h...","..h......h..",".kkkkkkkkkk.",".kwwwwwwwwk.",".kglggggggk.","..kglggggk..","..kglggggk..","..kggggggk..","..kgggggdk..","...kkkkkk...","............"]},
+ t_tank:{p:{k:"#1a1440",b:"#3a8ad8",l:"#9fe0ff",o:"#ff9f3a",s:"#e0c080",g:"#5ad27a"},r:["............","kkkkkkkkkkkk","kllbbbbbbbbk","klbbbbbbbbgk","kbbbbbbbbbgk","kbbooobobbgk","kbooooooobgk","kbbooobobggk","kbbbbbbbgggk","kssssssssssk","kkkkkkkkkkkk",".kk......kk."]},
+ i_lock:{p:{k:"#9aa0c8",y:"#ffc845",d:"#b57a12",h:"#1a1440"},r:["....kkkk....","...k....k...","..k......k..","..k......k..",".yyyyyyyyyy.",".yyyyyyyyyy.",".yyyyhhyyyy.",".yyyyhhyyyy.",".yyyyyhyyyy.",".yyyyyyyyyy.",".dddddddddd.","............"]},
  i_trophy:{p:{y:"#ffc845",d:"#b57a12",w:"#fff6c8"},r:["yyyyyyyyyyyy","yywyyyyyyyyy",".ywyyyyyyyy.","y.yyyyyyyy.y",".yyyyyyyyyy.","..yyyyyyyy..","...yyyyyy...",".....yy.....",".....yy.....","....dddd....","...dddddd...","............"]}
 };
 const iconCache={};
@@ -836,19 +919,29 @@ function rollTraits(c,force){
   out.sort((a,b)=>b.m-a.m);
   return out.map(t=>t.id);
 }
-// older saves: drop traits that no longer exist and rebuild each fish's best multiplier from its mutation + remaining traits
+// sanity pass over a loaded or imported save: drop anything that no longer exists and rebuild multipliers from the data
 function migrate(){
-  delete S.castBonus;S.rbArm=0;if(!S.rb)S.rb=0;if(!S.pity)S.pity=0;
+  delete S.castBonus;delete S.fish;S.rbArm=0;if(!S.rb)S.rb=0;if(!S.pity)S.pity=0;
   if(!S.craft||typeof S.craft!=="object")S.craft={job:null,n:0};if(!S.craft.n)S.craft.n=0;
   if(S.craft.job&&!(CR_BY[S.craft.job.id]&&Array.isArray(S.craft.job.ins)))S.craft.job=null;
   if(!S.wheel||typeof S.wheel!=="object")S.wheel={left:WHEEL_EVERY,spins:0};
   S.wheel.left=+S.wheel.left>0?+S.wheel.left:WHEEL_EVERY;S.wheel.spins=Math.max(0,Math.min(WHEEL_MAX,Math.floor(+S.wheel.spins||0)));
   ["luckLeft","charge","eclipse","rush"].forEach(k=>{S[k]=+S[k]>0?+S[k]:0;});
-  Object.keys(S.fish).forEach(k=>{const e=S.fish[k];if(!e||!e.best)return;
-    e.tr=(e.tr||[]).filter(i=>TR_BY[i]);
-    const mm=e.bm&&MUT_BY[e.bm]?MUT_BY[e.bm].m:1;e.best=Math.round(mm*traitMult(e.tr)*100)/100;});
+  if(!S.dex||typeof S.dex!=="object")S.dex={};if(!S.run||typeof S.run!=="object")S.run={};
+  if(!Array.isArray(S.bucket))S.bucket=[];if(!Array.isArray(S.base))S.base=[];
+  let mx=0;const ok=o=>o&&FISH_BY[o.id]&&(!o.m||MUT_BY[o.m]);
+  const fix=o=>{o.m=o.m||null;o.tr=(o.tr||[]).filter(i=>TR_BY[i]);if(!(o.u>0))o.u=0;mx=Math.max(mx,o.u);return o;};
+  S.bucket=S.bucket.filter(ok).map(fix);
+  S.base=S.base.map(z=>z&&ok(z.f)?{f:fix(z.f),c:Math.max(0,+z.c||0)}:{f:null,c:0});
+  S.uid=Math.max(+S.uid||0,mx);
+  allInst().forEach(x=>{if(!x.o.u)x.o.u=++S.uid;});
+  ensureSpots();
+  Object.keys(S.dex).forEach(k=>{const d=S.dex[k];if(!FISH_BY[k]||!d||typeof d.v!=="object"){delete S.dex[k];return;}d.n=+d.n||1;
+    Object.keys(d.v).forEach(v=>{if(v!=="_"&&!MUT_BY[v]){delete d.v[v];return;}const r=d.v[v];r.tr=(r.tr||[]).filter(i=>TR_BY[i]);r.x=Math.round(mutM(v==="_"?null:v)*traitMult(r.tr)*100)/100;});});
+  Object.keys(S.run).forEach(k=>{if(!FISH_BY[k])delete S.run[k];});
   Object.keys(S.tseen||{}).forEach(i=>{if(!TR_BY[i])delete S.tseen[i];});
   (S.log||[]).forEach(r=>{r.tr=(r.tr||[]).filter(i=>TR_BY[i]);});
+  if(!S.up.bucket)S.up.bucket=0;
 }
 function chipHTML(ids){return ids&&ids.length?`<div class="chips">${ids.map(i=>{const t=TR_BY[i];return t?`<span class="tchip" style="--tc:${t.col}">${iconImg(i)}${ids.length>2?"":t.n+" "}<b>x${t.m}</b></span>`:"";}).join("")}</div>`:"";}
 
@@ -862,7 +955,49 @@ function fmtTime(s){s=Math.floor(s);const h=Math.floor(s/3600),m=Math.floor(s%36
 const xm=n=>n>=1000?fmt(n):String(+(+n).toFixed(2));
 const lampMult=()=>1+.1*S.up.lamp;
 const rbMult=()=>1+REBIRTH_STEP*(S.rb||0);
-function income(){let t=0;for(const f of FISH){const e=S.fish[f.id];if(e&&e.best)t+=f.inc*e.best;}return t*lampMult()*rbMult();}
+/* ---------- your base: display tanks, the bucket and fish instances (v7) ---------- */
+// Every catch is its own fish {u: id number, id: species, m: mutation or null, tr: traits}. Only fish in a display tank earn.
+const spotCount=()=>Math.min(SPOT_MAX,5+2*(S.rb||0));
+const bucketCap=()=>20+4*(S.up.bucket||0);
+const mutM=id=>id&&MUT_BY[id]?MUT_BY[id].m:1;
+const instX=o=>Math.round(mutM(o.m)*traitMult(o.tr)*100)/100;
+const payMult=()=>lampMult()*rbMult();
+const instPay=o=>FISH_BY[o.id].inc*instX(o)*payMult();
+const sellVal=o=>Math.max(1,Math.round(instPay(o)*SELL_SECS));
+function ensureSpots(){const n=spotCount();if(!Array.isArray(S.base))S.base=[];while(S.base.length<n)S.base.push({f:null,c:0});}
+function newInst(id,m,tr){return {u:S.uid=(S.uid||0)+1,id,m:m||null,tr:tr||[]};}
+function allInst(){const out=[];S.base.forEach((z,i)=>{if(z.f)out.push({o:z.f,w:"d",i});});S.bucket.forEach((o,i)=>out.push({o,w:"b",i}));return out;}
+function findInst(u){return allInst().find(x=>x.o.u===u)||null;}
+// the open tank, or else the tank whose fish pays least
+function weakestSpot(){let w=-1,v=Infinity;for(let i=0;i<spotCount();i++){const z=S.base[i],p=z.f?instPay(z.f):-1;if(p<v){v=p;w=i;}}return w;}
+const tankCap=z=>z.f?instPay(z.f)*TANK_CAP:0;
+const pendingTotal=()=>S.base.reduce((a,z)=>a+(z.f?z.c:0),0);
+function income(){let t=0;for(let i=0;i<S.base.length;i++){const z=S.base[i];if(z.f&&i<spotCount())t+=instPay(z.f);}return t;}
+function removeInst(u){   // takes a fish out of the bucket or a tank; coins waiting in its tank are paid out
+  const bi=S.bucket.findIndex(o=>o.u===u);if(bi>=0)return S.bucket.splice(bi,1)[0];
+  const z=S.base.find(q=>q.f&&q.f.u===u);if(z){const o=z.f;S.coins+=z.c;z.f=null;z.c=0;return o;}
+  return null;
+}
+// where a new fish goes: an open tank first, then the bucket. A full bucket sells whichever fish is worth the least.
+function receive(o){
+  const n=spotCount(),v=instPay(o);
+  for(let i=0;i<n;i++){if(!S.base[i].f){S.base[i]={f:o,c:0};return {w:"display",gain:v};}}
+  const wk=weakestSpot(),better=wk>=0&&!!S.base[wk].f&&v>instPay(S.base[wk].f);
+  if(S.bucket.length<bucketCap()){S.bucket.push(o);return {w:"bucket",better};}
+  let lo=-1,lv=Infinity;S.bucket.forEach((b,i)=>{const p=instPay(b);if(p<lv){lv=p;lo=i;}});
+  if(lo>=0&&v>lv){const old=S.bucket.splice(lo,1)[0],g=sellVal(old);S.coins+=g;S.bucket.push(o);return {w:"bucket",better,swap:old,gain:g};}
+  const g=sellVal(o);S.coins+=g;return {w:"sold",gain:g};
+}
+// the album remembers, per species and per mutation, the best set of traits you ever had on it
+function record(o){
+  const d=S.dex[o.id]||(S.dex[o.id]={n:0,v:{}}),k=o.m||"_",x=instX(o),r=d.v[k],isNew=!d.n;d.n++;
+  let rec=false;if(!r)d.v[k]={tr:o.tr.slice(),x};else if(x>r.x){r.tr=o.tr.slice();r.x=x;rec=true;}
+  S.run[o.id]=1;o.tr.forEach(i=>{S.tseen[i]=1;});
+  return {isNew,newVar:!r&&!isNew,rec};
+}
+function dexBest(d){let b=null;for(const k in d.v){const r=d.v[k];if(!b||r.x>b.x)b={k,tr:r.tr,x:r.x};}return b;}
+const dexCount=()=>FISH.filter(f=>S.dex[f.id]).length;
+const runCount=()=>FISH.filter(f=>S.run[f.id]).length;
 function hash(a,b,c){let h=(a*374761393+b*668265263+c*2147483647)|0;h=Math.imul(h^(h>>>13),1274126177);return (h^(h>>>16))>>>0;}
 
 /* ---------- tide and weather (both follow the real clock) ---------- */
@@ -1405,31 +1540,25 @@ function doCatch(){
   if(S.eclipse){mut=MUT_BY.eclipse;S.eclipse=0;}      // Eclipse Charge from the wheel
   const force=!!S.charge;S.charge=0;                   // Trait Charge from the wheel
   const tr=rollTraits(null,force);
-  const mult=Math.round((mut?mut.m:1)*traitMult(tr)*100)/100;
   if(S.up.rod>=TIERS[4].g){S.pity=f.t>=4?0:(S.pity||0)+1;}
-  const e=S.fish[f.id]||(S.fish[f.id]={best:0,count:0,norm:0,muts:{}});
-  e.count++;S.casts++;if(mut)e.muts[mut.id]=1;else e.norm=1;
-  tr.forEach(i=>{S.tseen[i]=1;});
-  let kind,gain,old=null;
-  if(!e.best){e.best=mult;e.bm=mut?mut.id:null;e.tr=tr;kind="new";gain=f.inc*mult*lampMult()*rbMult();}
-  else if(mult>e.best){old={mut:bestMutId(e),tr:e.tr||[],best:e.best};gain=f.inc*(mult-e.best)*lampMult()*rbMult();e.best=mult;e.bm=mut?mut.id:null;e.tr=tr;kind="better";}
-  else{gain=Math.round(f.inc*mult*SELL_X);S.coins+=gain;kind="sold";}
-  S.log.unshift({fi,mut:mut?mut.id:null,tr,kind,gain});if(S.log.length>40)S.log.length=40;
+  S.casts++;
+  const o=newInst(f.id,mut?mut.id:null,tr),mult=instX(o),rc=record(o),pl=receive(o);
+  S.log.unshift({fi,mut:o.m,tr,kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
   save();refreshAll();
-  revealing=true;setBtn();startLeap(fi,mut?mut.id:null,f.t);
+  revealing=true;setBtn();startLeap(fi,o.m,f.t);
   setTimeout(()=>{
     revealing=false;setBtn();
     sfx.catch(f.t+(mut?1:0)+(tr.length>1?1:0));buzz(f.t>=3?120:30);
-    showCard(fi,mut,kind,gain,tr,mult,old);
-    gainFx(kind==="sold"?"+"+fmt(gain):"+"+fmt(gain)+"/s",kind==="sold"?"var(--gold)":"var(--teal)");
+    showCard(fi,mut,pl,rc,tr,mult);
+    if(pl.w==="display")gainFx("+"+fmt(pl.gain)+"/s","var(--teal)");else if(pl.gain)gainFx("+"+fmt(pl.gain),"var(--gold)");
     celebrate(f.t,mult,tr.length);
   },600);
 }
 function celebrate(tier,mult,ntr){
   const col=TIERS[tier].c;
-  if(tier>=3||mult>=6||ntr>=2)flash(col);
-  if(tier>=3||mult>=10||ntr>=3)confetti(tier>=4?40:24,[col,"#ffc845","#38e0c4","#ffffff","#ff5f7e"]);
-  if(tier>=4||mult>=25){const st=$("#stage");st.classList.remove("shake");void st.offsetWidth;st.classList.add("shake");}
+  if(tier>=3||mult>=10||ntr>=2)flash(col);
+  if(tier>=3||mult>=25||ntr>=3)confetti(tier>=4?40:24,[col,"#ffc845","#38e0c4","#ffffff","#ff5f7e"]);
+  if(tier>=4||mult>=100){const st=$("#stage");st.classList.remove("shake");void st.offsetWidth;st.classList.add("shake");}
 }
 function confetti(n,cols){
   const st=$("#stage");
@@ -1442,28 +1571,17 @@ function gainFx(txt,col){
   d.className="gainfx";d.textContent=txt;d.style.color=col;d.style.left=(r.left+4)+"px";d.style.top=(r.bottom-8)+"px";document.body.appendChild(d);setTimeout(()=>d.remove(),1150);
   c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
 }
-function showCard(fi,mut,kind,gain,tr,val,old){
-  const f=FISH[fi],T=TIERS[f.t],c=$("#card"),lm=lampMult()*rbMult(),fancy=f.t>=2||val>=4;
+function showCard(fi,mut,pl,rc,tr,val){
+  const f=FISH[fi],T=TIERS[f.t],c=$("#card"),fancy=f.t>=2||val>=6;
   c.style.setProperty("--rc",T.c);
-  let inner;
-  if(kind==="better"&&old){
-    const side=(lab,mid,t2,mx,w,cls)=>{const mm=mid?MUT_BY[mid]:null;
-      return `<div class="cmp ${cls}"><div class="lab">${lab}</div><div class="cpic">${spriteImg(fi,mid||null,false,w,f.n,58)}</div>
-        <div class="vn" style="color:${mm?mm.c:"var(--muted)"}">${mm?mm.n:"Normal"}${mx>1?` <b>x${xm(mx)}</b>`:""}</div>
-        <div class="ticons">${(t2||[]).map(iconImg).join("")}</div><div class="pay">${fmt(f.inc*mx*lm)}/s</div></div>`;};
-    const arrow=`<svg viewBox="0 0 8 8" width="24" height="24" shape-rendering="crispEdges"><path d="M0 3h5V1h1v1h1v1h1v2H7v1H6v1H5V5H0z" fill="currentColor"/></svg>`;
-    inner=`<div class="nm" style="color:${T.c}">${f.n}</div>
-      <div class="cmprow">${side("OLD",old.mut,old.tr,old.best,92,"old")}<div class="arr">${arrow}</div>${side("NEW",mut?mut.id:null,tr,val,108,"new")}</div>
-      <div class="res" style="color:var(--teal)">+${fmt(gain)}/sec</div>`;
-  }else{
-    const res=kind==="sold"?`<span style="color:var(--gold)">Sold +${fmt(gain)}</span>`:`+${fmt(gain)}/sec`;
-    inner=`<div class="pic">${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?250:190,f.n,(mut||tr.length)?72:96)}</div>
+  const res=pl.w==="display"?`On display +${fmt(pl.gain)}/s`:pl.w==="sold"?`<span style="color:var(--gold)">Sold +${fmt(pl.gain)}</span>`:`<span style="color:var(--text)">Into your bucket</span>`;
+  const sub=pl.w==="sold"?"Your bucket is full and this was your weakest fish.":pl.w==="bucket"&&pl.better?`<b style="color:var(--gold)">Better than a fish on display!</b>`:pl.w==="bucket"?`Worth ${fmt(instPay({id:f.id,m:mut?mut.id:null,tr}))}/s on display`:"";
+  const inner=`<div class="pic">${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?250:190,f.n,(mut||tr.length)?72:96)}</div>
       <div class="nm" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut?`<div class="mut" style="color:${mut.c}">${mut.n} x${mut.m}</div>`:""}${chipHTML(tr)}${val>1?`<div class="mut" style="color:var(--gold)">Total x${xm(val)}</div>`:""}
-      <div class="res" style="color:var(--teal)">${res}</div>`;
-  }
-  const stamp=kind==="new"?`<div class="stamp">New!</div>`:kind==="better"?`<div class="stamp better">Better!</div>`:"";
+      <div class="res" style="color:var(--teal)">${res}</div>${sub?`<div class="csub">${sub}</div>`:""}`;
+  const stamp=rc.isNew?`<div class="stamp">New!</div>`:rc.newVar?`<div class="stamp better">New variant!</div>`:rc.rec?`<div class="stamp better">Record!</div>`:"";
   c.innerHTML=`<div class="ribbon">${tierTag(f)}</div><div class="body">${fancy?'<div class="rays"></div>':""}${inner}</div>${stamp}`;
-  c.classList.toggle("big",f.t>=3||val>=10);
+  c.classList.toggle("big",f.t>=3||val>=25);
   c.style.transform="";c.hidden=false;c.classList.remove("in");void c.offsetWidth;c.classList.add("in");
   cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5500:3200);
   const room=$("#stage").clientHeight-8,ch=c.offsetHeight;if(ch>room)c.style.transform=`translate(-50%,-50%) scale(${(room/ch).toFixed(3)})`;
@@ -1474,26 +1592,39 @@ function flash(col){const d=document.createElement("div");d.className="flash";d.
 /* ---------- economy ---------- */
 let lastWall=Date.now();
 let menuOpen=true,pendingModal=null;
-function showModal(html,rc){
+function showModal(html,rc,still){
   if(menuOpen&&(html.indexOf("Welcome back")>-1||html.indexOf("data-defer")>-1)){pendingModal={html,rc};return;}
-  const m=$("#modal"),b=$("#modalBox");b.style.setProperty("--rc",rc||"var(--gold)");b.innerHTML=html;b.style.animation="none";void b.offsetWidth;b.style.animation="";m.hidden=false;
+  const m=$("#modal"),b=$("#modalBox"),top=b.scrollTop;b.style.setProperty("--rc",rc||"var(--gold)");b.innerHTML=html;
+  if(still)b.scrollTop=top;else{b.style.animation="none";void b.offsetWidth;b.style.animation="";}m.hidden=false;
   const c=$("#mclose");if(c)c.onclick=closeModal;
+  const k=$("#mcol");if(k)k.onclick=()=>{closeModal();collectAll();};
 }
 function closeModal(){$("#modal").hidden=true;}
 function econTick(){
   const now=Date.now(),dt=(now-lastWall)/1000;lastWall=now;
-  const inc=income();
-  if(dt>8&&inc>0){
-    const eff=Math.min(dt,OFFLINE_CAP),earn=inc*eff*OFFLINE_RATE;S.coins+=earn;
-    showModal(`<h3 style="color:var(--gold)">Welcome back</h3><p class="muted">You were away ${fmtTime(dt)}.${dt>OFFLINE_CAP?" Earnings stop after 4 hours away.":""}</p>
-      <div class="bigpic" style="--rc:#ffc845"><div style="display:flex;align-items:center;gap:10px;font-family:var(--f-num);font-size:46px;color:var(--gold);text-shadow:0 3px 0 var(--ink)"><img class="pix" src="${iconURL("coin")}" width="44" height="44" alt="">+${fmt(earn)}</div></div>
-      <p class="small muted">While you are away your fish pay half rate. The Eclipse Wheel timer only runs while you play.</p><button class="btn wide" id="mclose">Collect</button>`);
-  }else if(dt<=8){S.coins+=inc*dt;}
+  if(!(dt>0))return;
+  let filled=0;
+  S.base.forEach((z,i)=>{if(!z.f||i>=spotCount())return;const b=z.c;z.c=Math.min(tankCap(z),z.c+instPay(z.f)*dt);filled+=z.c-b;});
+  if(dt>8&&filled>=1){
+    showModal(`<h3 style="color:var(--gold)">Welcome back</h3><p class="muted">You were away ${fmtTime(dt)}. Your tanks kept filling up.${dt>TANK_CAP?" Each tank stops filling once it holds 3 hours of pay.":""}</p>
+      <div class="bigpic" style="--rc:#ffc845"><div style="display:flex;align-items:center;gap:10px;font-family:var(--f-num);font-size:46px;color:var(--gold);text-shadow:0 3px 0 var(--ink)"><img class="pix" src="${iconURL("coin")}" width="44" height="44" alt="">+${fmt(filled)}</div></div>
+      <p class="small muted">Waiting in your base: ${fmt(pendingTotal())}. The Eclipse Wheel timer only runs while you play.</p><button class="btn wide" id="mcol">Collect all</button>`);
+  }
+}
+function collectAll(){
+  let n=0;S.base.forEach(z=>{if(z.f&&z.c>0){n+=z.c;z.c=0;}});
+  if(n>0){S.coins+=n;sfx.buy();buzz(30);gainFx("+"+fmt(n),"var(--gold)");save();refreshAll();}
+  return n;
+}
+function collectSpot(i){
+  const z=S.base[i];if(!z||!z.f||z.c<1)return 0;const n=z.c;S.coins+=n;z.c=0;
+  sfx.buy();gainFx("+"+fmt(n),"var(--gold)");
+  const el=document.querySelector(`.tank[data-tank="${i}"]`);if(el){const d=document.createElement("div");d.className="tkpop";d.textContent="+"+fmt(n);el.appendChild(d);setTimeout(()=>d.remove(),900);}
+  save();refreshHead();refreshBase(true);return n;
 }
 
 /* ---------- UI ---------- */
 const panel=$("#panel");
-const foundCount=()=>FISH.filter(f=>S.fish[f.id]).length;
 const coinImg=()=>`<img class="ci pix" src="${iconURL("coin")}" alt="">`;
 function head(ic,title,cnt){return `<div class="sh"><img class="pix" src="${iconURL(ic)}" alt=""><h2>${title}</h2>${cnt!==undefined?`<span class="cnt">${cnt}</span>`:""}</div>`;}
 function upHTML(u){
@@ -1504,54 +1635,55 @@ function upHTML(u){
 }
 function renderUp(){
   panel.innerHTML=wheelBoxHTML()+head("u_rod","Gear")+UPS.map(upHTML).join("")+rebirthHTML()+
-    `<p class="intro" style="margin-top:4px">Each new fish pays coins every second. A better version of a fish you own raises its pay, and duplicates sell for coins.</p>`;
+    `<p class="intro" style="margin-top:4px">Only fish on display in your Base earn coins. Better gear brings rarer fish, mutations and traits.</p>`;
 }
-function rbReady(){return foundCount()>=rbNeedFound()&&S.up.rod>=rbNeedRod();}
+function rbReady(){return runCount()>=rbNeedFound()&&S.up.rod>=rbNeedRod();}
 function rebirthHTML(){
-  const found=foundCount(),n=S.rb||0,nf=rbNeedFound(),nr=rbNeedRod(),ready=rbReady();
+  const found=runCount(),n=S.rb||0,nf=rbNeedFound(),nr=rbNeedRod(),ready=rbReady(),ns=Math.min(SPOT_MAX,spotCount()+2);
   if(!n&&found<12&&S.up.rod<4)return "";
   return `<div class="box rb${ready?" hot":""}"><div class="upc" style="grid-template-columns:48px 1fr"><div class="uic"><img class="pix" src="${iconURL("i_rebirth")}" alt=""></div>
-    <div><div class="ut">Tidal Rebirth${n?`<span class="lv">x${rbMult().toFixed(2)}</span>`:""}</div><div class="ud">Start over with a permanent +${Math.round(REBIRTH_STEP*100)}% to all income (next x${(rbMult()+REBIRTH_STEP).toFixed(2)}). You keep traits you discovered, wheel spins and legendary luck. Each rebirth asks for a little more.</div></div></div>
-    <div class="req"><span>Fish found</span><div class="bar"><i style="width:${Math.min(100,found/nf*100).toFixed(0)}%"></i></div><b>${found}/${nf}</b>
+    <div><div class="ut">Tidal Rebirth${n?`<span class="lv">x${rbMult().toFixed(2)}</span>`:""}</div><div class="ud">Start over with a permanent +${Math.round(REBIRTH_STEP*100)}% to all income (next x${(rbMult()+REBIRTH_STEP).toFixed(2)})${ns>spotCount()?` and ${ns} display tanks instead of ${spotCount()}`:""}. Your album, discovered traits, wheel spins and legendary luck stay. Your fish, coins and gear reset.</div></div></div>
+    <div class="req"><span>Species this run</span><div class="bar"><i style="width:${Math.min(100,found/nf*100).toFixed(0)}%"></i></div><b>${found}/${nf}</b>
     <span>Lucky Rod</span><div class="bar"><i style="width:${Math.min(100,S.up.rod/nr*100).toFixed(0)}%"></i></div><b>Lv ${S.up.rod}/${nr}</b></div>
     <button class="btn teal wide" data-rb="1" ${ready?"":"disabled"}>${ready?(S.rbArm?"Tap again to rebirth":"Rebirth"):"Not ready yet"}</button></div>`;
 }
 function doRebirth(){
-  const keep={rb:(S.rb||0)+1,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"up",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft};
-  S=Object.assign(fresh(),keep);S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
+  const keep={rb:(S.rb||0)+1,dex:S.dex,uid:S.uid,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"base",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft,log:S.log};
+  S=Object.assign(fresh(),keep);ensureSpots();S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
   confetti(40,["#38e0c4","#ffc845","#ffffff"]);
-  showModal(`<h3 style="color:var(--teal)">Reborn!</h3><div class="bigpic" style="--rc:#38e0c4"><img class="pix" src="${iconURL("i_rebirth")}" width="72" height="72" alt=""></div><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(2)}</b>.</p><button class="btn teal wide" id="mclose">Back to the water</button>`,"#38e0c4");
+  showModal(`<h3 style="color:var(--teal)">Reborn!</h3><div class="bigpic" style="--rc:#38e0c4"><img class="pix" src="${iconURL("i_rebirth")}" width="72" height="72" alt=""></div><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(2)}</b> and your base has <b>${spotCount()} tanks</b>.</p><button class="btn teal wide" id="mclose">Back to the water</button>`,"#38e0c4");
 }
 function refreshUpButtons(){
   panel.querySelectorAll("button[data-up]").forEach(b=>{const u=UPS.find(x=>x.id===b.dataset.up);const l=S.up[u.id];b.disabled=l>=u.max||S.coins<upCost(u,l);});
 }
-function pipHTML(e,list){
-  return list.map(m=>`<span class="pip ${e&&e.muts[m.id]?"on":""}" ${e&&e.muts[m.id]?`style="background:${m.c}"`:""} title="${m.n}"></span>`).join("");
+function pipHTML(d,list){
+  return list.map(m=>{const on=d&&d.v[m.id];return `<span class="pip ${on?"on":""}" ${on?`style="background:${m.c}"`:""} title="${m.n}"></span>`;}).join("");
 }
 function renderAlbum(){
-  const found=foundCount();let muts=0;FISH.forEach(f=>{const e=S.fish[f.id];if(e)muts+=Object.keys(e.muts).length;});
+  const found=dexCount();let muts=0;FISH.forEach(f=>{const d=S.dex[f.id];if(d)muts+=Object.keys(d.v).filter(k=>k!=="_").length;});
   const lg=(list,tag)=>list.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m}${tag?` <em>${tag(m)}</em>`:""}</span>`).join("");
   let h=head("t_book","Album",`${found}/${FISH.length}`)+`<div class="bar gold" style="margin-bottom:10px"><i style="width:${(found/FISH.length*100).toFixed(1)}%"></i></div>
+   <p class="intro">Every fish you ever caught, kept forever. Each card shows your best one. Tap a fish to compare all its variants.</p>
    <details class="mlist"><summary>Mutations: ${muts} of ${FISH.length*ALL_MUTS.length} variants found</summary>
    <div class="legend">${lg(MUTS)}</div><div class="legend">${lg(WMUTS,m=>WX_NAME[m.wx])}</div><div class="legend">${lg(CMUTS,m=>m.d)}${lg(XMUTS,()=>"Wheel only")}</div></details>`;
-  const later=WMUTS.concat(CMUTS,XMUTS);
+  const later=WMUTS.concat(CMUTS,XMUTS),pm=payMult();
   TIERS.forEach((T,ti)=>{
-    const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.fish[o.f.id]).length;
+    const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.dex[o.f.id]).length;
     h+=`<div class="tierh" style="--tc:${T.c}"><b>${T.n}</b><span>${have}/${list.length}</span></div>`;
     if(T.g&&S.up.rod<T.g)h+=`<div class="tnote">Starts biting at Lucky Rod Lv ${T.g}</div>`;
     if(ti===6)h+=`<div class="tnote">Cannot be caught. Made in the Craft tab.</div>`;
     h+=`<div class="grid">`;
     list.forEach(({f,i})=>{
-      const e=S.fish[f.id];
-      if(!e){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,66,"",44)}</div><div class="nm muted">???</div><div class="inc muted">${f.t===6?"Craft":f.w}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
-      h+=`<button class="fcard${e.best?"":" gone"}" data-fi="${i}" style="--rc:${T.c}"><div class="spr">${spriteImg(i,bestMutId(e),false,66,f.n,44)}</div><div class="nm">${f.n}</div>
-        <div class="inc">${e.best?fmt(f.inc*e.best*lampMult()*rbMult())+"/s":"used up"}</div><div class="ticons">${(e.tr||[]).map(iconImg).join("")}</div><div class="pips">${pipHTML(e,MUTS)}<span class="pgap"></span>${pipHTML(e,later)}</div></button>`;
+      const d=S.dex[f.id];
+      if(!d){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,66,"",44)}</div><div class="nm muted">???</div><div class="inc muted">${f.t===6?"Craft":f.w}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
+      const b=dexBest(d),bm=b.k==="_"?null:b.k;
+      h+=`<button class="fcard" data-fi="${i}" style="--rc:${T.c}"><div class="spr">${spriteImg(i,bm,false,66,f.n,44)}</div><div class="nm">${f.n}</div>
+        <div class="inc">${fmt(f.inc*b.x*pm)}/s</div><div class="ticons">${b.tr.map(iconImg).join("")}</div><div class="pips">${pipHTML(d,MUTS)}<span class="pgap"></span>${pipHTML(d,later)}</div></button>`;
     });
     h+=`</div>`;
   });
   panel.innerHTML=h;
 }
-function bestMutId(e){if(e.bm!==undefined)return e.bm;const m=MUTS.find(x=>x.m===e.best);return m?m.id:null;}
 function renderTraits(){
   const seen=TRAITS.filter(t=>S.tseen[t.id]).length,now=new Date(),wk=dayInfo(now),td=TR_BY[wk.id];
   let h=head("t_star","Traits",`${seen}/${TRAITS.length}`)+`<p class="intro">A fish can carry any number of traits: once one lands, each extra one is about 4 times rarer. Traits for the current weather, tide, hour or day make a first trait more likely. Wild traits are weaker but can appear on any catch. Everything multiplies.</p>
@@ -1579,8 +1711,12 @@ function craftToday(now){
   const rest=CRAFTS.slice(4).map((c,i)=>({c,i:i+4})).sort((a,b)=>rk(a.i)-rk(b.i)).slice(0,3);
   return easy.concat(rest).map(o=>o.c).sort((a,b)=>CRAFTS.indexOf(a)-CRAFTS.indexOf(b));
 }
-const owns=id=>!!(S.fish[id]&&S.fish[id].best>0);
-function craftIns(c){return c.in.map(id=>{const e=S.fish[id],ok=e&&e.best>0;return {id,m:ok?bestMutId(e):null,tr:ok?(e.tr||[]).slice():[]};});}
+const owns=id=>allInst().some(x=>x.o.id===id);
+// candidates for one recipe slot: bucket fish first (best first), then fish on display
+function craftCands(id){return allInst().filter(x=>x.o.id===id).sort((a,b)=>(a.w===b.w?0:a.w==="b"?-1:1)||instX(b.o)-instX(a.o));}
+const craftPick={};   // recipe id -> chosen fish (u) per slot, for this session only
+function craftChosen(c){const sel=craftPick[c.id]||[];return c.in.map((id,k)=>{const cs=craftCands(id);return cs.find(z=>z.o.u===sel[k])||cs[0]||null;});}
+function craftIns(c){return craftChosen(c).map((x,k)=>x?{id:c.in[k],m:x.o.m,tr:x.o.tr.slice(),u:x.o.u,w:x.w}:{id:c.in[k],m:null,tr:[]});}
 // Every mutation / trait found on the used fish gets a chance equal to the share of fish that carry it (all of them = guaranteed).
 function craftOdds(ins){
   const N=ins.length,mc={},tc={};
@@ -1598,7 +1734,8 @@ function craftRoll(ins){
 function startCraft(id){
   const c=CR_BY[id];if(!c||S.craft.job||!c.in.every(owns)||craftToday().indexOf(c)<0)return false;
   const ins=craftIns(c);
-  c.in.forEach(i=>{const e=S.fish[i];e.best=0;e.bm=null;e.tr=[];});   // used up: no pay, no mutation, no traits (the album keeps the discovery)
+  ins.forEach(x=>removeInst(x.u));   // used up (the album keeps the discovery)
+  ins.forEach(x=>{delete x.u;delete x.w;});
   let secs=c.time;if(S.rush){secs=Math.round(secs/2);S.rush=0;}   // Craft Rush from the wheel
   S.craft.job={id,end:Date.now()+secs*1000,ins};
   sfx.buy();save();refreshAll();return true;
@@ -1606,36 +1743,28 @@ function startCraft(id){
 function collectCraft(){
   const j=S.craft.job;if(!j||Date.now()<j.end)return;
   const f=FISH_BY[j.id],fi=FISH.indexOf(f),r=craftRoll(j.ins),mut=r.mut?MUT_BY[r.mut]:null,tr=r.tr;
-  const mult=Math.round((mut?mut.m:1)*traitMult(tr)*100)/100;
-  const e=S.fish[f.id]||(S.fish[f.id]={best:0,count:0,norm:0,muts:{}});
-  e.count++;if(mut)e.muts[mut.id]=1;else e.norm=1;
-  tr.forEach(i=>{S.tseen[i]=1;});
-  let kind,gain,old=null;
-  if(!e.best){e.best=mult;e.bm=mut?mut.id:null;e.tr=tr;kind="new";gain=f.inc*mult*lampMult()*rbMult();}
-  else if(mult>e.best){old={mut:bestMutId(e),tr:e.tr||[],best:e.best};gain=f.inc*(mult-e.best)*lampMult()*rbMult();e.best=mult;e.bm=mut?mut.id:null;e.tr=tr;kind="better";}
-  else{gain=Math.round(f.inc*mult*SELL_X);S.coins+=gain;kind="sold";}
+  const o=newInst(f.id,r.mut,tr),mult=instX(o),rc=record(o),pl=receive(o);
   S.craft.job=null;S.craft.n=(S.craft.n||0)+1;
-  S.log.unshift({fi,mut:mut?mut.id:null,tr,kind,gain});if(S.log.length>40)S.log.length=40;
-  sfx.catch(6);buzz(150);showCard(fi,mut,kind,gain,tr,mult,old);celebrate(f.t,mult,tr.length);
+  S.log.unshift({fi,mut:o.m,tr,kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
+  sfx.catch(6);buzz(150);showCard(fi,mut,pl,rc,tr,mult);celebrate(f.t,mult,tr.length);
   save();refreshAll();
 }
-function insChip(id,have,mutId){
-  const g=FISH_BY[id],m=mutId?MUT_BY[mutId]:null;
-  return `<span class="cin ${have?"":"miss"}"><span class="sp">${spriteImg(FISH.indexOf(g),have?mutId:null,!have,40,"",24)}</span><span>${g.n}${have&&m?` <span style="color:${m.c}">${m.n}</span>`:""}${have?"":" ✕"}</span></span>`;
+function insChip(id,x,k){
+  const g=FISH_BY[id],have=!!x,o=have?x.o:null,m=o&&o.m?MUT_BY[o.m]:null;
+  return `<span class="cin ${have?"":"miss"}${k!==undefined?" pick":""}" ${k!==undefined?`data-cyc="${k}"`:""}><span class="sp">${spriteImg(FISH.indexOf(g),o?o.m:null,!have,40,"",24)}</span><span>${g.n}${m?` <span style="color:${m.c}">${m.n}</span>`:""}${o&&o.tr.length?` <span style="color:var(--teal)">+${o.tr.length}</span>`:""}${have?(x.w==="d"?` <em class="ondisp">tank</em>`:""):" ✕"}</span></span>`;
 }
 function recipeHTML(c){
-  const f=FISH_BY[c.id],fi=FISH.indexOf(f),have=c.in.every(owns),e=S.fish[c.id],busy=!!S.craft.job;
-  const ins=c.in.map(id=>{const o=owns(id);return insChip(id,o,o?bestMutId(S.fish[id]):null);}).join("");
-  return `<div class="box"><div class="crow"><div class="cs">${spriteImg(fi,e&&e.best?bestMutId(e):null,false,66,f.n,44)}</div>
-    <div class="tx"><div class="cname">${f.n}${e&&e.best?" ✓":""}</div>
-    <div class="cmeta">Pays <b>${fmt(f.inc*lampMult()*rbMult())}/s</b>, takes ${fmtTime(c.time)}</div></div></div>
-    <div class="cins">${ins}</div>
+  const f=FISH_BY[c.id],fi=FISH.indexOf(f),ch=craftChosen(c),have=ch.every(Boolean),d=S.dex[c.id],busy=!!S.craft.job;
+  return `<div class="box"><div class="crow"><div class="cs">${spriteImg(fi,null,!d,66,f.n,44)}</div>
+    <div class="tx"><div class="cname">${d?f.n+" ✓":f.n}</div>
+    <div class="cmeta">Pays <b>${fmt(f.inc*payMult())}/s</b> on display, takes ${fmtTime(c.time)}</div></div></div>
+    <div class="cins">${c.in.map((id,k)=>insChip(id,ch[k])).join("")}</div>
     <button class="btn wide${have&&!busy?"":" ghost"}" data-craft="${c.id}" ${have&&!busy?"":"disabled"}>${busy?"Machine is busy":have?"Craft":"Missing fish"}</button></div>`;
 }
 function renderCraft(){
   const now=new Date(),day=dayInfo(now),list=craftToday(now),j=S.craft.job;
   let h=`<div class="box machine"><div class="mi"><img class="pix" src="${iconURL("t_anvil")}" alt=""></div><div style="min-width:0"><div class="ut" style="color:#ff9ae0">Craft Machine</div><div class="ud">${S.craft.n||0} crafted so far. New recipes in ${fmtLeft(day.left)}.</div></div></div>
-   <p class="intro">Trade fish you own for a stronger Crafted fish that cannot be caught. The fish you use are lost, but each mutation and trait on them can pass on: the more of them share it, the better the chance, and if all of them do it always passes on.</p>`;
+   <p class="intro">Trade fish from your bucket or tanks for a stronger Crafted fish that cannot be caught. The fish you use are lost, but each mutation and trait on them can pass on: the more of them share it, the better the chance, and if all of them do it always passes on.</p>`;
   if(j){
     const c=CR_BY[j.id],f=FISH_BY[j.id],fi=FISH.indexOf(f),left=(j.end-Date.now())/1000,done=left<=0;
     h+=`<div class="box cjob${done?" hot":""}" id="cjob" data-done="${done?1:0}"><div class="crow"><div class="cs">${spriteImg(fi,null,!done,66,"",44)}</div>
@@ -1647,21 +1776,24 @@ function renderCraft(){
   h+=list.map(recipeHTML).join("");
   panel.innerHTML=h;
 }
-function openCraft(id){
-  const c=CR_BY[id],f=FISH_BY[id],fi=FISH.indexOf(f),T=TIERS[6],e=S.fish[id];
+function openCraft(id,still){
+  const c=CR_BY[id],f=FISH_BY[id],fi=FISH.indexOf(f),T=TIERS[6];
   if(!c||S.craft.job||!c.in.every(owns))return;
-  const ins=craftIns(c),o=craftOdds(ins),pc=p=>Math.round(p*100)+"%";
+  const ch=craftChosen(c),ins=craftIns(c),o=craftOdds(ins),pc=p=>Math.round(p*100)+"%";
   const rows=o.mut.map(x=>{const m=MUT_BY[x.id];return `<div class="trow"><span class="tn" style="color:${m.c}">${m.n} x${m.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("")
     +o.tr.map(x=>{const t=TR_BY[x.id];return `<div class="trow"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n} x${t.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("");
+  const many=c.in.some(id=>craftCands(id).length>1);
   showModal(`<h3 style="color:${T.c}">Craft ${f.n}</h3>
    <div class="bigpic">${spriteImg(fi,null,false,170,f.n,88)}</div>
    <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Takes</dt><dd>${fmtTime(S.rush?Math.round(c.time/2):c.time)}${S.rush?" (Craft Rush)":""}</dd></dl>
-   <div class="small muted">These fish are used up:</div><div class="cins">${ins.map(x=>insChip(x.id,true,x.m)).join("")}</div>
+   <div class="small muted">These fish are used up${many?". Tap one to pick another of the same kind":""}:</div><div class="cins">${c.in.map((id,k)=>insChip(id,ch[k],k)).join("")}</div>
    <div class="small muted">Chance to pass on</div>
    <div class="codds">${rows||`<div class="small muted">None of these fish have a mutation or a trait, so nothing can pass on.</div>`}</div>
-   ${e&&e.best?`<div class="small" style="color:var(--gold)">You already own ${f.n}. The new one only replaces it if it is better, otherwise it sells for coins.</div>`:""}
-   <div class="mbtnrow"><button class="btn" id="cgo">Start crafting</button><button class="btn ghost" id="mclose">Cancel</button></div>`,T.c);
+   <div class="mbtnrow"><button class="btn" id="cgo">Start crafting</button><button class="btn ghost" id="mclose">Cancel</button></div>`,T.c,still);
   $("#cgo").onclick=()=>{closeModal();startCraft(id);};
+  document.querySelectorAll("#modalBox .cin[data-cyc]").forEach(el=>el.onclick=()=>{
+    const k=+el.dataset.cyc,cs=craftCands(c.in[k]);if(cs.length<2)return;
+    const cur=ch[k]?cs.indexOf(ch[k]):0,sel=craftPick[id]||(craftPick[id]=[]);sel[k]=cs[(cur+1)%cs.length].o.u;beep(620,.04,"square",.03);openCraft(id,true);});
 }
 function setDot(tab,on){
   const b=document.querySelector(`#tabs button[data-tab="${tab}"]`);if(!b)return;
@@ -1778,45 +1910,150 @@ function doSpin(){
 }
 
 function renderLog(){
-  const found=foundCount();let best=null;
-  FISH.forEach((f,i)=>{const e=S.fish[f.id];if(e&&e.best){const v=f.inc*e.best;if(!best||v>best.v)best={v,i,e};}});
+  const found=dexCount();let best=null;
+  FISH.forEach((f,i)=>{const d=S.dex[f.id];if(d){const b=dexBest(d),v=f.inc*b.x;if(!best||v>best.v)best={v,i,b};}});
+  const used=S.base.slice(0,spotCount()).filter(z=>z.f).length;
   const st=(ic,v,l)=>`<div class="stat"><img class="pix" src="${iconURL(ic)}" alt=""><div><b>${v}</b><span>${l}</span></div></div>`;
-  let h=head("t_scroll","Fishing log")+`<div class="stats">${st("fish",S.casts,"casts")}${st("t_book",found+"/"+FISH.length,"fish found")}${st("t_anvil",S.craft.n||0,"crafted")}${st("i_rebirth",S.rb||0,"rebirths")}
-    ${S.up.rod>=TIERS[4].g?st("p_clover","+"+Math.round((pityMult()-1)*100)+"%","legendary luck"):""}${best?st("i_trophy","x"+xm(best.e.best),"best: "+FISH[best.i].n):""}</div>`;
+  let h=head("t_scroll","Fishing log")+`<div class="stats">${st("fish",S.casts,"casts")}${st("t_book",found+"/"+FISH.length,"album")}${st("t_tank",used+"/"+spotCount(),"tanks in use")}${st("u_bucket",S.bucket.length+"/"+bucketCap(),"in bucket")}${st("t_anvil",S.craft.n||0,"crafted")}${st("i_rebirth",S.rb||0,"rebirths")}
+    ${S.up.rod>=TIERS[4].g?st("p_clover","+"+Math.round((pityMult()-1)*100)+"%","legendary luck"):""}${best?st("i_trophy","x"+xm(best.b.x),"best ever: "+FISH[best.i].n):""}</div>`;
   h+=`<div class="grp"><b style="color:var(--gold)">Recent catches</b></div>`;
   if(!S.log.length)h+=`<p class="intro">Nothing yet. Tap Cast to catch your first fish.</p>`;
   S.log.slice(0,20).forEach(r=>{
     const f=FISH[r.fi];if(!f)return;const T=TIERS[f.t],m=r.mut?MUT_BY[r.mut]:null;
-    h+=`<div class="logrow"><span class="lp">${spriteImg(r.fi,r.mut,false,48,f.n,28)}</span><div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.kind==="new"?", new":r.kind==="better"?", better":""}${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
-      <div class="r">${r.kind==="sold"?"+"+fmt(r.gain):"+"+fmt(r.gain)+"/s"}</div></div>`;
+    h+=`<div class="logrow"><span class="lp">${spriteImg(r.fi,r.mut,false,48,f.n,28)}</span><div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.nw===1?", new":r.nw===2?", new variant":""}${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
+      <div class="r">${r.kind==="sold"?`<span style="color:var(--gold)">sold +${fmt(r.gain)}</span>`:r.kind==="display"?"+"+fmt(r.gain)+"/s":`<span class="small muted">bucket</span>`}</div></div>`;
   });
   h+=`<p style="margin-top:16px"><button class="btn ghost" id="reset">Reset save</button></p>`;
   panel.innerHTML=h;
   $("#reset").onclick=function(){
-    if(this.dataset.armed){S=fresh();S.seenV="6";save();lastWall=Date.now();hideCard();refreshAll();}
+    if(this.dataset.armed){S=fresh();S.seenV="7";save();lastWall=Date.now();hideCard();refreshAll();}
     else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
   };
 }
 function renderPanel(){
   document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===S.tab)));
   const top=panel.scrollTop;
-  (S.tab==="up"?renderUp:S.tab==="album"?renderAlbum:S.tab==="traits"?renderTraits:S.tab==="craft"?renderCraft:renderLog)();
+  (S.tab==="up"?renderUp:S.tab==="base"?renderBase:S.tab==="album"?renderAlbum:S.tab==="traits"?renderTraits:S.tab==="craft"?renderCraft:renderLog)();
   panel.scrollTop=top;
 }
 function refreshHead(){$("#coins").textContent=fmt(S.coins);$("#rate").textContent=fmt(income());}
 function refreshAll(){refreshHead();renderPanel();}
 
-function openFish(i){
-  const f=FISH[i],T=TIERS[f.t],e=S.fish[f.id],pct=fishChance(f)*100;
-  const vars=[{id:null,n:"Normal",c:"#fff",got:e&&e.norm}].concat(ALL_MUTS.map(m=>({id:m.id,n:m.n,c:m.c,got:e&&e.muts[m.id]})));
+let fishTr=true;   // album page: show pay with traits (true) or the bare mutation (false)
+function openFish(i,still){
+  const f=FISH[i],T=TIERS[f.t],d=S.dex[f.id],pct=fishChance(f)*100,pm=payMult();
   const tideTxt=f.w==="Sea"?"High tide":f.w==="Lake"?"Low tide":"Any tide";
-  showModal(`<h3 style="color:${e?T.c:"var(--muted)"}">${e?f.n:"Unknown fish"}</h3><div class="small muted">${tierTag(f)}</div>
-   <div class="bigpic" style="--rc:${e?T.c:"#3b3180"}">${spriteImg(i,e?bestMutId(e):null,!e,170,f.n,88)}</div>
-   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Your best</dt><dd>${e&&e.best?"x"+xm(e.best)+" ("+fmt(f.inc*e.best*lampMult()*rbMult())+"/sec)":e?"used in a craft":f.t===6?"not crafted":"not caught"}</dd>
-   ${f.t===6?`<dt>Crafted</dt><dd>${e?e.count:0} time${e&&e.count===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:`<dt>Caught</dt><dd>${e?e.count:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}</dl>
-   ${e?(e.tr&&e.tr.length?`<div class="small muted">Best traits (x${xm(traitMult(e.tr))})</div>`+chipHTML(e.tr):`<div class="small muted">Best version has no traits</div>`):""}
-   <div class="vars">${vars.map(v=>`<div class="var"><div class="vi">${spriteImg(i,v.id,!v.got,50,"",28)}</div><span style="color:${v.got?v.c:"var(--muted)"}">${v.n}</span></div>`).join("")}</div>
-   <button class="btn wide" id="mclose">Close</button>`,e?T.c:"#3b3180");
+  const got=d?Object.keys(d.v).map(k=>{const r=d.v[k],m=k==="_"?null:MUT_BY[k];return {k,m,tr:r.tr,x:r.x,mx:mutM(m&&m.id)};}):[];
+  got.forEach(r=>{r.v=f.inc*(fishTr?r.x:r.mx)*pm;});got.sort((a,b)=>b.v-a.v);
+  const top=got.length?got[0].v:1,b=d?dexBest(d):null;
+  const rows=got.map(r=>`<div class="vrow"><span class="vs">${spriteImg(i,r.m?r.m.id:null,false,60,"",30)}</span>
+      <div class="vt"><b style="color:${r.m?r.m.c:"var(--text)"}">${r.m?r.m.n:"Normal"}</b> <em>x${xm(fishTr?r.x:r.mx)}</em>
+      <div class="ticons left${fishTr?"":" off"}">${r.tr.length?r.tr.map(iconImg).join(""):`<span class="nt">no traits</span>`}</div></div>
+      <div class="vp"><b>${fmt(r.v)}/s</b><div class="bar"><i style="width:${Math.max(3,r.v/top*100).toFixed(0)}%"></i></div></div></div>`).join("");
+  const vars=[{id:null,n:"Normal",c:"#fff",k:"_"}].concat(ALL_MUTS.map(m=>({id:m.id,n:m.n,c:m.c,k:m.id})));
+  showModal(`<h3 style="color:${d?T.c:"var(--muted)"}">${d?f.n:"Unknown fish"}</h3><div class="small muted">${tierTag(f)}</div>
+   <div class="bigpic" style="--rc:${d?T.c:"#3b3180"}">${spriteImg(i,b&&b.k!=="_"?b.k:null,!d,170,f.n,88)}</div>
+   <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Best ever</dt><dd>${b?"x"+xm(b.x)+" ("+fmt(f.inc*b.x*pm)+"/sec)":f.t===6?"not crafted":"not caught"}</dd>
+   ${f.t===6?`<dt>Crafted</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:`<dt>Caught</dt><dd>${d?d.n:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}</dl>
+   ${got.length?`<div class="vhead"><span>Your best of each variant</span><button class="tgl${fishTr?" on":""}" id="trTgl"><i></i>Traits ${fishTr?"on":"off"}</button></div>
+   <div class="vlist">${rows}</div><div class="small muted" style="margin-top:4px">${fishTr?"Pay with the best traits you ever had on each variant.":"Pay from the mutation alone, without traits."}</div>`:""}
+   <div class="vars">${vars.map(v=>{const on=d&&d.v[v.k];return `<div class="var"><div class="vi">${spriteImg(i,v.id,!on,50,"",28)}</div><span style="color:${on?v.c:"var(--muted)"}">${v.n}</span></div>`;}).join("")}</div>
+   <button class="btn wide" id="mclose">Close</button>`,d?T.c:"#3b3180",still);
+  const t=$("#trTgl");if(t)t.onclick=()=>{fishTr=!fishTr;beep(fishTr?720:480,.05,"square",.04);openFish(i,true);};
+}
+
+/* ---------- Base tab: display tanks and the bucket ---------- */
+const lockImg=()=>`<img class="pix" src="${iconURL("i_lock")}" alt="">`;
+function tankHTML(z,i){
+  if(!z.f)return `<button class="tank empty" data-spot="${i}"><span class="plus">+</span><span>Place a fish</span></button>`;
+  const o=z.f,f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,cap=tankCap(z),full=z.c>=cap-.5;
+  return `<div class="tank${full?" full":""}" style="--rc:${T.c}" data-tank="${i}" role="button" aria-label="Collect from ${f.n}">
+    <div class="tk-top"><span class="tk-n">${m?`<i style="color:${m.c}">${m.ab}</i> `:""}<span style="color:${T.c}">${f.n}</span></span><button class="tk-sw" data-spot="${i}">Swap</button></div>
+    <div class="tk-water"><span class="bub"></span><span class="bub b2"></span><div class="tk-fish">${spriteImg(fi,o.m,false,96,f.n,38)}</div></div>
+    <div class="tk-mid"><span class="tk-pay">${fmt(instPay(o))}/s</span><span class="ticons">${o.tr.map(iconImg).join("")}</span></div>
+    <div class="tk-col"><div class="bar gold"><i id="tb${i}" style="width:${Math.min(100,z.c/cap*100).toFixed(1)}%"></i></div><span class="tk-amt" id="tp${i}">${coinImg()}${fmt(z.c)}</span></div>
+  </div>`;
+}
+function bucketCard(o,wv){
+  const f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,p=instPay(o),up=p>wv;
+  return `<button class="fcard bk${up?" up":""}" data-bk="${o.u}" style="--rc:${T.c}">${up?`<span class="upb">▲</span>`:""}<div class="spr">${spriteImg(fi,o.m,false,66,f.n,40)}</div>
+    <div class="nm">${f.n}</div><div class="bmut" style="color:${m?m.c:"var(--muted)"}">${m?m.n:"Normal"}${o.tr.length?` <span style="color:var(--teal)">+${o.tr.length} trait${o.tr.length>1?"s":""}</span>`:""}</div><div class="inc">${fmt(p)}/s</div><div class="ticons">${o.tr.map(iconImg).join("")}</div></button>`;
+}
+function renderBase(){
+  ensureSpots();
+  const n=spotCount(),tot=pendingTotal(),used=S.base.slice(0,n).filter(z=>z.f).length,wk=weakestSpot(),wv=wk>=0&&S.base[wk].f?instPay(S.base[wk].f):-1;
+  let h=head("t_tank","Your base",`${used}/${n} tanks`);
+  h+=`<div class="box colbox${tot>=1?" hot":""}"><div style="min-width:0"><div class="ut" style="color:var(--gold)">Waiting in your tanks</div>
+      <div class="colamt" id="colAmt">${coinImg()}${fmt(tot)}</div><div class="ud">Your display earns <b style="color:var(--teal)">${fmt(income())}/s</b>. Tap a tank to collect it.</div></div>
+      <button class="btn" data-colall="1" id="colAllBtn" ${tot>=1?"":"disabled"}>Collect all</button></div>`;
+  h+=`<div class="tanks">`+S.base.slice(0,n).map(tankHTML).join("");
+  for(let k=n;k<Math.min(SPOT_MAX,n+2);k++)h+=`<div class="tank locked">${lockImg()}<span>Unlocks with rebirth ${Math.ceil((k-4)/2)}</span></div>`;
+  h+=`</div><p class="intro" style="margin-top:2px">Each tank holds up to 3 hours of its fish's pay, then stops filling. It keeps filling while you are away.</p>`;
+  const plain=S.bucket.filter(o=>!o.m&&!o.tr.length).length,better=S.bucket.some(o=>instPay(o)>wv);
+  h+=`<div class="grp"><b style="color:var(--teal)">Bucket</b><span>${S.bucket.length}/${bucketCap()} fish. They do not earn until they are on display.</span></div>
+    <div class="bbtns"><button class="btn teal" data-best="1" ${better?"":"disabled"}>Put best on display</button><button class="btn ghost" data-plain="1" ${plain?"":"disabled"}>Sell plain (${plain})</button></div>`;
+  if(!S.bucket.length)h+=`<p class="intro">Empty. Fish that do not fit in a tank land here. When the bucket is full, the weakest fish is sold.</p>`;
+  else h+=`<div class="grid">`+S.bucket.slice().sort((a,b)=>instPay(b)-instPay(a)).map(o=>bucketCard(o,wv)).join("")+`</div>`;
+  panel.innerHTML=h;
+}
+// keeps the Base tab, the stage Collect button and the tab dot current without redrawing everything
+function refreshBase(force){
+  const tot=pendingTotal(),p=$("#colPill");
+  const any=S.base.some(z=>z.f);p.hidden=!any||menuOpen;
+  if(any){const t=fmt(tot);if(p._t!==t){p._t=t;p.innerHTML=`<img class="pix" src="${iconURL("coin")}" alt="">${t}`;}p.classList.toggle("ready",tot>=1);}
+  const wk=weakestSpot(),wv=wk>=0&&S.base[wk].f?instPay(S.base[wk].f):-1;
+  const full=S.base.some((z,i)=>z.f&&i<spotCount()&&z.c>=tankCap(z)-.5);
+  setDot("base",full||S.bucket.some(o=>instPay(o)>wv));
+  if(S.tab!=="base")return;
+  const a=$("#colAmt");if(!a)return;
+  a.innerHTML=coinImg()+fmt(tot);const cb=$("#colAllBtn");if(cb){cb.disabled=tot<1;cb.closest(".box").classList.toggle("hot",tot>=1);}
+  S.base.forEach((z,i)=>{if(!z.f)return;const cap=tankCap(z),b=$("#tb"+i),q=$("#tp"+i);if(b)b.style.width=Math.min(100,z.c/cap*100).toFixed(1)+"%";if(q)q.innerHTML=coinImg()+fmt(z.c);
+    const el=document.querySelector(`.tank[data-tank="${i}"]`);if(el)el.classList.toggle("full",z.c>=cap-.5);});
+}
+function placeIn(u,i){   // move a bucket fish into tank i; whatever was there goes back to the bucket
+  const bi=S.bucket.findIndex(o=>o.u===u);if(bi<0||i>=spotCount())return;
+  const o=S.bucket.splice(bi,1)[0],z=S.base[i];if(z.f){S.coins+=z.c;S.bucket.push(z.f);}
+  S.base[i]={f:o,c:0};sfx.buy();buzz(20);save();refreshAll();
+}
+function placeBest(){
+  const n=spotCount(),top=new Set(allInst().map(x=>x.o).sort((a,b)=>instPay(b)-instPay(a)).slice(0,n).map(o=>o.u));
+  S.base.forEach((z,i)=>{if(z.f&&!top.has(z.f.u)){S.coins+=z.c;S.bucket.push(z.f);z.f=null;z.c=0;}});
+  S.base.forEach((z,i)=>{if(i<n&&!z.f){const bi=S.bucket.findIndex(o=>top.has(o.u));if(bi>=0){z.f=S.bucket.splice(bi,1)[0];z.c=0;}}});
+  sfx.buy();buzz(30);save();refreshAll();
+}
+function sellInst(u){const o=removeInst(u);if(!o)return 0;const g=sellVal(o);S.coins+=g;sfx.buy();gainFx("+"+fmt(g),"var(--gold)");save();refreshAll();return g;}
+function sellPlain(){let g=0;S.bucket=S.bucket.filter(o=>{if(!o.m&&!o.tr.length){g+=sellVal(o);return false;}return true;});if(g>0){S.coins+=g;sfx.buy();gainFx("+"+fmt(g),"var(--gold)");save();refreshAll();}}
+function openSpot(i){
+  const z=S.base[i],cur=z&&z.f;if(!z)return;
+  const list=S.bucket.slice().sort((a,b)=>instPay(b)-instPay(a)),cp=cur?instPay(cur):-1;
+  const row=o=>{const f=FISH_BY[o.id],T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,p=instPay(o);
+    return `<button class="prow${p>cp?" up":""}" data-pick="${o.u}"><span class="vs">${spriteImg(FISH.indexOf(f),o.m,false,60,"",30)}</span>
+      <span class="vt"><b style="color:${T.c}">${f.n}</b> <em style="color:${m?m.c:"var(--muted)"}">${m?m.n:"Normal"}</em><span class="ticons left">${o.tr.map(iconImg).join("")}</span></span>
+      <span class="vp"><b>${fmt(p)}/s</b>${p>cp?`<em>+${fmt(p-Math.max(0,cp))}</em>`:""}</span></button>`;};
+  const cf=cur?FISH_BY[cur.id]:null;
+  showModal(`<h3 style="color:var(--teal)">Tank ${i+1}</h3>
+    ${cur?`<div class="tnow"><span class="vs">${spriteImg(FISH.indexOf(cf),cur.m,false,60,"",30)}</span><div><b>${cur.m?MUT_BY[cur.m].n+" ":""}${cf.n}</b><div class="small muted">In this tank now, ${fmt(cp)}/s</div></div></div>`:""}
+    <div class="small muted" style="margin:8px 0 4px">${list.length?(cur?"Pick a fish from your bucket to swap in:":"Pick a fish from your bucket:"):"Your bucket is empty. Go fishing!"}</div>
+    <div class="plist">${list.map(row).join("")}</div>
+    <div class="mbtnrow">${cur?`<button class="btn teal" id="sInfo">This fish: details or sell</button>`:""}<button class="btn ghost" id="mclose">Close</button></div>`,"#38e0c4");
+  document.querySelectorAll("#modalBox [data-pick]").forEach(b=>b.onclick=()=>{closeModal();placeIn(+b.dataset.pick,i);});
+  const si=$("#sInfo");if(si)si.onclick=()=>openInst(cur.u);
+}
+function openInst(u){
+  const x=findInst(u);if(!x)return;
+  const o=x.o,f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,wk=weakestSpot(),wz=wk>=0?S.base[wk]:null;
+  const inB=x.w==="b",room=S.bucket.length<bucketCap();
+  showModal(`<h3 style="color:${T.c}">${m?m.n+" ":""}${f.n}</h3><div class="small muted">${tierTag(f)}${inB?", in your bucket":`, in tank ${x.i+1}`}</div>
+   <div class="bigpic" style="--rc:${T.c}">${spriteImg(fi,o.m,false,170,f.n,88)}</div>
+   ${chipHTML(o.tr)}
+   <dl class="kv"><dt>Mutation</dt><dd style="color:${m?m.c:"var(--muted)"}">${m?m.n+" x"+m.m:"none"}</dd><dt>Total</dt><dd>x${xm(instX(o))}</dd><dt>Pays on display</dt><dd style="color:var(--teal)">${fmt(instPay(o))}/sec</dd><dt>Sells for</dt><dd style="color:var(--gold)">${fmt(sellVal(o))}</dd></dl>
+   ${inB&&wz?`<div class="small muted">${wz.f?`Display swaps it with your weakest tank: ${FISH_BY[wz.f.id].n}, ${fmt(instPay(wz.f))}/s.`:"You have an open tank."}</div>`:""}
+   ${!inB&&!room?`<div class="small muted">Your bucket is full, so it cannot be taken out.</div>`:""}
+   <div class="mbtnrow">${inB?`<button class="btn teal" id="iDisp" ${wz?"":"disabled"}>Put on display</button>`:`<button class="btn teal" id="iOut" ${room?"":"disabled"}>Take out to bucket</button>`}
+   <button class="btn coral" id="iSell">Sell for ${fmt(sellVal(o))}</button><button class="btn ghost" id="mclose">Close</button></div>`,T.c);
+  const dp=$("#iDisp");if(dp)dp.onclick=()=>{closeModal();placeIn(u,wk);};
+  const ot=$("#iOut");if(ot)ot.onclick=()=>{const q=removeInst(u);if(q)S.bucket.push(q);closeModal();sfx.buy();save();refreshAll();};
+  $("#iSell").onclick=function(){if(!this.dataset.armed){this.dataset.armed=1;this.textContent="Tap again to sell";return;}closeModal();sellInst(u);};
 }
 
 /* ---------- events ---------- */
@@ -1831,8 +2068,16 @@ panel.addEventListener("click",e=>{
   const wb=e.target.closest("button[data-wheel]");if(wb){if(!wb.disabled)openWheel();return;}
   const cr=e.target.closest("button[data-craft]");if(cr){if(!cr.disabled)openCraft(cr.dataset.craft);return;}
   if(e.target.closest("button[data-collect]")){collectCraft();return;}
-  const f=e.target.closest("button[data-fi]");if(f)openFish(+f.dataset.fi);
+  const f=e.target.closest("button[data-fi]");if(f){openFish(+f.dataset.fi);return;}
+  const sp=e.target.closest("[data-spot]");if(sp){openSpot(+sp.dataset.spot);return;}
+  const tk=e.target.closest(".tank[data-tank]");if(tk){collectSpot(+tk.dataset.tank);return;}
+  const bk=e.target.closest("button[data-bk]");if(bk){openInst(+bk.dataset.bk);return;}
+  if(e.target.closest("button[data-colall]")){collectAll();return;}
+  if(e.target.closest("button[data-best]")){placeBest();return;}
+  const pl=e.target.closest("button[data-plain]");
+  if(pl){if(!pl.dataset.armed){pl.dataset.armed=1;pl.classList.remove("ghost");pl.classList.add("coral");pl.textContent="Tap again to sell";return;}sellPlain();return;}
 });
+$("#colPill").addEventListener("click",e=>{e.stopPropagation();collectAll();});
 $("#modal").addEventListener("click",e=>{if(e.target.id==="modal"&&!wheelBusy)closeModal();});
 $("#snd").addEventListener("click",function(){S.sound=!S.sound;this.setAttribute("aria-pressed",String(S.sound));save();});
 document.addEventListener("visibilitychange",()=>{if(document.hidden)save();else{econTick();refreshAll();}});
@@ -1840,7 +2085,7 @@ addEventListener("pagehide",save);
 
 /* ---------- title screen ---------- */
 const menu=$("#menu"),mctx=$("#menuScene").getContext("2d");mctx.imageSmoothingEnabled=false;
-function hasProgress(){return S.casts>0||Object.keys(S.fish).length>0;}
+function hasProgress(){return S.casts>0||Object.keys(S.dex).length>0;}
 const mcv=$("#menuScene");let mH=0,mTop=0;
 function sizeMenu(){const r=innerHeight/Math.max(1,innerWidth);mH=Math.max(120,Math.min(400,Math.round(160*r)));mcv.width=160;mcv.height=mH;mctx.imageSmoothingEnabled=false;mTop=Math.round((mH-120)*.46);}
 function drawMenuBg(t){
@@ -1858,7 +2103,7 @@ function drawMenuBg(t){
 }
 addEventListener("resize",()=>{mH=0;});
 function refreshMenu(){
-  const found=foundCount();
+  const found=dexCount();
   $("#mPlay").textContent=hasProgress()?"Continue":"Play";
   $("#mNew").hidden=!hasProgress();
   $("#mNew").textContent="New game";$("#mNew").classList.remove("coral");$("#mNew").classList.add("ghost");delete $("#mNew").dataset.armed;
@@ -1867,7 +2112,7 @@ function refreshMenu(){
   $("#mSound").textContent="Sound: "+(S.sound?"On":"Off");
   $("#mfoot").textContent=`Version ${VERSION}. Made by Ike.`;
 }
-function openMenu(){menuOpen=true;menu.hidden=false;$("#credits").hidden=true;refreshMenu();}
+function openMenu(){menuOpen=true;menu.hidden=false;$("#colPill").hidden=true;$("#credits").hidden=true;refreshMenu();}
 function closeMenu(){
   menuOpen=false;menu.hidden=true;
   if(pendingModal){const m=pendingModal;pendingModal=null;showModal(m.html,m.rc);}
@@ -1880,21 +2125,23 @@ $("#cBack").onclick=()=>{$("#credits").hidden=true;};
 $("#mHow").onclick=()=>{
   showModal(`<h3 style="color:var(--gold)">How to play</h3><ol class="howto">
     <li>Tap <b>Cast</b>. Tap the water while you wait to lure fish faster. When the bobber jumps, tap <b>Hook!</b> fast: a quick hook makes rare variants and traits more likely, missing makes them less likely.</li>
-    <li>Every new fish goes into your album and <b>pays coins every second</b>. Catch a better version and its pay goes up. Duplicates sell for coins.</li>
+    <li>Your <b>Base</b> has display tanks. Only fish on display earn coins, and the coins pile up in each tank until you <b>tap to collect</b> (a tank holds 3 hours of pay). New catches fill open tanks first, then go to your <b>bucket</b>.</li>
+    <li>Swap your best fish onto display. Sell the rest, or keep them for crafting. Each rebirth adds 2 tanks.</li>
+    <li>The <b>Album</b> remembers every fish and variant you ever caught, with the best traits you had on each.</li>
     <li>Rarer fish pay far more. <b>Legendary fish bite from Lucky Rod Lv 5, Mythic fish from Lv 10.</b></li>
     <li><b>Mutations</b> like Shiny, Golden or Galaxy multiply a fish's pay. Some only happen in certain weather, at night, during events, or from the wheel.</li>
     <li><b>Traits</b> are earned by how and when you fish: the tide, the hour, the weather, today's trait. A fish can carry any number, each extra one about 4 times rarer. They all multiply.</li>
     <li>The sky follows your real clock. <b>Tides</b> turn every 5 minutes: high tide brings sea fish, low tide lake fish.</li>
     <li>The <b>Eclipse Wheel</b> (Gear tab) gives a free spin every 30 minutes you spend playing.</li>
     <li>The <b>Craft</b> tab turns fish you own into stronger Crafted fish. The fish you use are lost, but their mutations and traits can pass on.</li>
-    <li><b>Tidal Rebirth</b> starts you over with a permanent income bonus. While you are away, fish keep earning at half rate for up to 4 hours.</li></ol>
+    <li><b>Tidal Rebirth</b> starts you over with a permanent income bonus and more tanks. Your album stays.</li></ol>
     <button class="btn wide" id="mclose">Got it</button>`);
 };
 function saveCode(){save();return "TW1:"+btoa(unescape(encodeURIComponent(JSON.stringify(S))));}
 function readCode(txt){
   txt=(txt||"").trim();if(txt.indexOf("TW1:")!==0)throw 0;
   const o=JSON.parse(decodeURIComponent(escape(atob(txt.slice(4)))));
-  if(!o||typeof o.coins!=="number"||typeof o.fish!=="object")throw 0;return o;
+  if(!o||typeof o.coins!=="number"||typeof o.dex!=="object")throw 0;return o;
 }
 $("#mCode").onclick=()=>{
   const ta=`width:100%;font-size:12px;background:#120e30;color:var(--text);border:2px solid var(--ink);border-radius:8px;padding:6px`;
@@ -1914,7 +2161,7 @@ $("#mCode").onclick=()=>{
   };
 };
 $("#mNew").onclick=function(){
-  if(this.dataset.armed){S=fresh();S.seenV="6";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
+  if(this.dataset.armed){S=fresh();S.seenV="7";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
   else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
 };
 
@@ -1928,19 +2175,20 @@ lastWall=S.last||Date.now();
 econTick();           // pays offline earnings
 $("#ver").textContent="v"+VERSION;
 refreshAll();setBtn();refreshMenu();refreshEnv();
-if(wasReset){showModal(`<h3 data-defer style="color:var(--gold)">Welcome to v${VERSION}</h3><p>The biggest update yet: a new look, a sky that follows your real clock, a decorated Eclipse Wheel and a rebalanced economy. Because the whole economy changed, every save starts fresh.</p><p class="small muted">Each rebirth now asks for a bit more, Mythic fish bite from Lucky Rod Lv 10, and traits are a little rarer but still stack without limit.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
-if(!S.seenV){S.seenV="6";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
+if(wasReset){showModal(`<h3 data-defer style="color:var(--gold)">Welcome to v${VERSION}</h3><p>Your fish now live in a <b>Base</b>. Only the fish you put on display earn coins, so your best catches matter far more, and mutations and traits got much stronger to match.</p><p class="small muted">Coins pile up in each tank until you tap to collect. The album keeps every variant you ever catch, so you can compare them. Because fish are now kept one by one, every save starts fresh.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
+if(!S.seenV){S.seenV="7";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
 save();
 let lastUI=0,lastSave=0;
 function frame(){
   const now=performance.now(),t=now/1000;
   stepPhase(now);drawScene(t,now);if(menuOpen)drawMenuBg(t);
-  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();}
+  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();refreshBase();}
   if(now-lastSave>5000){save();lastSave=now;}
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__tw={WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,
+window.__tw={receive,record,placeBest,placeIn,collectAll,collectSpot,sellPlain,openSpot,openInst,instPay,instX,spotCount,bucketCap,pendingTotal,newInst,dexCount,runCount,renderBase,
+  WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,
   pityMult,rbMult,rbReady,doRebirth,hook,pop,dayInfo,DAILY,saveCode,readCode,setHookF(v){hookF=v;},TRAITS,TR_BY,rollTraits,traitCtx,traitMult,seasonInfo,SEASONS,ICONS,iconURL,
   get S(){return S;},FISH,TIERS,MUTS,WMUTS,ALL_MUTS,tideInfo,weatherInfo,fishChance,rollFish,rollMut,tierWeights,income,upCost,UPS,getSprite,doCatch,startCast,showCard,celebrate,
   get phase(){return phase;},refreshAll,econTick,openFish,openMenu,closeMenu,setLast(t){lastWall=t;}};
