@@ -488,6 +488,100 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
   background:repeating-conic-gradient(from 0deg,var(--rc) 0 9deg,transparent 9deg 24deg);-webkit-mask:radial-gradient(circle,#000 18%,transparent 66%);mask:radial-gradient(circle,#000 18%,transparent 66%);animation:spin 9s linear infinite}
 .newtag{font-size:14px;color:#2a1605;background:var(--gold);border:2px solid var(--ink);border-radius:5px;padding:0 5px;vertical-align:4px}
 @media (max-width:380px){.prizes{grid-template-columns:1fr}.wmini{width:42px;height:42px;flex-basis:42px}.wbox .wt{font-size:17px}#coins{font-size:32px}.plaque .ci{width:26px;height:26px;flex-basis:26px}.round{width:38px;height:38px;flex-basis:38px}nav#tabs button{font-size:12px}}
+/* ---------- v9: live fish, wearables, album sets, Tide Events, big reveals ---------- */
+canvas.lsp{display:block;flex:0 0 auto;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}
+.lsp.gi{animation:giant 2.6s ease-in-out infinite}
+@keyframes giant{0%,100%{transform:scale(1.2)}50%{transform:scale(1.3)}}
+#card .pic canvas,#modalBox .bigpic canvas,.today .big canvas{filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
+#card .pic{height:96px;margin-top:10px}
+#card .res{font-size:23px;margin-top:4px;white-space:nowrap}
+#card{z-index:8}
+#card .chips .tchip{font-size:12px;padding:0 5px 0 2px}
+#card .chips{margin-top:2px}
+.tchip.mchip{background:color-mix(in srgb,var(--tc) 22%,rgba(0,0,0,.35))}
+#card .mglow{position:absolute;left:50%;top:50%;width:180px;height:110px;margin:-55px 0 0 -90px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--mc) 55%,transparent),transparent);animation:pillp 1.8s ease-in-out infinite}
+.chips .tchip{animation:chipin .35s cubic-bezier(.2,1.6,.4,1) both}
+.chips .tchip:nth-child(2){animation-delay:.07s}.chips .tchip:nth-child(3){animation-delay:.14s}.chips .tchip:nth-child(4){animation-delay:.21s}
+.chips .tchip:nth-child(5){animation-delay:.28s}.chips .tchip:nth-child(6){animation-delay:.35s}.chips .tchip:nth-child(n+7){animation-delay:.42s}
+@keyframes chipin{0%{transform:scale(.3);opacity:0}100%{transform:none;opacity:1}}
+.tchip.stk{background:linear-gradient(180deg,#5a4a20,#3a2c10);color:var(--gold)}
+#card .tot{font-family:var(--f-num);font-weight:400;font-size:25px;line-height:1;margin-top:3px;text-shadow:0 2px 0 var(--ink)}
+/* animated names for the flashiest mutations */
+.mtx-rainbow,.mtx-crystal,.mtx-aurora{text-shadow:none!important;filter:drop-shadow(0 2px 0 var(--ink));background:linear-gradient(90deg,#ff6a8a,#ffd45a,#7aff9a,#5ad8ff,#b77cff,#ff6a8a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:mtx 2.4s linear infinite}
+.mtx-crystal{background-image:linear-gradient(90deg,#e0c8ff,#7ac0ff,#b77cff,#ffffff,#e0c8ff)}
+.mtx-aurora{background-image:linear-gradient(90deg,#46f0a8,#7ac0ff,#b77cff,#46f0a8)}
+@keyframes mtx{to{background-position:200% 0}}
+.mtx-golden,.mtx-eclipse{color:#ffd45a!important;animation:mglow 1.4s ease-in-out infinite}
+.mtx-galaxy,.mtx-phantom,.mtx-cursed,.mtx-redtide,.mtx-radio,.mtx-lava{animation:mglow 1.6s ease-in-out infinite}
+@keyframes mglow{50%{filter:brightness(1.4) drop-shadow(0 0 6px currentColor)}}
+.mtx-glitch{animation:gjit .5s steps(2) infinite}
+@keyframes gjit{0%{transform:translate(0)}25%{transform:translate(-1px,1px);text-shadow:-2px 0 #18f0ff,2px 0 #ff2bd6}50%{transform:translate(1px,0)}75%{transform:translate(0,-1px);text-shadow:2px 0 #18f0ff,-2px 0 #ff2bd6}}
+/* tanks */
+.tk-water{height:96px;background:#1a4f9a}
+.tk-water::after{z-index:2}
+.tk-bg{position:absolute;inset:0;background:var(--wbg,linear-gradient(180deg,#5fc4ff 0,#2a7fd0 55%,#1a4f9a 82%,#d8b870 82% 90%,#b8955a 90%))}
+.tk-water .caus{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.8;
+  background:repeating-linear-gradient(115deg,transparent 0 10px,rgba(255,255,255,.13) 10px 13px,transparent 13px 26px);background-size:62px 100%;animation:caus 5s linear infinite}
+@keyframes caus{to{background-position:62px 0}}
+.tk-glow{position:absolute;left:50%;top:46%;width:96px;height:54px;margin:-27px 0 0 -48px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--mc) 60%,transparent),transparent);animation:pillp 2.6s ease-in-out infinite}
+.tk-fish{inset:22px 0 12% 0;z-index:3}
+.tank.empty,.tank.locked{min-height:176px}
+.fcard .spr{height:58px}
+.sk-hue .tk-bg,.sk-hue>i{animation:skhue 7s linear infinite}
+@keyframes skhue{to{filter:hue-rotate(360deg)}}
+.sk-tw .tk-bg,.sk-tw>i{animation:sktw 2.4s ease-in-out infinite}
+@keyframes sktw{50%{filter:brightness(1.35) saturate(1.2)}}
+.sk-scan .tk-bg,.sk-scan>i{animation:skscan .7s steps(2) infinite}
+@keyframes skscan{50%{transform:translateX(2px);filter:brightness(1.2)}}
+.sorter .span2{grid-column:1/-1}
+/* album sets */
+.abonus{display:flex;align-items:baseline;gap:8px;margin:0 0 8px;font-size:13px;font-weight:800;color:var(--muted)}
+.abonus b{font-family:var(--f-num);font-weight:400;font-size:24px;color:var(--gold);line-height:1}
+.abonus span:last-child{margin-left:auto}
+.setstrip{display:flex;gap:6px;overflow-x:auto;padding:5px 2px 9px;margin:0 -4px 6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.setc{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:70px;padding:5px 6px 4px;border:3px solid var(--ink);border-radius:9px;
+  background:linear-gradient(180deg,#33286e,#231a52);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--sc) 40%,transparent),0 3px 0 var(--ink);color:var(--muted)}
+.setc .ss{height:36px;display:grid;place-items:center}
+.setc b{color:var(--sc);font-family:var(--f-ui);font-weight:700;font-size:13px;white-space:nowrap;line-height:1.1}
+.setc span:last-child{font-family:var(--f-num);font-size:16px;line-height:1}
+.setc.on{transform:translateY(-3px);background:linear-gradient(180deg,#5040aa,#362a84);box-shadow:inset 0 0 0 2px var(--sc),0 6px 0 var(--ink),0 0 14px color-mix(in srgb,var(--sc) 55%,transparent)}
+.setc.done span:last-child{color:var(--gold)}
+.setbox{display:flex;gap:10px;align-items:center}
+.sk{position:relative;overflow:hidden;width:66px;height:46px;flex:0 0 66px;border:3px solid var(--ink);border-radius:8px;box-shadow:0 3px 0 var(--ink)}
+.sk>i{position:absolute;inset:0;background:var(--wbg)}
+.sk.big{width:100%;height:54px;margin:4px 0 2px}
+/* traits tab */
+.trow .tprev{flex:0 0 58px;height:38px;display:grid;place-items:center;margin-top:6px}
+.trow.off .tprev{filter:grayscale(1) brightness(.7);opacity:.6}
+.trow .tn{flex-basis:92px}
+.today .big{overflow:visible}
+.evbox{border-color:var(--ink)}
+.evbox.hot{background:linear-gradient(180deg,color-mix(in srgb,var(--ec) 30%,#2a2064),#2a2060);box-shadow:inset 0 0 0 2px var(--ec),0 4px 0 var(--ink),0 0 18px color-mix(in srgb,var(--ec) 45%,transparent)}
+.evrow{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0;font-weight:800}
+.evrow i{width:10px;height:10px;border-radius:3px;background:var(--ec);box-shadow:0 0 6px var(--ec);flex:0 0 10px}
+.evrow b{color:var(--ec);flex:0 0 108px;font-size:13px}
+.evrow span{color:var(--muted)}
+/* events on the stage */
+#env .chip.evc{border-color:var(--cc);box-shadow:0 0 10px var(--cc);animation:evc 1.2s ease-in-out infinite}
+@keyframes evc{50%{box-shadow:0 0 2px var(--cc)}}
+.evban{position:absolute;left:0;right:0;top:30%;z-index:8;text-align:center;pointer-events:none;animation:evban 2.9s ease-out forwards}
+.evban b{display:block;font-family:var(--f-ui);font-weight:700;font-size:clamp(24px,8vw,32px);color:var(--ec);letter-spacing:.05em;
+  text-shadow:0 3px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink),0 0 18px var(--ec)}
+.evban span{display:inline-block;margin-top:5px;padding:2px 10px;border-radius:8px;background:rgba(10,8,32,.88);border:2px solid var(--ec);font-size:13px;font-weight:900}
+@keyframes evban{0%{opacity:0;transform:scale(.4)}12%{opacity:1;transform:scale(1.12)}20%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
+.bigrev{position:absolute;inset:0;z-index:9;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle,color-mix(in srgb,var(--rc) 35%,rgba(6,4,20,.55)) 0,rgba(6,4,20,.9) 72%);animation:brin .22s ease-out}
+.bigrev.out{animation:brout .32s ease-in forwards}
+.br-rays{position:absolute;left:50%;top:50%;width:440px;height:440px;margin:-220px 0 0 -220px;
+  background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--rc) 70%,transparent) 0 8deg,transparent 8deg 22deg);
+  -webkit-mask:radial-gradient(circle,#000 10%,transparent 60%);mask:radial-gradient(circle,#000 10%,transparent 60%);animation:spin 3s linear infinite}
+.br-t{position:relative;font-family:var(--f-ui);font-weight:700;font-size:clamp(30px,10vw,46px);color:var(--rc);letter-spacing:.05em;text-align:center;padding:0 10px;
+  text-shadow:0 4px 0 var(--ink),3px 0 0 var(--ink),-3px 0 0 var(--ink),0 -3px 0 var(--ink),0 0 26px var(--rc);animation:brt 1.15s cubic-bezier(.2,1.6,.4,1)}
+@keyframes brin{from{opacity:0}}
+@keyframes brout{to{opacity:0;transform:scale(1.15)}}
+@keyframes brt{0%{transform:scale(.2) rotate(-8deg);opacity:0}30%{transform:scale(1.25) rotate(3deg);opacity:1}45%{transform:scale(1) rotate(0)}70%{transform:scale(1.07)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
   #wheelSpin{transition-duration:.3s}
@@ -604,13 +698,18 @@ const CMUTS=[
   {id:"lava",n:"Lava",m:12,p:1/30,ab:"La",c:"#ff7a2a",d:"Low tide, after dark",on:c=>(c.h>=22||c.h<4)&&c.lv<-.4},
   {id:"candy",n:"Candy",m:10,p:1/25,ab:"Ca",c:"#ff9ecb",d:"Festive and Lovestruck",on:c=>c.seasons.indexOf("festive")>-1||c.seasons.indexOf("lovestruck")>-1},
   {id:"cursed",n:"Cursed",m:15,p:1/25,ab:"Cu",c:"#ff4a5a",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
-  {id:"radio",n:"Radioactive",m:20,p:1/25,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4}];
+  {id:"radio",n:"Radioactive",m:20,p:1/25,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4},
+  // v9
+  {id:"twilight",n:"Twilight",m:18,p:1/30,ab:"Tw",c:"#ffb080",d:"Dawn or dusk, mid tide",on:c=>((c.h>=5&&c.h<7)||(c.h>=19&&c.h<21))&&Math.abs(c.lv)<=.4},
+  {id:"phantom",n:"Phantom",m:30,p:1/30,ab:"Ph",c:"#e8e8ff",d:"Fog at night",on:c=>c.wx==="fog"&&(c.h>=21||c.h<5)},
+  {id:"crystal",n:"Crystal",m:35,p:1/30,ab:"Cr",c:"#c8a0ff",d:"Snow at night",on:c=>c.wx==="snow"&&(c.h>=21||c.h<5)},
+  {id:"redtide",n:"Red Tide",m:40,p:1/14,ab:"RT",c:"#ff3a4a",d:"Red Tide event",on:c=>c.ev==="redtide"}];
 const XMUTS=[   // only from the Eclipse Wheel
   {id:"eclipse",n:"Eclipse",m:75,ab:"Ec",c:"#ffd45a"}];
 const ALL_MUTS=MUTS.concat(WMUTS,CMUTS,XMUTS);
 const MUT_BY={};ALL_MUTS.forEach(m=>MUT_BY[m.id]=m);
 const WX_NAME={rain:"Rain",fog:"Fog",snow:"Snow",storm:"Storm",aurora:"Aurora"};
-const VERSION="8.0";
+const VERSION="9.0";
 const ROLL_ORDER=["galaxy","glitch","rainbow","diamond","golden","giant","shiny"];   // rarest first
 
 const F=(id,n,w,t,inc,sp)=>({id,n,w,t,inc,sp});
@@ -823,7 +922,8 @@ const HOOK_PERFECT=.4, HOOK_WINDOW=1.0;                  // seconds after the bi
 const KEY="tidewater_v7";
 const OLD_KEYS=["tidewater_v1","tidewater_v22","tidewater_v3","tidewater_v6"];   // v7 changed how fish are kept, so older saves start fresh
 let wasReset=false;
-function fresh(){return{coins:0,dex:{},run:{},bucket:[],blocks:[],bsort:"best",bfilt:"all",base:[0,1,2,3,4].map(()=>({f:null,c:0})),uid:0,up:{rod:0,line:0,bait:0,lamp:0,bucket:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"base",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0};}
+function fresh(){return{coins:0,dex:{},run:{},bucket:[],blocks:[],bsort:"best",bfilt:"all",base:[0,1,2,3,4].map(()=>({f:null,c:0})),uid:0,up:{rod:0,line:0,bait:0,lamp:0,bucket:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"base",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0,aview:"best",skin:"classic"};}
+let setQ=[];   // finished album sets waiting to be celebrated
 let S=fresh();
 function load(){try{for(const k of OLD_KEYS){if(localStorage.getItem(k)!==null){wasReset=true;localStorage.removeItem(k);}}}catch(e){}
   try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S=Object.assign(fresh(),o);if(!S.tseen)S.tseen={};S.up=Object.assign(fresh().up,o.up||{});migrate();}}catch(e){}}
@@ -839,6 +939,7 @@ const TGROUP={
   weather:{n:"Weather traits",c:"#6fb7ff",sub:"only while that weather lasts"},
   day:{n:"Today only",c:"#ffb454",sub:"a new one every day"},
   season:{n:"Seasonal events",c:"#ff8fb8",sub:"a few days a year"},
+  event:{n:"Tide Events",c:"#e070ff",sub:"only while that event is on"},
   wild:{n:"Wild traits",c:"#c9a6ff",sub:"can show up on any catch"}};
 const DAILY=["clover","comet","bubbly","lantern","breezy","gemmy","ember","cosmic"];
 const SEASONS=[   // f = first day [month,day], t = last day [month,day]
@@ -873,6 +974,11 @@ const TRAITS=[
  {id:"lovestruck",n:"Lovestruck",m:5,g:"season",p:0.015,ic:"heart",d:"Lovestruck week",on:c=>c.seasons.indexOf("lovestruck")>-1},
  {id:"blossom",n:"Blossom",m:5,g:"season",p:0.015,ic:"flower",d:"Spring bloom",on:c=>c.seasons.indexOf("blossom")>-1},
  {id:"sunny",n:"Sunny",m:5,g:"season",p:0.015,ic:"sun",d:"Midsummer",on:c=>c.seasons.indexOf("sunny")>-1},
+ // v9 Tide Event traits
+ {id:"starfall",n:"Starfall",m:5,g:"event",p:0,ic:"meteor",d:"Caught during a Meteor Shower",on:c=>c.ev==="meteor"},
+ {id:"glowing",n:"Glowing",m:4.5,g:"event",p:0,ic:"glowspot",d:"Caught during a Glow Bloom",on:c=>c.ev==="glow"},
+ {id:"frenzy",n:"Frenzy",m:4,g:"event",p:0,ic:"teeth",d:"Caught during a Feeding Frenzy",on:c=>c.ev==="frenzy"},
+ {id:"inked",n:"Inked",m:6,g:"event",p:0,ic:"ink",d:"Caught while the Kraken rises",on:c=>c.ev==="kraken"},
  // wild traits: no condition, weaker. They fill the chain after a first trait lands.
  {id:"sparkly",n:"Sparkly",m:1.25,g:"wild",p:0,ic:"spark",d:"Can show up on any catch",on:()=>false},
  {id:"speedy",n:"Speedy",m:1.25,g:"wild",p:0,ic:"arrow",d:"Can show up on any catch",on:()=>false},
@@ -891,6 +997,10 @@ const TR_BY={};TRAITS.forEach(t=>{TR_BY[t.id]=t;t.col=TGROUP[t.g].c;});
 
 /* tiny 9x9 pixel icons, one per trait */
 const ICONS={
+ meteor:{p:{w:"#ffffff",b:"#b7a6ff"},r:["......ww.",".....www.","....bww..","...bb....","..bb.....",".bb......","b........",".........","........."]},
+ glowspot:{p:{a:"#5dffe0",w:"#e0fff8"},r:["...a.....",".....a...","..aaa....",".aawaa..a","..aaa....","....a....","a.....aa.",".....aaa.","......a.."]},
+ teeth:{p:{k:"#2a0a10",w:"#ffffff",r:"#e0383e"},r:[".........","rrrrrrrrr","rwkwkwkwr","rkwkwkwkr","r.......r","rkwkwkwkr","rwkwkwkwr","rrrrrrrrr","........."]},
+ ink:{p:{a:"#a04ad0",d:"#4a1a6a"},r:["..aa.....",".aaaa..a.","aaddaa...",".adda.a..","..aa..aa.","a....aaaa","....aadda",".a...adda","......aa."]},
  wave:{p:{a:"#4fd0c0"},r:[".........",".aa...aa.","a..a.a..a","....a....",".........",".aa...aa.","a..a.a..a","....a....","........."]},
  ebb:{p:{a:"#4fd0c0"},r:["....a....","....a....","....a....",".aaaaaaa.","..aaaaa..","...aaa...","....a....",".........",".aa.aa.aa"]},
  sunrise:{p:{a:"#ffd27a",b:"#ff9f5a"},r:[".........","....b....",".b..b..b.","..baaab..","..aaaaa..","bbbbbbbbb",".........",".bbbbbbb.","........."]},
@@ -965,7 +1075,7 @@ function iconURL(k){
   ic.r.forEach((row,y)=>{for(let i=0;i<W;i++){const ch=row[i];if(ch!=="."&&ic.p[ch]){x.fillStyle=ic.p[ch];x.fillRect(i,y,1,1);}}});
   return iconCache[k]=c.toDataURL();
 }
-function iconImg(id){const t=TR_BY[id];return t?`<img class="ti" src="${iconURL(t.ic)}" alt="${t.n}" title="${t.n} x${t.m}">`:"";}
+function iconImg(id){const t=TR_BY[id];return t?`<img class="ti" src="${iconURL(t.ic)}" alt="${t.n}" title="${t.n} ${tb(t)}">`:"";}
 
 /* ---------- limited-time windows (real calendar) ---------- */
 function dayInfo(now){
@@ -985,19 +1095,40 @@ function seasonInfo(se,now){
 }
 function fmtLeft(ms){const m=Math.max(0,Math.floor(ms/60000)),d=Math.floor(m/1440),h=Math.floor(m%1440/60);return d?`${d}d ${h}h`:`${h}h ${m%60}m`;}
 
-const traitMult=ids=>{let m=1;(ids||[]).forEach(i=>{if(TR_BY[i])m*=TR_BY[i].m;});return Math.min(TRAIT_MAX,m);};
+// v9: traits ADD UP. Each trait adds its bonus (a x2.5 trait adds +1.5), then 4+ traits get a stack bonus. The total multiplies with the mutation.
+const stackBonus=n=>n>=8?3:n>=6?2:n>=4?1.5:1;
+const traitMult=ids=>{let s=1,n=0;(ids||[]).forEach(i=>{if(TR_BY[i]){s+=TR_BY[i].m-1;n++;}});return Math.min(TRAIT_MAX,s*stackBonus(n));};
+const tb=t=>"+"+String(+(t.m-1).toFixed(2));
 function traitCtx(){
   const now=new Date(),m=.8*waitBase(S.up.line);
-  return {lv:tideInfo(Date.now()).lv,h:now.getHours(),wait:waitDur-.25*lureTaps,m,taps:lureTaps,
+  return {lv:tideInfo(Date.now()).lv,h:now.getHours(),wait:waitDur-.25*lureTaps,m,taps:lureTaps,ev:evNow(),
     wx:weatherInfo(Date.now()).kind||null,day:dayInfo(now).id,seasons:SEASONS.filter(x=>seasonInfo(x,now).on).map(x=>x.id)};
 }
+/* ---------- v9 Tide Events: every 30 minutes (real clock) one event runs for 4 minutes ---------- */
+const EVENTS=[
+ {id:"meteor",n:"Meteor Shower",c:"#b7a6ff",d:"Shooting stars fall into the sea.",s:"Starfall trait, Galaxy 4x more likely"},
+ {id:"redtide",n:"Red Tide",c:"#ff4a5a",d:"The water turns blood red.",s:"Red Tide mutation (x40) can appear"},
+ {id:"glow",n:"Glow Bloom",c:"#5dffe0",d:"The whole sea starts to glow.",s:"Glowing trait, all mutations 2x"},
+ {id:"frenzy",n:"Feeding Frenzy",c:"#ffb454",d:"The fish are starving.",s:"Instant bites, Frenzy trait"},
+ {id:"kraken",n:"Kraken Rising",c:"#c85aff",d:"Something huge stirs below.",s:"Legendary and rarer 3x, Inked trait"}];
+const EV_BY={};EVENTS.forEach(e=>EV_BY[e.id]=e);
+const EV_EVERY=1800000,EV_LEN=240000;
+function evSlot(k){const e=EVENTS[hash(k,7,13)%EVENTS.length],st=k*EV_EVERY+(hash(k,3,5)%20)*60000;return {e,st,en:st+EV_LEN};}
+function eventInfo(ms){
+  if(window.__ev!==undefined)return window.__ev?{active:true,id:window.__ev,left:120}:{active:false,id:"meteor",in:600};
+  const s=Math.floor(ms/EV_EVERY);
+  for(const k of [s-1,s]){const v=evSlot(k);if(ms>=v.st&&ms<v.en)return {active:true,id:v.e.id,left:(v.en-ms)/1000};}
+  for(const k of [s,s+1,s+2]){const v=evSlot(k);if(v.st>ms)return {active:false,id:v.e.id,in:(v.st-ms)/1000};}
+  return {active:false,id:"meteor",in:1800};
+}
+function evNow(){const e=eventInfo(Date.now());return e.active?e.id:null;}
 // Chain roll. One roll decides if the catch gets ANY trait; each active event condition (tide, hour, weather, today's trait...) makes that more likely.
 // After the first trait, every extra one needs another roll that is about 4x rarer, with no upper limit. Each pick comes from the traits whose
 // condition is true right now (heavily favoured) plus the wild traits. force = guaranteed first trait (Trait Charge).
 function rollTraits(c,force){
   c=c||traitCtx();
   const act=TRAITS.filter(t=>t.g!=="wild"&&t.on(c)),wild=TRAITS.filter(t=>t.g==="wild");
-  const bait=S.up.bait,start=Math.min(.5,.025*(1+.3*act.length)*hookF*(1+.05*bait));
+  const bait=S.up.bait,start=Math.min(.5,.025*(1+.3*act.length)*hookF*(1+.05*bait)*(c.ev?1.5:1));
   if(!force&&Math.random()>=start)return [];
   const cont=Math.min(.45,(force?.35:.25)*(1+.015*bait));
   const pool=act.map(t=>({t,w:8})).concat(wild.map(t=>({t,w:1}))),out=[];
@@ -1036,8 +1167,14 @@ function migrate(){
   if(!Array.isArray(S.blocks))S.blocks=[];
   S.blocks=S.blocks.filter(o=>o&&BLOCK_BY[o.b]&&(!o.m||MUT_BY[o.m])).map(o=>{o.tr=(o.tr||[]).filter(i=>TR_BY[i]);if(!(o.u>0))o.u=++S.uid;return o;});
   if(!SORTS[S.bsort])S.bsort="best";if(!FILTS[S.bfilt])S.bfilt="all";
+  amC=null;
+  if(S.aview!=="best"&&!setOf(S.aview))S.aview="best";
+  if(S.skin!=="classic"&&!(setOf(S.skin)&&setDone(setOf(S.skin))))S.skin="classic";
 }
-function chipHTML(ids){return ids&&ids.length?`<div class="chips">${ids.map(i=>{const t=TR_BY[i];return t?`<span class="tchip" style="--tc:${t.col}">${iconImg(i)}${ids.length>2?"":t.n+" "}<b>x${t.m}</b></span>`:"";}).join("")}</div>`:"";}
+function chipHTML(ids){
+  if(!ids||!ids.length)return "";const n=ids.filter(i=>TR_BY[i]).length,sb=stackBonus(n);
+  return `<div class="chips">${ids.map(i=>{const t=TR_BY[i];return t?`<span class="tchip" style="--tc:${t.col}">${iconImg(i)}${ids.length>2?"":t.n+" "}<b>${tb(t)}</b></span>`:"";}).join("")}${sb>1?`<span class="tchip stk" style="--tc:#ffc845">Stack <b>x${sb}</b></span>`:""}</div>`;
+}
 
 /* ---------- helpers ---------- */
 function fmt(n){
@@ -1055,7 +1192,16 @@ const spotCount=()=>Math.min(SPOT_MAX,5+2*(S.rb||0));
 const bucketCap=()=>20+4*(S.up.bucket||0);
 const mutM=id=>id&&MUT_BY[id]?MUT_BY[id].m:1;
 const instX=o=>Math.round(mutM(o.m)*traitMult(o.tr)*100)/100;
-const payMult=()=>lampMult()*rbMult();
+/* ---------- v9 album sets: catch enough different fish in one mutation for a permanent bonus and a tank style ---------- */
+const SET_NEED={_:50,shiny:35,giant:25,golden:20,diamond:12,rainbow:10,glitch:6,galaxy:4,rain:20,fog:18,snow:18,storm:14,aurora:10,
+  lava:12,candy:10,cursed:10,radio:10,eclipse:3,twilight:10,phantom:6,crystal:6,redtide:8};
+const SETS=[{k:"_",n:"Normal",c:"#f7efdc",need:SET_NEED._,b:.5}].concat(ALL_MUTS.map(m=>({k:m.id,n:m.n,c:m.c,need:SET_NEED[m.id]||10,b:.25})));
+const setOf=k=>SETS.find(s=>s.k===k)||null;
+const setHave=k=>FISH.filter(f=>S.dex[f.id]&&S.dex[f.id].v&&S.dex[f.id].v[k]).length;
+const setDone=s=>!!s&&setHave(s.k)>=s.need;
+let amC=null;   // cached album bonus, cleared whenever the album changes
+const albumMult=()=>amC!==null?amC:(amC=1+SETS.reduce((a,s)=>a+(setDone(s)?s.b:0),0));
+const payMult=()=>lampMult()*rbMult()*albumMult();
 const instPay=o=>FISH_BY[o.id].inc*instX(o)*payMult();
 const sellVal=o=>Math.max(1,Math.round(instPay(o)*SELL_SECS));
 function ensureSpots(){const n=spotCount();if(!Array.isArray(S.base))S.base=[];while(S.base.length<n)S.base.push({f:null,c:0});}
@@ -1085,9 +1231,11 @@ function receive(o){
 // the album remembers, per species and per mutation, the best set of traits you ever had on it
 function record(o){
   const d=S.dex[o.id]||(S.dex[o.id]={n:0,v:{}}),k=o.m||"_",x=instX(o),r=d.v[k],isNew=!d.n;d.n++;
+  const st=setOf(k),was=setDone(st);
   let rec=false;if(!r)d.v[k]={tr:o.tr.slice(),x};else if(x>r.x){r.tr=o.tr.slice();r.x=x;rec=true;}
   S.run[o.id]=1;o.tr.forEach(i=>{S.tseen[i]=1;});
-  return {isNew,newVar:!r&&!isNew,rec};
+  amC=null;const set=st&&!was&&setDone(st)?k:null;if(set)setQ.push(set);
+  return {isNew,newVar:!r&&!isNew,rec,set};
 }
 function dexBest(d){let b=null;for(const k in d.v){const r=d.v[k];if(!b||r.x>b.x)b={k,tr:r.tr,x:r.x};}return b;}
 const dexCount=()=>FISH.filter(f=>S.dex[f.id]).length;
@@ -1133,7 +1281,8 @@ function weatherInfo(ms){
 const pityMult=()=>1+Math.min(3,(S.pity||0)/250);   // legendary luck grows the longer you go without one
 function tierWeights(){
   const L=S.up.rod,k=(1+.06*L)*((S.luckLeft||0)>0?2:1);   // k doubles while the wheel luck lasts
-  return TIERS.map((t,i)=>L>=(t.g||0)?t.w*Math.pow(k,.5*i)*(i===4?pityMult():1):0);
+  const kr=evNow()==="kraken";
+  return TIERS.map((t,i)=>L>=(t.g||0)?t.w*Math.pow(k,.5*i)*(i===4?pityMult():1)*(kr&&i>=4?3:1):0);
 }
 function fishWeights(ti,lv){return FISH.filter(f=>f.t===ti&&canBite(f)).map(f=>f.w==="Sea"?1+.7*lv:f.w==="Lake"?1-.7*lv:1);}
 function rollFish(){
@@ -1152,13 +1301,14 @@ function fishChance(f){
   return w[f.t]/tot*fw[idx]/fw.reduce((a,b)=>a+b,0);
 }
 function rollMut(){
-  const bm=1+.25*S.up.bait;let best=null;
+  const ev=evNow(),bm=(1+.25*S.up.bait)*(ev==="glow"?2:1);let best=null;
   const take=m=>{if(!best||m.m>best.m)best=m;};
-  for(const id of ROLL_ORDER){const m=MUT_BY[id];if(Math.random()<m.p*bm*hookF){take(m);break;}}
+  for(const id of ROLL_ORDER){const m=MUT_BY[id];if(Math.random()<m.p*bm*hookF*(ev==="meteor"&&id==="galaxy"?4:1)){take(m);break;}}
   const wk=weatherInfo(Date.now()).kind;
-  if(wk){const m=WMUTS.find(x=>x.wx===wk);if(m&&Math.random()<m.p*(1+.125*S.up.bait)*hookF)take(m);}
+  const cb=(1+.125*S.up.bait)*hookF*(ev==="glow"?2:1);
+  if(wk){const m=WMUTS.find(x=>x.wx===wk);if(m&&Math.random()<m.p*cb)take(m);}
   const c=traitCtx();
-  CMUTS.forEach(m=>{if(m.on(c)&&Math.random()<m.p*(1+.125*S.up.bait)*hookF)take(m);});
+  CMUTS.forEach(m=>{if(m.on(c)&&Math.random()<m.p*cb)take(m);});
   return best;
 }
 
@@ -1360,9 +1510,233 @@ function getSprite(i,mut,sil){
   out=cropCanvas(out);
   const res={url:out.toDataURL(),W:out.width,H:out.height};spriteCache[key]=res;return res;
 }
-function spriteImg(i,mut,sil,targetW,alt,maxH){
-  const s=getSprite(i,mut,sil),mh=maxH||Math.round(targetW*.6),sc=Math.max(1,Math.min(8,Math.floor(targetW/s.W),Math.floor(mh/s.H)));
-  return `<img src="${s.url}" width="${s.W*sc}" height="${s.H*sc}" alt="${alt||""}">`;
+/* ---------- v9 live sprites ----------
+   Every fish picture is a small canvas. Its frames are drawn on demand: the mutation animates (shine, hue cycling, twinkling stars,
+   glowing lava, lightning...) and every trait puts something on the fish (a hat, glasses, a scarf, a flame, an orbiting planet...).
+   One loop repaints the animated ones that are on screen about 9 times a second. */
+const LV_N=12,LV_FPS=9,PD={l:8,r:8,t:12,b:6};
+const fgCache={};
+function fishGrid(i){
+  if(fgCache[i])return fgCache[i];
+  const f=FISH[i],{g,W,H}=buildGrid(f.sp,i+1);
+  let x0=W,y0=H,x1=-1,y1=-1;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(g[y][x]!=="."){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}
+  const w=x1-x0+1,h=y1-y0+1,GW=w+PD.l+PD.r,GH=h+PD.t+PD.b;
+  const G=Array.from({length:GH},()=>Array(GW).fill("."));
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++)G[y+PD.t][x+PD.l]=g[y0+y][x0+x];
+  const isB=c=>"blfakwy".indexOf(c)>-1,body=c=>c==="b"||c==="l";
+  let eye=null;
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++)if(G[y][x]==="k"&&(!eye||x>eye.x))eye={x,y};
+  const bx0=PD.l,by0=PD.t,bx1=PD.l+w-1,by1=PD.t+h-1;
+  let cs=0,cn=0;for(let y=0;y<GH;y++)for(let x=0;x<GW;x++)if(body(G[y][x])){cs+=y;cn++;}
+  const cy=cn?Math.round(cs/cn):Math.round((by0+by1)/2);
+  if(!eye)eye={x:Math.round(bx0+w*.66),y:Math.max(by0+2,cy-2)};
+  const topAt=x=>{if(x<0||x>=GW)return cy;for(let y=0;y<GH;y++)if(isB(G[y][x]))return y;return cy;};
+  const botAt=x=>{if(x<0||x>=GW)return cy;for(let y=GH-1;y>=0;y--)if(isB(G[y][x]))return y;return cy;};
+  let headTop=GH;for(let x=eye.x-2;x<=eye.x+1;x++)headTop=Math.min(headTop,topAt(x));
+  let mouth={x:eye.x+1,y:eye.y+1};
+  for(let y=eye.y;y<=Math.min(GH-1,eye.y+3);y++)for(let x=GW-1;x>=0;x--){if(body(G[y][x])||G[y][x]==="k"){if(x>mouth.x)mouth={x,y};break;}}
+  const bx=Math.round(bx0+w*.42),midX=Math.round((bx0+bx1)/2);
+  const edge=[];
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++)if(G[y][x]==="."&&[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>G[y+b]&&G[y+b][x+a]==="o"))edge.push([x,y]);
+  return fgCache[i]={G,GW,GH,w,h,bx0,by0,bx1,by1,cy,eye,headTop,mouth,edge,topAt,botAt,
+    back:{x:bx,y:topAt(bx)},mid:{x:midX,y:cy},tail:{x:bx0,y:cy}};
+}
+function blit(P,rows,pal,x,y,ax,ay){for(let r=0;r<rows.length;r++){const row=rows[r];for(let q=0;q<row.length;q++){const ch=row[q];if(ch!=="."&&pal[ch])P(x-ax+q,y-ay+r,pal[ch]);}}}
+// colour of one body pixel for a mutation on frame f
+function cellCol(m,ch,x,y,i,f,A,pl){
+  const p=f/LV_N,T=p*6.283,hs=k=>hash(x,y,i*7+k);
+  if("blfa".indexOf(ch)<0){
+    if(ch==="k"&&(m==="cursed"||m==="redtide"))return "#ff2a3a";
+    if(ch==="k"&&m==="eclipse")return "#ffd45a";
+    if(m==="phantom"&&(ch==="k"||ch==="w"))return f%6<2?"#ffffff":ch==="k"?"#e8e8ff":"#5a5a7a";
+    return pl[ch];
+  }
+  switch(m){
+    case"shiny":case"golden":{const d=((x-A.bx0)-(y-A.by0)*.7)-p*(A.w+A.h+16)+8;return d>=0&&d<2.6?mix(pl[ch],"#ffffff",.78):pl[ch];}
+    case"diamond":{if((x+y+f)%5===0&&ch!=="a")return "#ffffff";if(((x-y+f*2)%9+9)%9===0)return "#c8f4ff";return {b:"#8fe6ff",l:"#dff8ff",f:"#4cc0ee",a:"#ffffff"}[ch];}
+    case"rainbow":return "hsl("+Math.round((x*22+y*7+p*360)%360)+",90%,"+{b:58,l:74,f:44,a:32}[ch]+"%)";
+    case"galaxy":{const sx=x+Math.floor(f/3);if(ch!=="a"&&hash(sx,y,i*7+1)%8===0)return (hash(sx,y,5)+f)%4?"#ffffff":"#7af0ff";
+      const t=Math.min(1,(y-A.by0)/Math.max(1,A.h)),nb=.5+.5*Math.sin(T+x*.35);
+      return ch==="l"?mix("#4a2a8a","#a04ac0",t*.6+nb*.3):ch==="f"?mix("#3a1a70","#6a2aa0",nb*.5):ch==="a"?"#9ad0ff":mix(mix("#1a1048","#2a1670",t),"#4a2a90",nb*.35);}
+    case"lava":{if(ch==="b"&&hs(1)%5===0)return mix("#7a2410","#ffc040",.5+.5*Math.sin(T+hs(2)%7));return {b:"#4a1a12",l:"#8a2a10",f:mix("#ff5a14","#ffd23a",.5+.5*Math.sin(T)),a:"#ffd23a"}[ch];}
+    case"candy":return ch==="f"?"#ff5da8":ch==="a"?"#8af0cf":((((x+y+(f>>1))>>1)%2===0)?"#ff9ecb":"#fff2fa");
+    case"cursed":{if(ch!=="f"&&hs(1)%10===0)return (f+hs(3))%3?"#ff3a4a":"#5a1020";return {b:"#2c1a3c",l:"#4a3a5c",f:"#1a0f26",a:"#ff3a4a"}[ch];}
+    case"radio":{if(ch==="b"&&(x+y+f)%4===0)return "#3a9a10";const g=.5+.5*Math.sin(T);return {b:mix("#5ad020","#9aff5a",g),l:"#c4ff7a",f:"#34a010",a:"#173a08"}[ch];}
+    case"eclipse":return {b:"#120e28",l:"#2a2252",f:mix("#ffb43a","#fff6c8",.5+.5*Math.sin(T)),a:"#fff2a0"}[ch];
+    case"aurora":{const t=((y-A.by0)/Math.max(1,A.h)*.8+(x-A.bx0)*.03+p)%1,tri=t<.5?t*2:2-t*2,b=mix("#46f0a8","#b77cff",tri);return ch==="b"?b:ch==="l"?shade(b,.3):ch==="f"?shade(b,-.15):shade(b,-.4);}
+    case"storm":{const c=pl[ch];return (f===0||f===1||f===7)?mix(c,"#ffffff",.35):c;}
+    case"rain":{const c=pl[ch];return (((y*3+x-f*2)%11+11)%11===0&&ch!=="f")?mix(c,"#ffffff",.5):c;}
+    case"snow":{const c=pl[ch];return ch==="b"&&hs(4)%13===0?"#ffffff":c;}
+    case"redtide":{if(ch==="b"&&hs(1)%6===0)return mix("#ff3a4a","#ffb0b0",.5+.5*Math.sin(T+x*.5));return {b:"#7a0e1c",l:"#b0202e",f:"#3a0610",a:"#ff6a6a"}[ch];}
+    case"twilight":{const edge=A.bx0+A.w*(.5+.2*Math.sin(T)),warm=x>edge;if(!warm&&ch!=="a"&&hs(1)%11===0)return (hs(2)+f)%3?"#ffffff":"#9ab0ff";
+      return (warm?{b:"#ff9a6a",l:"#ffd0a0",f:"#e0603a",a:"#fff0c0"}:{b:"#2a2a6a",l:"#4a4a9a",f:"#1a1a4a",a:"#9ab0ff"})[ch];}
+    case"phantom":return {b:"#1a1a26",l:"#2e2e40",f:"#0a0a12",a:"#6a6a90"}[ch];
+    case"crystal":{if((x+y+f)%7===0)return "#ffffff";const c=["#b77cff","#7ac0ff","#e0c8ff"][(((x>>1)+(y>>1))+(f>>2))%3];return ch==="l"?shade(c,.3):ch==="f"?shade(c,-.25):ch==="a"?"#ffffff":c;}
+  }
+  return pl[ch];
+}
+// things drawn behind the fish for a mutation
+function mutBack(P,m,A,f,i,X){
+  const p=f/LV_N;
+  if(m==="eclipse"){const rx=A.w/2+2,ry=A.h/2+2,ang=p*6.283;
+    for(let s=0;s<56;s++){const a=s/56*6.283,d=Math.cos(a-ang);X.globalAlpha=.3+.6*Math.max(0,d);P(Math.round(A.mid.x+Math.cos(a)*rx),Math.round(A.cy+Math.sin(a)*ry),d>.7?"#fff6c8":"#ffb43a");}X.globalAlpha=1;}
+  if(m==="cursed"){for(let k=0;k<4;k++){const ph=(f+k*3)%LV_N,x=A.bx0+hash(k,4,i)%A.w,y=A.by0-Math.floor(ph/1.5);X.globalAlpha=.7*(1-ph/LV_N);P(x,y,"#5a1a6a");P(x+1,y,"#3a0a4a");}X.globalAlpha=1;}
+}
+// particles in front of the fish for a mutation
+function mutFront(P,m,A,f,i,X){
+  const p=f/LV_N,W=A.GW,H=A.GH;
+  const twinkle=(n,c)=>{for(let k=0;k<n;k++){const ph=(f+k*5)%LV_N;if(ph>4)continue;const x=A.bx0+hash(k,1,i)%A.w,y=A.by0-2+hash(k,2,i)%(A.h+3),big=ph===2;
+    const col=big?"#ffffff":c;P(x,y,col);if(big){P(x-1,y,col);P(x+1,y,col);P(x,y-1,col);P(x,y+1,col);}}};
+  switch(m){
+    case"shiny":twinkle(3,"#e8fbff");break;
+    case"golden":twinkle(3,"#fff2a0");break;
+    case"diamond":twinkle(3,"#dff8ff");break;
+    case"rainbow":twinkle(3,"hsl("+Math.round(p*360)+",90%,72%)");break;
+    case"candy":twinkle(2,"#ffd0e8");break;
+    case"crystal":twinkle(3,"#e0c8ff");break;
+    case"aurora":twinkle(2,"#b8ffd8");break;
+    case"galaxy":for(let k=0;k<7;k++){if((f+k)%4===0)continue;P(hash(k,1,i)%W,hash(k,2,i)%H,k%2?"#ffffff":"#b7a6ff");}break;
+    case"rain":for(let k=0;k<6;k++){const x=A.bx0-2+hash(k,1,i)%(A.w+4),y=(hash(k,2,i)+f*2)%H;P(x,y,"#bfe6ff");P(x,y+1,"#5ab0ff");}break;
+    case"snow":for(let k=0;k<8;k++){const x=(hash(k,1,i)%W)+((f+k)%6<3?0:1),y=(hash(k,2,i)+f)%H;P(x,y,"#ffffff");}break;
+    case"fog":X.fillStyle="rgba(235,240,252,.55)";for(let k=0;k<2;k++){const y=A.by0+1+k*Math.max(1,A.h-3),x=Math.floor((f*1.6+k*9)%(W+10))-10;X.fillRect(x,y,8,1);X.fillRect(x+2,y+1,5,1);}break;
+    case"storm":if(f===0||f===1||f===7){const bx=A.bx0+2+hash(Math.floor(f/7),1,i)%Math.max(1,A.w-4);for(let s=0;s<=A.topAt(bx);s++)P(bx+((s>>1)%2),s,"#fff6a0");P(bx-1,A.topAt(bx)-1,"#ffe45a");P(bx+2,A.topAt(bx)-2,"#ffe45a");}break;
+    case"lava":for(let k=0;k<4;k++){const ph=(f+k*3)%LV_N,x=A.bx0+hash(k,1,i)%A.w,y=A.by0-ph;P(x,y,ph<6?"#ffb03a":"#ff5a14");}break;
+    case"cursed":for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,3,i)%A.w,y=A.by1-Math.round(ph*1.2);X.globalAlpha=1-ph/LV_N;P(x,y,"#ff3a4a");}X.globalAlpha=1;break;
+    case"radio":for(let k=0;k<4;k++){const ph=(f+k*3)%LV_N,x=A.bx0+hash(k,1,i)%A.w+(ph%4<2?0:1),y=A.by1-Math.floor(ph*1.3);P(x,y,"#b8ff6a");}break;
+    case"eclipse":{const sx=A.mid.x-3,sy=Math.max(2,A.by0-6);blit(P,[".yyy.","ykkky","ykkky","ykkky",".yyy."],{y:"#ffd45a",k:"#120e28"},sx,sy,2,2);
+      const rays=[[0,-4],[3,-3],[4,0],[3,3],[0,4],[-3,3],[-4,0],[-3,-3]];rays.forEach(([a,b],k)=>{if((k+(f>>1))%2===0)P(sx+a,sy+b,"#fff6c8");});break;}
+    case"redtide":for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+2+hash(k,1,i)%Math.max(1,A.w-4),y=A.botAt(x)+1+Math.floor(ph/2);if(ph<10)P(x,y,"#ff3a4a");}break;
+    case"phantom":for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,1,i)%A.w,y=A.by0-Math.floor(ph/2);X.globalAlpha=.6*(1-ph/LV_N);P(x,y,"#e8e8ff");}X.globalAlpha=1;break;
+  }
+}
+// rare mutations get a soft pulsing glow around the outline
+const GLOW={golden:"#ffd45a",diamond:"#9ae8ff",rainbow:1,galaxy:"#a58cff",glitch:"#ff5dd8",eclipse:"#ffd45a",cursed:"#ff3a4a",radio:"#7cf03a",
+  lava:"#ff7a2a",aurora:"#5dffb0",storm:"#ffe45a",redtide:"#ff3a4a",phantom:"#e8e8ff",crystal:"#c8a0ff",twilight:"#ffb080"};
+const ANIM_M=new Set(["shiny","golden","diamond","rainbow","glitch","galaxy","rain","fog","snow","storm","aurora","lava","candy","cursed","radio","eclipse","redtide","twilight","phantom","crystal"]);
+function glitchCompose(X,fl,A,f,i){
+  const tint=col=>{const t=document.createElement("canvas");t.width=A.GW;t.height=A.GH;const tx=t.getContext("2d");tx.drawImage(fl,0,0);tx.globalCompositeOperation="source-in";tx.fillStyle=col;tx.fillRect(0,0,A.GW,A.GH);return t;};
+  const s=1+hash(f,3,i)%3;
+  X.globalAlpha=.8;X.drawImage(tint("#18f0ff"),-s,0);X.drawImage(tint("#ff2bd6"),s,0);X.globalAlpha=1;
+  for(let y=0;y<A.GH;y++){const r=hash(y,f,i)%11,dx=r===0?2:r===1?-2:r===2?1:0;X.drawImage(fl,0,y,A.GW,1,dx,y,A.GW,1);}
+  if(f%5===0){const y=A.by0+hash(f,9,i)%Math.max(1,A.h);X.globalCompositeOperation="difference";X.fillStyle="#ffffff";X.fillRect(A.bx0,y,A.w,1);X.globalCompositeOperation="source-over";}
+}
+/* the things traits put on a fish. s = slot (only so many per slot), a = animated, both = drawn behind AND in front (orbits) */
+const WEAR={
+ // head
+ tophat:{s:"head",d:(P,A)=>blit(P,["..kkkkk..","..khkkk..","..khkkk..","..krrrk..","kkkkkkkkk"],{k:"#1c1830",h:"#4a4470",r:"#e04a5a"},A.eye.x-1,A.headTop,4,4)},
+ witch:{s:"head",d:(P,A)=>blit(P,["......p..",".....pp..","....ppp..","...pppp..","...ppppp.","..ggygg..","ppppppppp"],{p:"#6a3aa8",g:"#ffb454",y:"#fff2a0"},A.eye.x-1,A.headTop,4,6)},
+ santa:{s:"head",d:(P,A)=>blit(P,[".......w","......rr",".....rrr","...rrrrr","..rrrrrr",".wwwwwww"],{w:"#ffffff",r:"#e0303a"},A.eye.x-1,A.headTop,4,5)},
+ nightcap:{s:"head",a:1,d:(P,A,f)=>blit(P,[f<6?"w.......":".w......","bb......",".bbb....",".bbbbb..","..bbbbb.",".lllllll"],{b:"#4a5ac8",l:"#b8c8ff",w:"#ffffff"},A.eye.x-1,A.headTop,4,5)},
+ sailor:{s:"head",d:(P,A)=>blit(P,[".wwwww.","wwwwwww","bbbbbbb"],{w:"#f4f8ff",b:"#2a4aa8"},A.eye.x-1,A.headTop,3,2)},
+ viking:{s:"head",d:(P,A)=>blit(P,["h.......h","h.......h",".h.sss.h.","..sssss..",".ggggggg."],{h:"#f4e8c8",s:"#b0bccc",g:"#c9873a"},A.eye.x-1,A.headTop,4,4)},
+ catears:{s:"head",a:1,d:(P,A,f)=>blit(P,["p.....p","pp...pp","pip.pip"],{p:"#ff9ac0",i:"#ffd8e8"},A.eye.x-1,A.headTop-(f===3||f===9?1:0),3,2)},
+ tiara:{s:"head",a:1,d:(P,A,f)=>{blit(P,["y..y..y","yryyyby","yyyyyyy"],{y:"#ffd45a",r:"#ff3a5a",b:"#5ad8ff"},A.eye.x-1,A.headTop,3,2);if(f%6===0){P(A.eye.x-1,A.headTop-3,"#ffffff");P(A.eye.x-1,A.headTop-4,"#ffffff");}}},
+ clover:{s:"head",d:(P,A)=>blit(P,["gg.gg","ggggg",".gdg.","..d.."],{g:"#4ac060",d:"#2e7a3a"},A.eye.x-1,A.headTop,2,3)},
+ leafcrown:{s:"head",d:(P,A)=>blit(P,["o.r.o.r.o","ooorooroo",".yyyyyyy."],{o:"#ff8a2a",r:"#c0392b",y:"#a86a20"},A.eye.x-1,A.headTop,4,2)},
+ flower:{s:"head",d:(P,A)=>blit(P,[".p.p.","ppypp",".ppp.","..g.."],{p:"#ff9fd0",y:"#ffe45a",g:"#4ac060"},A.eye.x-1,A.headTop,2,3)},
+ feather:{s:"head",a:1,d:(P,A,f)=>blit(P,(f%6<3)?["....mm","...mmm","..mmm.",".mm...","d....."]:[".....m","....mm","...mmm","..mm..","d....."],{m:"#c8f0e8",d:"#6fb7a8"},A.eye.x-2,A.headTop,0,4)},
+ bird:{s:"head",a:1,d:(P,A,f)=>blit(P,[".yyy.","yyykO","yyyy.",".yy..","o.o.."],{y:"#ffd84a",k:"#1a1a1a",O:"#ff8a2a",o:"#ff8a2a"},A.eye.x-1,A.headTop-((f%6)<2?1:0),2,4)},
+ lantern:{s:"head",a:1,d:(P,A,f,i,X)=>{const x=A.eye.x-1,y=A.headTop,st="#7a5a3a";P(x,y-1,st);P(x,y-2,st);P(x,y-3,st);P(x+1,y-4,st);P(x+2,y-4,st);
+   const g=.5+.5*Math.sin(f/LV_N*6.283);X.globalAlpha=.2+.35*g;X.fillStyle="#ffe48a";X.fillRect(x+2,y-7,5,5);X.globalAlpha=1;
+   P(x+3,y-6,"#fff6c8");P(x+4,y-6,"#ffd45a");P(x+3,y-5,"#ffd45a");P(x+4,y-5,"#ffb43a");}},
+ // face (around the eye)
+ shades:{s:"face",d:(P,A)=>{const e=A.eye,k="#101018";[[-1,-1],[0,-1],[1,-1],[-1,0],[0,0],[1,0],[-2,-1],[-3,-1]].forEach(([a,b])=>P(e.x+a,e.y+b,k));P(e.x,e.y-1,"#7af0ff");}},
+ glasses:{s:"face",d:(P,A)=>{const e=A.eye,c="#e0b040";for(let x=e.x-2;x<=e.x+1;x++){P(x,e.y-1,c);P(x,e.y+1,c);}P(e.x-2,e.y,c);P(e.x+1,e.y,c);P(e.x-3,e.y,c);}},
+ brow:{s:"face",d:(P,A)=>{const e=A.eye,c="#1a1020",r="#ff4a3a";P(e.x-3,e.y-3,c);P(e.x-2,e.y-3,c);P(e.x-1,e.y-2,c);P(e.x,e.y-2,c);P(e.x+1,e.y-1,c);P(e.x-2,e.y-4,r);P(e.x-1,e.y-3,r);}},
+ blush:{s:"face",d:(P,A)=>{const e=A.eye;P(e.x-1,e.y+2,"#ff7aa8");P(e.x,e.y+2,"#ff7aa8");}},
+ lid:{s:"face",d:(P,A)=>{const e=A.eye;P(e.x-1,e.y,"#0f0c1a");P(e.x,e.y,"#0f0c1a");}},
+ // mouth
+ hook:{s:"mouth",d:(P,A,f,i,X)=>{const m=A.mouth,s="#d0d8e8";P(m.x+1,m.y+1,s);P(m.x+2,m.y+1,s);P(m.x+2,m.y,s);P(m.x+2,m.y-1,s);X.globalAlpha=.55;for(let y=m.y-2;y>=0;y--)P(m.x+2,y,"#e8eef8");X.globalAlpha=1;}},
+ bubbles:{s:"mouth",a:1,d:(P,A,f)=>{const m=A.mouth;for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N;if(ph>9)continue;const x=m.x+1+((ph>>2)%2)+(k===1?1:0),y=m.y-1-ph;P(x,y,"#bff6ff");if(k===0&&ph>3){P(x+1,y,"#bff6ff");P(x,y-1,"#ffffff");}}}},
+ teeth:{s:"mouth",d:(P,A)=>{const m=A.mouth;P(m.x,m.y,"#ffffff");P(m.x-1,m.y,"#2a0a10");P(m.x-2,m.y,"#ffffff");P(m.x-3,m.y,"#2a0a10");P(m.x-4,m.y,"#ffffff");}},
+ // neck
+ scarf:{s:"neck",a:1,d:(P,A,f)=>{const x0=A.eye.x-3;for(const x of [x0-1,x0]){const t=A.topAt(x),b=A.botAt(x);for(let y=t;y<=b;y++)P(x,y,(y%2)?"#5ab0ff":"#ffffff");}
+   const b=A.botAt(x0-1),sw=(f%6<3)?0:-1;P(x0-1+sw,b+1,"#5ab0ff");P(x0-2+sw,b+2,"#ffffff");P(x0-2+sw,b+3,"#5ab0ff");}},
+ // back
+ flame:{s:"back",a:1,d:(P,A,f)=>{const F=[["..r..",".ror.","royor",".yyy."],[".r...","..or.","royor",".yyy."],["...r.",".ro..","royor",".yyy."]];blit(P,F[(f>>1)%3],{r:"#e0383e",o:"#ff8a2a",y:"#ffd45a"},A.back.x,A.back.y,2,3);}},
+ seaweed:{s:"back",a:1,d:(P,A,f)=>{[A.back.x-2,A.back.x+2].forEach((x,k)=>{const t=A.topAt(x);for(let s=0;s<5;s++){const sw=s>1?((((f>>1)+k+s)%4)<2?0:1):0;P(x+sw,t-1+s,s%2?"#2a7a3a":"#3aa04a");}});}},
+ tentacle:{s:"back",a:1,d:(P,A,f)=>{const x0=A.mid.x-1,t=A.topAt(x0)-2,b=A.botAt(x0)+2;for(let y=t;y<=b;y++){const o=Math.round(1.6*Math.sin(y*.9+f/LV_N*6.283));P(x0+o,y,"#8a3ab8");P(x0+o+1,y,y%2?"#6a2a98":"#e0a8ff");}}},
+ // below
+ wave:{s:"below",a:1,d:(P,A,f)=>{const y0=Math.min(A.GH-2,A.by1+2);for(let x=A.bx0-1;x<=A.bx1+1;x++){const up=((x+f)%4)<2;P(x,y0+(up?0:1),"#3ab8d0");if((x+f)%4===0)P(x,y0-1,"#e8fbff");}}},
+ // floating near the fish
+ cloud:{s:"float",a:1,d:(P,A,f)=>{const x=A.eye.x-3,y=Math.max(2,A.headTop-7);blit(P,[".www.","wwwww",".ggg."],{w:"#eef2fa",g:"#aab4cc"},x,y,2,1);for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N;if(ph<5)P(x-1+k,y+2+ph,"#5ab0ff");}}},
+ hourglass:{s:"float",a:1,d:(P,A,f)=>blit(P,["www","sas",".a.","s.s","www"],{w:"#c9873a",s:"#cfe8ff",a:"#ffd45a"},A.bx0-1,A.by0-3-((f%6)<3?0:1),1,2)},
+ zzz:{s:"float",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<2;k++){const ph=(f+k*6)%LV_N;X.globalAlpha=1-ph/LV_N;blit(P,["zzz",".z.","zzz"],{z:"#c8d4ff"},A.eye.x+Math.floor(ph/3),A.headTop-2-Math.floor(ph/2),1,1);}X.globalAlpha=1;}},
+ hearts:{s:"float",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<2;k++){const ph=(f+k*6)%LV_N;X.globalAlpha=1-ph/LV_N;blit(P,["h.h","hhh",".h."],{h:"#ff5d8f"},A.eye.x-3+k*3,A.headTop-2-Math.floor(ph/2),1,1);}X.globalAlpha=1;}},
+ halo:{s:"float",a:1,d:(P,A,f)=>blit(P,[".yyy.","y...y",".yyy."],{y:"#ffe27a"},A.eye.x-2,A.headTop-5-((f%6)<3?0:1),2,1)},
+ planet:{s:"float",a:1,both:1,d:(P,A,f,i,X,L)=>{const a=f/LV_N*6.283,front=Math.sin(a)>0;if((L==="front")!==front)return;blit(P,[".pp.","yyyy",".pp."],{p:"#b77cff",y:"#ffd45a"},Math.round(A.mid.x+Math.cos(a)*(A.w/2+3)),Math.round(A.cy-1+Math.sin(a)*2),2,1);}},
+ comet:{s:"float",a:1,both:1,d:(P,A,f,i,X,L)=>{for(let s=3;s>=0;s--){const a=(f-s*.6)/LV_N*6.283,front=Math.sin(a)>0;if((L==="front")!==front)continue;const x=Math.round(A.mid.x+Math.cos(a)*(A.w/2+3)),y=Math.round(A.cy+Math.sin(a)*3);
+   X.globalAlpha=1-s*.25;P(x,y,s?"#9fd8ff":"#ffffff");if(!s){P(x+1,y,"#ffffff");P(x,y+1,"#cfefff");}}X.globalAlpha=1;}},
+ dreamstars:{s:"float",a:1,both:1,d:(P,A,f,i,X,L)=>{const cols=["#5dffb0","#b77cff","#ffffff"];for(let k=0;k<3;k++){const a=f/LV_N*6.283+k*2.094,front=Math.sin(a)>0;if((L==="front")!==front)continue;
+   const x=Math.round(A.eye.x-2+Math.cos(a)*5),y=Math.round(A.headTop-3+Math.sin(a)*1.5);P(x,y,cols[k]);if(front){P(x-1,y,cols[k]);P(x+1,y,cols[k]);}}}},
+ // effects
+ speed:{s:"fx",a:1,d:(P,A,f,i,X)=>{X.globalAlpha=.75;for(let k=0;k<3;k++){const y=A.by0+1+Math.round(k*(A.h-2)/2),x=A.bx0-3-((f*2+k*3)%7);for(let q=0;q<3;q++)P(x+q,y,"#ffffff");}X.globalAlpha=1;}},
+ dust:{s:"fx",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0-1-Math.floor(ph/1.5),y=A.cy+(k-1)*2;X.globalAlpha=Math.max(0,1-ph/LV_N);const c=k===1?"#ffe27a":"#e8e0f8";P(x,y,c);P(x-1,y,c);if(ph>3){P(x,y-1,c);P(x-1,y+1,c);P(x-2,y,c);}}X.globalAlpha=1;}},
+ mist:{s:"fx",a:1,d:(P,A,f,i,X)=>{X.fillStyle="rgba(235,240,252,.5)";for(let k=0;k<2;k++){const y=A.by0+1+k*Math.max(1,A.h-3),x=Math.floor((f*1.5+k*9)%(A.GW+10))-10;X.fillRect(x,y,7,1);X.fillRect(x+2,y+1,4,1);}}},
+ zap:{s:"fx",a:1,d:(P,A,f,i)=>{if(!A.edge.length)return;for(let k=0;k<2;k++){if((f+k)%3===2)continue;const e=A.edge[hash(f,k,i)%A.edge.length];P(e[0],e[1],"#ffe45a");P(e[0]+(k?1:-1),e[1]-1,"#fff6c8");}}},
+ sparkle:{s:"fx",a:1,d:(P,A,f,i)=>{for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N;if(ph>3)continue;const x=A.bx0+hash(k,7,i)%A.w,y=A.by0+hash(k,8,i)%A.h,big=ph===1||ph===2,c=big?"#ffffff":"#ffe27a";
+   P(x,y,c);if(big){P(x-1,y,c);P(x+1,y,c);P(x,y-1,c);P(x,y+1,c);}}}},
+ steam:{s:"fx",a:1,d:(P,A,f,i,X)=>{const e=A.eye;P(e.x-1,e.y+2,"#ff5a3a");for(let k=0;k<2;k++){const ph=(f+k*6)%LV_N,x=e.x-2+k*2+((ph>>2)%2),y=A.headTop-1-Math.floor(ph/2);X.globalAlpha=Math.max(0,.9-ph/LV_N);P(x,y,"#f0f0f8");if(ph>4)P(x+1,y,"#f0f0f8");}X.globalAlpha=1;}},
+ biolum:{s:"fx",a:1,d:(P,A,f)=>{const G=A.G;for(let y=A.by0;y<=A.by1;y++)for(let x=A.bx0;x<=A.bx1;x++){const c=G[y][x];if((c==="b"||c==="l")&&hash(x,y,9)%6===0)P(x,y,mix("#1a8a8a","#aafff0",.5+.5*Math.sin(f/LV_N*6.283+hash(x,y,4)%6)));}}},
+ ink:{s:"fx",d:(P,A)=>{const G=A.G;for(let y=A.by0;y<=A.by1;y++)for(let x=A.bx0;x<=A.bx1;x++){const c=G[y][x];if((c==="b"||c==="l")&&hash(x,y,11)%9===0)P(x,y,"#2a1040");}}},
+ anger:{s:"fx",a:1,d:(P,A,f)=>{if(f%4===3)return;const x=A.eye.x+2,y=A.headTop-2;P(x,y-4,"#ff3a3a");P(x,y-3,"#ff3a3a");P(x,y-2,"#ff3a3a");P(x,y,"#ff3a3a");}},
+ starfall:{s:"fx",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,5,i)%Math.max(1,A.w)-ph+4,y=A.by0-6+Math.round(ph*1.4);P(x,y,"#fff6a0");X.globalAlpha=.5;P(x+1,y-1,"#b7a6ff");P(x+2,y-2,"#b7a6ff");X.globalAlpha=1;}}}
+};
+const WEARS_OF={tidal:"wave",ebbing:"seaweed",early:"bird",night:"nightcap",patient:"hourglass",snap:"speed",lured:"hook",soaked:"cloud",hazy:"mist",
+  frosty:"scarf",zappy:"zap",dreamy:"dreamstars",clover:"clover",comet:"comet",bubbly:"bubbles",lantern:"lantern",breezy:"feather",gemmy:"tiara",
+  ember:"flame",cosmic:"planet",harvest:"leafcrown",spooky:"witch",festive:"santa",lovestruck:"hearts",blossom:"flower",sunny:"shades",
+  sparkly:"sparkle",speedy:"dust",stubborn:"brow",dapper:"tophat",sleepy:["lid","zzz"],spicy:"steam",fluffy:"catears",salty:"sailor",
+  cheerful:"blush",mighty:"viking",wise:"glasses",shimmer:"halo",starfall:"starfall",glowing:"biolum",frenzy:["teeth","anger"],inked:["tentacle","ink"]};
+TRAITS.forEach(t=>{t.wear=[].concat(WEARS_OF[t.id]||[]);});
+const SLOT_ORDER=["below","back","neck","face","mouth","head","float","fx"],SLOT_MAX={head:1,face:1,mouth:1,neck:1,back:1,below:1,float:2,fx:3};
+function wearList(tr){
+  const used={},out=[];
+  (tr||[]).map(id=>TR_BY[id]).filter(Boolean).sort((a,b)=>b.m-a.m).forEach(t=>t.wear.forEach(w=>{const W=WEAR[w];if(!W)return;used[W.s]=(used[W.s]||0)+1;if(used[W.s]<=SLOT_MAX[W.s])out.push(W);}));
+  return out.sort((a,b)=>SLOT_ORDER.indexOf(a.s)-SLOT_ORDER.indexOf(b.s));
+}
+const lvCache=new Map();
+function lvGet(i,mut,tr,sil){
+  const k=i+"|"+(mut||"")+"|"+(sil?"?":(tr||[]).join(","));
+  let L=lvCache.get(k);if(L)return L;
+  const A=fishGrid(i),m=sil?null:mut,wears=sil?[]:wearList(tr),anim=(m&&ANIM_M.has(m))||wears.some(w=>w.a);
+  L={k,i,mut:m,sil,A,wears,N:anim?LV_N:1,fr:[],pal:makePalette(FISH[i].sp,m,sil)};
+  if(lvCache.size>1400)lvCache.delete(lvCache.keys().next().value);
+  lvCache.set(k,L);return L;
+}
+function lvFrame(L,f){
+  f=((f%L.N)+L.N)%L.N;if(L.fr[f])return L.fr[f];
+  const A=L.A,m=L.mut,G=A.G,mk=()=>{const c=document.createElement("canvas");c.width=A.GW;c.height=A.GH;return c;};
+  const c=mk(),X=c.getContext("2d"),P=(x,y,col)=>{X.fillStyle=col;X.fillRect(x,y,1,1);};
+  if(m)mutBack(P,m,A,f,L.i,X);
+  L.wears.forEach(w=>{if(w.both)w.d(P,A,f,L.i,X,"back");});
+  const fl=mk(),Y=fl.getContext("2d"),Q=(x,y,col)=>{Y.fillStyle=col;Y.fillRect(x,y,1,1);};
+  const gc=m&&GLOW[m];
+  if(gc){Y.globalAlpha=.2+.32*(.5+.5*Math.sin(f/LV_N*6.283));const col=gc===1?"hsl("+Math.round(f/LV_N*360)+",90%,62%)":gc;A.edge.forEach(([x,y])=>Q(x,y,col));Y.globalAlpha=1;}
+  const ink=L.sil?"#12143a":m==="phantom"?(f%6<2?"#d8d8ff":"#0a0a12"):"#140f24";
+  for(let y=0;y<A.GH;y++)for(let x=0;x<A.GW;x++){const ch=G[y][x];if(ch===".")continue;Q(x,y,ch==="o"?ink:L.sil?L.pal[ch]:cellCol(m,ch,x,y,L.i,f,A,L.pal));}
+  if(m)mutFront(Q,m,A,f,L.i,Y);
+  if(m==="glitch")glitchCompose(X,fl,A,f,L.i);
+  else{X.globalAlpha=m==="fog"?.72+.08*Math.sin(f/LV_N*6.283):m==="phantom"?(f%6<2?.4:.85):1;X.drawImage(fl,0,0);X.globalAlpha=1;}
+  L.wears.forEach(w=>{if(w.both)w.d(P,A,f,L.i,X,"front");else w.d(P,A,f,L.i,X);});
+  L.fr[f]=c;return c;
+}
+// HTML for one live fish picture. Negative margins make the layout box the size of the fish itself, so hats and effects spill outside.
+function fishImg(i,mut,tr,sil,targetW,maxH,cap){
+  const A=fishGrid(i),mh=maxH||Math.round(targetW*.6),sc=Math.max(1,Math.min(cap||8,Math.floor(targetW/A.w),Math.floor(mh/A.h))),L=lvGet(i,mut,tr,sil);
+  return `<canvas class="lsp${mut==="giant"&&!sil?" gi":""}" data-k="${L.k}" width="${A.GW}" height="${A.GH}" style="width:${A.GW*sc}px;height:${A.GH*sc}px;margin:${-PD.t*sc}px ${-PD.r*sc}px ${-PD.b*sc}px ${-PD.l*sc}px"></canvas>`;
+}
+function spriteImg(i,mut,sil,targetW,alt,maxH,tr,cap){return fishImg(i,mut,tr||[],sil,targetW,maxH,cap);}
+const lvLive=new Set();
+const lvIO=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{e.target._vis=e.isIntersecting;}),{rootMargin:"60px"}):null;
+function lvParse(k){const a=k.split("|"),sil=a[2]==="?";return lvGet(+a[0],a[1]||null,sil||!a[2]?[]:a[2].split(","),sil);}
+function lvPaint(el,f){const x=el.getContext("2d");x.clearRect(0,0,el.width,el.height);x.drawImage(lvFrame(el._L,f),0,0);}
+let lvLastF=-1;
+function lvTick(now){
+  const f=Math.floor(now/1000*LV_FPS);
+  document.querySelectorAll("canvas.lsp:not([data-on])").forEach(el=>{el.dataset.on="1";el._L=lvParse(el.dataset.k);lvPaint(el,f);if(el._L.N>1){lvLive.add(el);if(lvIO)lvIO.observe(el);}});
+  if(f===lvLastF)return;lvLastF=f;
+  lvLive.forEach(el=>{if(!el.isConnected){lvLive.delete(el);if(lvIO)lvIO.unobserve(el);return;}if(el._vis===false)return;lvPaint(el,f);});
 }
 
 /* ---------- audio ---------- */
@@ -1484,7 +1858,7 @@ function drawParts(dt){
   cx.globalAlpha=1;
 }
 function drawJumpers(now,P){
-  if(now>nextJump&&!menuOpen){jumpers.push({x:66+Math.random()*84,y:68+Math.random()*20,t0:now,dur:850+Math.random()*350,dir:Math.random()<.5?-1:1,h:7+Math.random()*7});nextJump=now+6000+Math.random()*9000;}
+  if(now>nextJump&&!menuOpen){jumpers.push({x:66+Math.random()*84,y:68+Math.random()*20,t0:now,dur:850+Math.random()*350,dir:Math.random()<.5?-1:1,h:7+Math.random()*7});nextJump=now+(evNow()==="frenzy"?500+Math.random()*900:6000+Math.random()*9000);}
   else if(now>nextJump){jumpers.push({x:66+Math.random()*84,y:68+Math.random()*20,t0:now,dur:850+Math.random()*350,dir:Math.random()<.5?-1:1,h:7+Math.random()*7});nextJump=now+3500+Math.random()*4000;}
   const col=P.dark>.6?"#0c1634":"#16264a";
   jumpers=jumpers.filter(j=>{
@@ -1565,13 +1939,43 @@ function drawWeather(t){
 // the caught fish jumps out of the water toward the dock before the card shows
 const imgCache={};
 function spriteImage(fi,mut){const s=getSprite(fi,mut,false),k=s.url;if(!imgCache[k]){const im=new Image();im.src=s.url;imgCache[k]=im;}return {im:imgCache[k],W:s.W,H:s.H};}
-function startLeap(fi,mut,tier){const s=spriteImage(fi,mut);leap={...s,t0:performance.now(),dur:600,tier};splash(TARGET.x,TARGET.y,12);if(tier>=2)sparkle(TARGET.x,TARGET.y,10,TIERS[tier].c);}
+function startLeap(fi,mut,tier,tr){leap={L:lvGet(fi,mut,tr||[],false),t0:performance.now(),dur:600,tier};splash(TARGET.x,TARGET.y,12);if(tier>=2)sparkle(TARGET.x,TARGET.y,10,TIERS[tier].c);}
 function drawLeap(now){
   if(!leap)return;
   const p=(now-leap.t0)/leap.dur;if(p>1){leap=null;return;}
-  const x=TARGET.x+(78-TARGET.x)*p,y=TARGET.y-6-44*Math.sin(Math.PI*p),sc=Math.min(1,30/leap.W);
+  const x=TARGET.x+(78-TARGET.x)*p,y=TARGET.y-6-44*Math.sin(Math.PI*p);
   if(leap.tier>=2&&Math.random()<.7)parts.push({x:x+(Math.random()-.5)*8,y:y+(Math.random()-.5)*6,vx:0,vy:4,g:0,life:0,max:.5,c:TIERS[leap.tier].c});
+  if(leap.L){const fr=lvFrame(leap.L,Math.floor(now/1000*LV_FPS)),sc=Math.min(1,30/leap.L.A.w);
+    cx.save();cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(-sc,sc);cx.drawImage(fr,-fr.width/2,-fr.height/2);cx.restore();return;}
+  const sc=Math.min(1,30/leap.W);
   if(leap.im.complete&&leap.im.naturalWidth){cx.save();cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(leap.nf?sc:-sc,sc);cx.drawImage(leap.im,-leap.W/2,-leap.H/2);cx.restore();}
+}
+// v9: what each Tide Event does to the scene
+function drawEvent(t){
+  const e=eventInfo(Date.now());if(!e.active)return;const id=e.id;
+  if(id==="meteor"){
+    cx.fillStyle="rgba(20,10,60,.28)";cx.fillRect(0,0,160,120);
+    for(let k=0;k<6;k++){const T=t*.7+k*.41,cyc=Math.floor(T/1.5),ph=T%1.5;if(ph>1)continue;
+      const x0=30+hash(k,cyc,3)%130,y0=2+(hash(k,cyc,5)%30),x=x0-ph*46,y=y0+ph*30;
+      for(let s=0;s<7;s++){cx.globalAlpha=(1-s/7)*(1-ph*.5);R(x+s*2,y-s*1.3,1,1,s?"#c8b8ff":"#ffffff");}cx.globalAlpha=1;
+      if(ph>.85&&y>58)glowDot(x,y,6,"200,184,255",.5);}
+  }else if(id==="redtide"){
+    cx.fillStyle="rgba(120,0,20,.2)";cx.fillRect(0,0,160,60);
+    cx.fillStyle=`rgba(190,16,36,${(.42+.07*Math.sin(t*1.5)).toFixed(3)})`;cx.fillRect(0,60,160,60);
+    cx.fillStyle="rgba(255,130,130,.45)";for(let k=0;k<12;k++){const x=((k*31+t*4)%170)-5,y=63+(k*7)%44;cx.fillRect(Math.round(x),y,3,1);}
+  }else if(id==="glow"){
+    cx.fillStyle="rgba(4,10,30,.38)";cx.fillRect(0,0,160,120);
+    for(let k=0;k<30;k++){const x=(k*37)%158+1,y=62+(k*13)%52,a=.5+.5*Math.sin(t*2+k*1.3);glowDot(x,y,5,"90,255,224",.4*a);R(x,y,1,1,a>.5?"#bfffee":"#3ad0b0");}
+  }else if(id==="frenzy"){
+    for(let k=0;k<4;k++){const ph=(t*.45+k*.27)%1,x=24+k*36+Math.sin(t+k)*10,y=8+ph*58;R(x-2,y,2,1,"#f4f4f4");R(x+1,y,2,1,"#f4f4f4");R(x,y+1,1,1,"#c8c8d0");
+      if(ph>.93)splash(x,62,3);}
+  }else if(id==="kraken"){
+    cx.fillStyle="rgba(40,0,60,.32)";cx.fillRect(0,0,160,120);
+    for(let k=0;k<3;k++){const bx=98+k*21,h=Math.round(20+9*Math.sin(t*.8+k*2));
+      for(let s=0;s<h;s++){const x=bx+Math.round(Math.sin(s*.25+t*1.4+k)*3.5*(s/h)),y=86-s,w=s>h*.7?1:s>h*.35?2:3;R(x,y,w,1,s%4===0?"#e0a0ff":"#7a2aa0");}
+      glowDot(bx+1,86-h,4,"220,140,255",.3);}
+    if(((t*.5)%9)<.08){const st=$("#stage");st.classList.remove("shake");void st.offsetWidth;st.classList.add("shake");}
+  }
 }
 function drawScene(t,now){
   const dt=lastT?Math.min(.05,(now-lastT)/1000):.016;lastT=now;
@@ -1591,6 +1995,7 @@ function drawScene(t,now){
   ripples.forEach(r=>{const p=(now-r.t0)/1200;cx.strokeStyle=`rgba(255,255,255,${.5*(1-p)})`;cx.beginPath();cx.ellipse(r.x,r.y+2,3+p*14,1+p*4,0,0,Math.PI*2);cx.stroke();});
   drawParts(dt);
   drawWeather(t);
+  drawEvent(t);
   if(P.dark>0){cx.fillStyle=`rgba(8,6,32,${(.36*P.dark).toFixed(3)})`;cx.fillRect(0,0,160,120);}
   drawLights(t,P);
   R(bob.x-1,bob.y-2,3,2,"#f2f2f2");R(bob.x-1,bob.y,3,2,"#e0383e");
@@ -1607,6 +2012,9 @@ function refreshEnv(){
   const now=Date.now(),td=tideInfo(now),w=weatherInfo(now);
   let h=`<div class="chip"><span class="tbar"><i style="width:${Math.round((td.lv+1)/2*100)}%"></i></span>${td.label} <small>${td.sub}</small></div>`;
   if(w.kind){const m=WMUTS.find(x=>x.wx===w.kind);h+=`<div class="chip" style="--cc:${m.c}"><span class="wdot"></span>${WX_NAME[w.kind]} <small>${clock(w.left)}</small></div>`;}
+  const ev=eventInfo(now),E=EV_BY[ev.id];
+  if(ev.active)h=`<div class="chip evc" style="--cc:${E.c}"><span class="wdot"></span>${E.n} <small>${clock(ev.left)}</small></div>`+h;
+  else if(ev.in<300)h+=`<div class="chip" style="--cc:${E.c}"><span class="wdot"></span>${E.n} in <small>${clock(ev.in)}</small></div>`;
   if((S.luckLeft||0)>0)h+=`<div class="chip" style="--cc:#5ad27a"><span class="wdot"></span>2x Luck <small>${clock(S.luckLeft)}</small></div>`;
   if(S.charge)h+=`<div class="chip" style="--cc:#c9a6ff"><span class="wdot"></span>Trait charged <small>next catch</small></div>`;
   if(S.eclipse)h+=`<div class="chip" style="--cc:#ffd45a"><span class="wdot"></span>Eclipse ready <small>next catch</small></div>`;
@@ -1629,6 +2037,7 @@ function startCast(){
   if(phase!=="idle")return;
   hideCard();$("#hint").hidden=true;
   waitDur=rollWait();lureTaps=0;hookF=1;
+  if(evNow()==="frenzy")waitDur=Math.min(waitDur,.35+Math.random()*.35);   // Feeding Frenzy: almost instant bites
   sfx.cast();go("cast",performance.now());
 }
 function pop(txt,col){const d=document.createElement("div");d.className="pop";d.textContent=txt;d.style.color=col;$("#stage").appendChild(d);setTimeout(()=>d.remove(),900);}
@@ -1656,15 +2065,30 @@ function doCatch(){
   const o=newInst(f.id,mut?mut.id:null,tr),mult=instX(o),rc=record(o),pl=receive(o);
   S.log.unshift({fi,mut:o.m,tr,kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
   save();refreshAll();
-  revealing=true;setBtn();startLeap(fi,o.m,f.t);
+  revealing=true;setBtn();startLeap(fi,o.m,f.t,tr);
   setTimeout(()=>{
-    revealing=false;setBtn();
-    sfx.catch(f.t+(mut?1:0)+(tr.length>1?1:0));buzz(f.t>=3?120:30);
-    showCard(fi,mut,pl,rc,tr,mult);
-    if(pl.w==="display")gainFx("+"+fmt(pl.gain)+"/s","var(--teal)");else if(pl.gain)gainFx("+"+fmt(pl.gain),"var(--gold)");
-    celebrate(f.t,mult,tr.length);
+    const show=()=>{
+      revealing=false;setBtn();
+      sfx.catch(f.t+(mut?1:0)+(tr.length>1?1:0));buzz(f.t>=3?120:30);
+      showCard(fi,mut,pl,rc,tr,mult);
+      if(pl.w==="display")gainFx("+"+fmt(pl.gain)+"/s","var(--teal)");else if(pl.gain)gainFx("+"+fmt(pl.gain),"var(--gold)");
+      celebrate(f.t,mult,tr.length);setHold=performance.now()+1600;
+    };
+    if(f.t>=4||mult>=50)bigReveal(f.t>=4?TIERS[f.t]:{c:mut?mut.c:"#ffc845"},f.t>=4?TIERS[f.t].n+"!":"x"+xm(mult)+"!",show);else show();
   },600);
 }
+// v9: a big moment before the card for Legendary and rarer fish, or a huge multiplier
+function bigReveal(T,label,cb){
+  const st=$("#stage"),d=document.createElement("div");d.className="bigrev";d.style.setProperty("--rc",T.c);
+  d.innerHTML=`<div class="br-rays"></div><div class="br-t">${label}</div>`;st.appendChild(d);
+  [392,523,659,784,1047,1319].forEach((fq,k)=>setTimeout(()=>beep(fq,.16,"square",.05),k*110));buzz(200);
+  setTimeout(()=>{d.classList.add("out");setTimeout(()=>d.remove(),320);cb();},1150);
+}
+function countUp(el){
+  if(!el)return;const to=+el.dataset.to,t0=performance.now(),d=700;
+  (function step(){const p=Math.min(1,(performance.now()-t0)/d),e=1-Math.pow(1-p,3);el.textContent="Total x"+xm(p<1?Math.max(1,to*e):to)+(el.dataset.sb?"  (stack x"+el.dataset.sb+")":"");if(p<1&&el.isConnected)requestAnimationFrame(step);})();
+}
+let setHold=0;
 function catchBlock(){
   const b=rollBlockType(),m=rollMut(),tr=rollTraits(null,false);S.casts++;
   const o=giveBlock(b,m?m.id:null,tr);
@@ -1707,15 +2131,17 @@ function showCard(fi,mut,pl,rc,tr,val){
   c.style.setProperty("--rc",T.c);
   const res=pl.w==="display"?`On display +${fmt(pl.gain)}/s`:pl.w==="sold"?`<span style="color:var(--gold)">Sold +${fmt(pl.gain)}</span>`:`<span style="color:var(--text)">Into your bucket</span>`;
   const sub=pl.w==="sold"?"Your bucket is full and this was your weakest fish.":pl.w==="bucket"&&pl.better?`<b style="color:var(--gold)">Better than a fish on display!</b>`:pl.w==="bucket"?`Worth ${fmt(instPay({id:f.id,m:mut?mut.id:null,tr}))}/s on display`:"";
-  const inner=`<div class="pic">${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?250:190,f.n,(mut||tr.length)?72:96)}</div>
-      <div class="nm" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut?`<div class="mut" style="color:${mut.c}">${mut.n} x${mut.m}</div>`:""}${chipHTML(tr)}${val>1?`<div class="mut" style="color:var(--gold)">Total x${xm(val)}</div>`:""}
+  const mchip=mut?`<span class="tchip mchip" style="--tc:${mut.c}">${mut.n} <b>x${mut.m}</b></span>`:"";
+  const inner=`<div class="pic"><div class="mglow" style="--mc:${mut?mut.c:T.c}"></div>${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?200:220,f.n,(mut||tr.length)?64:80,tr,6)}</div>
+      <div class="nm${mut?" mtx-"+mut.id:""}" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut||tr.length?`<div class="chips">${mchip}${tr.map(i=>{const t=TR_BY[i];return t?`<span class="tchip" style="--tc:${t.col}">${iconImg(i)}${tr.length>2?"":t.n+" "}<b>${tb(t)}</b></span>`:"";}).join("")}</div>`:""}${val>1?`<div class="mut tot" style="color:var(--gold)" data-to="${val}" data-sb="${stackBonus(tr.length)>1?stackBonus(tr.length):""}">Total x1</div>`:""}
       <div class="res" style="color:var(--teal)">${res}</div>${sub?`<div class="csub">${sub}</div>`:""}`;
   const stamp=rc.isNew?`<div class="stamp">New!</div>`:rc.newVar?`<div class="stamp better">New variant!</div>`:rc.rec?`<div class="stamp better">Record!</div>`:"";
   c.innerHTML=`<div class="ribbon">${tierTag(f)}</div><div class="body">${fancy?'<div class="rays"></div>':""}${inner}</div>${stamp}`;
   c.classList.toggle("big",f.t>=3||val>=25);
   c.style.transform="";c.hidden=false;c.classList.remove("in");void c.offsetWidth;c.classList.add("in");
-  cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5500:3200);
+  cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5500:(mut||tr.length)?4200:3200);
   const room=$("#stage").clientHeight-8,ch=c.offsetHeight;if(ch>room)c.style.transform=`translate(-50%,-50%) scale(${(room/ch).toFixed(3)})`;
+  countUp(c.querySelector(".tot"));lvTick(performance.now());
 }
 function hideCard(){$("#card").hidden=true;cardShown=false;}
 function flash(col){const d=document.createElement("div");d.className="flash";d.style.background=col;$("#stage").appendChild(d);setTimeout(()=>d.remove(),800);}
@@ -1779,7 +2205,7 @@ function rebirthHTML(){
     <button class="btn teal wide" data-rb="1" ${ready?"":"disabled"}>${ready?(S.rbArm?"Tap again to rebirth":"Rebirth"):"Not ready yet"}</button></div>`;
 }
 function doRebirth(){
-  const keep={rb:(S.rb||0)+1,dex:S.dex,uid:S.uid,blocks:S.blocks,bsort:S.bsort,bfilt:S.bfilt,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"base",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft,log:S.log};
+  const keep={aview:S.aview,skin:S.skin,rb:(S.rb||0)+1,dex:S.dex,uid:S.uid,blocks:S.blocks,bsort:S.bsort,bfilt:S.bfilt,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"base",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft,log:S.log};
   S=Object.assign(fresh(),keep);ensureSpots();S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
   confetti(40,["#38e0c4","#ffc845","#ffffff"]);
   showModal(`<h3 style="color:var(--teal)">Reborn!</h3><div class="bigpic" style="--rc:#38e0c4"><img class="pix" src="${iconURL("i_rebirth")}" width="72" height="72" alt=""></div><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(2)}</b> and your base has <b>${spotCount()} tanks</b>.</p><button class="btn teal wide" id="mclose">Back to the water</button>`,"#38e0c4");
@@ -1790,34 +2216,107 @@ function refreshUpButtons(){
 function pipHTML(d,list){
   return list.map(m=>{const on=d&&d.v[m.id];return `<span class="pip ${on?"on":""}" ${on?`style="background:${m.c}"`:""} title="${m.n}"></span>`;}).join("");
 }
+const KOI=FISH.findIndex(f=>f.id==="koi"),SAMPLE=FISH.findIndex(f=>f.id==="clown");
+// tank styles you unlock by finishing album sets (the water behind your fish)
+const SKIN_BG={
+ classic:"linear-gradient(180deg,#5fc4ff 0,#2a7fd0 55%,#1a4f9a 82%,#d8b870 82% 90%,#b8955a 90%)",
+ _:"linear-gradient(180deg,#8ff4e8 0,#2ac0c0 55%,#168a9a 82%,#f4e2a8 82% 90%,#d8c080 90%)",
+ shiny:"linear-gradient(180deg,#e0fbff 0,#7ad8ff 50%,#3a9ae0 82%,#f0f4ff 82% 90%,#c8d8f0 90%)",
+ giant:"linear-gradient(180deg,#9aeaa8 0,#3a9a6a 55%,#1e6a4a 82%,#a8c870 82% 90%,#7a9a4a 90%)",
+ golden:"linear-gradient(180deg,#fff2b0 0,#ffc845 50%,#c8861a 82%,#fff0a0 82% 90%,#e0b040 90%)",
+ diamond:"linear-gradient(180deg,#f0fdff 0,#9ae8ff 50%,#4ab0e0 82%,#ffffff 82% 90%,#bfe8ff 90%)",
+ rainbow:"linear-gradient(180deg,#ff8ab0 0,#ffd45a 22%,#7aff9a 44%,#5ad8ff 64%,#b77cff 82%,#ffffff 82% 90%,#e0d0ff 90%)",
+ glitch:"linear-gradient(90deg,rgba(24,240,255,.28),rgba(255,43,214,.28)),repeating-linear-gradient(180deg,#160a26 0 3px,#2a0c40 3px 4px)",
+ galaxy:"radial-gradient(1px 1px at 20% 30%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 70% 20%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 45% 60%,#bfe8ff 50%,transparent 51%),radial-gradient(1px 1px at 85% 55%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 10% 70%,#fff 50%,transparent 51%),linear-gradient(180deg,#2a1670 0,#1a1048 60%,#0a0620 100%)",
+ rain:"repeating-linear-gradient(100deg,transparent 0 7px,rgba(190,220,255,.35) 7px 8px),linear-gradient(180deg,#5a7ab0 0,#2a4a8a 60%,#1a2a5a 82%,#8a9ab0 82%)",
+ fog:"linear-gradient(180deg,#e8eef8 0,#aab8d0 55%,#7a88a8 82%,#c8ccd8 82%)",
+ snow:"radial-gradient(1px 1px at 15% 25%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 60% 40%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 80% 15%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 35% 65%,#fff 50%,transparent 51%),linear-gradient(180deg,#e8f6ff 0,#9ac8f0 55%,#5a8ac8 82%,#ffffff 82%)",
+ storm:"linear-gradient(115deg,transparent 46%,rgba(255,228,90,.55) 47% 49%,transparent 50%),linear-gradient(180deg,#3a3f7a 0,#22265a 55%,#141840 82%,#5a5a70 82%)",
+ aurora:"linear-gradient(180deg,#46f0a8 0,#3a8ab0 40%,#7a4ac8 70%,#2a1a5a 82%,#a8a0d0 82%)",
+ lava:"radial-gradient(circle at 30% 88%,#ffb03a 0,transparent 25%),radial-gradient(circle at 75% 92%,#ff6a1a 0,transparent 22%),linear-gradient(180deg,#5a1a12 0,#8a2a10 55%,#3a0a08 82%,#ff7a2a 82%)",
+ candy:"repeating-linear-gradient(135deg,#ffc8e0 0 8px,#fff2fa 8px 16px)",
+ cursed:"radial-gradient(circle at 50% 40%,rgba(255,58,74,.35),transparent 60%),linear-gradient(180deg,#3a1a4a 0,#2a0f36 60%,#14081e 82%,#4a1a2a 82%)",
+ radio:"repeating-linear-gradient(45deg,rgba(23,58,8,.35) 0 2px,transparent 2px 6px),linear-gradient(180deg,#b8ff6a 0,#5ad020 55%,#2a7a10 82%,#4a5a20 82%)",
+ eclipse:"radial-gradient(circle at 50% 40%,#120e28 0 14%,#ffd45a 15% 18%,rgba(255,180,58,.45) 19%,transparent 38%),linear-gradient(180deg,#1a1430 0,#0a0818 82%,#3a3020 82%)",
+ twilight:"linear-gradient(180deg,#ffb080 0,#d06a8a 35%,#4a3a8a 65%,#1a1a4a 82%,#6a5a7a 82%)",
+ phantom:"linear-gradient(180deg,#3a3a50 0,#1a1a26 60%,#0a0a12 82%,#2a2a3a 82%)",
+ crystal:"linear-gradient(135deg,#e0c8ff 0,#b77cff 30%,#7ac0ff 55%,#b77cff 75%,#4a2a8a 100%)",
+ redtide:"linear-gradient(180deg,#ff6a6a 0,#b0202e 55%,#5a0a14 82%,#8a4a3a 82%)"};
+const SKIN_CLS={rainbow:"sk-hue",aurora:"sk-hue",crystal:"sk-hue",galaxy:"sk-tw",snow:"sk-tw",lava:"sk-tw",phantom:"sk-tw",cursed:"sk-tw",glitch:"sk-scan",storm:"sk-scan"};
+const skinName=k=>k==="classic"?"Classic":setOf(k)?setOf(k).n:"Classic";
+function setChip(s,av){
+  const n=setHave(s.k),d=n>=s.need;
+  return `<button class="setc${av===s.k?" on":""}${d?" done":""}" data-av="${s.k}" style="--sc:${s.c}"><span class="ss">${fishImg(KOI,s.k==="_"?null:s.k,[],!n,54,34,2)}</span><b>${s.n}</b><span>${d?"✓ ":""}${Math.min(n,s.need)}/${s.need}</span></button>`;
+}
 function renderAlbum(){
-  const found=dexCount();let muts=0;FISH.forEach(f=>{const d=S.dex[f.id];if(d)muts+=Object.keys(d.v).filter(k=>k!=="_").length;});
-  const lg=(list,tag)=>list.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m}${tag?` <em>${tag(m)}</em>`:""}</span>`).join("");
-  let h=head("t_book","Album",`${found}/${FISH.length}`)+`<div class="bar gold" style="margin-bottom:10px"><i style="width:${(found/FISH.length*100).toFixed(1)}%"></i></div>
-   <p class="intro">Every fish you ever caught, kept forever. Each card shows your best one. Tap a fish to compare all its variants.</p>
-   <details class="mlist"><summary>Mutations: ${muts} of ${FISH.length*ALL_MUTS.length} variants found</summary>
-   <div class="legend">${lg(MUTS)}</div><div class="legend">${lg(WMUTS,m=>WX_NAME[m.wx])}</div><div class="legend">${lg(CMUTS,m=>m.d)}${lg(XMUTS,()=>"Wheel only")}</div></details>`;
-  const later=WMUTS.concat(CMUTS,XMUTS),pm=payMult();
-  TIERS.forEach((T,ti)=>{
-    const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.dex[o.f.id]).length;
-    h+=`<div class="tierh" style="--tc:${T.c}"><b>${T.n}</b><span>${have}/${list.length}</span></div>`;
-    if(T.g&&S.up.rod<T.g)h+=`<div class="tnote">Starts biting at Lucky Rod Lv ${T.g}</div>`;
-        h+=`<div class="grid">`;
-    list.forEach(({f,i})=>{
-      const d=S.dex[f.id];
-      if(!d){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,66,"",44)}</div><div class="nm muted">???</div><div class="inc muted">${SRC(f)}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
-      const b=dexBest(d),bm=b.k==="_"?null:b.k;
-      h+=`<button class="fcard${f.t>=6?" hi":""}" data-fi="${i}" style="--rc:${T.c}">${canBite(f)?"":`<span class="srcb" style="--sc:${f.w==="Craft"?CRAFT_C:LUCKY_C}">${f.w==="Craft"?"Craft":"Lucky"}</span>`}<div class="spr">${spriteImg(i,bm,false,66,f.n,44)}</div><div class="nm">${f.n}</div>
-        <div class="inc">${fmt(f.inc*b.x*pm)}/s</div><div class="ticons">${b.tr.map(iconImg).join("")}</div><div class="pips">${pipHTML(d,MUTS)}<span class="pgap"></span>${pipHTML(d,later)}</div></button>`;
+  const found=dexCount(),av=S.aview||"best",done=SETS.filter(setDone).length,pm=payMult();
+  let h=head("t_book","Album",`${found}/${FISH.length}`)+`<div class="bar gold" style="margin-bottom:8px"><i style="width:${(found/FISH.length*100).toFixed(1)}%"></i></div>
+   <div class="abonus"><span>Album bonus</span><b>x${albumMult().toFixed(2)}</b><span>${done}/${SETS.length} sets complete</span></div>
+   <div class="setstrip"><button class="setc${av==="best"?" on":""}" data-av="best" style="--sc:#ffc845"><span class="ss">${fishImg(KOI,null,["dapper"],false,54,34,2)}</span><b>Best</b><span>${found}</span></button>${SETS.map(s=>setChip(s,av)).join("")}</div>`;
+  if(av==="best"){
+    let muts=0;FISH.forEach(f=>{const d=S.dex[f.id];if(d)muts+=Object.keys(d.v).filter(k=>k!=="_").length;});
+    const lg=(list,tag)=>list.map(m=>`<span><i class="sw" style="background:${m.c}"></i>${m.n} x${m.m}${tag?` <em>${tag(m)}</em>`:""}</span>`).join("");
+    h+=`<p class="intro">Every fish you ever caught, kept forever. Each card shows your best one. Tap a fish to compare all its variants. Pick a set above to collect fish in one mutation.</p>
+     <details class="mlist"><summary>Mutations: ${muts} of ${FISH.length*ALL_MUTS.length} variants found</summary>
+     <div class="legend">${lg(MUTS)}</div><div class="legend">${lg(WMUTS,m=>WX_NAME[m.wx])}</div><div class="legend">${lg(CMUTS,m=>m.d)}${lg(XMUTS,()=>"Wheel only")}</div></details>`;
+    const later=WMUTS.concat(CMUTS,XMUTS);
+    TIERS.forEach((T,ti)=>{
+      const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.dex[o.f.id]).length;
+      h+=`<div class="tierh" style="--tc:${T.c}"><b>${T.n}</b><span>${have}/${list.length}</span></div>`;
+      if(T.g&&S.up.rod<T.g)h+=`<div class="tnote">Starts biting at Lucky Rod Lv ${T.g}</div>`;
+      h+=`<div class="grid">`;
+      list.forEach(({f,i})=>{
+        const d=S.dex[f.id];
+        if(!d){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,84,"",44,[],3)}</div><div class="nm muted">???</div><div class="inc muted">${SRC(f)}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
+        const b=dexBest(d),bm=b.k==="_"?null:b.k;
+        h+=`<button class="fcard${f.t>=6?" hi":""}" data-fi="${i}" style="--rc:${T.c}">${canBite(f)?"":`<span class="srcb" style="--sc:${f.w==="Craft"?CRAFT_C:LUCKY_C}">${f.w==="Craft"?"Craft":"Lucky"}</span>`}<div class="spr">${spriteImg(i,bm,false,84,f.n,44,b.tr,3)}</div><div class="nm">${f.n}</div>
+          <div class="inc">${fmt(f.inc*b.x*pm)}/s</div><div class="ticons">${b.tr.map(iconImg).join("")}</div><div class="pips">${pipHTML(d,MUTS)}<span class="pgap"></span>${pipHTML(d,later)}</div></button>`;
+      });
+      h+=`</div>`;
     });
-    h+=`</div>`;
-  });
+  }else{
+    const s=setOf(av),n=setHave(s.k),d=n>=s.need,mut=s.k==="_"?null:s.k,M=mut?MUT_BY[mut]:null;
+    const how=M?`${M.n} x${M.m}${M.wx?", only in "+WX_NAME[M.wx]:M.d?", "+M.d.toLowerCase():""}.`:"Fish with no mutation.";
+    h+=`<div class="box setbox${d?" hot":""}"><div class="sk${SKIN_CLS[s.k]?" "+SKIN_CLS[s.k]:""}" style="--wbg:${SKIN_BG[s.k]}"><i></i></div><div style="min-width:0;flex:1">
+      <div class="ut" style="color:${s.c}">${s.n} set${d?" ✓":""}</div><div class="ud">${how} Collect ${s.need} different fish ${mut?"with this mutation":"in their plain form"}.</div>
+      <div class="bar gold"><i style="width:${Math.min(100,n/s.need*100).toFixed(1)}%"></i></div>
+      <div class="ud" style="margin:4px 0 0">${Math.min(n,s.need)}/${s.need}. Reward: <b style="color:var(--gold)">+${s.b} income bonus</b> and the <b style="color:${s.c}">${s.n}</b> tank style.${d?" Unlocked!":""}</div></div></div>`;
+    TIERS.forEach((T,ti)=>{
+      const list=FISH.map((f,i)=>({f,i})).filter(o=>o.f.t===ti),have=list.filter(o=>S.dex[o.f.id]&&S.dex[o.f.id].v[s.k]).length;
+      h+=`<div class="tierh" style="--tc:${T.c}"><b>${T.n}</b><span>${have}/${list.length}</span></div><div class="grid">`;
+      list.forEach(({f,i})=>{
+        const dd=S.dex[f.id],r=dd&&dd.v[s.k];
+        if(r)h+=`<button class="fcard" data-fi="${i}" style="--rc:${s.c}"><div class="spr">${spriteImg(i,mut,false,84,f.n,44,r.tr,3)}</div><div class="nm">${f.n}</div><div class="inc">${fmt(f.inc*r.x*pm)}/s</div><div class="ticons">${r.tr.map(iconImg).join("")}</div></button>`;
+        else h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,84,"",44,[],3)}</div><div class="nm muted">${dd?f.n:"???"}</div><div class="inc muted" style="font-size:13px;font-family:var(--f-text)">${dd?"not yet":SRC(f)}</div></button>`;
+      });
+      h+=`</div>`;
+    });
+  }
   panel.innerHTML=h;
+  const on=panel.querySelector(".setc.on");if(on&&on.scrollIntoView&&!renderAlbum._s){renderAlbum._s=1;on.scrollIntoView({block:"nearest",inline:"center"});}
+}
+function showSetDone(k){
+  const s=setOf(k);if(!s)return;
+  confetti(60,[s.c,"#ffc845","#ffffff","#38e0c4"]);sfx.catch(6);buzz(160);
+  showModal(`<div class="ribbon2" style="background:${s.c}">Album set complete!</div>
+    <div class="bigpic reveal" style="--rc:${s.c}"><div class="rays"></div>${fishImg(KOI,k==="_"?null:k,["shimmer"],false,150,64)}</div>
+    <h3 style="color:${s.c};text-align:center">${s.n} set</h3>
+    <p class="small" style="text-align:center">You collected ${s.need} different fish${k==="_"?" in their plain form":" with the "+s.n+" mutation"}.</p>
+    <div class="sk big${SKIN_CLS[k]?" "+SKIN_CLS[k]:""}" style="--wbg:${SKIN_BG[k]}"><i></i></div>
+    <dl class="kv"><dt>Income bonus</dt><dd style="color:var(--gold)">+${s.b}, album now x${albumMult().toFixed(2)}</dd><dt>New tank style</dt><dd style="color:${s.c}">${s.n}</dd></dl>
+    <div class="mbtnrow"><button class="btn teal" id="skUse">Use the ${s.n} tank style</button><button class="btn ghost" id="mclose">Nice!</button></div>`,s.c);
+  $("#skUse").onclick=()=>{S.skin=k;save();closeModal();refreshAll();};
+}
+function eventBoxHTML(){
+  const e=eventInfo(Date.now()),E=EV_BY[e.id];
+  return `<div class="box evbox${e.active?" hot":""}" style="--ec:${E.c}" data-evon="${e.active?1:0}"><div class="ut" style="color:${E.c}">${e.active?E.n+" is on!":"Tide Events"}</div>
+    <div class="ud">${e.active?`${E.d} ${E.s}. Ends in <b id="evt">${clock(e.left)}</b>.`:`Every 30 minutes something wild happens on the water for 4 minutes. Next: <b style="color:${E.c}">${E.n}</b> in <b id="evt">${clock(e.in)}</b>.`}</div>
+    ${EVENTS.map(x=>`<div class="evrow" style="--ec:${x.c}"><i></i><b>${x.n}</b><span>${x.s}</span></div>`).join("")}</div>`;
 }
 function renderTraits(){
-  const seen=TRAITS.filter(t=>S.tseen[t.id]).length,now=new Date(),wk=dayInfo(now),td=TR_BY[wk.id];
-  let h=head("t_star","Traits",`${seen}/${TRAITS.length}`)+`<p class="intro">A fish can carry any number of traits: once one lands, each extra one is about 4 times rarer. Traits for the current weather, tide, hour or day make a first trait more likely. Wild traits are weaker but can appear on any catch. Everything multiplies.</p>
-    <div class="box hot today"><div class="big"><img class="pix" src="${iconURL(td.ic)}" alt=""></div><div style="min-width:0"><div class="ut" style="color:var(--gold)">Today: ${td.n} x${td.m}</div><div class="ud">Only today. A new daily trait in ${fmtLeft(wk.left)}.</div></div></div>`;
+  const seen=TRAITS.filter(t=>S.tseen[t.id]).length,now=new Date(),wk=dayInfo(now),td=TR_BY[wk.id],ev=evNow();
+  let h=head("t_star","Traits",`${seen}/${TRAITS.length}`)+`<p class="intro">Every trait shows up on the fish: hats, glasses, pets, auras. Traits <b>add up</b>: each one adds its bonus to the fish, and 4 or more get a stack bonus (x1.5, x2 at 6, x3 at 8). The total multiplies with the mutation. Once one trait lands, each extra one is about 4 times rarer.</p>
+    <div class="box hot today"><div class="big">${fishImg(SAMPLE,null,[td.id],false,48,30,2)}</div><div style="min-width:0"><div class="ut" style="color:var(--gold)">Today: ${td.n} ${tb(td)}</div><div class="ud">Only today. A new daily trait in ${fmtLeft(wk.left)}.</div></div></div>`+eventBoxHTML();
   Object.keys(TGROUP).forEach(gk=>{
     const G=TGROUP[gk];
     h+=`<div class="grp"><b style="color:${G.c}">${G.n}</b><span>${G.sub}</span></div>`;
@@ -1826,7 +2325,8 @@ function renderTraits(){
       if(gk==="day"){const on=wk.id===t.id;d=on?"Active now":"Back on another day";live=on?"on":"";}
       if(gk==="season"){const se=SEASONS.find(x=>x.id===t.id),si=seasonInfo(se,now);
         d=`${MONTHS[se.f[0]-1]} ${se.f[1]} to ${MONTHS[se.t[0]-1]} ${se.t[1]}`+(si.on?`, ${fmtLeft(si.left)} left`:`, in ${fmtLeft(si.in)}`);live=si.on?"on":"";}
-      h+=`<div class="trow ${got?"":"off"}"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n}${got?" ✓":""}</span><span class="td${live?" live":""}">${d}</span><span class="tb">x${t.m}</span></div>`;
+      if(gk==="event"){const on=t.on({ev});if(on){d="Active now!";live="on";}}
+      h+=`<div class="trow ${got?"":"off"}"><span class="tprev">${fishImg(SAMPLE,null,[t.id],false,54,30,2)}</span><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n}${got?" ✓":""}</span><span class="td${live?" live":""}">${d}</span><span class="tb">${tb(t)}</span></div>`;
     });
   });
   panel.innerHTML=h;
@@ -1876,12 +2376,12 @@ function collectCraft(){
   const o=newInst(f.id,r.mut,tr),mult=instX(o),rc=record(o),pl=receive(o);
   S.craft.job=null;S.craft.n=(S.craft.n||0)+1;
   S.log.unshift({fi,mut:o.m,tr,kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
-  sfx.catch(6);buzz(150);showCard(fi,mut,pl,rc,tr,mult);celebrate(f.t,mult,tr.length);
+  sfx.catch(6);buzz(150);showCard(fi,mut,pl,rc,tr,mult);celebrate(f.t,mult,tr.length);setHold=performance.now()+1800;
   save();refreshAll();
 }
 function insChip(id,x,k){
   const g=FISH_BY[id],have=!!x,o=have?x.o:null,m=o&&o.m?MUT_BY[o.m]:null;
-  return `<span class="cin ${have?"":"miss"}${k!==undefined?" pick":""}" ${k!==undefined?`data-cyc="${k}"`:""}><span class="sp">${spriteImg(FISH.indexOf(g),o?o.m:null,!have,40,"",24)}</span><span>${g.n}${m?` <span style="color:${m.c}">${m.n}</span>`:""}${o&&o.tr.length?` <span style="color:var(--teal)">+${o.tr.length}</span>`:""}${have?(x.w==="d"?` <em class="ondisp">tank</em>`:""):" ✕"}</span></span>`;
+  return `<span class="cin ${have?"":"miss"}${k!==undefined?" pick":""}" ${k!==undefined?`data-cyc="${k}"`:""}><span class="sp">${spriteImg(FISH.indexOf(g),o?o.m:null,!have,40,"",24,o?o.tr:[])}</span><span>${g.n}${m?` <span style="color:${m.c}">${m.n}</span>`:""}${o&&o.tr.length?` <span style="color:var(--teal)">+${o.tr.length}</span>`:""}${have?(x.w==="d"?` <em class="ondisp">tank</em>`:""):" ✕"}</span></span>`;
 }
 function recipeHTML(c){
   const f=FISH_BY[c.id],fi=FISH.indexOf(f),ch=craftChosen(c),have=ch.every(Boolean),d=S.dex[c.id],busy=!!S.craft.job;
@@ -1911,7 +2411,7 @@ function openCraft(id,still){
   if(!c||S.craft.job||!c.in.every(owns))return;
   const ch=craftChosen(c),ins=craftIns(c),o=craftOdds(ins),pc=p=>Math.round(p*100)+"%";
   const rows=o.mut.map(x=>{const m=MUT_BY[x.id];return `<div class="trow"><span class="tn" style="color:${m.c}">${m.n} x${m.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("")
-    +o.tr.map(x=>{const t=TR_BY[x.id];return `<div class="trow"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n} x${t.m}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("");
+    +o.tr.map(x=>{const t=TR_BY[x.id];return `<div class="trow"><span class="tic"><img class="ti" src="${iconURL(t.ic)}" alt=""></span><span class="tn" style="color:${t.col}">${t.n} ${tb(t)}</span><span class="td">${x.n} of ${o.N} fish</span><span class="pc">${pc(x.p)}</span></div>`;}).join("");
   const many=c.in.some(id=>craftCands(id).length>1);
   showModal(`<h3 style="color:${T.c}">Craft ${f.n}</h3>
    <div class="bigpic">${spriteImg(fi,null,false,170,f.n,88)}</div>
@@ -2054,13 +2554,13 @@ function renderLog(){
     if(r.blk){const B=BLOCK_BY[r.blk];if(!B)return;const m=r.mut?MUT_BY[r.mut]:null;
       h+=`<div class="logrow"><span class="lp">${blockImg(r.blk,26)}</span><div class="tx"><span style="color:${B.c}">${m?m.n+" ":""}${B.n}</span><br><span class="small muted">Lucky Block${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div><div class="r"><span class="small" style="color:${LUCKY_C}">block</span></div></div>`;return;}
     const f=FISH[r.fi];if(!f)return;const T=TIERS[f.t],m=r.mut?MUT_BY[r.mut]:null;
-    h+=`<div class="logrow"><span class="lp">${spriteImg(r.fi,r.mut,false,48,f.n,28)}</span><div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.from&&BLOCK_BY[r.from]?", from "+BLOCK_BY[r.from].n:""}${r.nw===1?", new":r.nw===2?", new variant":""}${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
+    h+=`<div class="logrow"><span class="lp">${spriteImg(r.fi,r.mut,false,48,f.n,26,r.tr)}</span><div class="tx"><span style="color:${T.c}">${m?m.n+" ":""}${f.n}</span><br><span class="small muted">${T.n}${r.from&&BLOCK_BY[r.from]?", from "+BLOCK_BY[r.from].n:""}${r.nw===1?", new":r.nw===2?", new variant":""}${r.tr&&r.tr.length?", "+r.tr.map(i=>TR_BY[i]?TR_BY[i].n:"").join(", "):""}</span></div>
       <div class="r">${r.kind==="sold"?`<span style="color:var(--gold)">sold +${fmt(r.gain)}</span>`:r.kind==="display"?"+"+fmt(r.gain)+"/s":`<span class="small muted">bucket</span>`}</div></div>`;
   });
   h+=`<p style="margin-top:16px"><button class="btn ghost" id="reset">Reset save</button></p>`;
   panel.innerHTML=h;
   $("#reset").onclick=function(){
-    if(this.dataset.armed){S=fresh();S.seenV="8";save();lastWall=Date.now();hideCard();refreshAll();}
+    if(this.dataset.armed){S=fresh();S.seenV="9";save();lastWall=Date.now();hideCard();refreshAll();}
     else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
   };
 }
@@ -2080,13 +2580,13 @@ function openFish(i,still){
   const got=d?Object.keys(d.v).map(k=>{const r=d.v[k],m=k==="_"?null:MUT_BY[k];return {k,m,tr:r.tr,x:r.x,mx:mutM(m&&m.id)};}):[];
   got.forEach(r=>{r.v=f.inc*(fishTr?r.x:r.mx)*pm;});got.sort((a,b)=>b.v-a.v);
   const top=got.length?got[0].v:1,b=d?dexBest(d):null,inBlocks=BLOCKS.filter(B=>B.pool.some(p=>p[0]===f.id)).map(B=>B.n.replace(" Block",""));
-  const rows=got.map(r=>`<div class="vrow"><span class="vs">${spriteImg(i,r.m?r.m.id:null,false,60,"",30)}</span>
+  const rows=got.map(r=>`<div class="vrow"><span class="vs">${spriteImg(i,r.m?r.m.id:null,false,60,"",28,fishTr?r.tr:[])}</span>
       <div class="vt"><b style="color:${r.m?r.m.c:"var(--text)"}">${r.m?r.m.n:"Normal"}</b> <em>x${xm(fishTr?r.x:r.mx)}</em>
       <div class="ticons left${fishTr?"":" off"}">${r.tr.length?r.tr.map(iconImg).join(""):`<span class="nt">no traits</span>`}</div></div>
       <div class="vp"><b>${fmt(r.v)}/s</b><div class="bar"><i style="width:${Math.max(3,r.v/top*100).toFixed(0)}%"></i></div></div></div>`).join("");
   const vars=[{id:null,n:"Normal",c:"#fff",k:"_"}].concat(ALL_MUTS.map(m=>({id:m.id,n:m.n,c:m.c,k:m.id})));
   showModal(`<h3 style="color:${d?T.c:"var(--muted)"}">${d?f.n:"Unknown fish"}</h3><div class="small muted">${tierTag(f)}</div>
-   <div class="bigpic" style="--rc:${d?T.c:"#3b3180"}">${spriteImg(i,b&&b.k!=="_"?b.k:null,!d,170,f.n,88)}</div>
+   <div class="bigpic" style="--rc:${d?T.c:"#3b3180"}">${spriteImg(i,b&&b.k!=="_"?b.k:null,!d,170,f.n,80,b?b.tr:[])}</div>
    <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Best ever</dt><dd>${b?"x"+xm(b.x)+" ("+fmt(f.inc*b.x*pm)+"/sec)":f.w==="Craft"?"not crafted":"not found"}</dd>
    ${f.w==="Craft"?`<dt>Crafted</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:f.w==="Lucky"?`<dt>Found</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd>`:`<dt>Caught</dt><dd>${d?d.n:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.001?pct.toFixed(5):pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}
    ${inBlocks.length?`<dt>Lucky Blocks</dt><dd>${inBlocks.join(", ")}</dd>`:""}</dl>
@@ -2135,7 +2635,7 @@ function crackBlock(u){
     const m=inst.m?MUT_BY[inst.m]:null,next=S.blocks.slice().sort((a,b)=>(a.b===o.b?0:1)-(b.b===o.b?0:1))[0];
     const res=pl.w==="display"?`On display, +${fmt(pl.gain)}/s`:pl.w==="sold"?`Bucket full, sold +${fmt(pl.gain)}`:"Into your bucket";
     showModal(`<div class="ribbon2" style="background:${T.c}">${tierTag(f)}</div>
-      <div class="bigpic reveal" style="--rc:${T.c}"><div class="rays"></div>${spriteImg(fi,inst.m,false,190,f.n,90)}</div>
+      <div class="bigpic reveal" style="--rc:${T.c}"><div class="rays"></div>${spriteImg(fi,inst.m,false,190,f.n,84,inst.tr)}</div>
       <h3 style="color:${T.c};text-align:center">${m?m.n+" ":""}${f.n}${rc.isNew?` <span class="newtag">New!</span>`:""}</h3>
       ${chipHTML(inst.tr)}
       <dl class="kv"><dt>Total</dt><dd>x${xm(mult)}</dd><dt>Pays on display</dt><dd style="color:var(--teal)">${fmt(instPay(inst))}/sec</dd><dt>Went</dt><dd>${res}</dd></dl>
@@ -2153,14 +2653,14 @@ function tankHTML(z,i){
   const o=z.f,f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,cap=tankCap(z),full=z.c>=cap-.5;
   return `<div class="tank${full?" full":""}" style="--rc:${T.c}" data-tank="${i}" role="button" aria-label="Collect from ${f.n}">
     <div class="tk-top"><span class="tk-n">${m?`<i style="color:${m.c}">${m.ab}</i> `:""}<span style="color:${T.c}">${f.n}</span></span><button class="tk-sw" data-spot="${i}">Swap</button></div>
-    <div class="tk-water"><span class="bub"></span><span class="bub b2"></span><div class="tk-fish">${spriteImg(fi,o.m,false,96,f.n,38)}</div></div>
+    <div class="tk-water"><span class="tk-bg"></span><span class="caus"></span><span class="tk-glow" style="--mc:${m?m.c:T.c}"></span><span class="bub"></span><span class="bub b2"></span><div class="tk-fish">${spriteImg(fi,o.m,false,120,f.n,42,o.tr,3)}</div></div>
     <div class="tk-mid"><span class="tk-pay">${fmt(instPay(o))}/s</span><span class="ticons">${o.tr.map(iconImg).join("")}</span></div>
     <div class="tk-col"><div class="bar gold"><i id="tb${i}" style="width:${Math.min(100,z.c/cap*100).toFixed(1)}%"></i></div><span class="tk-amt" id="tp${i}">${coinImg()}${fmt(z.c)}</span></div>
   </div>`;
 }
 function bucketCard(o,wv){
   const f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,p=instPay(o),up=p>wv;
-  return `<button class="fcard bk${up?" up":""}" data-bk="${o.u}" style="--rc:${T.c}">${up?`<span class="upb">▲</span>`:""}<div class="spr">${spriteImg(fi,o.m,false,66,f.n,40)}</div>
+  return `<button class="fcard bk${up?" up":""}" data-bk="${o.u}" style="--rc:${T.c}">${up?`<span class="upb">▲</span>`:""}<div class="spr">${spriteImg(fi,o.m,false,84,f.n,44,o.tr,3)}</div>
     <div class="nm">${f.n}</div><div class="bmut" style="color:${m?m.c:"var(--muted)"}">${m?m.n:"Normal"}${o.tr.length?` <span style="color:var(--teal)">+${o.tr.length} trait${o.tr.length>1?"s":""}</span>`:""}</div><div class="inc">${fmt(p)}/s</div><div class="ticons">${o.tr.map(iconImg).join("")}</div></button>`;
 }
 function renderBase(){
@@ -2171,9 +2671,11 @@ function renderBase(){
       <div class="colamt" id="colAmt">${coinImg()}${fmt(tot)}</div><div class="ud">Your display earns <b style="color:var(--teal)">${fmt(income())}/s</b>. Tap a tank to collect it.</div></div>
       <button class="btn" data-colall="1" id="colAllBtn" ${tot>=1?"":"disabled"}>Collect all</button></div>`;
   const sf=SORTS[S.bsort][1],ff=FILTS[S.bfilt][1],opt=(o,cur)=>Object.keys(o).map(k=>`<option value="${k}"${k===cur?" selected":""}>${o[k][0]}</option>`).join("");
-  h+=`<div class="sorter"><label><span>Sort</span><select data-sel="bsort">${opt(SORTS,S.bsort)}</select></label><label><span>Show</span><select data-sel="bfilt">${opt(FILTS,S.bfilt)}</select></label></div>`;
+  const skins=["classic"].concat(SETS.filter(setDone).map(s=>s.k));
+  h+=`<div class="sorter"><label><span>Sort</span><select data-sel="bsort">${opt(SORTS,S.bsort)}</select></label><label><span>Show</span><select data-sel="bfilt">${opt(FILTS,S.bfilt)}</select></label>
+    ${skins.length>1?`<label class="span2"><span>Tank style (from album sets)</span><select data-sel="skin">${skins.map(k=>`<option value="${k}"${k===S.skin?" selected":""}>${skinName(k)}</option>`).join("")}</select></label>`:""}</div>`;
   const order=[...Array(n).keys()].sort((a,b)=>{const A=S.base[a].f,B=S.base[b].f;if(!A||!B)return (A?0:1)-(B?0:1)||a-b;return sf(A,B)||a-b;});
-  h+=`<div class="tanks">`+order.map(i=>tankHTML(S.base[i],i)).join("");
+  h+=`<div class="tanks${SKIN_CLS[S.skin]?" "+SKIN_CLS[S.skin]:""}" style="--wbg:${SKIN_BG[S.skin]||SKIN_BG.classic}">`+order.map(i=>tankHTML(S.base[i],i)).join("");
   for(let k=n;k<Math.min(SPOT_MAX,n+2);k++)h+=`<div class="tank locked">${lockImg()}<span>Unlocks with rebirth ${Math.ceil((k-4)/2)}</span></div>`;
   h+=`</div><p class="intro" style="margin-top:2px">Each tank holds up to 3 hours of its fish's pay, then stops filling. It keeps filling while you are away.</p>`+blocksHTML();
   const plain=S.bucket.filter(o=>!o.m&&!o.tr.length).length,better=S.bucket.some(o=>instPay(o)>wv);
@@ -2216,12 +2718,12 @@ function openSpot(i){
   const z=S.base[i],cur=z&&z.f;if(!z)return;
   const list=S.bucket.slice().sort((a,b)=>instPay(b)-instPay(a)),cp=cur?instPay(cur):-1;
   const row=o=>{const f=FISH_BY[o.id],T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,p=instPay(o);
-    return `<button class="prow${p>cp?" up":""}" data-pick="${o.u}"><span class="vs">${spriteImg(FISH.indexOf(f),o.m,false,60,"",30)}</span>
+    return `<button class="prow${p>cp?" up":""}" data-pick="${o.u}"><span class="vs">${spriteImg(FISH.indexOf(f),o.m,false,60,"",28,o.tr)}</span>
       <span class="vt"><b style="color:${T.c}">${f.n}</b> <em style="color:${m?m.c:"var(--muted)"}">${m?m.n:"Normal"}</em><span class="ticons left">${o.tr.map(iconImg).join("")}</span></span>
       <span class="vp"><b>${fmt(p)}/s</b>${p>cp?`<em>+${fmt(p-Math.max(0,cp))}</em>`:""}</span></button>`;};
   const cf=cur?FISH_BY[cur.id]:null;
   showModal(`<h3 style="color:var(--teal)">Tank ${i+1}</h3>
-    ${cur?`<div class="tnow"><span class="vs">${spriteImg(FISH.indexOf(cf),cur.m,false,60,"",30)}</span><div><b>${cur.m?MUT_BY[cur.m].n+" ":""}${cf.n}</b><div class="small muted">In this tank now, ${fmt(cp)}/s</div></div></div>`:""}
+    ${cur?`<div class="tnow"><span class="vs">${spriteImg(FISH.indexOf(cf),cur.m,false,60,"",28,cur.tr)}</span><div><b>${cur.m?MUT_BY[cur.m].n+" ":""}${cf.n}</b><div class="small muted">In this tank now, ${fmt(cp)}/s</div></div></div>`:""}
     <div class="small muted" style="margin:8px 0 4px">${list.length?(cur?"Pick a fish from your bucket to swap in:":"Pick a fish from your bucket:"):"Your bucket is empty. Go fishing!"}</div>
     <div class="plist">${list.map(row).join("")}</div>
     <div class="mbtnrow">${cur?`<button class="btn teal" id="sInfo">This fish: details or sell</button>`:""}<button class="btn ghost" id="mclose">Close</button></div>`,"#38e0c4");
@@ -2233,7 +2735,7 @@ function openInst(u){
   const o=x.o,f=FISH_BY[o.id],fi=FISH.indexOf(f),T=TIERS[f.t],m=o.m?MUT_BY[o.m]:null,wk=weakestSpot(),wz=wk>=0?S.base[wk]:null;
   const inB=x.w==="b",room=S.bucket.length<bucketCap();
   showModal(`<h3 style="color:${T.c}">${m?m.n+" ":""}${f.n}</h3><div class="small muted">${tierTag(f)}${inB?", in your bucket":`, in tank ${x.i+1}`}</div>
-   <div class="bigpic" style="--rc:${T.c}">${spriteImg(fi,o.m,false,170,f.n,88)}</div>
+   <div class="bigpic" style="--rc:${T.c}">${spriteImg(fi,o.m,false,170,f.n,80,o.tr)}</div>
    ${chipHTML(o.tr)}
    <dl class="kv"><dt>Mutation</dt><dd style="color:${m?m.c:"var(--muted)"}">${m?m.n+" x"+m.m:"none"}</dd><dt>Total</dt><dd>x${xm(instX(o))}</dd><dt>Pays on display</dt><dd style="color:var(--teal)">${fmt(instPay(o))}/sec</dd><dt>Sells for</dt><dd style="color:var(--gold)">${fmt(sellVal(o))}</dd></dl>
    ${inB&&wz?`<div class="small muted">${wz.f?`Display swaps it with your weakest tank: ${FISH_BY[wz.f.id].n}, ${fmt(instPay(wz.f))}/s.`:"You have an open tank."}</div>`:""}
@@ -2257,6 +2759,7 @@ panel.addEventListener("click",e=>{
   const wb=e.target.closest("button[data-wheel]");if(wb){if(!wb.disabled)openWheel();return;}
   const cr=e.target.closest("button[data-craft]");if(cr){if(!cr.disabled)openCraft(cr.dataset.craft);return;}
   if(e.target.closest("button[data-collect]")){collectCraft();return;}
+  const av=e.target.closest("button[data-av]");if(av){S.aview=av.dataset.av;beep(560,.04,"square",.03);renderAlbum._s=0;renderPanel();save();return;}
   const f=e.target.closest("button[data-fi]");if(f){openFish(+f.dataset.fi);return;}
   const sp=e.target.closest("[data-spot]");if(sp){openSpot(+sp.dataset.spot);return;}
   const tk=e.target.closest(".tank[data-tank]");if(tk){collectSpot(+tk.dataset.tank);return;}
@@ -2267,7 +2770,9 @@ panel.addEventListener("click",e=>{
   const pl=e.target.closest("button[data-plain]");
   if(pl){if(!pl.dataset.armed){pl.dataset.armed=1;pl.classList.remove("ghost");pl.classList.add("coral");pl.textContent="Tap again to sell";return;}sellPlain();return;}
 });
-panel.addEventListener("change",e=>{const k=e.target.dataset&&e.target.dataset.sel;if(k&&(k==="bsort"?SORTS:FILTS)[e.target.value]){S[k]=e.target.value;save();renderPanel();}});
+panel.addEventListener("change",e=>{const k=e.target.dataset&&e.target.dataset.sel,v=e.target.value;if(!k)return;
+  const ok=k==="bsort"?!!SORTS[v]:k==="bfilt"?!!FILTS[v]:k==="skin"?(v==="classic"||setDone(setOf(v))):false;
+  if(ok){S[k]=v;save();renderPanel();}});
 $("#colPill").addEventListener("click",e=>{e.stopPropagation();collectAll();});
 $("#modal").addEventListener("click",e=>{if(e.target.id==="modal"&&!wheelBusy)closeModal();});
 $("#snd").addEventListener("click",function(){S.sound=!S.sound;this.setAttribute("aria-pressed",String(S.sound));save();});
@@ -2322,7 +2827,9 @@ $("#mHow").onclick=()=>{
     <li>Rarer fish pay far more: Common, Uncommon, Rare, Epic, Legendary, Mythic, <b>Tide God</b>, <b>Secret</b> and <b>Primordial</b>. Legendary fish bite from Lucky Rod Lv 5, Mythic from 10, Tide God from 13, Secret from 17, Primordial from 21.</li>
     <li>Sometimes you reel up a <b>Lucky Block</b>. Open it in your Base: the fish inside comes from the block's loot pool and gets the block's mutation and traits. Lucky Drop fish only come from blocks.</li>
     <li><b>Mutations</b> like Shiny, Golden or Galaxy multiply a fish's pay. Some only happen in certain weather, at night, during events, or from the wheel.</li>
-    <li><b>Traits</b> are earned by how and when you fish: the tide, the hour, the weather, today's trait. A fish can carry any number, each extra one about 4 times rarer. They all multiply.</li>
+    <li><b>Traits</b> are earned by how and when you fish: the tide, the hour, the weather, today's trait, Tide Events. You can see them on the fish: hats, glasses, pets and more. A fish can carry any number, each extra one about 4 times rarer. Their bonuses add up, 4 or more get a stack bonus, and the total multiplies with the mutation.</li>
+    <li><b>Tide Events</b> happen every 30 minutes for 4 minutes: Meteor Shower, Red Tide, Glow Bloom, Feeding Frenzy or Kraken Rising. Each changes the water and brings its own trait or mutation.</li>
+    <li><b>Album sets</b>: collect enough different fish in one mutation to unlock a permanent income bonus and a tank style for your Base.</li>
     <li>The sky follows your real clock. <b>Tides</b> turn every 5 minutes: high tide brings sea fish, low tide lake fish.</li>
     <li>The <b>Eclipse Wheel</b> (Gear tab) gives a free spin every 30 minutes you spend playing.</li>
     <li>The <b>Craft</b> tab turns fish you own into stronger craft-only fish. The fish you use are lost, but their mutations and traits can pass on.</li>
@@ -2353,7 +2860,7 @@ $("#mCode").onclick=()=>{
   };
 };
 $("#mNew").onclick=function(){
-  if(this.dataset.armed){S=fresh();S.seenV="8";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
+  if(this.dataset.armed){S=fresh();S.seenV="9";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
   else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
 };
 
@@ -2369,18 +2876,37 @@ $("#ver").textContent="v"+VERSION;
 refreshAll();setBtn();refreshMenu();refreshEnv();
 if(wasReset){showModal(`<h3 data-defer style="color:var(--gold)">Welcome to v${VERSION}</h3><p>Your fish now live in a <b>Base</b>. Only the fish you put on display earn coins, so your best catches matter far more, and mutations and traits got much stronger to match.</p><p class="small muted">Coins pile up in each tank until you tap to collect. The album keeps every variant you ever catch, so you can compare them. Because fish are now kept one by one, every save starts fresh.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
 if(S.seenV==="7"){S.seenV="8";showModal(`<h3 data-defer style="color:var(--gold)">New in v${VERSION}</h3><p>Three new rarities above Mythic: <b style="color:#3ff0d8">Tide God</b> (Lucky Rod Lv 13), <b style="color:#fff">Secret</b> (Lv 17) and <b style="color:#ff3b3b">Primordial</b> (Lv 21), plus 25 new fish.</p><p><b style="color:#5ad27a">Lucky Blocks</b> now come up while fishing and from the Eclipse Wheel. The fish inside gets the block's mutation and traits.</p><p class="small muted">Craft fish now have normal rarities. Your Base has sort and filter options. Your save carried over.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
-if(!S.seenV){S.seenV="8";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
+if(S.seenV==="8"){S.seenV="9";SETS.filter(setDone).forEach(st=>setQ.push(st.k));setHold=performance.now()+1500;showModal(`<h3 data-defer style="color:var(--gold)">Tidewater v9</h3>
+  <div class="bigpic" style="--rc:#ffc845;display:flex;gap:18px;justify-content:center;align-items:center">${fishImg(SAMPLE,"rainbow",["dapper","sunny"],false,70,34)}${fishImg(KOI,"galaxy",["shimmer","cosmic"],false,70,34)}</div>
+  <p><b>Fish now wear their traits</b>: hats, glasses, pets, clouds, flames, orbiting planets. Every <b>mutation is animated</b>.</p>
+  <p><b>Tide Events</b> every 30 minutes: Meteor Shower, Red Tide, Glow Bloom, Feeding Frenzy and Kraken Rising, each with its own trait or mutation. Plus 4 new mutations: Twilight, Phantom, Crystal and Red Tide.</p>
+  <p><b>Album sets</b>: collect enough different fish in one mutation for a permanent income bonus and a new tank style.</p>
+  <p class="small muted">Traits now add up instead of multiplying, and 4 or more get a stack bonus. Your save carried over.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
+if(!S.seenV){S.seenV="9";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
 save();
-let lastUI=0,lastSave=0;
+let lastUI=0,lastSave=0,lastEv=evNow();
+function eventBanner(E){
+  const st=$("#stage"),d=document.createElement("div");d.className="evban";d.style.setProperty("--ec",E.c);
+  d.innerHTML=`<b>${E.n}!</b><span>${E.s}</span>`;st.appendChild(d);setTimeout(()=>d.remove(),2900);
+  flash(E.c);[330,440,554,659,880].forEach((fq,k)=>setTimeout(()=>beep(fq,.14,"triangle",.05),k*90));buzz(80);
+}
+// keeps the event chip, banner and the Traits tab event box current
+function refreshEvents(){
+  const ea=evNow();
+  if(ea!==lastEv){lastEv=ea;if(ea&&!menuOpen)eventBanner(EV_BY[ea]);if(S.tab==="traits")renderPanel();return;}
+  if(S.tab==="traits"){const el=$("#evt");if(el){const e=eventInfo(Date.now());el.textContent=clock(e.active?e.left:e.in);}}
+}
 function frame(){
   const now=performance.now(),t=now/1000;
   stepPhase(now);drawScene(t,now);if(menuOpen)drawMenuBg(t);
-  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();refreshBase();}
+  lvTick(now);
+  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();refreshBase();refreshEvents();
+    if(setQ.length&&!menuOpen&&!revealing&&now>setHold&&$("#modal").hidden)showSetDone(setQ.shift());}
   if(now-lastSave>5000){save();lastSave=now;}
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__tw={BLOCKS,BLOCK_BY,giveBlock,catchBlock,openBlock,crackBlock,rollBlockType,rollPool,SORTS,FILTS,canBite,receive,record,placeBest,placeIn,collectAll,collectSpot,sellPlain,openSpot,openInst,instPay,instX,spotCount,bucketCap,pendingTotal,newInst,dexCount,runCount,renderBase,
+window.__tw={fishImg,fishGrid,lvGet,lvFrame,EVENTS,eventInfo,SETS,setHave,setDone,albumMult,showSetDone,bigReveal,WEAR,stackBonus,BLOCKS,BLOCK_BY,giveBlock,catchBlock,openBlock,crackBlock,rollBlockType,rollPool,SORTS,FILTS,canBite,receive,record,placeBest,placeIn,collectAll,collectSpot,sellPlain,openSpot,openInst,instPay,instX,spotCount,bucketCap,pendingTotal,newInst,dexCount,runCount,renderBase,
   WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,
   pityMult,rbMult,rbReady,doRebirth,hook,pop,dayInfo,DAILY,saveCode,readCode,setHookF(v){hookF=v;},TRAITS,TR_BY,rollTraits,traitCtx,traitMult,seasonInfo,SEASONS,ICONS,iconURL,
   get S(){return S;},FISH,TIERS,MUTS,WMUTS,ALL_MUTS,tideInfo,weatherInfo,fishChance,rollFish,rollMut,tierWeights,income,upCost,UPS,getSprite,doCatch,startCast,showCard,celebrate,
