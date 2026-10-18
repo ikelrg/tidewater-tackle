@@ -38,7 +38,7 @@ body{
 }
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-img.pix,.pix{image-rendering:pixelated;image-rendering:crisp-edges}
+img.pix,.pix{image-rendering:auto}
 .muted{color:var(--muted)}.small{font-size:14px}
 #app{max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;gap:10px;padding-block:calc(8px + env(safe-area-inset-top,0px)) calc(14px + env(safe-area-inset-bottom,0px))}
 
@@ -114,7 +114,7 @@ header{display:flex;align-items:center;gap:8px}
   -webkit-mask:radial-gradient(circle,#000 18%,transparent 66%);mask:radial-gradient(circle,#000 18%,transparent 66%);animation:spin 9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #card .pic{position:relative;height:98px;display:grid;place-items:center;margin:2px 0}
-#card .pic img{image-rendering:pixelated;max-width:100%;max-height:100%;filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
+#card .pic img{image-rendering:auto;max-width:100%;max-height:100%;filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
 #card .nm{position:relative;font-family:var(--f-ui);font-size:22px;font-weight:700;text-shadow:0 2px 0 var(--ink)}
 #card .mut{font-size:16px;margin-top:1px;font-weight:900}
 #card .res{margin-top:6px;font-family:var(--f-num);font-size:30px;line-height:1.05}
@@ -128,7 +128,7 @@ header{display:flex;align-items:center;gap:8px}
 .cmp.new .lab{color:var(--teal)}
 .cmp.old{opacity:.75}
 .cmp .cpic{height:60px;display:grid;place-items:center}
-.cmp .cpic img{image-rendering:pixelated}
+.cmp .cpic img{image-rendering:auto}
 .cmp .vn{font-size:14px;font-weight:900;white-space:nowrap}
 .cmp .vn b{font-family:var(--f-num);font-weight:400;font-size:16px;color:var(--text)}
 .cmp .pay{font-family:var(--f-num);font-size:23px;line-height:1.05;color:var(--teal)}
@@ -137,7 +137,7 @@ header{display:flex;align-items:center;gap:8px}
 /* ---------- cast button ---------- */
 #castBtn{position:relative;overflow:hidden;font-size:27px;letter-spacing:.14em;text-transform:uppercase;padding:13px 12px 14px;border-radius:12px;
   box-shadow:inset 0 -5px 0 var(--gold-d),0 5px 0 var(--ink),0 0 0 0 rgba(255,200,69,0)}
-#castBtn .bi{width:28px;height:28px;vertical-align:-5px;margin-right:8px;image-rendering:pixelated}
+#castBtn .bi{width:28px;height:28px;vertical-align:-5px;margin-right:8px;image-rendering:auto}
 #castBtn.idle{animation:castglow 2.2s ease-in-out infinite}
 @keyframes castglow{50%{box-shadow:inset 0 -5px 0 var(--gold-d),0 5px 0 var(--ink),0 0 22px 4px rgba(255,200,69,.45)}}
 #castBtn.idle::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 3.4s ease-in-out infinite}
@@ -153,7 +153,7 @@ header{display:flex;align-items:center;gap:8px}
 nav#tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
 nav#tabs button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 0 4px;border:3px solid var(--ink);border-radius:9px;
   background:linear-gradient(180deg,#33286e,#231a52);box-shadow:inset 0 2px 0 rgba(255,255,255,.08),0 3px 0 var(--ink);font-family:var(--f-ui);font-weight:600;font-size:14px;color:var(--muted)}
-nav#tabs button img{width:24px;height:24px;image-rendering:pixelated;opacity:.75}
+nav#tabs button img{width:24px;height:24px;image-rendering:auto;opacity:.75}
 nav#tabs button[aria-selected="true"]{background:linear-gradient(180deg,#5040aa,#362a84);color:var(--gold);transform:translateY(-3px);box-shadow:inset 0 0 0 2px var(--gold),0 6px 0 var(--ink)}
 nav#tabs button[aria-selected="true"] img{opacity:1}
 .dot{position:absolute;top:-7px;right:-3px;width:15px;height:15px;border-radius:50%;background:var(--coral);border:2px solid var(--ink);animation:dotp 1.1s ease-in-out infinite}
@@ -214,7 +214,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .fcard.unk{background:#1a1442;box-shadow:inset 0 0 0 2px #2e2766,0 3px 0 var(--ink)}
 .fcard.gone{opacity:.7}
 .fcard .spr{height:50px;display:grid;place-items:center}
-.fcard .spr img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.45))}
+.fcard .spr img{image-rendering:auto;filter:drop-shadow(0 2px 0 rgba(0,0,0,.45))}
 .fcard .nm{font-size:14px;font-weight:900;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fcard .inc{font-family:var(--f-num);font-size:21px;color:var(--teal);line-height:1}
 .fcard.gone .inc{color:var(--muted);font-size:16px;font-family:var(--f-text)}
@@ -224,7 +224,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .pgap{width:3px}
 
 /* traits */
-.ti{width:18px;height:18px;image-rendering:pixelated;display:block;flex:0 0 auto}
+.ti{width:18px;height:18px;image-rendering:auto;display:block;flex:0 0 auto}
 .ticons{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;min-height:16px;margin-top:1px}
 .ticons .ti{width:16px;height:16px}
 .chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:4px;position:relative}
@@ -256,7 +256,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 @keyframes stripes{to{background-position:23px 0}}
 .crow{display:flex;gap:10px;align-items:center}
 .crow .cs{flex:0 0 70px;height:52px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(255,122,217,.45),transparent)}
-.crow .cs img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.5))}
+.crow .cs img{image-rendering:auto;filter:drop-shadow(0 2px 0 rgba(0,0,0,.5))}
 .crow .tx{min-width:0;flex:1}
 .cname{font-family:var(--f-ui);font-weight:700;font-size:19px;color:#ff9ae0;text-shadow:0 2px 0 var(--ink)}
 .cmeta{font-size:13px;font-weight:800;color:var(--muted)}
@@ -264,7 +264,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .cins{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
 .cin{display:flex;align-items:center;gap:4px;border:2px solid #3b9a62;border-radius:7px;background:#16123a;padding:2px 7px 2px 3px;font-size:13px;font-weight:900;min-width:0}
 .cin .sp{width:40px;height:22px;display:grid;place-items:center;flex:0 0 40px}
-.cin .sp img{image-rendering:pixelated;max-width:100%;height:auto}
+.cin .sp img{image-rendering:auto;max-width:100%;height:auto}
 .cin.miss{border-color:#8a3a46;color:#e2a8b0}
 .cin.miss .sp{opacity:.6}
 .box .btn.wide,.wide{width:100%}
@@ -279,7 +279,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .stat span{font-size:12px;font-weight:800;color:var(--muted)}
 .logrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #30286e}
 .logrow .lp{width:50px;flex:0 0 50px;display:grid;place-items:center}
-.logrow img{image-rendering:pixelated;max-width:100%;height:auto}
+.logrow img{image-rendering:auto;max-width:100%;height:auto}
 .logrow .tx{min-width:0;flex:1;font-size:15px;font-weight:900}
 .logrow .r{font-family:var(--f-num);font-size:23px;color:var(--teal);white-space:nowrap}
 
@@ -291,14 +291,14 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 @keyframes cardin2{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
 #modalBox h3{margin:2px 0 6px;font-family:var(--f-ui);font-weight:700;font-size:25px;text-shadow:0 2px 0 var(--ink)}
 #modalBox .bigpic{display:grid;place-items:center;height:100px;margin:6px 0;border-radius:10px;background:radial-gradient(closest-side,color-mix(in srgb,var(--rc,#fff) 40%,transparent),transparent)}
-#modalBox .bigpic img{image-rendering:pixelated}
+#modalBox .bigpic img{image-rendering:auto}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px;margin:8px 0}
 .kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-weight:900}
 .vars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:8px 0}
 .var{background:#1a1442;border:2px solid var(--ink);border-radius:6px;padding:3px 1px;text-align:center;font-size:11px;font-weight:800;min-width:0}
 .var span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .var .vi{height:30px;display:grid;place-items:center}
-.var img{image-rendering:pixelated;max-width:100%;max-height:100%}
+.var img{image-rendering:auto;max-width:100%;max-height:100%}
 .mbtnrow{display:grid;gap:8px;margin-top:12px}
 .howto{margin:8px 0 6px;padding-left:20px;font-size:15px;line-height:1.45}
 .howto li{margin-bottom:7px}
@@ -317,7 +317,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .wstage.spinning .bulb{animation-duration:.25s}
 @keyframes bulb{0%{fill:#fff7c8}50%{fill:#8a5a10}}
 .wres{min-height:62px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:left;font-weight:900;font-size:16px;margin:2px 0 6px}
-.wres img{width:48px;height:48px;image-rendering:pixelated}
+.wres img{width:48px;height:48px;image-rendering:auto}
 .wres .won{animation:cardin .4s cubic-bezier(.2,1.6,.4,1)}
 .wres .pn{font-family:var(--f-ui);font-weight:700;font-size:22px;text-shadow:0 2px 0 var(--ink)}
 .wspinrow{display:flex;gap:8px}
@@ -385,7 +385,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .colbox{display:flex;align-items:center;gap:10px}
 .colbox>div{flex:1}
 .colamt{display:flex;align-items:center;gap:6px;font-family:var(--f-num);font-size:34px;line-height:1;color:var(--gold);text-shadow:0 2px 0 var(--ink)}
-.colamt img,.tk-amt img{width:22px;height:22px;image-rendering:pixelated}
+.colamt img,.tk-amt img{width:22px;height:22px;image-rendering:auto}
 .tanks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:6px}
 .tank{position:relative;min-width:0;border:3px solid var(--ink);border-radius:11px;padding:5px 6px 6px;cursor:pointer;
   background:linear-gradient(180deg,#3a2f80,#2a2164);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--rc,#5a4aa8) 60%,transparent),0 4px 0 var(--ink)}
@@ -400,7 +400,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .tk-water::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:rgba(255,255,255,.35)}
 .tk-water::after{content:"";position:absolute;left:8%;bottom:12%;width:4px;height:16px;background:#3ab060;border-radius:2px;box-shadow:6px 4px 0 -1px #2e8f4a}
 .tk-fish{position:absolute;inset:0 0 18% 0;display:grid;place-items:center;animation:swim 3.2s ease-in-out infinite}
-.tk-fish img{image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
+.tk-fish img{image-rendering:auto;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
 .tank:nth-child(2n) .tk-fish{animation-delay:-1.4s}
 @keyframes swim{0%,100%{transform:translate(-5px,0)}50%{transform:translate(5px,-3px)}}
 .bub{position:absolute;bottom:16px;left:72%;width:4px;height:4px;border-radius:50%;border:1px solid rgba(255,255,255,.8);animation:bub 2.6s linear infinite}
@@ -437,7 +437,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .vrow,.prow,.tnow{display:flex;align-items:center;gap:8px;padding:5px 8px 5px 5px;border:2px solid var(--ink);border-radius:8px;background:#1a1442;text-align:left;min-width:0;width:100%}
 .prow.up{box-shadow:inset 0 0 0 2px var(--gold)}
 .vs{flex:0 0 60px;height:32px;display:grid;place-items:center}
-.vs img{image-rendering:pixelated;max-width:100%;max-height:100%}
+.vs img{image-rendering:auto;max-width:100%;max-height:100%}
 .vt{flex:1;min-width:0;font-size:14px}
 .vt em{font-style:normal;font-family:var(--f-num);font-size:17px;color:var(--gold)}
 .vt .prow em,.prow .vt em{font-family:var(--f-text);font-size:12px;font-weight:900}
@@ -463,14 +463,14 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .blks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:6px}
 .blkc{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 4px 6px;border:3px solid var(--ink);border-radius:9px;min-width:0;
   background:radial-gradient(circle at 50% 32%,color-mix(in srgb,var(--bc) 35%,transparent),transparent 62%),linear-gradient(180deg,#352a78,#281f5e);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--bc) 55%,transparent),0 3px 0 var(--ink)}
-.blkc img{image-rendering:pixelated;animation:bwob 2.2s ease-in-out infinite;filter:drop-shadow(0 3px 0 rgba(0,0,0,.45))}
+.blkc img{image-rendering:auto;animation:bwob 2.2s ease-in-out infinite;filter:drop-shadow(0 3px 0 rgba(0,0,0,.45))}
 .blkc:nth-child(2n) img{animation-delay:-1.1s}
 @keyframes bwob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-2px)}}
 .blkc .bn{font-family:var(--f-ui);font-weight:700;font-size:14px;margin-top:2px}
 .blkc .bm{font-size:11px;font-weight:900}
 .bstage{position:relative;display:grid;place-items:center;height:140px;margin:4px 0 6px}
 .bstage .glow{position:absolute;width:170px;height:170px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--bc) 55%,transparent),transparent);animation:pillp 2s ease-in-out infinite}
-.bstage img{position:relative;image-rendering:pixelated;animation:bwob 1.8s ease-in-out infinite;filter:drop-shadow(0 5px 0 rgba(0,0,0,.5))}
+.bstage img{position:relative;image-rendering:auto;animation:bwob 1.8s ease-in-out infinite;filter:drop-shadow(0 5px 0 rgba(0,0,0,.5))}
 .bstage.opening img{animation:crack .09s linear infinite}
 .bstage.opening .glow{animation:pillp .25s ease-in-out infinite}
 @keyframes crack{0%{transform:translate(-3px,1px) rotate(-6deg)}50%{transform:translate(3px,-2px) rotate(6deg) scale(1.06)}100%{transform:translate(-3px,1px) rotate(-6deg)}}
@@ -489,7 +489,7 @@ details.mlist summary{cursor:pointer;font-family:var(--f-ui);font-weight:600;col
 .newtag{font-size:14px;color:#2a1605;background:var(--gold);border:2px solid var(--ink);border-radius:5px;padding:0 5px;vertical-align:4px}
 @media (max-width:380px){.prizes{grid-template-columns:1fr}.wmini{width:42px;height:42px;flex-basis:42px}.wbox .wt{font-size:17px}#coins{font-size:32px}.plaque .ci{width:26px;height:26px;flex-basis:26px}.round{width:38px;height:38px;flex-basis:38px}nav#tabs button{font-size:12px}}
 /* ---------- v9: live fish, wearables, album sets, Tide Events, big reveals ---------- */
-canvas.lsp{display:block;flex:0 0 auto;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}
+canvas.lsp{display:block;flex:0 0 auto;image-rendering:auto;pointer-events:none}
 .lsp.gi{animation:giant 2.6s ease-in-out infinite}
 @keyframes giant{0%,100%{transform:scale(1.2)}50%{transform:scale(1.3)}}
 #card .pic canvas,#modalBox .bigpic canvas,.today .big canvas{filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
@@ -586,6 +586,30 @@ canvas.lsp{display:block;flex:0 0 auto;image-rendering:pixelated;image-rendering
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
   #wheelSpin{transition-duration:.3s}
 }
+#card .earn{display:flex;align-items:center;justify-content:center;gap:6px;margin:3px auto 0;padding:2px 10px;border-radius:999px;background:rgba(0,0,0,.4);border:2px solid var(--gold);font-weight:800;font-size:14px;width:max-content;max-width:100%}
+#card .earn b{font-family:var(--f-num);font-weight:400;font-size:20px;color:var(--gold)}#card .earn img{width:16px;height:16px}
+.chip.evsoon{border-style:dashed;opacity:.9}.chip.evsoon .wdot{animation:none;opacity:.55}.chip.evc b{background:var(--cc);color:#140f24;border-radius:4px;padding:0 4px;margin-right:3px;font-size:11px;letter-spacing:.5px}
+#spinagain,.btn.again{animation:wpulse .8s ease-in-out infinite alternate}@keyframes wpulse{from{transform:scale(1)}to{transform:scale(1.06)}}
+
+.csub{display:flex;gap:6px;margin-bottom:10px}
+.csub button{flex:1;font-family:var(--f-ui);font-weight:600;font-size:15px;padding:7px 2px;border:3px solid var(--ink);border-radius:9px;background:#2b2268;color:var(--text);box-shadow:0 3px 0 var(--ink)}
+.csub button.on{background:linear-gradient(#ffd96a,#f0a82a);color:#2a1605}
+.pklist{display:flex;flex-direction:column;gap:5px;max-height:48vh;overflow:auto;margin:8px 0;padding:2px}
+.pkrow{display:flex;align-items:center;gap:8px;padding:4px 8px 4px 4px;border:2px solid var(--ink);border-radius:8px;background:#1a1442;text-align:left;width:100%;color:var(--text)}
+.pkrow.on{box-shadow:inset 0 0 0 2px var(--gold);background:#2a2060}
+.pks{width:56px;display:flex;justify-content:center}.pkt{flex:1;min-width:0;display:flex;flex-direction:column;font-size:14px}.pkt small{color:var(--muted);font-size:12px}.pkc{font-family:var(--f-num);font-size:22px;color:var(--gold);width:20px}
+.box.rit.got{box-shadow:inset 0 0 0 2px #c9a6ff,0 4px 0 var(--ink)}
+.labup{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-top:8px;padding-top:6px;border-top:2px solid rgba(255,255,255,.08)}
+.labup .btn{min-width:88px;padding:7px 6px;font-family:var(--f-num);font-size:20px;white-space:nowrap}
+.calp{display:flex;gap:2px;margin:8px 0}
+.cp{flex:1;height:10px;border-radius:3px;background:#1a1442;border:1px solid var(--ink)}.cp.hl{height:14px;margin-top:-2px;background:#4a3810;border-color:#b8861a}.cp.done{background:#38e0c4}.cp.hl.done{background:#ffc845}.cp.next{box-shadow:0 0 0 2px var(--gold)}
+.cd{position:relative;aspect-ratio:1;border:2px solid var(--ink);border-radius:6px;background:#1a1442;display:flex;align-items:center;justify-content:center;font-family:var(--f-num);font-size:15px;color:var(--muted)}
+.cd img{position:absolute;inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);opacity:.55}.cd span{position:relative;text-shadow:0 1px 0 var(--ink)}
+.cd.hl{border-color:#b8861a;background:#3a2c10}.cd.done{background:#1f6a58;color:#fff}.cd.done img{opacity:1}
+.cd.next{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold);animation:wpulse 1.2s ease-in-out infinite;color:#fff}
+.og1{margin:4px auto 0;display:inline-block;font-size:13px;padding:1px 10px;border-radius:8px;border:2px solid #ff3b3b;background:rgba(255,59,59,.18);color:#ffd0d0}
+.fcard .srcb.og{left:auto;right:4px;--sc:#ff3b3b;color:#fff}
+.evwb .wt{font-size:18px}
 </style>
 </head>
 <body>
@@ -678,41 +702,43 @@ const TIERS=[
 // Where a fish comes from is its "w": Lake / Sea / Estuary fish bite, Craft fish only come out of the Craft Machine, Lucky fish only out of Lucky Blocks.
 const CRAFT_C="#ff7ad9",LUCKY_C="#5ad27a";
 const SRC=f=>f.w==="Lucky"?"Lucky Drop":f.w;
-const canBite=f=>f.w!=="Craft"&&f.w!=="Lucky";
+const canBite=f=>f.w!=="Craft"&&f.w!=="Lucky"&&f.w!=="Ritual"&&f.w!=="Weekly";
+const SRCCOL={Craft:"#ff7ad9",Lucky:"#5ad27a",Ritual:"#c9a6ff",Weekly:"#ffb454"},SRCLAB={Craft:"Craft",Lucky:"Lucky",Ritual:"Ritual",Weekly:"Tuesday"};
 const MUTS=[
   {id:"shiny",n:"Shiny",m:3,p:1/40,ab:"Sh",c:"#8fe9ff"},
-  {id:"giant",n:"Giant",m:5,p:1/120,ab:"Gi",c:"#8ff0a4"},
-  {id:"golden",n:"Golden",m:10,p:1/400,ab:"Go",c:"#ffd45a"},
-  {id:"glitch",n:"Glitched",m:50,p:1/2500,ab:"Gl",c:"#ff5dd8"},
-  {id:"diamond",n:"Diamond",m:20,p:1/900,ab:"Di",c:"#9ae8ff"},
-  {id:"rainbow",n:"Rainbow",m:30,p:1/1500,ab:"Rb",c:"#ff9ad5"},
-  {id:"galaxy",n:"Galaxy",m:100,p:1/6000,ab:"Ga",c:"#a58cff"}];
+  {id:"giant",n:"Giant",m:5,p:1/130,ab:"Gi",c:"#8ff0a4"},
+  {id:"golden",n:"Golden",m:10,p:1/550,ab:"Go",c:"#ffd45a"},
+  {id:"glitch",n:"Glitched",m:50,p:1/4000,ab:"Gl",c:"#ff5dd8"},
+  {id:"diamond",n:"Diamond",m:20,p:1/1400,ab:"Di",c:"#9ae8ff"},
+  {id:"rainbow",n:"Rainbow",m:30,p:1/2400,ab:"Rb",c:"#ff9ad5"},
+  {id:"galaxy",n:"Galaxy",m:100,p:1/10000,ab:"Ga",c:"#a58cff"}];
 const WMUTS=[
   {id:"rain",n:"Rain-kissed",m:6,p:1/22,wx:"rain",ab:"Ra",c:"#6ab8ff"},
-  {id:"fog",n:"Ghostly",m:8,p:1/26,wx:"fog",ab:"Fo",c:"#e0e8f5"},
-  {id:"snow",n:"Frosted",m:10,p:1/30,wx:"snow",ab:"Sn",c:"#bfe8ff"},
-  {id:"storm",n:"Charged",m:15,p:1/40,wx:"storm",ab:"St",c:"#ffe45a"},
-  {id:"aurora",n:"Auroral",m:25,p:1/70,wx:"aurora",ab:"Au",c:"#5dffb0"}];
+  {id:"fog",n:"Ghostly",m:8,p:1/34,wx:"fog",ab:"Fo",c:"#e0e8f5"},
+  {id:"snow",n:"Frosted",m:10,p:1/48,wx:"snow",ab:"Sn",c:"#bfe8ff"},
+  {id:"storm",n:"Charged",m:15,p:1/85,wx:"storm",ab:"St",c:"#ffe45a"},
+  {id:"aurora",n:"Auroral",m:25,p:1/170,wx:"aurora",ab:"Au",c:"#5dffb0"}];
 // Conditional mutations: like weather ones, they can only happen while their condition is true (c = catch context)
 const CMUTS=[
-  {id:"lava",n:"Lava",m:12,p:1/30,ab:"La",c:"#ff7a2a",d:"Low tide, after dark",on:c=>(c.h>=22||c.h<4)&&c.lv<-.4},
-  {id:"candy",n:"Candy",m:10,p:1/25,ab:"Ca",c:"#ff9ecb",d:"Festive and Lovestruck",on:c=>c.seasons.indexOf("festive")>-1||c.seasons.indexOf("lovestruck")>-1},
-  {id:"cursed",n:"Cursed",m:15,p:1/25,ab:"Cu",c:"#ff4a5a",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
-  {id:"radio",n:"Radioactive",m:20,p:1/25,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4},
+  {id:"lava",n:"Lava",m:12,p:1/70,ab:"La",c:"#ff7a2a",d:"Low tide, after dark",on:c=>(c.h>=22||c.h<4)&&c.lv<-.4},
+  {id:"candy",n:"Candy",m:10,p:1/45,ab:"Ca",c:"#ff9ecb",d:"Festive and Lovestruck",on:c=>c.seasons.indexOf("festive")>-1||c.seasons.indexOf("lovestruck")>-1},
+  {id:"cursed",n:"Cursed",m:15,p:1/80,ab:"Cu",c:"#ff4a5a",d:"Spooky week",on:c=>c.seasons.indexOf("spooky")>-1},
+  {id:"radio",n:"Radioactive",m:20,p:1/120,ab:"Ra",c:"#7cf03a",d:"Storm at high tide",on:c=>c.wx==="storm"&&c.lv>.4},
   // v9
-  {id:"twilight",n:"Twilight",m:18,p:1/30,ab:"Tw",c:"#ffb080",d:"Dawn or dusk, mid tide",on:c=>((c.h>=5&&c.h<7)||(c.h>=19&&c.h<21))&&Math.abs(c.lv)<=.4},
-  {id:"phantom",n:"Phantom",m:30,p:1/30,ab:"Ph",c:"#e8e8ff",d:"Fog at night",on:c=>c.wx==="fog"&&(c.h>=21||c.h<5)},
-  {id:"crystal",n:"Crystal",m:35,p:1/30,ab:"Cr",c:"#c8a0ff",d:"Snow at night",on:c=>c.wx==="snow"&&(c.h>=21||c.h<5)},
-  {id:"redtide",n:"Red Tide",m:40,p:1/14,ab:"RT",c:"#ff3a4a",d:"Red Tide event",on:c=>c.ev==="redtide"}];
+  {id:"twilight",n:"Twilight",m:18,p:1/110,ab:"Tw",c:"#ffb080",d:"Dawn or dusk, mid tide",on:c=>((c.h>=5&&c.h<7)||(c.h>=19&&c.h<21))&&Math.abs(c.lv)<=.4},
+  {id:"phantom",n:"Phantom",m:30,p:1/260,ab:"Ph",c:"#e8e8ff",d:"Fog at night",on:c=>c.wx==="fog"&&(c.h>=21||c.h<5)},
+  {id:"crystal",n:"Crystal",m:35,p:1/320,ab:"Cr",c:"#c8a0ff",d:"Snow at night",on:c=>c.wx==="snow"&&(c.h>=21||c.h<5)},
+  {id:"redtide",n:"Red Tide",m:40,p:1/200,ab:"RT",c:"#ff3a4a",d:"Red Tide event",on:c=>c.ev==="redtide"},
+  {id:"haunted",n:"Haunted",m:50,p:0,ab:"Ha",c:"#6aff9a",d:"Haunted Cauldron, Spooky week",on:()=>false}];
 const XMUTS=[   // only from the Eclipse Wheel
   {id:"eclipse",n:"Eclipse",m:75,ab:"Ec",c:"#ffd45a"}];
 const ALL_MUTS=MUTS.concat(WMUTS,CMUTS,XMUTS);
 const MUT_BY={};ALL_MUTS.forEach(m=>MUT_BY[m.id]=m);
 const WX_NAME={rain:"Rain",fog:"Fog",snow:"Snow",storm:"Storm",aurora:"Aurora"};
-const VERSION="9.0";
+const VERSION="10.0";
 const ROLL_ORDER=["galaxy","glitch","rainbow","diamond","golden","giant","shiny"];   // rarest first
 
-const F=(id,n,w,t,inc,sp)=>({id,n,w,t,inc,sp});
+const F=(id,n,w,t,inc,sp,sig)=>({id,n,w,t,inc,sp,sig});
 const FISH=[
  // ---- Common ----
  F("minnow","Minnow","Lake",0,1,{rx:5,ry:2,t:3,tw:.5,dh:1,b:"#8fb3a0",l:"#d9e8dc",f:"#6f9484",a:"#4f7a6b",pat:"lateral"}),
@@ -845,12 +871,24 @@ const FISH=[
  F("wraith","Blackwater Wraith","Lake",7,18000,{rx:13,ry:4,t:4,tw:.8,dh:3,spikes:1,b:"#141420",l:"#3a3a50",f:"#0a0a14",a:"#ff3b3b",pat:"spots",dens:4}),
  F("palesiren","Pale Siren","Estuary",7,17000,{rx:13,ry:2,t:3,tw:.6,dh:2,b:"#f0f0f8",l:"#ffffff",f:"#c8c8e0",a:"#ff3b3b",pat:"none"}),
  // ---- Primordial (bite from Lv 21) ----
- F("elderkraken","Elder Kraken","Sea",8,120000,{kind:"jelly",rx:8,ry:7,t:13,thick:1,eyes:1,b:"#5a1020",l:"#a8303a",f:"#3a0810",a:"#ffd45a",pat:"spots",dens:12}),
+ F("elderkraken","Elder Kraken","Sea",8,120000,{kind:"jelly",rx:8,ry:7,t:13,thick:1,eyes:1,b:"#5a1020",l:"#a8303a",f:"#3a0810",a:"#ffd45a",pat:"spots",dens:12},"ogkraken"),
  // ---- new craft fish ----
  F("abysscrown","Abyss Crown","Craft",5,950,{rx:9,ry:6,t:4,tw:.9,dh:5,spikes:1,b:"#2a1a4a",l:"#6a5ab0",f:"#ffd45a",a:"#ffd45a",pat:"scutes"}),
  F("maelstrom","Maelstrom Wyrm","Craft",6,7000,{rx:14,ry:4,t:4,tw:.8,dh:3,spikes:1,b:"#1a3a6a",l:"#7ac0ff",f:"#3ff0d8",a:"#ffffff",pat:"stripes"}),
  F("hollowsov","Hollow Sovereign","Craft",7,26000,{rx:12,ry:6,t:5,tw:1,dh:5,spikes:1,b:"#0a0a10",l:"#26263a",f:"#ff3b3b",a:"#ffffff",pat:"scutes"}),
- F("originwhale","Origin Whale","Craft",8,150000,{rx:14,ry:6,t:5,tw:1.2,dh:3,b:"#3a2a1a",l:"#e8d8b0",f:"#2a1a0a",a:"#ff3b3b",pat:"spots",dens:5})
+F("mothertide","Mother of Tides","Lake",8,130000,{kind:"ray",rx:15,ry:9,t:10,b:"#1a6a9a",l:"#8fe8ff",f:"#0a3a6a",a:"#ffd45a",pat:"spots",dens:7},"ogmother"),
+ F("starfather","Starfather Squid","Sea",8,160000,{kind:"jelly",rx:9,ry:8,t:14,thick:1,eyes:1,b:"#1a1450",l:"#5a3ac0",f:"#0a0838",a:"#fff0a0",pat:"spots",dens:5},"ogstar"),
+ F("gildedmaha","Gilded Maharaja Carp","Estuary",8,140000,{rx:13,ry:7,t:5,tw:1,dh:5,nose:3,whisk:1,b:"#ffcf4a",l:"#fff6c8",f:"#e0501c",a:"#7a1a8a",pat:"scutes"},"ogroyal"),
+ F("anglerking","Ghostlight Anglerking","Sea",8,170000,{rx:12,ry:8,t:5,tw:1,dh:4,lure:1,spikes:1,b:"#0e1830",l:"#3a5a8a",f:"#102a5a",a:"#7affd8",pat:"spots",dens:6},"oglight"),
+ // ---- ritual fish: only from a secret ritual ----
+ F("candlewick","Candlewick Eel","Ritual",5,1300,{rx:14,ry:2,t:4,tw:.7,dh:2,b:"#e8d8b0",l:"#fff6d8",f:"#ff9a3a",a:"#ff5a1a",pat:"lateral"}),
+ F("stormpike","Stormcaller Pike","Ritual",5,1500,{rx:12,ry:3,t:4,tw:.8,dh:4,nose:4,b:"#2a3a7a",l:"#a8c0ff",f:"#ffe45a",a:"#fff4a0",pat:"stripes"}),
+ F("prismemp","Prism Emperor","Ritual",6,9500,{rx:11,ry:6,t:5,tw:1,dh:5,spikes:1,b:"#ff7ad9",l:"#ffe8ff",f:"#7af0ff",a:"#ffd45a",pat:"stripes"}),
+ F("dreadmaw","Dread Hollowmaw","Ritual",7,34000,{rx:13,ry:6,t:4,tw:.9,dh:5,spikes:1,gills:1,b:"#1a0a20",l:"#4a2a5a",f:"#2a0a30",a:"#ff3b6b",pat:"scutes"}),
+ F("eclipsesov","Eclipse Sovereign","Ritual",7,48000,{rx:12,ry:6,t:5,tw:1,dh:5,b:"#120e28",l:"#3a2a6a",f:"#ffd45a",a:"#fff2a0",pat:"band"}),
+ // ---- Chowder Tuesday ----
+ F("chowder","Grand Chowderfin","Weekly",6,6500,{rx:11,ry:6,t:4,tw:.9,dh:4,b:"#f0c070",l:"#fff0c8",f:"#e07a30",a:"#ffffff",pat:"spots",dens:6}),
+ F("originwhale","Origin Whale","Craft",8,150000,{rx:14,ry:6,t:5,tw:1.2,dh:3,b:"#3a2a1a",l:"#e8d8b0",f:"#2a1a0a",a:"#ff3b3b",pat:"spots",dens:5},"ogtide")
 ];
 const FISH_BY={};FISH.forEach(f=>FISH_BY[f.id]=f);
 const tierTag=f=>TIERS[f.t].n+" · "+SRC(f);
@@ -922,7 +960,7 @@ const HOOK_PERFECT=.4, HOOK_WINDOW=1.0;                  // seconds after the bi
 const KEY="tidewater_v7";
 const OLD_KEYS=["tidewater_v1","tidewater_v22","tidewater_v3","tidewater_v6"];   // v7 changed how fish are kept, so older saves start fresh
 let wasReset=false;
-function fresh(){return{coins:0,dex:{},run:{},bucket:[],blocks:[],bsort:"best",bfilt:"all",base:[0,1,2,3,4].map(()=>({f:null,c:0})),uid:0,up:{rod:0,line:0,bait:0,lamp:0,bucket:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"base",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0,aview:"best",skin:"classic"};}
+function fresh(){return{coins:0,dex:{},run:{},bucket:[],blocks:[],bsort:"best",bfilt:"all",base:[0,1,2,3,4].map(()=>({f:null,c:0})),uid:0,up:{rod:0,line:0,bait:0,lamp:0,bucket:0},casts:0,tseen:{},log:[],rb:0,pity:0,tab:"base",sound:true,last:Date.now(),started:Date.now(),craft:{job:null,n:0},seenV:"",wheel:{left:WHEEL_EVERY,spins:0},luckLeft:0,charge:0,eclipse:0,rush:0,aview:"best",skin:"classic",lure:{lv:{spd:0,luck:0,mut:0},job:null,active:null},cal:{last:0,streak:0,best:0},rit:{done:{}},trader:{slot:0,done:{}},evw:[],evc:null};}
 let setQ=[];   // finished album sets waiting to be celebrated
 let S=fresh();
 function load(){try{for(const k of OLD_KEYS){if(localStorage.getItem(k)!==null){wasReset=true;localStorage.removeItem(k);}}}catch(e){}
@@ -940,6 +978,9 @@ const TGROUP={
   day:{n:"Today only",c:"#ffb454",sub:"a new one every day"},
   season:{n:"Seasonal events",c:"#ff8fb8",sub:"a few days a year"},
   event:{n:"Tide Events",c:"#e070ff",sub:"only while that event is on"},
+  ritual:{n:"Ritual traits",c:"#b04aff",sub:"only from a secret ritual"},
+  week:{n:"Every Tuesday",c:"#ffb454",sub:"only on Tuesdays"},
+  og:{n:"1 of 1 traits",c:"#ff3b3b",sub:"each Primordial fish carries its own"},
   wild:{n:"Wild traits",c:"#c9a6ff",sub:"can show up on any catch"}};
 const DAILY=["clover","comet","bubbly","lantern","breezy","gemmy","ember","cosmic"];
 const SEASONS=[   // f = first day [month,day], t = last day [month,day]
@@ -979,6 +1020,19 @@ const TRAITS=[
  {id:"glowing",n:"Glowing",m:4.5,g:"event",p:0,ic:"glowspot",d:"Caught during a Glow Bloom",on:c=>c.ev==="glow"},
  {id:"frenzy",n:"Frenzy",m:4,g:"event",p:0,ic:"teeth",d:"Caught during a Feeding Frenzy",on:c=>c.ev==="frenzy"},
  {id:"inked",n:"Inked",m:6,g:"event",p:0,ic:"ink",d:"Caught while the Kraken rises",on:c=>c.ev==="kraken"},
+// v10: ritual traits, the Tuesday trait and the 1 of 1 traits of the six Primordial fish
+ {id:"hexed",n:"Hexed",m:4,g:"ritual",p:0,ic:"hexed",d:"Pact of Three Moons",on:()=>false},
+ {id:"blessed",n:"Blessed",m:4.5,g:"ritual",p:0,ic:"blessed",d:"Rite of the Storm",on:()=>false},
+ {id:"sacred",n:"Sacred",m:5,g:"ritual",p:0,ic:"sacred",d:"Rite of the Gilded Court",on:()=>false},
+ {id:"forbidden",n:"Forbidden",m:6,g:"ritual",p:0,ic:"forbidden",d:"The Forbidden Feast",on:()=>false},
+ {id:"eternal",n:"Eternal",m:5.5,g:"ritual",p:0,ic:"eternal",d:"Rite of the First Light",on:()=>false},
+ {id:"chowder",n:"Chowder",m:4,g:"week",p:0,ic:"chowder",d:"Caught on a Tuesday",on:()=>false},
+ {id:"ogkraken",n:"Kraken's Grip",m:8,g:"og",p:0,ic:"ogkraken",d:"Only on the Elder Kraken",on:()=>false},
+ {id:"ogtide",n:"First Tide",m:8,g:"og",p:0,ic:"ogtide",d:"Only on the Origin Whale",on:()=>false},
+ {id:"ogmother",n:"Mother's Blessing",m:7.5,g:"og",p:0,ic:"ogmother",d:"Only on Mother of Tides",on:()=>false},
+ {id:"ogstar",n:"Starfather's Gaze",m:7.5,g:"og",p:0,ic:"ogstar",d:"Only on the Starfather Squid",on:()=>false},
+ {id:"ogroyal",n:"Royal Gild",m:7,g:"og",p:0,ic:"ogroyal",d:"Only on the Gilded Maharaja Carp",on:()=>false},
+ {id:"oglight",n:"Ghostlight",m:7,g:"og",p:0,ic:"oglight",d:"Only on the Ghostlight Anglerking",on:()=>false},
  // wild traits: no condition, weaker. They fill the chain after a first trait lands.
  {id:"sparkly",n:"Sparkly",m:1.25,g:"wild",p:0,ic:"spark",d:"Can show up on any catch",on:()=>false},
  {id:"speedy",n:"Speedy",m:1.25,g:"wild",p:0,ic:"arrow",d:"Can show up on any catch",on:()=>false},
@@ -997,6 +1051,18 @@ const TR_BY={};TRAITS.forEach(t=>{TR_BY[t.id]=t;t.col=TGROUP[t.g].c;});
 
 /* tiny 9x9 pixel icons, one per trait */
 const ICONS={
+ hexed:{p:{a:"#c06aff",b:"#7a2ab0"},r:["....a....","...aaa...","..a.a.a..",".aaabaaa.","a..aba..a",".aaabaaa.","..a.a.a..","...aaa...","....a...."]},
+ blessed:{p:{a:"#ffffff",b:"#ffd45a"},r:["......bba","....bbaaa","..bbaaaaa",".baaaaaa.","baaaaaa..","baaaaa...",".baaa....","..ba.....","........."]},
+ sacred:{p:{y:"#ffd45a",o:"#ff8a2a",w:"#fff6e0",g:"#c9a066"},r:["....y....","...yoy...","...yoy...","....w....","...www...","...www...","...www...","..ggggg..","........."]},
+ forbidden:{p:{w:"#f0f0ff",k:"#2a0a30",r:"#ff3b6b"},r:["..wwwww..",".wwwwwww.","wwwwwwwww","wkkwwwkkw","wkrwwwkrw","wwwwkwwww",".wwwwwww.","..wkwkw..","...w.w..."]},
+ eternal:{p:{a:"#ffd45a",b:"#b77cff",x:"#ffffff"},r:[".........",".aa...bb.","a..a.b..b","a...x...b","a..a.b..b",".aa...bb.",".........",".........","........."]},
+ chowder:{p:{w:"#ffffff",b:"#c9873a",y:"#ffd45a",s:"#dfe6f5",k:"#7a4a1a"},r:["..s...s..",".s..s.s..","..s.s....",".bbbbbbb.","bywywywyb","bwywywywb",".bbbbbbb.","..kkkkk..","........."]},
+ ogkraken:{p:{a:"#c0203a",b:"#ff6a7a",y:"#ffd45a"},r:["a.a.a.a.a","aaaaaaaaa","abababab.","aaaaaaaa.","a.a.a.a..","bbbbbbbbb","yyyyyyyyy",".........","........."]},
+ ogtide:{p:{a:"#5ae0ff",b:"#1a7ac0",w:"#ffffff"},r:["a.......a","aa.....aa","aaa...aaa",".aaa.aaa.","..aaaaa..","...bab...","..bbbbb..",".bwbbbwb.","bbbbbbbbb"]},
+ ogmother:{p:{p:"#ff9ac0",w:"#ffffff",s:"#7ac0d0"},r:["..sssss..",".sswwwss.","sswwwwwss","spwwwwwps","sppwwwpps","sppppppps",".sppppps.","..sssss..","........."]},
+ ogstar:{p:{y:"#ffd45a",b:"#7a3aff",w:"#ffffff",k:"#1a1450"},r:["....y....","...yyy...","yyyyyyyyy",".yywwwyy.","..ywkwy..","..yywyy..",".yyy.yyy.",".yy...yy.","y.......y"]},
+ ogroyal:{p:{y:"#ffd45a",r:"#e0303a",b:"#3a8aff",o:"#c9873a"},r:["y...y...y","yy.yyy.yy","yyyyyyyyy","yyryyybyy","yyyyyyyyy","ooooooooo",".........",".........","........."]},
+ oglight:{p:{a:"#7affd8",w:"#ffffff",d:"#2a7a6a",k:"#4a5a8a"},r:["...kkk...","..k...k..","..k.aaa..","..k.awa..","....aaa..",".....d...","..a..d.a.",".aaa...aa","..a......"]},
  meteor:{p:{w:"#ffffff",b:"#b7a6ff"},r:["......ww.",".....www.","....bww..","...bb....","..bb.....",".bb......","b........",".........","........."]},
  glowspot:{p:{a:"#5dffe0",w:"#e0fff8"},r:["...a.....",".....a...","..aaa....",".aawaa..a","..aaa....","....a....","a.....aa.",".....aaa.","......a.."]},
  teeth:{p:{k:"#2a0a10",w:"#ffffff",r:"#e0383e"},r:[".........","rrrrrrrrr","rwkwkwkwr","rkwkwkwkr","r.......r","rkwkwkwkr","rwkwkwkwr","rrrrrrrrr","........."]},
@@ -1071,8 +1137,11 @@ const ICONS={
 const iconCache={};
 function iconURL(k){
   if(iconCache[k])return iconCache[k];
-  const ic=ICONS[k],W=ic.r[0].length,H=ic.r.length,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+  const ic=ICONS[k],W=ic.r[0].length,H=ic.r.length,K=6,pd=3,c=document.createElement("canvas");c.width=W*K+2*pd;c.height=H*K+2*pd;const x=c.getContext("2d",{willReadFrequently:true});
+  x.setTransform(K,0,0,K,pd,pd);
   ic.r.forEach((row,y)=>{for(let i=0;i<W;i++){const ch=row[i];if(ch!=="."&&ic.p[ch]){x.fillStyle=ic.p[ch];x.fillRect(i,y,1,1);}}});
+  x.setTransform(1,0,0,1,0,0);
+  x.putImageData(softShadeData(x.getImageData(0,0,c.width,c.height).data,c.width,c.height,K),0,0);
   return iconCache[k]=c.toDataURL();
 }
 function iconImg(id){const t=TR_BY[id];return t?`<img class="ti" src="${iconURL(t.ic)}" alt="${t.n}" title="${t.n} ${tb(t)}">`:"";}
@@ -1101,7 +1170,7 @@ const traitMult=ids=>{let s=1,n=0;(ids||[]).forEach(i=>{if(TR_BY[i]){s+=TR_BY[i]
 const tb=t=>"+"+String(+(t.m-1).toFixed(2));
 function traitCtx(){
   const now=new Date(),m=.8*waitBase(S.up.line);
-  return {lv:tideInfo(Date.now()).lv,h:now.getHours(),wait:waitDur-.25*lureTaps,m,taps:lureTaps,ev:evNow(),
+  return {lv:tideInfo(Date.now()).lv,h:now.getHours(),dow:window.__dow!==undefined?window.__dow:now.getDay(),wait:waitDur-.25*lureTaps,m,taps:lureTaps,ev:evNow(),
     wx:weatherInfo(Date.now()).kind||null,day:dayInfo(now).id,seasons:SEASONS.filter(x=>seasonInfo(x,now).on).map(x=>x.id)};
 }
 /* ---------- v9 Tide Events: every 30 minutes (real clock) one event runs for 4 minutes ---------- */
@@ -1113,7 +1182,7 @@ const EVENTS=[
  {id:"kraken",n:"Kraken Rising",c:"#c85aff",d:"Something huge stirs below.",s:"Legendary and rarer 3x, Inked trait"}];
 const EV_BY={};EVENTS.forEach(e=>EV_BY[e.id]=e);
 const EV_EVERY=1800000,EV_LEN=240000;
-function evSlot(k){const e=EVENTS[hash(k,7,13)%EVENTS.length],st=k*EV_EVERY+(hash(k,3,5)%20)*60000;return {e,st,en:st+EV_LEN};}
+function evSlot(k){const e=EVENTS[hash(k,7,13)%EVENTS.length],st=k*EV_EVERY;return {e,st,en:st+EV_LEN};}   // always starts on the half hour (:00 and :30)
 function eventInfo(ms){
   if(window.__ev!==undefined)return window.__ev?{active:true,id:window.__ev,left:120}:{active:false,id:"meteor",in:600};
   const s=Math.floor(ms/EV_EVERY);
@@ -1156,10 +1225,10 @@ function migrate(){
   S.bucket=S.bucket.filter(ok).map(fix);
   S.base=S.base.map(z=>z&&ok(z.f)?{f:fix(z.f),c:Math.max(0,+z.c||0)}:{f:null,c:0});
   S.uid=Math.max(+S.uid||0,mx);
-  allInst().forEach(x=>{if(!x.o.u)x.o.u=++S.uid;});
+  allInst().forEach(x=>{if(!x.o.u)x.o.u=++S.uid;const f=FISH_BY[x.o.id];if(f&&f.sig&&x.o.tr.indexOf(f.sig)<0)x.o.tr.push(f.sig);});
   ensureSpots();
   Object.keys(S.dex).forEach(k=>{const d=S.dex[k];if(!FISH_BY[k]||!d||typeof d.v!=="object"){delete S.dex[k];return;}d.n=+d.n||1;
-    Object.keys(d.v).forEach(v=>{if(v!=="_"&&!MUT_BY[v]){delete d.v[v];return;}const r=d.v[v];r.tr=(r.tr||[]).filter(i=>TR_BY[i]);r.x=Math.round(mutM(v==="_"?null:v)*traitMult(r.tr)*100)/100;});});
+    Object.keys(d.v).forEach(v=>{if(v!=="_"&&!MUT_BY[v]){delete d.v[v];return;}const r=d.v[v];r.tr=(r.tr||[]).filter(i=>TR_BY[i]);{const sf=FISH_BY[k];if(sf&&sf.sig&&r.tr.indexOf(sf.sig)<0)r.tr.push(sf.sig);}r.x=Math.round(mutM(v==="_"?null:v)*traitMult(r.tr)*100)/100;});});
   Object.keys(S.run).forEach(k=>{if(!FISH_BY[k])delete S.run[k];});
   Object.keys(S.tseen||{}).forEach(i=>{if(!TR_BY[i])delete S.tseen[i];});
   (S.log||[]).forEach(r=>{r.tr=(r.tr||[]).filter(i=>TR_BY[i]);});
@@ -1170,6 +1239,18 @@ function migrate(){
   amC=null;
   if(S.aview!=="best"&&!setOf(S.aview))S.aview="best";
   if(S.skin!=="classic"&&!(setOf(S.skin)&&setDone(setOf(S.skin))))S.skin="classic";
+  mig10();
+}
+function mig10(){
+  const n=(v,d)=>Number.isFinite(+v)?+v:d,L=S.lure&&typeof S.lure==="object"?S.lure:{},lv=L.lv||{};
+  S.lure={lv:{spd:Math.max(0,Math.min(8,Math.floor(n(lv.spd,0)))),luck:Math.max(0,Math.min(8,Math.floor(n(lv.luck,0)))),mut:Math.max(0,Math.min(8,Math.floor(n(lv.mut,0))))},
+    job:L.job&&n(L.job.end,0)>0?{end:n(L.job.end,0),len:Math.max(1,n(L.job.len,60))}:null,
+    active:L.active&&n(L.active.k,0)>=1&&n(L.active.left,0)>0?{k:n(L.active.k,1.5),left:Math.min(300,Math.floor(n(L.active.left,0)))}:null};
+  const c=S.cal&&typeof S.cal==="object"?S.cal:{};S.cal={last:Math.floor(n(c.last,0)),streak:Math.max(0,Math.floor(n(c.streak,0))),best:Math.max(0,Math.floor(n(c.best,0)))};
+  const r=S.rit&&typeof S.rit==="object"&&S.rit.done&&typeof S.rit.done==="object"?S.rit.done:{};S.rit={done:{}};Object.keys(r).forEach(k=>{if(RIT_BY[k])S.rit.done[k]=Math.max(1,Math.floor(n(r[k],1)));});
+  const t=S.trader&&typeof S.trader==="object"?S.trader:{};S.trader={slot:Math.floor(n(t.slot,0)),done:t.done&&typeof t.done==="object"?t.done:{}};
+  S.evw=(Array.isArray(S.evw)?S.evw:[]).filter(e=>EV_BY[e]).slice(0,6);
+  S.evc=S.evc&&EV_BY[S.evc.e]&&Number.isFinite(+S.evc.k)?{k:+S.evc.k,e:S.evc.e}:null;
 }
 function chipHTML(ids){
   if(!ids||!ids.length)return "";const n=ids.filter(i=>TR_BY[i]).length,sb=stackBonus(n);
@@ -1194,7 +1275,7 @@ const mutM=id=>id&&MUT_BY[id]?MUT_BY[id].m:1;
 const instX=o=>Math.round(mutM(o.m)*traitMult(o.tr)*100)/100;
 /* ---------- v9 album sets: catch enough different fish in one mutation for a permanent bonus and a tank style ---------- */
 const SET_NEED={_:50,shiny:35,giant:25,golden:20,diamond:12,rainbow:10,glitch:6,galaxy:4,rain:20,fog:18,snow:18,storm:14,aurora:10,
-  lava:12,candy:10,cursed:10,radio:10,eclipse:3,twilight:10,phantom:6,crystal:6,redtide:8};
+  lava:12,candy:10,cursed:10,radio:10,eclipse:3,twilight:10,phantom:6,crystal:6,redtide:8,haunted:3};
 const SETS=[{k:"_",n:"Normal",c:"#f7efdc",need:SET_NEED._,b:.5}].concat(ALL_MUTS.map(m=>({k:m.id,n:m.n,c:m.c,need:SET_NEED[m.id]||10,b:.25})));
 const setOf=k=>SETS.find(s=>s.k===k)||null;
 const setHave=k=>FISH.filter(f=>S.dex[f.id]&&S.dex[f.id].v&&S.dex[f.id].v[k]).length;
@@ -1205,7 +1286,7 @@ const payMult=()=>lampMult()*rbMult()*albumMult();
 const instPay=o=>FISH_BY[o.id].inc*instX(o)*payMult();
 const sellVal=o=>Math.max(1,Math.round(instPay(o)*SELL_SECS));
 function ensureSpots(){const n=spotCount();if(!Array.isArray(S.base))S.base=[];while(S.base.length<n)S.base.push({f:null,c:0});}
-function newInst(id,m,tr){return {u:S.uid=(S.uid||0)+1,id,m:m||null,tr:tr||[]};}
+function newInst(id,m,tr){const f=FISH_BY[id],t=(tr||[]).slice();if(f&&f.sig&&t.indexOf(f.sig)<0)t.push(f.sig);t.sort((a,b)=>(TR_BY[b]?TR_BY[b].m:0)-(TR_BY[a]?TR_BY[a].m:0));return {u:S.uid=(S.uid||0)+1,id,m:m||null,tr:t};}
 function allInst(){const out=[];S.base.forEach((z,i)=>{if(z.f)out.push({o:z.f,w:"d",i});});S.bucket.forEach((o,i)=>out.push({o,w:"b",i}));return out;}
 function findInst(u){return allInst().find(x=>x.o.u===u)||null;}
 // the open tank, or else the tank whose fish pays least
@@ -1280,7 +1361,7 @@ function weatherInfo(ms){
 /* ---------- RNG ---------- */
 const pityMult=()=>1+Math.min(3,(S.pity||0)/250);   // legendary luck grows the longer you go without one
 function tierWeights(){
-  const L=S.up.rod,k=(1+.06*L)*((S.luckLeft||0)>0?2:1);   // k doubles while the wheel luck lasts
+  const L=S.up.rod,k=(1+.06*L)*((S.luckLeft||0)>0?2:1)*rodK()*lureK();   // k doubles while the wheel luck lasts
   const kr=evNow()==="kraken";
   return TIERS.map((t,i)=>L>=(t.g||0)?t.w*Math.pow(k,.5*i)*(i===4?pityMult():1)*(kr&&i>=4?3:1):0);
 }
@@ -1301,11 +1382,11 @@ function fishChance(f){
   return w[f.t]/tot*fw[idx]/fw.reduce((a,b)=>a+b,0);
 }
 function rollMut(){
-  const ev=evNow(),bm=(1+.25*S.up.bait)*(ev==="glow"?2:1);let best=null;
+  const ev=evNow(),lm=lureMut(),bm=(1+.25*S.up.bait)*(ev==="glow"?2:1)*lm;let best=null;
   const take=m=>{if(!best||m.m>best.m)best=m;};
   for(const id of ROLL_ORDER){const m=MUT_BY[id];if(Math.random()<m.p*bm*hookF*(ev==="meteor"&&id==="galaxy"?4:1)){take(m);break;}}
   const wk=weatherInfo(Date.now()).kind;
-  const cb=(1+.125*S.up.bait)*hookF*(ev==="glow"?2:1);
+  const cb=(1+.125*S.up.bait)*hookF*(ev==="glow"?2:1)*lm;
   if(wk){const m=WMUTS.find(x=>x.wx===wk);if(m&&Math.random()<m.p*cb)take(m);}
   const c=traitCtx();
   CMUTS.forEach(m=>{if(m.on(c)&&Math.random()<m.p*cb)take(m);});
@@ -1549,6 +1630,7 @@ function cellCol(m,ch,x,y,i,f,A,pl){
   if("blfa".indexOf(ch)<0){
     if(ch==="k"&&(m==="cursed"||m==="redtide"))return "#ff2a3a";
     if(ch==="k"&&m==="eclipse")return "#ffd45a";
+    if(ch==="k"&&m==="haunted")return "#6aff9a";
     if(m==="phantom"&&(ch==="k"||ch==="w"))return f%6<2?"#ffffff":ch==="k"?"#e8e8ff":"#5a5a7a";
     return pl[ch];
   }
@@ -1572,6 +1654,7 @@ function cellCol(m,ch,x,y,i,f,A,pl){
     case"twilight":{const edge=A.bx0+A.w*(.5+.2*Math.sin(T)),warm=x>edge;if(!warm&&ch!=="a"&&hs(1)%11===0)return (hs(2)+f)%3?"#ffffff":"#9ab0ff";
       return (warm?{b:"#ff9a6a",l:"#ffd0a0",f:"#e0603a",a:"#fff0c0"}:{b:"#2a2a6a",l:"#4a4a9a",f:"#1a1a4a",a:"#9ab0ff"})[ch];}
     case"phantom":return {b:"#1a1a26",l:"#2e2e40",f:"#0a0a12",a:"#6a6a90"}[ch];
+    case"haunted":{const g=.5+.5*Math.sin(T+x*.4+y*.3);return {b:mix("#2a5a4a","#3a8a6a",g),l:mix("#8affb8","#d0ffe0",g),f:"#1a3a30",a:"#d8ffe8"}[ch];}
     case"crystal":{if((x+y+f)%7===0)return "#ffffff";const c=["#b77cff","#7ac0ff","#e0c8ff"][(((x>>1)+(y>>1))+(f>>2))%3];return ch==="l"?shade(c,.3):ch==="f"?shade(c,-.25):ch==="a"?"#ffffff":c;}
   }
   return pl[ch];
@@ -1608,19 +1691,175 @@ function mutFront(P,m,A,f,i,X){
       const rays=[[0,-4],[3,-3],[4,0],[3,3],[0,4],[-3,3],[-4,0],[-3,-3]];rays.forEach(([a,b],k)=>{if((k+(f>>1))%2===0)P(sx+a,sy+b,"#fff6c8");});break;}
     case"redtide":for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+2+hash(k,1,i)%Math.max(1,A.w-4),y=A.botAt(x)+1+Math.floor(ph/2);if(ph<10)P(x,y,"#ff3a4a");}break;
     case"phantom":for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,1,i)%A.w,y=A.by0-Math.floor(ph/2);X.globalAlpha=.6*(1-ph/LV_N);P(x,y,"#e8e8ff");}X.globalAlpha=1;break;
+    case"haunted":for(let k=0;k<5;k++){const ph=(f+k*3)%LV_N,x=A.bx0+hash(k,2,i)%A.w+(ph%4<2?0:1),y=A.by1-Math.round(ph*1.4);X.globalAlpha=Math.max(0,1-ph/LV_N);P(x,y,k%2?"#9affc0":"#d8ffe8");P(x,y-1,"#6aff9a");}X.globalAlpha=1;break;
   }
 }
 // rare mutations get a soft pulsing glow around the outline
 const GLOW={golden:"#ffd45a",diamond:"#9ae8ff",rainbow:1,galaxy:"#a58cff",glitch:"#ff5dd8",eclipse:"#ffd45a",cursed:"#ff3a4a",radio:"#7cf03a",
-  lava:"#ff7a2a",aurora:"#5dffb0",storm:"#ffe45a",redtide:"#ff3a4a",phantom:"#e8e8ff",crystal:"#c8a0ff",twilight:"#ffb080"};
-const ANIM_M=new Set(["shiny","golden","diamond","rainbow","glitch","galaxy","rain","fog","snow","storm","aurora","lava","candy","cursed","radio","eclipse","redtide","twilight","phantom","crystal"]);
-function glitchCompose(X,fl,A,f,i){
-  const tint=col=>{const t=document.createElement("canvas");t.width=A.GW;t.height=A.GH;const tx=t.getContext("2d");tx.drawImage(fl,0,0);tx.globalCompositeOperation="source-in";tx.fillStyle=col;tx.fillRect(0,0,A.GW,A.GH);return t;};
-  const s=1+hash(f,3,i)%3;
-  X.globalAlpha=.8;X.drawImage(tint("#18f0ff"),-s,0);X.drawImage(tint("#ff2bd6"),s,0);X.globalAlpha=1;
-  for(let y=0;y<A.GH;y++){const r=hash(y,f,i)%11,dx=r===0?2:r===1?-2:r===2?1:0;X.drawImage(fl,0,y,A.GW,1,dx,y,A.GW,1);}
-  if(f%5===0){const y=A.by0+hash(f,9,i)%Math.max(1,A.h);X.globalCompositeOperation="difference";X.fillStyle="#ffffff";X.fillRect(A.bx0,y,A.w,1);X.globalCompositeOperation="source-over";}
+  lava:"#ff7a2a",aurora:"#5dffb0",storm:"#ffe45a",redtide:"#ff3a4a",phantom:"#e8e8ff",crystal:"#c8a0ff",twilight:"#ffb080",haunted:"#6aff9a"};
+const ANIM_M=new Set(["shiny","golden","diamond","rainbow","glitch","galaxy","rain","fog","snow","storm","aurora","lava","candy","cursed","radio","eclipse","redtide","twilight","phantom","crystal","haunted"]);
+/* ---------- v10: soft 3D renderer ----------
+   The fish are still designed on a small grid, but they are no longer drawn as flat squares. Every picture is rendered at 4x detail:
+   the outline is smoothed, a height map gives the body a rounded belly, light comes from the top left (soft shading, a glossy highlight,
+   a cool rim light) and the eyes are little glass beads. Hats, glasses and pets go through the same renderer, so they match the fish. */
+const K3=4;
+const sstep=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
+const pcCache=new Map();
+function hsl2rgb(h,s,l){h=((h%360)+360)%360/360;const q=l<.5?l*(1+s):l+s-l*s,p=2*l-q,f=t=>{t=(t+1)%1;return t<1/6?p+(q-p)*6*t:t<.5?q:t<2/3?p+(q-p)*(2/3-t)*6:p;};
+  return [Math.round(f(h+1/3)*255),Math.round(f(h)*255),Math.round(f(h-1/3)*255)];}
+function parseC(s){
+  let v=pcCache.get(s);if(v)return v;
+  if(s[0]==="#"){const n=parseInt(s.length===4?s[1]+s[1]+s[2]+s[2]+s[3]+s[3]:s.slice(1,7),16);v=[n>>16&255,n>>8&255,n&255];}
+  else if(s.charCodeAt(0)===104){const m=/hsl\(\s*([-\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%/.exec(s);v=m?hsl2rgb(+m[1],+m[2]/100,+m[3]/100):[255,0,255];}
+  else{const m=s.match(/[\d.]+/g);v=m?[+m[0],+m[1],+m[2]]:[255,0,255];}
+  if(pcCache.size>5000)pcCache.clear();pcCache.set(s,v);return v;
 }
+// box blur on a float image (edges clamp), repeated passes make it close to a gaussian
+let blT=new Float32Array(1);
+function bh(a,b,w,h,r){const d=1/(2*r+1);for(let y=0;y<h;y++){const o=y*w;let s=a[o]*(r+1);for(let x=1;x<=r;x++)s+=a[o+(x<w?x:w-1)];
+  for(let x=0;x<w;x++){b[o+x]=s*d;s+=a[o+(x+r+1<w?x+r+1:w-1)]-a[o+(x-r>0?x-r:0)];}}}
+function bv(a,b,w,h,r){const d=1/(2*r+1);for(let x=0;x<w;x++){let s=a[x]*(r+1);for(let y=1;y<=r;y++)s+=a[(y<h?y:h-1)*w+x];
+  for(let y=0;y<h;y++){b[y*w+x]=s*d;s+=a[(y+r+1<h?y+r+1:h-1)*w+x]-a[(y-r>0?y-r:0)*w+x];}}}
+function blur(a,w,h,r,n){if(r<1)return a;if(blT.length<a.length)blT=new Float32Array(a.length);const t=blT;for(let p=0;p<n;p++){bh(a,t,w,h,r);bv(t,a,w,h,r);}return a;}
+const rForSigma=(s,passes)=>Math.max(1,Math.round((Math.sqrt(12*s*s/passes+1)-1)/2));
+const LX=-.48,LY=-.66,LZ=.58,LN=1/Math.hypot(LX,LY,LZ),Lx=LX*LN,Ly=LY*LN,Lz=LZ*LN;
+const HX=Lx,HY=Ly,HZ=Lz+1,HN=1/Math.hypot(HX,HY,HZ),Hx=HX*HN,Hy=HY*HN,Hz=HZ*HN;
+// lighting for one surface point from its height slopes -> [light 0..1.5, spec 0..1, rim 0..1]
+const lit=(dx,dy)=>{const inv=1/Math.sqrt(dx*dx+dy*dy+1),nx=dx*inv,ny=dy*inv,nz=inv,d=nx*Lx+ny*Ly+nz*Lz,hl=d*.5+.5,
+  sp=Math.pow(Math.max(0,nx*Hx+ny*Hy+nz*Hz),34),rm=Math.pow(1-nz,2.3)*Math.max(0,Math.min(1,.45+.9*(nx*.55+ny*.65)));
+  return [.5+.9*Math.pow(hl,1.35),sp,rm];};
+const LIT_OUT=[0,0,0];
+// the shape of one fish at 4x: silhouette, light, glossy highlight, rim light, outline and glow halo (computed once per species)
+function geo3(i){
+  const A=fishGrid(i);if(A.g3)return A.g3;
+  const K=K3,GW=A.GW,GH=A.GH,w=GW*K,h=GH*K,n=w*h,G=A.G;
+  const m=new Float32Array(n),fin=new Float32Array(n),body=new Float32Array(n);
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++){const ch=G[y][x];if(ch==="."||ch==="o")continue;const isF=ch==="f";
+    for(let yy=0;yy<K;yy++){const o=(y*K+yy)*w+x*K;for(let xx=0;xx<K;xx++){m[o+xx]=1;if(isF)fin[o+xx]=1;else body[o+xx]=1;}}}
+  const sil=m.slice(),sil2=m.slice();blur(sil,w,h,3,2);blur(sil2,w,h,2,1);
+  const AL=new Uint8Array(n);for(let k=0;k<n;k++){const a=sstep(.28,.54,sil[k]),b=sstep(.5,.7,sil2[k]);AL[k]=Math.round(255*(a>b?a:b));}
+  const sg=Math.max(1.7,Math.min(3.6,A.h*.23)),hb=body.slice();blur(hb,w,h,rForSigma(sg*K,3),3);
+  let hmax=.0001;for(let k=0;k<n;k++)if(hb[k]>hmax)hmax=hb[k];
+  const hf=fin.slice();blur(hf,w,h,K,2);
+  const z=new Float32Array(n);
+  for(let k=0;k<n;k++){const zb=Math.pow(Math.max(0,Math.min(1,(hb[k]-.12)/(hmax-.12))),.85),zf=.34*Math.min(1,hf[k]*1.6);z[k]=zb>zf?zb:zf;}
+  const ks=Math.max(5,Math.min(19,A.h*K*.42)),LM=new Uint8Array(n),SP=new Uint8Array(n),RM=new Uint8Array(n);
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const k=y*w+x;if(!AL[k])continue;
+    const r=lit((z[k-1]-z[k+1])*ks,(z[k-w]-z[k+w])*ks),ao=.78+.22*Math.min(1,z[k]*2.4);
+    LM[k]=Math.min(255,r[0]*ao*170);SP[k]=Math.min(255,r[1]*190);RM[k]=Math.min(255,r[2]*255);}
+  const ob=new Float32Array(n);for(let k=0;k<n;k++)ob[k]=AL[k]/255;
+  const hal=ob.slice();blur(ob,w,h,2,1);blur(hal,w,h,Math.round(1.25*K),2);
+  const OL=new Uint8Array(n),HA=new Uint8Array(n);
+  for(let k=0;k<n;k++){OL[k]=Math.min(255,ob[k]*3.4*255);HA[k]=Math.min(255,hal[k]*1.7*255);}
+  return A.g3={w,h,AL,LM,SP,RM,OL,HA};
+}
+// colour of every grid cell for this frame, then spread one cell outwards so the soft edge never goes dark
+function cellRGB(L,f){
+  const A=L.A,GW=A.GW,GH=A.GH,G=A.G,N=GW*GH,cr=new Float32Array(N*3),cw=new Float32Array(N),m=L.sil?null:L.mut;
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++){const ch=G[y][x];if(ch==="."||ch==="o")continue;
+    const v=parseC(L.sil?L.pal.b:cellCol(m,(ch==="k"||ch==="w")?"b":ch,x,y,L.i,f,A,L.pal)),q=y*GW+x;cr[q*3]=v[0];cr[q*3+1]=v[1];cr[q*3+2]=v[2];cw[q]=1;}
+  for(let pass=0;pass<2;pass++){const c2=cr.slice(),w2=cw.slice();
+    for(let y=0;y<GH;y++)for(let x=0;x<GW;x++){const q=y*GW+x;if(cw[q])continue;let n=0,r=0,g=0,b=0;
+      for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const yy=y+dy,xx=x+dx;if(yy<0||xx<0||yy>=GH||xx>=GW)continue;const p=yy*GW+xx;if(cw[p]){n++;r+=cr[p*3];g+=cr[p*3+1];b+=cr[p*3+2];}}
+      if(n){c2[q*3]=r/n;c2[q*3+1]=g/n;c2[q*3+2]=b/n;w2[q]=1;}}
+    cr.set(c2);cw.set(w2);}
+  return {cr,cw};
+}
+const sharp=t=>{t=(t-.5)*1.0+.5;return t<0?0:t>1?1:t;};
+function renderBody(L,f,g,gp,gcol,ink){
+  const A=L.A,K=K3,GW=A.GW,GH=A.GH,w=g.w,h=g.h,{cr,cw}=cellRGB(L,f),img=new ImageData(w,h),D=img.data,sil=L.sil;
+  const xa=new Int16Array(w),xb=new Int16Array(w),xt=new Float32Array(w);
+  for(let px=0;px<w;px++){const gx=(px+.5)/K-.5,x0=Math.floor(gx);xt[px]=sharp(gx-x0);xa[px]=x0<0?0:x0>=GW?GW-1:x0;xb[px]=x0+1<0?0:x0+1>=GW?GW-1:x0+1;}
+  const AL=g.AL,LM=g.LM,SP=g.SP,RM=g.RM,OL=g.OL,HA=g.HA,hasG=!!gcol;
+  for(let py=0;py<h;py++){
+    const gy=(py+.5)/K-.5,y0=Math.floor(gy),ty=sharp(gy-y0),ya=(y0<0?0:y0>=GH?GH-1:y0)*GW,yb=(y0+1<0?0:y0+1>=GH?GH-1:y0+1)*GW;
+    for(let px=0;px<w;px++){
+      const k=py*w+px,a=AL[k],o=OL[k],ha=hasG?HA[k]:0;if(!a&&!o&&!ha)continue;
+      let R=0,Gc=0,B=0,ao=0;
+      if(ha&&a<255){const aa=ha/255*gp;R=gcol[0]*aa;Gc=gcol[1]*aa;B=gcol[2]*aa;ao=aa;}
+      if(o&&a<255){const oa=o/255;R=R*(1-oa)+ink[0]*oa;Gc=Gc*(1-oa)+ink[1]*oa;B=B*(1-oa)+ink[2]*oa;ao=ao*(1-oa)+oa;}
+      if(a){
+        const tx=xt[px],q00=ya+xa[px],q10=ya+xb[px],q01=yb+xa[px],q11=yb+xb[px],
+          w00=(1-tx)*(1-ty)*cw[q00],w10=tx*(1-ty)*cw[q10],w01=(1-tx)*ty*cw[q01],w11=tx*ty*cw[q11],sm=w00+w10+w01+w11;
+        let r,gg,b;
+        if(sm>1e-5){const iv=1/sm;r=(cr[q00*3]*w00+cr[q10*3]*w10+cr[q01*3]*w01+cr[q11*3]*w11)*iv;gg=(cr[q00*3+1]*w00+cr[q10*3+1]*w10+cr[q01*3+1]*w01+cr[q11*3+1]*w11)*iv;b=(cr[q00*3+2]*w00+cr[q10*3+2]*w10+cr[q01*3+2]*w01+cr[q11*3+2]*w11)*iv;}
+        else{const qq=Math.min(GH-1,Math.floor(py/K))*GW+Math.min(GW-1,Math.floor(px/K));r=cr[qq*3];gg=cr[qq*3+1];b=cr[qq*3+2];}
+        if(!sil){const lm=LM[k]*.0058824,sp=SP[k]*.0033,rm=RM[k]*.0019;
+          r=r*lm+255*sp+rm*130;gg=gg*lm+255*sp+rm*200;b=b*lm+255*sp+rm*255;
+          r=r>255?255:r;gg=gg>255?255:gg;b=b>255?255:b;}
+        const aa=a/255;R=R*(1-aa)+r*aa;Gc=Gc*(1-aa)+gg*aa;B=B*(1-aa)+b*aa;ao=ao*(1-aa)+aa;
+      }
+      if(ao>0){const iv=1/ao,p=k*4;D[p]=R*iv;D[p+1]=Gc*iv;D[p+2]=B*iv;D[p+3]=ao*255;}
+    }
+  }
+  const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").putImageData(img,0,0);return c;
+}
+// glass-bead eyes on top of the body: a white ball with a dark pupil and two little highlights
+function drawEyes(X,L,f){
+  if(L.sil)return;const A=L.A,K=K3,G=A.G,m=L.mut;
+  for(let y=0;y<A.GH;y++)for(let x=0;x<A.GW;x++){if(G[y][x]!=="k")continue;
+    let cx=x+.5,cy=y+.5,R=.72,paired=false;
+    if(G[y][x-1]==="w"){cx=x;paired=true;}else if(y>0&&G[y-1][x]==="w"){cy=y;paired=true;}
+    if(paired)R=.98;
+    const sc=cellCol(m,"w",x,y,L.i,f,A,L.pal),pc=cellCol(m,"k",x,y,L.i,f,A,L.pal),px=cx*K,py=cy*K,r=R*K;
+    const ink=m==="phantom"?(f%6<2?"#d8d8ff":"#0a0a12"):"#140f24";
+    X.fillStyle=ink;X.beginPath();X.arc(px,py,r+.42*K,0,6.283);X.fill();
+    const gr=X.createRadialGradient(px-.3*r,py-.35*r,.1*r,px,py,r);gr.addColorStop(0,"#ffffff");gr.addColorStop(.55,sc);gr.addColorStop(1,shade(parseHex(sc),-.35));
+    X.fillStyle=gr;X.beginPath();X.arc(px,py,r,0,6.283);X.fill();
+    X.fillStyle=pc;X.beginPath();X.arc(px+.2*r,py+.06*r,.56*r,0,6.283);X.fill();
+    X.fillStyle="rgba(255,255,255,.95)";X.beginPath();X.arc(px-.12*r,py-.3*r,.2*r,0,6.283);X.fill();
+    X.fillStyle="rgba(255,255,255,.45)";X.beginPath();X.arc(px+.34*r,py+.3*r,.1*r,0,6.283);X.fill();
+  }
+}
+function parseHex(c){const v=parseC(c);return "#"+v.map(n=>Math.max(0,Math.min(255,Math.round(n))).toString(16).padStart(2,"0")).join("");}
+// layers for things that are not solid objects (sparkles, rain, mist): soft round dots instead of squares
+function flatLayer(w,h){const c=document.createElement("canvas");c.width=w;c.height=h;const X=c.getContext("2d");X.setTransform(K3,0,0,K3,0,0);
+  return {c,X,P:(x,y,col)=>{X.fillStyle=col;X.beginPath();X.arc(x+.5,y+.5,.64,0,6.283);X.fill();}};}
+// one solid item (a hat, glasses, a heart...) drawn on the grid, then smoothed, inflated and lit like the fish
+const SCR=document.createElement("canvas"),SCX=SCR.getContext("2d",{willReadFrequently:true}),TMP=document.createElement("canvas"),TMX=TMP.getContext("2d");
+// the soft 3D look for a small RGBA picture (items, icons): smooth the edges, inflate it, light it and add a dark outline
+function softShadeData(src,rw,rh,K,flat){
+  const n=rw*rh,c0=new Float32Array(n),o0=new Float32Array(n),R=new Float32Array(n),Gc=new Float32Array(n),B=new Float32Array(n),r2=Math.max(1,Math.round(.5*K));
+  for(let k=0;k<n;k++){const a=src[k*4+3];if(a>5){c0[k]=1;o0[k]=a/255;R[k]=src[k*4];Gc[k]=src[k*4+1];B[k]=src[k*4+2];}}
+  const hz=c0.slice(),cb=c0.slice(),ob=o0.slice();
+  blur(cb,rw,rh,r2,2);blur(ob,rw,rh,r2,2);blur(R,rw,rh,r2,2);blur(Gc,rw,rh,r2,2);blur(B,rw,rh,r2,2);blur(hz,rw,rh,rForSigma(1.05*K,2),2);
+  const al=new Float32Array(n);for(let k=0;k<n;k++)al[k]=sstep(.3,.56,cb[k]);
+  const ring=al.slice();blur(ring,rw,rh,r2,1);
+  const out=new ImageData(rw,rh),D=out.data,ks=1.875*K;let hm=.0001;for(let k=0;k<n;k++)if(hz[k]>hm)hm=hz[k];const zz=a=>Math.pow(Math.min(1,a/hm),.8);
+  for(let y=1;y<rh-1;y++)for(let x=1;x<rw-1;x++){const k=y*rw+x,a=al[k],oa=flat?0:Math.min(1,ring[k]*3.2);if(a<=0&&oa<=.02)continue;
+    const opa=cb[k]>.001?Math.min(1,ob[k]/cb[k]):1;let aO=0,r=0,g=0,b=0;
+    if(oa>.02){aO=oa*opa;r=20*aO;g=15*aO;b=36*aO;}
+    if(a>0){const iv=1/Math.max(.001,cb[k]),l=lit((zz(hz[k-1])-zz(hz[k+1]))*ks,(zz(hz[k-rw])-zz(hz[k+rw]))*ks),
+      lm=l[0],sp=l[1]*.55,rm=l[2]*.4;
+      let cr=R[k]*iv*lm+255*sp+rm*110,cg=Gc[k]*iv*lm+255*sp+rm*190,cb2=B[k]*iv*lm+255*sp+rm*255;
+      cr=cr>255?255:cr;cg=cg>255?255:cg;cb2=cb2>255?255:cb2;const A2=a*opa;
+      r=r*(1-A2)+cr*A2;g=g*(1-A2)+cg*A2;b=b*(1-A2)+cb2*A2;aO=aO*(1-A2)+A2;}
+    if(aO>0){const iv=1/aO,p=k*4;D[p]=r*iv;D[p+1]=g*iv;D[p+2]=b*iv;D[p+3]=aO*255;}}
+  return out;
+}
+function shadeItem(dst,L,drawFn){
+  const K=K3,w=L.A.GW*K,h=L.A.GH*K;
+  if(SCR.width!==w||SCR.height!==h){SCR.width=w;SCR.height=h;}else{SCX.setTransform(1,0,0,1,0,0);SCX.clearRect(0,0,w,h);}
+  SCX.setTransform(K,0,0,K,0,0);SCX.globalAlpha=1;
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  const P=(x,y,col)=>{SCX.fillStyle=col;SCX.fillRect(x,y,1,1);if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;};
+  drawFn(P,SCX);SCX.setTransform(1,0,0,1,0,0);SCX.globalAlpha=1;
+  if(x1<x0)return;
+  const pad=3,rx=Math.max(0,Math.floor((x0-pad)*K)),ry=Math.max(0,Math.floor((y0-pad)*K)),rx2=Math.min(w,Math.ceil((x1+1+pad)*K)),ry2=Math.min(h,Math.ceil((y1+1+pad)*K)),rw=rx2-rx,rh=ry2-ry;
+  if(rw<2||rh<2)return;
+  const out=softShadeData(SCX.getImageData(rx,ry,rw,rh).data,rw,rh,K);
+  if(TMP.width!==rw||TMP.height!==rh){TMP.width=rw;TMP.height=rh;}else TMX.clearRect(0,0,rw,rh);
+  TMX.putImageData(out,0,0);dst.drawImage(TMP,rx,ry);
+}
+function glitchCompose(X,fl,A,f,i){
+  const K=K3,w=fl.width,h=fl.height;
+  const tint=col=>{const t=document.createElement("canvas");t.width=w;t.height=h;const tx=t.getContext("2d");tx.drawImage(fl,0,0);tx.globalCompositeOperation="source-in";tx.fillStyle=col;tx.fillRect(0,0,w,h);return t;};
+  const s=(1+hash(f,3,i)%3)*K*.7;
+  X.globalAlpha=.8;X.drawImage(tint("#18f0ff"),-s,0);X.drawImage(tint("#ff2bd6"),s,0);X.globalAlpha=1;
+  for(let y=0;y<A.GH;y++){const r=hash(y,f,i)%11,dx=(r===0?2:r===1?-2:r===2?1:0)*K;X.drawImage(fl,0,y*K,w,K,dx,y*K,w,K);}
+  if(f%5===0){const y=(A.by0+hash(f,9,i)%Math.max(1,A.h))*K;X.globalCompositeOperation="difference";X.fillStyle="#ffffff";X.fillRect(A.bx0*K,y,A.w*K,K);X.globalCompositeOperation="source-over";}
+}
+
 /* the things traits put on a fish. s = slot (only so many per slot), a = animated, both = drawn behind AND in front (orbits) */
 const WEAR={
  // head
@@ -1637,9 +1876,9 @@ const WEAR={
  flower:{s:"head",d:(P,A)=>blit(P,[".p.p.","ppypp",".ppp.","..g.."],{p:"#ff9fd0",y:"#ffe45a",g:"#4ac060"},A.eye.x-1,A.headTop,2,3)},
  feather:{s:"head",a:1,d:(P,A,f)=>blit(P,(f%6<3)?["....mm","...mmm","..mmm.",".mm...","d....."]:[".....m","....mm","...mmm","..mm..","d....."],{m:"#c8f0e8",d:"#6fb7a8"},A.eye.x-2,A.headTop,0,4)},
  bird:{s:"head",a:1,d:(P,A,f)=>blit(P,[".yyy.","yyykO","yyyy.",".yy..","o.o.."],{y:"#ffd84a",k:"#1a1a1a",O:"#ff8a2a",o:"#ff8a2a"},A.eye.x-1,A.headTop-((f%6)<2?1:0),2,4)},
- lantern:{s:"head",a:1,d:(P,A,f,i,X)=>{const x=A.eye.x-1,y=A.headTop,st="#7a5a3a";P(x,y-1,st);P(x,y-2,st);P(x,y-3,st);P(x+1,y-4,st);P(x+2,y-4,st);
-   const g=.5+.5*Math.sin(f/LV_N*6.283);X.globalAlpha=.2+.35*g;X.fillStyle="#ffe48a";X.fillRect(x+2,y-7,5,5);X.globalAlpha=1;
-   P(x+3,y-6,"#fff6c8");P(x+4,y-6,"#ffd45a");P(x+3,y-5,"#ffd45a");P(x+4,y-5,"#ffb43a");}},
+ lantern:{s:"head",a:1,d:(P,A,f)=>{const x=A.eye.x-1,y=A.headTop,st="#7a5a3a";P(x,y-1,st);P(x,y-2,st);P(x,y-3,st);P(x+1,y-4,st);P(x+2,y-4,st);
+   P(x+3,y-6,"#fff6c8");P(x+4,y-6,"#ffd45a");P(x+3,y-5,"#ffd45a");P(x+4,y-5,"#ffb43a");},
+   fx:(P,A,f,i,X)=>{const x=A.eye.x-1,y=A.headTop,g=.5+.5*Math.sin(f/LV_N*6.283);X.globalAlpha=.16+.3*g;X.fillStyle="#ffe48a";X.beginPath();X.arc(x+3.5,y-5,3.2,0,6.283);X.fill();X.globalAlpha=1;}},
  // face (around the eye)
  shades:{s:"face",d:(P,A)=>{const e=A.eye,k="#101018";[[-1,-1],[0,-1],[1,-1],[-1,0],[0,0],[1,0],[-2,-1],[-3,-1]].forEach(([a,b])=>P(e.x+a,e.y+b,k));P(e.x,e.y-1,"#7af0ff");}},
  glasses:{s:"face",d:(P,A)=>{const e=A.eye,c="#e0b040";for(let x=e.x-2;x<=e.x+1;x++){P(x,e.y-1,c);P(x,e.y+1,c);}P(e.x-2,e.y,c);P(e.x+1,e.y,c);P(e.x-3,e.y,c);}},
@@ -1647,7 +1886,7 @@ const WEAR={
  blush:{s:"face",d:(P,A)=>{const e=A.eye;P(e.x-1,e.y+2,"#ff7aa8");P(e.x,e.y+2,"#ff7aa8");}},
  lid:{s:"face",d:(P,A)=>{const e=A.eye;P(e.x-1,e.y,"#0f0c1a");P(e.x,e.y,"#0f0c1a");}},
  // mouth
- hook:{s:"mouth",d:(P,A,f,i,X)=>{const m=A.mouth,s="#d0d8e8";P(m.x+1,m.y+1,s);P(m.x+2,m.y+1,s);P(m.x+2,m.y,s);P(m.x+2,m.y-1,s);X.globalAlpha=.55;for(let y=m.y-2;y>=0;y--)P(m.x+2,y,"#e8eef8");X.globalAlpha=1;}},
+ hook:{s:"mouth",d:(P,A,f,i,X)=>{const m=A.mouth,s="#d0d8e8";P(m.x+1,m.y+1,s);P(m.x+2,m.y+1,s);P(m.x+2,m.y,s);P(m.x+2,m.y-1,s);X.globalAlpha=.5;for(let y=m.y-2;y>=Math.max(0,m.y-9);y--)P(m.x+2,y,"#e8eef8");X.globalAlpha=1;}},
  bubbles:{s:"mouth",a:1,d:(P,A,f)=>{const m=A.mouth;for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N;if(ph>9)continue;const x=m.x+1+((ph>>2)%2)+(k===1?1:0),y=m.y-1-ph;P(x,y,"#bff6ff");if(k===0&&ph>3){P(x+1,y,"#bff6ff");P(x,y-1,"#ffffff");}}}},
  teeth:{s:"mouth",d:(P,A)=>{const m=A.mouth;P(m.x,m.y,"#ffffff");P(m.x-1,m.y,"#2a0a10");P(m.x-2,m.y,"#ffffff");P(m.x-3,m.y,"#2a0a10");P(m.x-4,m.y,"#ffffff");}},
  // neck
@@ -1681,13 +1920,27 @@ const WEAR={
  biolum:{s:"fx",a:1,d:(P,A,f)=>{const G=A.G;for(let y=A.by0;y<=A.by1;y++)for(let x=A.bx0;x<=A.bx1;x++){const c=G[y][x];if((c==="b"||c==="l")&&hash(x,y,9)%6===0)P(x,y,mix("#1a8a8a","#aafff0",.5+.5*Math.sin(f/LV_N*6.283+hash(x,y,4)%6)));}}},
  ink:{s:"fx",d:(P,A)=>{const G=A.G;for(let y=A.by0;y<=A.by1;y++)for(let x=A.bx0;x<=A.bx1;x++){const c=G[y][x];if((c==="b"||c==="l")&&hash(x,y,11)%9===0)P(x,y,"#2a1040");}}},
  anger:{s:"fx",a:1,d:(P,A,f)=>{if(f%4===3)return;const x=A.eye.x+2,y=A.headTop-2;P(x,y-4,"#ff3a3a");P(x,y-3,"#ff3a3a");P(x,y-2,"#ff3a3a");P(x,y,"#ff3a3a");}},
- starfall:{s:"fx",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,5,i)%Math.max(1,A.w)-ph+4,y=A.by0-6+Math.round(ph*1.4);P(x,y,"#fff6a0");X.globalAlpha=.5;P(x+1,y-1,"#b7a6ff");P(x+2,y-2,"#b7a6ff");X.globalAlpha=1;}}}
+ starfall:{s:"fx",a:1,d:(P,A,f,i,X)=>{for(let k=0;k<3;k++){const ph=(f+k*4)%LV_N,x=A.bx0+hash(k,5,i)%Math.max(1,A.w)-ph+4,y=A.by0-6+Math.round(ph*1.4);P(x,y,"#fff6a0");X.globalAlpha=.5;P(x+1,y-1,"#b7a6ff");P(x+2,y-2,"#b7a6ff");X.globalAlpha=1;}}},
+ // v10: ritual, Tuesday and 1 of 1 items
+ hexmark:{s:"float",a:1,d:(P,A,f)=>blit(P,["..p..",".ppp.","pwkwp",".ppp.","..p.."],{p:f%6<3?"#b04aff":"#d080ff",w:"#ffe8ff",k:"#2a0a40"},A.eye.x-2,A.headTop-7,2,2)},
+ wings:{s:"back",a:1,d:(P,A,f)=>blit(P,(f%6<3)?[".aaab","aaaab","aaab.","aab..","ab..."]:["....b","..aab",".aaab","aaab.","aab.."],{a:"#ffffff",b:"#ffd45a"},A.back.x,A.back.y-1,4,4)},
+ candle:{s:"float",a:1,d:(P,A,f)=>blit(P,[f%4<2?"..y..":".yy..",".yoy.",".ywy.","..w..","..w.."],{y:"#ffd45a",o:"#ff8a2a",w:"#fff6e0"},A.eye.x-2,A.headTop-7,2,2)},
+ skullmark:{s:"float",d:(P,A)=>blit(P,["wwwww","wkwkw","wwwww",".w.w."],{w:"#f0f0ff",k:"#2a0a30"},A.eye.x-2,A.headTop-6,2,2)},
+ eternalorb:{s:"float",a:1,both:1,d:(P,A,f,i,X,L)=>{for(let k=0;k<2;k++){const a=f/LV_N*6.283+k*3.14159,front=Math.sin(a)>0;if((L==="front")!==front)continue;blit(P,[".y.","yby",".y."],{y:"#ffd45a",b:"#b77cff"},Math.round(A.mid.x+Math.cos(a)*(A.w/2+3)),Math.round(A.cy+Math.sin(a)*3),1,1);}}},
+ chefhat:{s:"head",d:(P,A)=>blit(P,["..www..",".wwwww.","wwwwwww","wwwwwww",".sssss."],{w:"#ffffff",s:"#cfd8e8"},A.eye.x-1,A.headTop,3,4)},
+ krakencrown:{s:"head",d:(P,A)=>blit(P,["r.r.r.r","rrrrrrr","ryyyyyr"],{r:"#c0203a",y:"#ffd45a"},A.eye.x-1,A.headTop,3,2)},
+ tidecrown:{s:"head",d:(P,A)=>blit(P,["..c.c..",".cwcwc.","bbbbbbb"],{c:"#5ae0ff",b:"#1a7ac0",w:"#ffffff"},A.eye.x-1,A.headTop,3,2)},
+ pearls:{s:"neck",d:(P,A)=>{const x0=A.eye.x-4;for(let y=A.topAt(x0);y<=A.botAt(x0);y+=2){P(x0,y,"#fff0f8");P(x0+1,y,"#ffc0e0");}}},
+ starcrown:{s:"float",a:1,d:(P,A,f)=>blit(P,(f%6<3)?["..y..",".yyy.","yyyyy",".yyy.","y.y.y"]:["..w..",".yyy.","wyyyw",".yyy.","y.y.y"],{y:"#ffd45a",w:"#ffffff"},A.eye.x-2,A.headTop-7,2,2)},
+ royalcrown:{s:"head",d:(P,A)=>blit(P,["y.y.y","yyyyy","yrybr"],{y:"#ffd45a",r:"#e0303a",b:"#3a8aff"},A.eye.x-1,A.headTop,2,2)},
+ lightorb:{s:"head",a:1,d:(P,A,f)=>{const x=A.eye.x-1,y=A.headTop,st="#5a6a9a";P(x,y-1,st);P(x,y-2,st);P(x,y-3,st);P(x+1,y-4,st);P(x+2,y-4,st);P(x+3,y-3,st);P(x+3,y-5,"#7affd8");P(x+4,y-5,"#7affd8");P(x+3,y-6,"#7affd8");P(x+4,y-6,"#ffffff");},
+   fx:(P,A,f,i,X)=>{const x=A.eye.x-1,y=A.headTop,g=.5+.5*Math.sin(f/LV_N*6.283);X.globalAlpha=.18+.3*g;X.fillStyle="#7affd8";X.beginPath();X.arc(x+4,y-5,3.4,0,6.283);X.fill();X.globalAlpha=1;}}
 };
 const WEARS_OF={tidal:"wave",ebbing:"seaweed",early:"bird",night:"nightcap",patient:"hourglass",snap:"speed",lured:"hook",soaked:"cloud",hazy:"mist",
   frosty:"scarf",zappy:"zap",dreamy:"dreamstars",clover:"clover",comet:"comet",bubbly:"bubbles",lantern:"lantern",breezy:"feather",gemmy:"tiara",
   ember:"flame",cosmic:"planet",harvest:"leafcrown",spooky:"witch",festive:"santa",lovestruck:"hearts",blossom:"flower",sunny:"shades",
   sparkly:"sparkle",speedy:"dust",stubborn:"brow",dapper:"tophat",sleepy:["lid","zzz"],spicy:"steam",fluffy:"catears",salty:"sailor",
-  cheerful:"blush",mighty:"viking",wise:"glasses",shimmer:"halo",starfall:"starfall",glowing:"biolum",frenzy:["teeth","anger"],inked:["tentacle","ink"]};
+  cheerful:"blush",mighty:"viking",wise:"glasses",shimmer:"halo",hexed:"hexmark",blessed:"wings",sacred:"candle",forbidden:"skullmark",eternal:"eternalorb",chowder:"chefhat",ogkraken:"krakencrown",ogtide:"tidecrown",ogmother:"pearls",ogstar:"starcrown",ogroyal:"royalcrown",oglight:"lightorb",starfall:"starfall",glowing:"biolum",frenzy:["teeth","anger"],inked:["tentacle","ink"]};
 TRAITS.forEach(t=>{t.wear=[].concat(WEARS_OF[t.id]||[]);});
 const SLOT_ORDER=["below","back","neck","face","mouth","head","float","fx"],SLOT_MAX={head:1,face:1,mouth:1,neck:1,back:1,below:1,float:2,fx:3};
 function wearList(tr){
@@ -1695,36 +1948,43 @@ function wearList(tr){
   (tr||[]).map(id=>TR_BY[id]).filter(Boolean).sort((a,b)=>b.m-a.m).forEach(t=>t.wear.forEach(w=>{const W=WEAR[w];if(!W)return;used[W.s]=(used[W.s]||0)+1;if(used[W.s]<=SLOT_MAX[W.s])out.push(W);}));
   return out.sort((a,b)=>SLOT_ORDER.indexOf(a.s)-SLOT_ORDER.indexOf(b.s));
 }
-const lvCache=new Map();
+const lvCache=new Map(),FRAME_MAX=640;let lvCount=0;
 function lvGet(i,mut,tr,sil){
   const k=i+"|"+(mut||"")+"|"+(sil?"?":(tr||[]).join(","));
-  let L=lvCache.get(k);if(L)return L;
-  const A=fishGrid(i),m=sil?null:mut,wears=sil?[]:wearList(tr),anim=(m&&ANIM_M.has(m))||wears.some(w=>w.a);
-  L={k,i,mut:m,sil,A,wears,N:anim?LV_N:1,fr:[],pal:makePalette(FISH[i].sp,m,sil)};
-  if(lvCache.size>1400)lvCache.delete(lvCache.keys().next().value);
-  lvCache.set(k,L);return L;
+  let L=lvCache.get(k);if(L){lvCache.delete(k);lvCache.set(k,L);return L;}
+  const A=fishGrid(i),m=sil?null:mut,wears=sil?[]:wearList(tr),anim=(m&&ANIM_M.has(m))||wears.some(w=>w.a||w.both);
+  L={k,i,mut:m,sil,A,wears,N:anim?LV_N:1,fr:[],nf:0,sw:null,pal:makePalette(FISH[i].sp,m,sil)};
+  lvCache.set(k,L);if(lvCache.size>1600)lvCache.delete(lvCache.keys().next().value);
+  return L;
 }
+function lvEvict(){for(const L of lvCache.values()){if(lvCount<=FRAME_MAX*.7)break;if(L.nf){lvCount-=L.nf;L.nf=0;L.fr=[];L.sw=null;}}}
+const hslC=h=>hsl2rgb(h,.9,.62);
 function lvFrame(L,f){
-  f=((f%L.N)+L.N)%L.N;if(L.fr[f])return L.fr[f];
-  const A=L.A,m=L.mut,G=A.G,mk=()=>{const c=document.createElement("canvas");c.width=A.GW;c.height=A.GH;return c;};
-  const c=mk(),X=c.getContext("2d"),P=(x,y,col)=>{X.fillStyle=col;X.fillRect(x,y,1,1);};
-  if(m)mutBack(P,m,A,f,L.i,X);
-  L.wears.forEach(w=>{if(w.both)w.d(P,A,f,L.i,X,"back");});
-  const fl=mk(),Y=fl.getContext("2d"),Q=(x,y,col)=>{Y.fillStyle=col;Y.fillRect(x,y,1,1);};
-  const gc=m&&GLOW[m];
-  if(gc){Y.globalAlpha=.2+.32*(.5+.5*Math.sin(f/LV_N*6.283));const col=gc===1?"hsl("+Math.round(f/LV_N*360)+",90%,62%)":gc;A.edge.forEach(([x,y])=>Q(x,y,col));Y.globalAlpha=1;}
-  const ink=L.sil?"#12143a":m==="phantom"?(f%6<2?"#d8d8ff":"#0a0a12"):"#140f24";
-  for(let y=0;y<A.GH;y++)for(let x=0;x<A.GW;x++){const ch=G[y][x];if(ch===".")continue;Q(x,y,ch==="o"?ink:L.sil?L.pal[ch]:cellCol(m,ch,x,y,L.i,f,A,L.pal));}
-  if(m)mutFront(Q,m,A,f,L.i,Y);
-  if(m==="glitch")glitchCompose(X,fl,A,f,L.i);
-  else{X.globalAlpha=m==="fog"?.72+.08*Math.sin(f/LV_N*6.283):m==="phantom"?(f%6<2?.4:.85):1;X.drawImage(fl,0,0);X.globalAlpha=1;}
-  L.wears.forEach(w=>{if(w.both)w.d(P,A,f,L.i,X,"front");else w.d(P,A,f,L.i,X);});
-  L.fr[f]=c;return c;
+  f=((f%L.N)+L.N)%L.N;const hit=L.fr[f];if(hit)return hit;
+  const A=L.A,m=L.mut,sil=L.sil,K=K3,g=geo3(L.i),w=g.w,h=g.h;
+  const c=document.createElement("canvas");c.width=w;c.height=h;const X=c.getContext("2d");
+  if(m){const b=flatLayer(w,h);mutBack(b.P,m,A,f,L.i,b.X);X.drawImage(b.c,0,0);}
+  L.wears.forEach(wr=>{if(wr.both&&wr.s!=="fx"&&!wr.flat)shadeItem(X,L,(P,SX)=>wr.d(P,A,f,L.i,SX,"back"));});
+  const gc=m&&GLOW[m],pulse=.2+.34*(.5+.5*Math.sin(f/LV_N*6.283)),gcol=gc?(gc===1?hslC(f/LV_N*360):parseC(gc)):null;
+  const ink=sil?[18,20,58]:m==="phantom"?(f%6<2?[216,216,255]:[10,10,18]):[20,15,36];
+  const body=renderBody(L,f,g,pulse,gcol,ink),bx=body.getContext("2d");drawEyes(bx,L,f);
+  if(m){const fl=flatLayer(w,h);mutFront(fl.P,m,A,f,L.i,fl.X);bx.drawImage(fl.c,0,0);}
+  if(m==="glitch")glitchCompose(X,body,A,f,L.i);
+  else{X.globalAlpha=m==="fog"?.72+.08*Math.sin(f/LV_N*6.283):m==="phantom"?(f%6<2?.4:.85):1;X.drawImage(body,0,0);X.globalAlpha=1;}
+  if(L.wears.length){
+    const solid=wr=>wr.s!=="fx"&&!wr.flat,stat=L.wears.filter(wr=>solid(wr)&&!wr.a&&!wr.both),dyn=L.wears.filter(wr=>solid(wr)&&(wr.a||wr.both)),flat=L.wears.filter(wr=>!solid(wr));
+    if(stat.length){if(!L.sw){const sw=document.createElement("canvas");sw.width=w;sw.height=h;const sx=sw.getContext("2d");stat.forEach(wr=>shadeItem(sx,L,(P,SX)=>wr.d(P,A,0,L.i,SX)));L.sw=sw;}X.drawImage(L.sw,0,0);}
+    dyn.forEach(wr=>shadeItem(X,L,(P,SX)=>wr.both?wr.d(P,A,f,L.i,SX,"front"):wr.d(P,A,f,L.i,SX)));
+    const fxs=L.wears.filter(wr=>wr.fx);
+    if(flat.length||fxs.length){const fl=flatLayer(w,h);flat.forEach(wr=>wr.d(fl.P,A,f,L.i,fl.X,"front"));fxs.forEach(wr=>wr.fx(fl.P,A,f,L.i,fl.X));X.drawImage(fl.c,0,0);}
+  }
+  L.fr[f]=c;L.nf++;lvCount++;if(lvCount>FRAME_MAX)lvEvict();
+  return c;
 }
 // HTML for one live fish picture. Negative margins make the layout box the size of the fish itself, so hats and effects spill outside.
 function fishImg(i,mut,tr,sil,targetW,maxH,cap){
-  const A=fishGrid(i),mh=maxH||Math.round(targetW*.6),sc=Math.max(1,Math.min(cap||8,Math.floor(targetW/A.w),Math.floor(mh/A.h))),L=lvGet(i,mut,tr,sil);
-  return `<canvas class="lsp${mut==="giant"&&!sil?" gi":""}" data-k="${L.k}" width="${A.GW}" height="${A.GH}" style="width:${A.GW*sc}px;height:${A.GH*sc}px;margin:${-PD.t*sc}px ${-PD.r*sc}px ${-PD.b*sc}px ${-PD.l*sc}px"></canvas>`;
+  const A=fishGrid(i),mh=maxH||Math.round(targetW*.6),sc=Math.max(1,Math.min(cap||8,targetW/A.w,mh/A.h)),L=lvGet(i,mut,tr,sil);
+  return `<canvas class="lsp${mut==="giant"&&!sil?" gi":""}" data-k="${L.k}" width="${A.GW*K3}" height="${A.GH*K3}" style="width:${(A.GW*sc).toFixed(1)}px;height:${(A.GH*sc).toFixed(1)}px;margin:${(-PD.t*sc).toFixed(1)}px ${(-PD.r*sc).toFixed(1)}px ${(-PD.b*sc).toFixed(1)}px ${(-PD.l*sc).toFixed(1)}px"></canvas>`;
 }
 function spriteImg(i,mut,sil,targetW,alt,maxH,tr,cap){return fishImg(i,mut,tr||[],sil,targetW,maxH,cap);}
 const lvLive=new Set();
@@ -1732,11 +1992,14 @@ const lvIO=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.fo
 function lvParse(k){const a=k.split("|"),sil=a[2]==="?";return lvGet(+a[0],a[1]||null,sil||!a[2]?[]:a[2].split(","),sil);}
 function lvPaint(el,f){const x=el.getContext("2d");x.clearRect(0,0,el.width,el.height);x.drawImage(lvFrame(el._L,f),0,0);}
 let lvLastF=-1;
-function lvTick(now){
-  const f=Math.floor(now/1000*LV_FPS);
-  document.querySelectorAll("canvas.lsp:not([data-on])").forEach(el=>{el.dataset.on="1";el._L=lvParse(el.dataset.k);lvPaint(el,f);if(el._L.N>1){lvLive.add(el);if(lvIO)lvIO.observe(el);}});
+// paints new fish pictures and steps the animated ones; a time budget keeps scrolling smooth (the rest is done on the next frames)
+function lvTick(now,budget){
+  const dl=performance.now()+(budget||7),f=Math.floor(now/1000*LV_FPS);
+  const nw=document.querySelectorAll("canvas.lsp:not([data-on])");
+  for(let n=0;n<nw.length;n++){if(n>0&&performance.now()>dl)break;const el=nw[n];el.dataset.on="1";el._L=lvParse(el.dataset.k);lvPaint(el,f);if(el._L.N>1){lvLive.add(el);if(lvIO)lvIO.observe(el);}}
   if(f===lvLastF)return;lvLastF=f;
-  lvLive.forEach(el=>{if(!el.isConnected){lvLive.delete(el);if(lvIO)lvIO.unobserve(el);return;}if(el._vis===false)return;lvPaint(el,f);});
+  lvLive.forEach(el=>{if(!el.isConnected){lvLive.delete(el);if(lvIO)lvIO.unobserve(el);return;}if(el._vis===false)return;
+    if(performance.now()>dl&&!el._L.fr[f%el._L.N])return;lvPaint(el,f);});
 }
 
 /* ---------- audio ---------- */
@@ -1946,7 +2209,7 @@ function drawLeap(now){
   const x=TARGET.x+(78-TARGET.x)*p,y=TARGET.y-6-44*Math.sin(Math.PI*p);
   if(leap.tier>=2&&Math.random()<.7)parts.push({x:x+(Math.random()-.5)*8,y:y+(Math.random()-.5)*6,vx:0,vy:4,g:0,life:0,max:.5,c:TIERS[leap.tier].c});
   if(leap.L){const fr=lvFrame(leap.L,Math.floor(now/1000*LV_FPS)),sc=Math.min(1,30/leap.L.A.w);
-    cx.save();cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(-sc,sc);cx.drawImage(fr,-fr.width/2,-fr.height/2);cx.restore();return;}
+    cx.save();cx.imageSmoothingEnabled=true;cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(-sc/K3,sc/K3);cx.drawImage(fr,-fr.width/2,-fr.height/2);cx.restore();return;}
   const sc=Math.min(1,30/leap.W);
   if(leap.im.complete&&leap.im.naturalWidth){cx.save();cx.translate(Math.round(x),Math.round(y));cx.rotate((p-.5)*-.9);cx.scale(leap.nf?sc:-sc,sc);cx.drawImage(leap.im,-leap.W/2,-leap.H/2);cx.restore();}
 }
@@ -2013,9 +2276,10 @@ function refreshEnv(){
   let h=`<div class="chip"><span class="tbar"><i style="width:${Math.round((td.lv+1)/2*100)}%"></i></span>${td.label} <small>${td.sub}</small></div>`;
   if(w.kind){const m=WMUTS.find(x=>x.wx===w.kind);h+=`<div class="chip" style="--cc:${m.c}"><span class="wdot"></span>${WX_NAME[w.kind]} <small>${clock(w.left)}</small></div>`;}
   const ev=eventInfo(now),E=EV_BY[ev.id];
-  if(ev.active)h=`<div class="chip evc" style="--cc:${E.c}"><span class="wdot"></span>${E.n} <small>${clock(ev.left)}</small></div>`+h;
-  else if(ev.in<300)h+=`<div class="chip" style="--cc:${E.c}"><span class="wdot"></span>${E.n} in <small>${clock(ev.in)}</small></div>`;
+  if(ev.active)h=`<div class="chip evc" style="--cc:${E.c}"><span class="wdot"></span><b>NOW</b> ${E.n} <small>${clock(ev.left)} left</small></div>`+h;
+  else if(ev.in<600)h+=`<div class="chip evsoon" style="--cc:${E.c}"><span class="wdot"></span>${E.n} <small>coming in ${clock(ev.in)}</small></div>`;
   if((S.luckLeft||0)>0)h+=`<div class="chip" style="--cc:#5ad27a"><span class="wdot"></span>2x Luck <small>${clock(S.luckLeft)}</small></div>`;
+  if(lureOn())h+=`<div class="chip" style="--cc:${lureInfo(S.lure.active.k)[3]}"><span class="wdot"></span>Lure x${S.lure.active.k} <small>${S.lure.active.left} casts</small></div>`;
   if(S.charge)h+=`<div class="chip" style="--cc:#c9a6ff"><span class="wdot"></span>Trait charged <small>next catch</small></div>`;
   if(S.eclipse)h+=`<div class="chip" style="--cc:#ffd45a"><span class="wdot"></span>Eclipse ready <small>next catch</small></div>`;
   if(envEl._h!==h){envEl.innerHTML=h;envEl._h=h;}
@@ -2060,6 +2324,9 @@ function doCatch(){
   if(S.eclipse){mut=MUT_BY.eclipse;S.eclipse=0;}      // Eclipse Charge from the wheel
   const force=!!S.charge;S.charge=0;                   // Trait Charge from the wheel
   const tr=rollTraits(null,force);
+  if(isTuesday()&&tr.indexOf("chowder")<0&&Math.random()<.09)tr.push("chowder");
+  if(evNow())S.evc={k:Math.floor(Date.now()/EV_EVERY),e:evNow()};
+  useLure();
   if(S.up.rod>=TIERS[4].g){S.pity=f.t>=4?0:(S.pity||0)+1;}
   S.casts++;
   const o=newInst(f.id,mut?mut.id:null,tr),mult=instX(o),rc=record(o),pl=receive(o);
@@ -2090,7 +2357,7 @@ function countUp(el){
 }
 let setHold=0;
 function catchBlock(){
-  const b=rollBlockType(),m=rollMut(),tr=rollTraits(null,false);S.casts++;
+  const b=rollBlockType(),m=rollMut(),tr=rollTraits(null,false);S.casts++;useLure();if(evNow())S.evc={k:Math.floor(Date.now()/EV_EVERY),e:evNow()};
   const o=giveBlock(b,m?m.id:null,tr);
   S.log.unshift({blk:b,mut:o.m,tr,kind:"block",gain:0});if(S.log.length>40)S.log.length=40;
   save();refreshAll();
@@ -2129,19 +2396,21 @@ function gainFx(txt,col){
 function showCard(fi,mut,pl,rc,tr,val){
   const f=FISH[fi],T=TIERS[f.t],c=$("#card"),fancy=f.t>=2||val>=6;
   c.style.setProperty("--rc",T.c);
+  const pay=instPay({id:f.id,m:mut?mut.id:null,tr}),wk=weakestSpot(),wz=wk>=0?S.base[wk].f:null,wv=wz?instPay(wz):0;
   const res=pl.w==="display"?`On display +${fmt(pl.gain)}/s`:pl.w==="sold"?`<span style="color:var(--gold)">Sold +${fmt(pl.gain)}</span>`:`<span style="color:var(--text)">Into your bucket</span>`;
-  const sub=pl.w==="sold"?"Your bucket is full and this was your weakest fish.":pl.w==="bucket"&&pl.better?`<b style="color:var(--gold)">Better than a fish on display!</b>`:pl.w==="bucket"?`Worth ${fmt(instPay({id:f.id,m:mut?mut.id:null,tr}))}/s on display`:"";
+  const earn=pl.w==="sold"?"":`<div class="earn">${coinImg()}<span>Earns <b>${fmt(pay)}/s</b> on display</span></div>`;
+  const sub=pl.w==="sold"?"Your bucket is full and this was your weakest fish.":pl.w==="bucket"&&pl.better?`<b style="color:var(--gold)">Better than a fish on display!</b> +${fmt(pay-wv)}/s more than your weakest tank (${fmt(wv)}/s)`:pl.w==="bucket"?`Your weakest tank earns ${fmt(wv)}/s`:"";
   const mchip=mut?`<span class="tchip mchip" style="--tc:${mut.c}">${mut.n} <b>x${mut.m}</b></span>`:"";
   const inner=`<div class="pic"><div class="mglow" style="--mc:${mut?mut.c:T.c}"></div>${spriteImg(fi,mut?mut.id:null,false,mut&&mut.id==="giant"?200:220,f.n,(mut||tr.length)?64:80,tr,6)}</div>
       <div class="nm${mut?" mtx-"+mut.id:""}" style="color:${T.c}">${mut?mut.n+" ":""}${f.n}</div>${mut||tr.length?`<div class="chips">${mchip}${tr.map(i=>{const t=TR_BY[i];return t?`<span class="tchip" style="--tc:${t.col}">${iconImg(i)}${tr.length>2?"":t.n+" "}<b>${tb(t)}</b></span>`:"";}).join("")}</div>`:""}${val>1?`<div class="mut tot" style="color:var(--gold)" data-to="${val}" data-sb="${stackBonus(tr.length)>1?stackBonus(tr.length):""}">Total x1</div>`:""}
-      <div class="res" style="color:var(--teal)">${res}</div>${sub?`<div class="csub">${sub}</div>`:""}`;
+      <div class="res" style="color:var(--teal)">${res}</div>${earn}${f.sig&&TR_BY[f.sig]?`<div class="og1">1 of 1 trait: <b>${TR_BY[f.sig].n}</b></div>`:""}${sub?`<div class="csub">${sub}</div>`:""}`;
   const stamp=rc.isNew?`<div class="stamp">New!</div>`:rc.newVar?`<div class="stamp better">New variant!</div>`:rc.rec?`<div class="stamp better">Record!</div>`:"";
   c.innerHTML=`<div class="ribbon">${tierTag(f)}</div><div class="body">${fancy?'<div class="rays"></div>':""}${inner}</div>${stamp}`;
   c.classList.toggle("big",f.t>=3||val>=25);
   c.style.transform="";c.hidden=false;c.classList.remove("in");void c.offsetWidth;c.classList.add("in");
   cardShown=true;clearTimeout(cardTimer);cardTimer=setTimeout(hideCard,f.t>=4?5500:(mut||tr.length)?4200:3200);
   const room=$("#stage").clientHeight-8,ch=c.offsetHeight;if(ch>room)c.style.transform=`translate(-50%,-50%) scale(${(room/ch).toFixed(3)})`;
-  countUp(c.querySelector(".tot"));lvTick(performance.now());
+  countUp(c.querySelector(".tot"));lvTick(performance.now(),60);
 }
 function hideCard(){$("#card").hidden=true;cardShown=false;}
 function flash(col){const d=document.createElement("div");d.className="flash";d.style.background=col;$("#stage").appendChild(d);setTimeout(()=>d.remove(),800);}
@@ -2191,22 +2460,25 @@ function upHTML(u){
     <button class="btn teal${maxed?" max":""}" data-up="${u.id}" ${maxed||S.coins<cost?"disabled":""}>${maxed?"Max":coinImg()+fmt(cost)}</button></div>`;
 }
 function renderUp(){
-  panel.innerHTML=wheelBoxHTML()+head("u_rod","Gear")+UPS.map(upHTML).join("")+rebirthHTML()+
+  const rd=rodObj(),nx=RODS.find(x=>x.rb>(S.rb||0));
+  panel.innerHTML=wheelBoxHTML()+evWheelHTML()+calHTML()+head("u_rod","Gear")+`<p class="small muted" style="margin:0 2px 8px">Your rod: <b style="color:var(--gold)">${rd.n}</b> (luck x${rd.k})${nx?`. ${nx.n} comes at Rebirth ${nx.rb} (luck x${nx.k}).`:". The best rod!"}</p>`+UPS.map(upHTML).join("")+labHTML()+rebirthHTML()+
     `<p class="intro" style="margin-top:4px">Only fish on display in your Base earn coins. Better gear brings rarer fish, mutations and traits.</p>`;
 }
-function rbReady(){return runCount()>=rbNeedFound()&&S.up.rod>=rbNeedRod();}
+function rbReady(){return runCount()>=rbNeedFound()&&S.up.rod>=rbNeedRod()&&rbHasFish();}
 function rebirthHTML(){
   const found=runCount(),n=S.rb||0,nf=rbNeedFound(),nr=rbNeedRod(),ready=rbReady(),ns=Math.min(SPOT_MAX,spotCount()+2);
   if(!n&&found<12&&S.up.rod<4)return "";
   return `<div class="box rb${ready?" hot":""}"><div class="upc" style="grid-template-columns:48px 1fr"><div class="uic"><img class="pix" src="${iconURL("i_rebirth")}" alt=""></div>
     <div><div class="ut">Tidal Rebirth${n?`<span class="lv">x${rbMult().toFixed(2)}</span>`:""}</div><div class="ud">Start over with a permanent +${Math.round(REBIRTH_STEP*100)}% to all income (next x${(rbMult()+REBIRTH_STEP).toFixed(2)})${ns>spotCount()?` and ${ns} display tanks instead of ${spotCount()}`:""}. Your album, discovered traits, wheel spins and legendary luck stay. Your fish, coins and gear reset.</div></div></div>
     <div class="req"><span>Species this run</span><div class="bar"><i style="width:${Math.min(100,found/nf*100).toFixed(0)}%"></i></div><b>${found}/${nf}</b>
-    <span>Lucky Rod</span><div class="bar"><i style="width:${Math.min(100,S.up.rod/nr*100).toFixed(0)}%"></i></div><b>Lv ${S.up.rod}/${nr}</b></div>
+    <span>Lucky Rod</span><div class="bar"><i style="width:${Math.min(100,S.up.rod/nr*100).toFixed(0)}%"></i></div><b>Lv ${S.up.rod}/${nr}</b>
+    <span>${TIERS[rbFishT()].n}+ fish</span><div class="bar"><i style="width:${rbHasFish()?100:0}%"></i></div><b>${rbHasFish()?"Have":"Need"}</b></div>
+    <div class="small muted" style="margin:-2px 0 6px">The rebirth uses up one ${TIERS[rbFishT()].n}+ fish. You start the new run with 10 minutes of your old income.</div>
     <button class="btn teal wide" data-rb="1" ${ready?"":"disabled"}>${ready?(S.rbArm?"Tap again to rebirth":"Rebirth"):"Not ready yet"}</button></div>`;
 }
 function doRebirth(){
-  const keep={aview:S.aview,skin:S.skin,rb:(S.rb||0)+1,dex:S.dex,uid:S.uid,blocks:S.blocks,bsort:S.bsort,bfilt:S.bfilt,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"base",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft,log:S.log};
-  S=Object.assign(fresh(),keep);ensureSpots();S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
+  const bonus=Math.round(income()*600),keep={lure:S.lure,cal:S.cal,rit:S.rit,trader:S.trader,evw:S.evw,evc:S.evc,aview:S.aview,skin:S.skin,rb:(S.rb||0)+1,dex:S.dex,uid:S.uid,blocks:S.blocks,bsort:S.bsort,bfilt:S.bfilt,tseen:S.tseen,pity:S.pity,casts:S.casts,sound:S.sound,tab:"base",seenV:S.seenV,craft:{job:null,n:S.craft?S.craft.n||0:0},wheel:S.wheel,luckLeft:S.luckLeft,log:S.log};
+  S=Object.assign(fresh(),keep);S.coins=bonus;ensureSpots();S.last=Date.now();lastWall=Date.now();hideCard();save();refreshAll();
   confetti(40,["#38e0c4","#ffc845","#ffffff"]);
   showModal(`<h3 style="color:var(--teal)">Reborn!</h3><div class="bigpic" style="--rc:#38e0c4"><img class="pix" src="${iconURL("i_rebirth")}" width="72" height="72" alt=""></div><p>Rebirth ${S.rb}. All fish now pay <b>x${rbMult().toFixed(2)}</b> and your base has <b>${spotCount()} tanks</b>.</p><button class="btn teal wide" id="mclose">Back to the water</button>`,"#38e0c4");
 }
@@ -2219,6 +2491,7 @@ function pipHTML(d,list){
 const KOI=FISH.findIndex(f=>f.id==="koi"),SAMPLE=FISH.findIndex(f=>f.id==="clown");
 // tank styles you unlock by finishing album sets (the water behind your fish)
 const SKIN_BG={
+ haunted:"radial-gradient(circle at 50% 30%,rgba(106,255,154,.35) 0,transparent 45%),linear-gradient(180deg,#2a3a4a 0,#1a2a3a 55%,#0e1a26 82%,#4a5a5a 82%)",
  classic:"linear-gradient(180deg,#5fc4ff 0,#2a7fd0 55%,#1a4f9a 82%,#d8b870 82% 90%,#b8955a 90%)",
  _:"linear-gradient(180deg,#8ff4e8 0,#2ac0c0 55%,#168a9a 82%,#f4e2a8 82% 90%,#d8c080 90%)",
  shiny:"linear-gradient(180deg,#e0fbff 0,#7ad8ff 50%,#3a9ae0 82%,#f0f4ff 82% 90%,#c8d8f0 90%)",
@@ -2269,7 +2542,7 @@ function renderAlbum(){
         const d=S.dex[f.id];
         if(!d){h+=`<button class="fcard unk" data-fi="${i}"><div class="spr">${spriteImg(i,null,true,84,"",44,[],3)}</div><div class="nm muted">???</div><div class="inc muted">${SRC(f)}</div><div class="pips">${pipHTML(null,MUTS)}<span class="pgap"></span>${pipHTML(null,later)}</div></button>`;return;}
         const b=dexBest(d),bm=b.k==="_"?null:b.k;
-        h+=`<button class="fcard${f.t>=6?" hi":""}" data-fi="${i}" style="--rc:${T.c}">${canBite(f)?"":`<span class="srcb" style="--sc:${f.w==="Craft"?CRAFT_C:LUCKY_C}">${f.w==="Craft"?"Craft":"Lucky"}</span>`}<div class="spr">${spriteImg(i,bm,false,84,f.n,44,b.tr,3)}</div><div class="nm">${f.n}</div>
+        h+=`<button class="fcard${f.t>=6?" hi":""}" data-fi="${i}" style="--rc:${T.c}">${canBite(f)?"":`<span class="srcb" style="--sc:${SRCCOL[f.w]}">${SRCLAB[f.w]}</span>`}${f.sig?`<span class="srcb og">1 of 1</span>`:""}<div class="spr">${spriteImg(i,bm,false,84,f.n,44,b.tr,3)}</div><div class="nm">${f.n}</div>
           <div class="inc">${fmt(f.inc*b.x*pm)}/s</div><div class="ticons">${b.tr.map(iconImg).join("")}</div><div class="pips">${pipHTML(d,MUTS)}<span class="pgap"></span>${pipHTML(d,later)}</div></button>`;
       });
       h+=`</div>`;
@@ -2309,8 +2582,8 @@ function showSetDone(k){
 }
 function eventBoxHTML(){
   const e=eventInfo(Date.now()),E=EV_BY[e.id];
-  return `<div class="box evbox${e.active?" hot":""}" style="--ec:${E.c}" data-evon="${e.active?1:0}"><div class="ut" style="color:${E.c}">${e.active?E.n+" is on!":"Tide Events"}</div>
-    <div class="ud">${e.active?`${E.d} ${E.s}. Ends in <b id="evt">${clock(e.left)}</b>.`:`Every 30 minutes something wild happens on the water for 4 minutes. Next: <b style="color:${E.c}">${E.n}</b> in <b id="evt">${clock(e.in)}</b>.`}</div>
+  return `<div class="box evbox${e.active?" hot":""}" style="--ec:${E.c}" data-evon="${e.active?1:0}"><div class="ut" style="color:${E.c}">${e.active?"LIVE NOW: "+E.n:"Tide Events"}</div>
+    <div class="ud">${e.active?`${E.d} ${E.s}. Ends in <b id="evt">${clock(e.left)}</b>.`:`Every 30 minutes, at :00 and :30, something wild happens on the water for 4 minutes. <b>Not on right now.</b> Coming next: <b style="color:${E.c}">${E.n}</b>, starting in <b id="evt">${clock(e.in)}</b>.`}</div>
     ${EVENTS.map(x=>`<div class="evrow" style="--ec:${x.c}"><i></i><b>${x.n}</b><span>${x.s}</span></div>`).join("")}</div>`;
 }
 function renderTraits(){
@@ -2391,7 +2664,7 @@ function recipeHTML(c){
     <div class="cins">${c.in.map((id,k)=>insChip(id,ch[k])).join("")}</div>
     <button class="btn wide${have&&!busy?"":" ghost"}" data-craft="${c.id}" ${have&&!busy?"":"disabled"}>${busy?"Machine is busy":have?"Craft":"Missing fish"}</button></div>`;
 }
-function renderCraft(){
+function renderCraftMain(){
   const now=new Date(),day=dayInfo(now),list=craftToday(now),j=S.craft.job;
   let h=`<div class="box machine"><div class="mi"><img class="pix" src="${iconURL("t_anvil")}" alt=""></div><div style="min-width:0"><div class="ut" style="color:#ff9ae0">Craft Machine</div><div class="ud">${S.craft.n||0} crafted so far. New recipes in ${fmtLeft(day.left)}.</div></div></div>
    <p class="intro">Trade fish from your bucket or tanks for a stronger craft-only fish that cannot be caught. The fish you use are lost, but each mutation and trait on them can pass on: the more of them share it, the better the chance, and if all of them do it always passes on.</p>`;
@@ -2404,7 +2677,7 @@ function renderCraft(){
   }
   h+=`<div class="grp"><b style="color:#ff9ae0">Today's recipes</b><span>5 of 12, they change every day</span></div>`;
   h+=list.map(recipeHTML).join("");
-  panel.innerHTML=h;
+  return h;
 }
 function openCraft(id,still){
   const c=CR_BY[id],f=FISH_BY[id],fi=FISH.indexOf(f),T=TIERS[f.t];
@@ -2443,7 +2716,7 @@ function refreshCraft(){
 
 /* ---------- Eclipse Wheel ---------- */
 // Spins are earned by PLAYING: the timer only runs while the game screen is open, so nothing builds up while you are away.
-const PRIZE_IC={block:"p_block",pouch:"p_pouch",chest:"p_chest",luck:"p_clover",charge:"p_trait",rush:"p_rush",mega:"p_mega",eclipse:"p_eclipse"};
+const PRIZE_IC={lure:"u_bait",evfish:"p_mega",block:"p_block",pouch:"p_pouch",chest:"p_chest",luck:"p_clover",charge:"p_trait",rush:"p_rush",mega:"p_mega",eclipse:"p_eclipse"};
 function gameTick(d){
   if(S.luckLeft>0)S.luckLeft=Math.max(0,S.luckLeft-d);
   const w=S.wheel;
@@ -2456,8 +2729,8 @@ function wheelBoxHTML(){
     <button class="btn" data-wheel="1" data-n="${w.spins}" ${w.spins?"":"disabled"}>Spin${w.spins?`<span class="badge">${w.spins}</span>`:""}</button></div>`;
 }
 function refreshWheel(){
-  const w=S.wheel;setDot("up",w.spins>0);
-  const t=$("#wtimer");if(t)t.textContent=wheelText();
+  const w=S.wheel;setDot("up",w.spins>0||upAlert());
+  const t=$("#wtimer");if(t&&curW==="eclipse")t.textContent=wheelText();
   if(S.tab!=="up")return;
   const wt=$("#wtext");if(wt)wt.textContent=wheelText();
   const b=document.querySelector("button[data-wheel]");if(b&&b.dataset.n!==String(w.spins))renderPanel();
@@ -2474,6 +2747,8 @@ function grantPrize(pz){
     case"charge":S.charge=1;return "Your next catch gets a trait";
     case"block":{const b=rollBlockType("wheel"),m=rollMut(),o=giveBlock(b,m?m.id:null,rollTraits(null,false));return `A ${BLOCK_BY[b].n}${o.m?" ("+MUT_BY[o.m].n+")":""}! Open it in your Base`;}
     case"eclipse":S.eclipse=1;return "Your next catch is an Eclipse fish!";
+    case"lure":{const L=S.lure;if(L.active&&L.active.left>0&&L.active.k>=3)L.active.left+=LAB_CAST;else L.active={k:3,left:LAB_CAST};return "A x3 lure for the next "+LAB_CAST+" casts";}
+    case"evfish":return evFishPrize(spinEv||"meteor");
     case"rush":{const j=S.craft.job;
       if(j&&Date.now()<j.end){j.end=Date.now()+Math.round((j.end-Date.now())/2);return "Your running craft is twice as fast";}
       S.rush=1;return "Your next craft takes half the time";}
@@ -2481,17 +2756,17 @@ function grantPrize(pz){
   return "";
 }
 function wheelSVG(){
-  const N=WHEEL.length,seg=360/N,Rw=128,C=150,pt=(a,r)=>[C+r*Math.sin(a*Math.PI/180),C-r*Math.cos(a*Math.PI/180)],f1=v=>v.toFixed(1);
+  const WL=wheelList(),N=WL.length,seg=360/N,Rw=128,C=150,pt=(a,r)=>[C+r*Math.sin(a*Math.PI/180),C-r*Math.cos(a*Math.PI/180)],f1=v=>v.toFixed(1);
   let defs=`<defs><linearGradient id="wgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".5" stop-color="#ffc845"/><stop offset="1" stop-color="#d88a10"/></linearGradient>
     <radialGradient id="wspace" cx="150" cy="150" r="130" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3a4ea8"/><stop offset="1" stop-color="#16205a"/></radialGradient>
     <radialGradient id="wspace2" cx="150" cy="150" r="130" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a5ec0"/><stop offset="1" stop-color="#1e2a70"/></radialGradient></defs>`;
   let g="",stars="";
-  WHEEL.forEach((pz,i)=>{
+  WL.forEach((pz,i)=>{
     const a0=i*seg,a1=(i+1)*seg,[x0,y0]=pt(a0,Rw),[x1,y1]=pt(a1,Rw),rare=!!pz.rare;
     g+=`<path d="M${C} ${C}L${f1(x0)} ${f1(y0)}A${Rw} ${Rw} 0 0 1 ${f1(x1)} ${f1(y1)}Z" fill="${rare?"url(#wgold)":i%2?"url(#wspace2)":"url(#wspace)"}" stroke="#0a0820" stroke-width="3"/>`;
     if(!rare)for(let k=0;k<7;k++){const a=a0+6+((hash(i,k,3)%1000)/1000)*(seg-12),r=30+((hash(i,k,9)%1000)/1000)*90,[sx,sy]=pt(a,r);stars+=`<rect x="${f1(sx)}" y="${f1(sy)}" width="2" height="2" fill="#fff" opacity="${(.35+((hash(k,i,5)%60)/100)).toFixed(2)}"/>`;}
     const am=(i+.5)*seg,[ix,iy]=pt(am,Rw*.67),[px,py]=pt(am,Rw*.45),[lx,ly]=pt(am,Rw*.89);
-    g+=`<image href="${iconURL(PRIZE_IC[pz.id])}" x="${f1(ix-18)}" y="${f1(iy-18)}" width="36" height="36" transform="rotate(${am} ${f1(ix)} ${f1(iy)})" style="image-rendering:pixelated"/>`;
+    g+=`<image href="${iconURL(PRIZE_IC[pz.id])}" x="${f1(ix-18)}" y="${f1(iy-18)}" width="36" height="36" transform="rotate(${am} ${f1(ix)} ${f1(iy)})" style="image-rendering:auto"/>`;
     g+=`<text x="${f1(px)}" y="${f1(py)}" text-anchor="middle" dominant-baseline="middle" font-family="VT323,monospace" font-size="21" fill="${rare?"#2a1605":"#ffe9a0"}" stroke="${rare?"none":"#0a0820"}" stroke-width="3" paint-order="stroke">${pz.w}%</text>`;
     g+=`<text x="${f1(lx)}" y="${f1(ly)}" transform="rotate(${am} ${f1(lx)} ${f1(ly)})" text-anchor="middle" dominant-baseline="middle" font-family="Pixelify Sans,sans-serif" font-weight="700" font-size="13" fill="#ffffff" stroke="#0a0820" stroke-width="3" paint-order="stroke">${pz.lab}</text>`;
   });
@@ -2503,40 +2778,44 @@ function wheelSVG(){
     <radialGradient id="hubg"><stop offset="0" stop-color="#3a2a70"/><stop offset="1" stop-color="#120c30"/></radialGradient></defs>
     ${bulbs}
     <circle cx="150" cy="150" r="27" fill="url(#hubg)" stroke="#0a0820" stroke-width="3"/><circle cx="150" cy="150" r="23" fill="none" stroke="#ffc845" stroke-width="3"/>
-    <image href="${iconURL("p_eclipse")}" x="135" y="135" width="30" height="30" style="image-rendering:pixelated"/>
+    <image href="${iconURL("p_eclipse")}" x="135" y="135" width="30" height="30" style="image-rendering:auto"/>
     <path d="M150 40 L134 14 Q150 -8 166 14 Z" fill="#ff3b5c" stroke="#0a0820" stroke-width="3.5" stroke-linejoin="round"/><circle cx="150" cy="13" r="5" fill="#ffd0d8"/><circle cx="148" cy="11" r="2" fill="#fff"/>
   </svg>`;
   return spin+rim;
 }
-function openWheel(){
-  wheelBusy=false;
-  showModal(`<div class="wtitle">Eclipse Wheel</div>
+function openWheel(kind){
+  wheelBusy=false;curW=kind==="event"?"event":"eclipse";
+  const WL=wheelList(),ev=curW==="event"&&S.evw.length?EV_BY[S.evw[0]]:null,n=wspins();
+  showModal(`<div class="wtitle"${ev?` style="color:${ev.c}"`:""}>${ev?ev.n+" Wheel":"Eclipse Wheel"}</div>
     <div class="wstage" id="wstage"><div class="glow"></div>${wheelSVG()}</div>
-    <div class="wres" id="wres"><span class="muted">${S.wheel.spins?"Tap Spin to try your luck":"No spins right now"}</span></div>
-    <div class="wspinrow"><button class="btn" id="wspin" ${S.wheel.spins?"":"disabled"}>Spin<span class="badge" id="wleft">${S.wheel.spins}</span></button></div>
-    <div class="wtimer" id="wtimer">${wheelText()}</div>
-    <div class="prizes">${WHEEL.map(pz=>`<div class="prize${pz.rare?" rare":""}"><img class="pix" src="${iconURL(PRIZE_IC[pz.id])}" alt=""><div class="pt">${pz.n}<span>${pz.d}</span></div><b>${pz.w}%</b></div>`).join("")}</div>
-    <button class="btn ghost wide" id="mclose" style="margin-top:12px">Close</button>`,"#ffc845");
+    <div class="wres" id="wres"><span class="muted">${n?"Tap Spin to try your luck":"No spins right now"}</span></div>
+    <div class="wspinrow"><button class="btn" id="wspin" ${n?"":"disabled"}><span id="wlab">${n?"Spin":"No spins left"}</span><span class="badge" id="wleft">${n}</span></button></div>
+    <div class="wtimer" id="wtimer">${curW==="eclipse"?wheelText():"Cast during a Tide Event to earn more spins"}</div>
+    <div class="prizes">${WL.map(pz=>`<div class="prize${pz.rare?" rare":""}"><img class="pix" src="${iconURL(PRIZE_IC[pz.id])}" alt=""><div class="pt">${pz.n}<span>${pz.d}</span></div><b>${pz.w}%</b></div>`).join("")}</div>
+    <button class="btn ghost wide" id="mclose" style="margin-top:12px">Close</button>`,ev?ev.c:"#ffc845");
   $("#wspin").onclick=doSpin;
 }
 function doSpin(){
-  if(wheelBusy||S.wheel.spins<=0)return;
-  wheelBusy=true;S.wheel.spins--;
-  let r=Math.random()*100,i=0;for(;i<WHEEL.length-1;i++){if(r<WHEEL[i].w)break;r-=WHEEL[i].w;}
-  const pz=WHEEL[i],seg=360/WHEEL.length,center=(i+.5)*seg,jit=(Math.random()-.5)*seg*.7;
+  if(wheelBusy||wspins()<=0)return;
+  wheelBusy=true;const WL=wheelList(),kind=curW;
+  if(kind==="eclipse")S.wheel.spins--;else spinEv=S.evw.shift();
+  let r=Math.random()*100,i=0;for(;i<WL.length-1;i++){if(r<WL[i].w)break;r-=WL[i].w;}
+  const pz=WL[i],seg=360/WL.length,center=(i+.5)*seg,jit=(Math.random()-.5)*seg*.7;
   const msg=grantPrize(pz);save();refreshAll();                // the prize is yours the moment you spin
   wheelRot+=360*6+((360-(center+jit))-(wheelRot%360)+360)%360;
   const wh=$("#wheelSpin");if(wh)wh.style.transform=`rotate(${wheelRot}deg)`;
   const st=$("#wstage");if(st)st.classList.add("spinning");
-  $("#wspin").disabled=true;$("#wleft").textContent=S.wheel.spins;$("#wres").innerHTML=`<span class="muted">Spinning...</span>`;
+  $("#wspin").disabled=true;$("#wspin").classList.remove("again");$("#wlab").textContent="Spinning...";$("#wleft").textContent=wspins();$("#wres").innerHTML=`<span class="muted">Spinning...</span>`;
   let tt=0;for(let k=0;k<26;k++){tt+=40+k*k*.55;setTimeout(()=>beep(1300-k*25,.025,"square",.03),tt);}   // ticks that slow down with the wheel
   setTimeout(()=>{
     wheelBusy=false;
     const s2=$("#wstage");if(s2)s2.classList.remove("spinning");
-    sfx.catch(pz.id==="eclipse"?5:pz.rare?4:2);buzz(pz.w<=10?120:40);
-    const res=$("#wres");if(!res)return;                          // the window was closed meanwhile
+    sfx.catch(pz.id==="eclipse"||pz.id==="evfish"?5:pz.rare?4:2);buzz(pz.w<=10?120:40);
+    const res=$("#wres");if(!res||curW!==kind)return;                          // the window was closed meanwhile
     res.innerHTML=`<img class="pix won" src="${iconURL(PRIZE_IC[pz.id])}" alt=""><div class="won"><div class="pn" style="color:${pz.c}">${pz.n}</div><div class="small muted">${msg}</div></div>`;
-    const b=$("#wspin");if(b)b.disabled=S.wheel.spins<=0;
+    const left=wspins(),b=$("#wspin");if(b){b.disabled=left<=0;b.classList.toggle("again",left>0);}
+    const lb=$("#wlab");if(lb)lb.textContent=left>0?"Spin again":"No spins left";
+    const wt=$("#wtimer");if(wt&&kind==="eclipse")wt.textContent=wheelText();
   },4300);
 }
 
@@ -2560,7 +2839,7 @@ function renderLog(){
   h+=`<p style="margin-top:16px"><button class="btn ghost" id="reset">Reset save</button></p>`;
   panel.innerHTML=h;
   $("#reset").onclick=function(){
-    if(this.dataset.armed){S=fresh();S.seenV="9";save();lastWall=Date.now();hideCard();refreshAll();}
+    if(this.dataset.armed){S=fresh();S.seenV="10";save();lastWall=Date.now();hideCard();refreshAll();}
     else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
   };
 }
@@ -2588,7 +2867,7 @@ function openFish(i,still){
   showModal(`<h3 style="color:${d?T.c:"var(--muted)"}">${d?f.n:"Unknown fish"}</h3><div class="small muted">${tierTag(f)}</div>
    <div class="bigpic" style="--rc:${d?T.c:"#3b3180"}">${spriteImg(i,b&&b.k!=="_"?b.k:null,!d,170,f.n,80,b?b.tr:[])}</div>
    <dl class="kv"><dt>Pays</dt><dd>${fmt(f.inc)}/sec base</dd><dt>Best ever</dt><dd>${b?"x"+xm(b.x)+" ("+fmt(f.inc*b.x*pm)+"/sec)":f.w==="Craft"?"not crafted":"not found"}</dd>
-   ${f.w==="Craft"?`<dt>Crafted</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:f.w==="Lucky"?`<dt>Found</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd>`:`<dt>Caught</dt><dd>${d?d.n:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.001?pct.toFixed(5):pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}
+   ${f.w==="Ritual"||f.w==="Weekly"?`<dt>Found</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd><dt>Source</dt><dd>${f.w==="Ritual"?"A secret ritual":"Chowder Tuesday"}</dd>`:f.w==="Craft"?`<dt>Crafted</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd><dt>Found</dt><dd>Craft Machine only</dd>`:f.w==="Lucky"?`<dt>Found</dt><dd>${d?d.n:0} time${d&&d.n===1?"":"s"}</dd>`:`<dt>Caught</dt><dd>${d?d.n:0} times</dd><dt>Bites most at</dt><dd>${tideTxt}</dd><dt>Bite chance now</dt><dd>${(T.g||0)>S.up.rod?"Needs Lucky Rod Lv "+T.g:(pct<.001?pct.toFixed(5):pct<.1?pct.toFixed(3):pct<1?pct.toFixed(2):pct.toFixed(1))+"% per cast"}</dd>`}
    ${inBlocks.length?`<dt>Lucky Blocks</dt><dd>${inBlocks.join(", ")}</dd>`:""}</dl>
    ${got.length?`<div class="vhead"><span>Your best of each variant</span><button class="tgl${fishTr?" on":""}" id="trTgl"><i></i>Traits ${fishTr?"on":"off"}</button></div>
    <div class="vlist">${rows}</div><div class="small muted" style="margin-top:4px">${fishTr?"Pay with the best traits you ever had on each variant.":"Pay from the mutation alone, without traits."}</div>`:""}
@@ -2779,6 +3058,295 @@ $("#snd").addEventListener("click",function(){S.sound=!S.sound;this.setAttribute
 document.addEventListener("visibilitychange",()=>{if(document.hidden)save();else{econTick();refreshAll();}});
 addEventListener("pagehide",save);
 
+/* ---------- v10 systems: Lure Lab, rods, rituals, Haunted Cauldron, Chef Barnacle, Dockside Trader, daily calendar, event wheel ---------- */
+const isTuesday=()=>(window.__dow!==undefined?window.__dow:new Date().getDay())===2;
+const inheritMut=(fs,p)=>{let best=null;fs.forEach(o=>{const m=o.m&&MUT_BY[o.m];if(m&&(!best||m.m>best.m))best=m;});return best&&Math.random()<p?best.id:null;};
+function giveFish(id,mutId,tr){   // a finished reward fish: album, base, log and the catch card
+  const f=FISH_BY[id],fi=FISH.indexOf(f),o=newInst(id,mutId,tr||[]),mult=instX(o),rc=record(o),pl=receive(o),mut=o.m?MUT_BY[o.m]:null;
+  S.log.unshift({fi,mut:o.m,tr:o.tr.slice(),kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
+  sfx.catch(6);buzz(150);showCard(fi,mut,pl,rc,o.tr.slice(),mult);celebrate(f.t,mult,o.tr.length);setHold=performance.now()+1800;
+  save();refreshAll();return o;
+}
+
+/* --- fish picker (used by rituals, the cauldron, the chef) --- */
+let pk=null;
+function openPicker(o){pk=Object.assign({sel:[],max:4},o);drawPicker();}
+function drawPicker(){
+  const all=allInst().filter(x=>pk.filter(x.o)).sort(pk.sort||((a,b)=>instX(b.o)-instX(a.o)));
+  pk.sel=pk.sel.filter(u=>all.some(x=>x.o.u===u));
+  const list=all.slice(0,80),n=pk.sel.length;
+  const rows=list.length?list.map(x=>{const o=x.o,f=FISH_BY[o.id],m=o.m?MUT_BY[o.m]:null,on=pk.sel.indexOf(o.u)>=0;
+    return `<button class="pkrow${on?" on":""}" data-pk="${o.u}"><span class="pks">${spriteImg(FISH.indexOf(f),o.m,false,56,"",28,o.tr)}</span><span class="pkt"><b style="color:${TIERS[f.t].c}">${f.n}</b><small>${m?`<span style="color:${m.c}">${m.n}</span> · `:""}x${xm(instX(o))}${o.tr.length?" · "+o.tr.length+" trait"+(o.tr.length>1?"s":""):""}${x.w==="d"?" · on display":""}</small></span><span class="pkc">${on?"✓":""}</span></button>`;}).join("")
+    :`<p class="small muted">${pk.empty||"You have no fish that fit."}</p>`;
+  showModal(`<h3 style="color:${pk.c||"var(--gold)"}">${pk.title}</h3><p class="small muted">${pk.note||""}</p><div class="pklist">${rows}</div>${all.length>80?`<p class="small muted">Showing the first 80 of ${all.length}.</p>`:""}
+    <div class="mbtnrow"><button class="btn" id="pkgo" ${pk.ok(n)?"":"disabled"}>${pk.btn(n)}</button><button class="btn ghost" id="mclose">Cancel</button></div>`,pk.c,true);
+  document.querySelectorAll("#modalBox .pkrow").forEach(el=>el.onclick=()=>{
+    const u=+el.dataset.pk,i=pk.sel.indexOf(u);if(i>=0)pk.sel.splice(i,1);else if(pk.sel.length<pk.max)pk.sel.push(u);beep(620,.04,"square",.03);drawPicker();});
+  $("#pkgo").onclick=()=>{
+    if(!pk.ok(pk.sel.length))return;
+    const sel=pk.sel.map(u=>{const x=allInst().find(z=>z.o.u===u);return x?x.o:null;}).filter(Boolean),cb=pk.cb;pk=null;closeModal();cb(sel);};
+}
+const eatAll=fs=>fs.forEach(o=>removeInst(o.u));
+
+/* --- Craft tab: sub pages --- */
+const CSUBS=[["craft","Craft"],["trader","Trader"],["rit","Rituals"],["spec","Specials"]];
+let csub="craft";
+function renderCraft(){
+  const tabs=`<div class="csub">${CSUBS.map(([k,n])=>`<button data-v="csub:${k}" class="${csub===k?"on":""}">${n}</button>`).join("")}</div>`;
+  panel.innerHTML=tabs+(csub==="craft"?renderCraftMain():csub==="trader"?traderHTML():csub==="rit"?ritualHTML():specialsHTML());
+}
+
+/* --- Rituals --- */
+const RITUALS=[
+ {id:"moons",n:"Pact of Three Moons",out:"candlewick",tr:"hexed",hint:"Three catches from three parts of the day: one who rises with the sun, one who hunts under the moon and one who rides the high water.",req:[{tr:"early"},{tr:"night"},{tr:"tidal"}],txt:"A fish with Early Bird, one with Night Owl and one with Tidal"},
+ {id:"storm",n:"Rite of the Storm",out:"stormpike",tr:"blessed",hint:"Rain, thunder and mist, each living in a fish, are bound together.",req:[{mut:"rain"},{mut:"storm"},{mut:"fog"}],txt:"A Rain, a Storm and a Fog mutation fish"},
+ {id:"court",n:"Gilded Court",out:"prismemp",tr:"sacred",hint:"The three royals of shine: the metal, the gem and the colours of the sky.",req:[{mut:"golden"},{mut:"diamond"},{mut:"rainbow"}],txt:"A Golden, a Diamond and a Rainbow mutation fish"},
+ {id:"feast",n:"Forbidden Feast",out:"dreadmaw",tr:"forbidden",hint:"Three nameless things of the deep are fed to a cursed guest.",req:[{sp:"hollow"},{sp:"wraith"},{sp:"palesiren"},{mut:"cursed"}],txt:"A Hollow, a Wraith, a Pale Siren and any Cursed fish"},
+ {id:"light",n:"First Light",out:"eclipsesov",tr:"eternal",hint:"When the sky, the code and the shadow of the sun all become one.",req:[{mut:"galaxy"},{mut:"glitch"},{mut:"eclipse"}],txt:"A Galaxy, a Glitch and an Eclipse mutation fish"}];
+const RIT_BY={};RITUALS.forEach(r=>RIT_BY[r.id]=r);
+const okReq=(q,o)=>(!q.sp||o.id===q.sp)&&(!q.mut||o.m===q.mut)&&(!q.tr||o.tr.indexOf(q.tr)>=0);
+function ritMatch(req,fs){
+  if(req.length!==fs.length)return false;const used=fs.map(()=>false);
+  const go=i=>{if(i===req.length)return true;for(let k=0;k<fs.length;k++){if(used[k]||!okReq(req[i],fs[k]))continue;used[k]=true;if(go(i+1))return true;used[k]=false;}return false;};
+  return go(0);
+}
+function ritualHTML(){
+  const done=S.rit.done,nd=Object.keys(done).length;
+  let h=`<div class="box machine"><div class="mi"><img class="pix" src="${iconURL(TR_BY.hexed.ic)}" alt=""></div><div style="min-width:0"><div class="ut" style="color:#c9a6ff">Ritual Altar</div><div class="ud">${nd}/${RITUALS.length} rituals found</div></div></div>
+   <p class="intro">Five secret rituals turn the right mix of fish into a fish nobody can catch. Nobody tells you the recipe: read the riddles, then lay your offering on the altar. If it is wrong, nothing is lost. The fish you offer are used up when a ritual works.</p>
+   <button class="btn wide" data-v="offer:">Make an offering</button>`;
+  RITUALS.forEach(r=>{
+    const f=FISH_BY[r.out],fi=FISH.indexOf(f),got=done[r.id];
+    h+=`<div class="box rit${got?" got":""}"><div class="crow"><div class="cs">${spriteImg(fi,null,!got,66,"",44)}</div><div class="tx"><div class="cname">${got?r.n+" ✓":"A secret ritual"}</div>
+      <div class="cmeta">${got?`<span style="color:${TIERS[f.t].c}">${f.n}</span>, done ${got} time${got>1?"s":""}`:"Reward: "+TIERS[f.t].n+" fish"}</div></div></div>
+      <p class="small ${got?"":"muted"}" style="margin:6px 0 0">${got?"Recipe: "+r.txt+".":"“"+r.hint+"”"}</p></div>`;
+  });
+  return h;
+}
+function offerRitual(){
+  openPicker({title:"Ritual offering",c:"#c9a6ff",max:4,note:"Pick 3 or 4 fish for the altar. A wrong offering costs nothing.",ok:n=>n>=3,btn:n=>n>=3?`Offer ${n} fish`:"Pick 3 or 4 fish",
+    filter:()=>true,empty:"You have no fish yet.",cb:fs=>{
+      const r=RITUALS.find(x=>ritMatch(x.req,fs));
+      if(!r){beep(200,.2,"sawtooth",.05);showModal(`<h3 style="color:var(--muted)">The sea stays silent</h3><p>Nothing happens. Your fish are safe.</p><p class="small muted">Read the riddles again. The fish count must be exact.</p><button class="btn wide" id="mclose">Back</button>`);return;}
+      eatAll(fs);S.rit.done[r.id]=(S.rit.done[r.id]||0)+1;
+      const mid=inheritMut(fs,.5);flash("#c9a6ff");giveFish(r.out,mid,[r.tr]);
+    }});
+}
+
+/* --- Specials: Haunted Cauldron + Chef Barnacle --- */
+function spookyInfo(){const se=SEASONS.find(x=>x.id==="spooky"),si=seasonInfo(se,new Date());return window.__spooky?{on:true,left:864000000}:si;}
+function msToTuesday(){const d=new Date(),dow=window.__dow!==undefined?window.__dow:d.getDay(),days=(2-dow+7)%7||7;const t=new Date(d.getFullYear(),d.getMonth(),d.getDate()+days).getTime();return t-d.getTime();}
+function msToMidnight(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate()+1).getTime()-d.getTime();}
+const chowderFish=()=>allInst().filter(x=>x.o.tr.indexOf("chowder")>=0);
+function specialsHTML(){
+  const sp=spookyInfo(),tue=isTuesday(),cf=chowderFish().length;
+  const hs=FISH_BY.chowder;
+  return `<div class="box cauld${sp.on?" hot":""}"><div class="crow"><div class="cs cauldron">${spriteImg(FISH.findIndex(f=>f.id==="hollow"),"haunted",!sp.on,66,"",44)}</div><div class="tx"><div class="cname" style="color:#6aff9a">Haunted Cauldron</div>
+    <div class="cmeta">${sp.on?`Open for the Spooky season, ${fmtLeft(sp.left)} left`:`Wakes up on Oct 25 (Spooky season), in ${fmtLeft(sp.in)}`}</div></div></div>
+    <p class="small muted" style="margin:6px 0">Feed it 3 fish. It spits out one fish of a higher rarity with the <b style="color:#6aff9a">Haunted</b> mutation (x50) and the Spooky trait. Each trait on the fish you feed has a 35% chance to come back.</p>
+    <button class="btn wide" data-v="cauldron:" ${sp.on?"":"disabled"}>${sp.on?"Feed the cauldron":"Sleeping"}</button></div>
+   <div class="box chef${tue?" hot":""}"><div class="crow"><div class="cs">${spriteImg(FISH.indexOf(hs),null,!tue&&!(S.dex.chowder),66,"",44)}</div><div class="tx"><div class="cname" style="color:#ffb454">Chef Barnacle</div>
+    <div class="cmeta">${tue?`Cooking today, ${fmtLeft(msToMidnight())} left`:`Away. Back on Tuesday, in ${fmtLeft(msToTuesday())}`}</div></div></div>
+    <p class="small muted" style="margin:6px 0">On Tuesdays every catch has a better chance of the <b style="color:#ffb454">Chowder</b> trait. Bring the chef 10 fish with Chowder and he cooks you a <b>${hs.n}</b>. You have <b>${cf}</b> Chowder fish.</p>
+    <button class="btn wide" data-v="chef:" ${tue&&cf>=10?"":"disabled"}>${!tue?"Away":cf>=10?"Hand over 10 Chowder fish":`Need ${10-cf} more Chowder fish`}</button></div>`;
+}
+function openCauldron(){
+  if(!spookyInfo().on)return;
+  openPicker({title:"Haunted Cauldron",c:"#6aff9a",max:3,note:"Pick exactly 3 fish to feed it. They will be gone.",ok:n=>n===3,btn:n=>n===3?"Feed the cauldron":`Pick 3 fish (${n}/3)`,filter:()=>true,empty:"You have no fish yet.",cb:fs=>{
+    if(!spookyInfo().on)return;
+    const mx=Math.max.apply(null,fs.map(o=>FISH_BY[o.id].t)),ot=Math.min(7,mx+1);
+    const pool=FISH.filter(f=>f.t===ot&&canBite(f)),f=pool[Math.floor(Math.random()*pool.length)];
+    const tr=["spooky"];fs.forEach(o=>o.tr.forEach(t=>{if(t!=="spooky"&&tr.indexOf(t)<0&&TR_BY[t]&&Math.random()<.35)tr.push(t);}));
+    eatAll(fs);flash("#6aff9a");giveFish(f.id,"haunted",tr);
+  }});
+}
+function openChef(){
+  if(!isTuesday())return;
+  openPicker({title:"Chef Barnacle",c:"#ffb454",max:10,note:"Hand over 10 fish with the Chowder trait. The weakest are listed first.",sort:(a,b)=>instX(a.o)-instX(b.o),
+    ok:n=>n===10,btn:n=>n===10?"Hand over 10 fish":`Pick 10 fish (${n}/10)`,filter:o=>o.tr.indexOf("chowder")>=0,empty:"You have no fish with the Chowder trait.",cb:fs=>{
+      eatAll(fs);flash("#ffb454");giveFish("chowder",inheritMut(fs,.5),["chowder"]);
+    }});
+}
+
+/* --- Dockside Trader: 4 swaps every 2 hours, instant, nothing passes on --- */
+const TR_SLOT=7200000;
+function traderOffers(slot){
+  return CRAFTS.map((c,i)=>({c,i,h:hash(slot,i,91)})).sort((a,b)=>a.h-b.h).slice(0,4).map(({c,i},k)=>{
+    const f=FISH_BY[c.id],t=Math.max(0,f.t-1),n=f.t>=5?4:3;
+    const pool=FISH.filter(x=>x.t===t&&canBite(x)&&c.in.indexOf(x.id)<0).map((x,j)=>({x,h:hash(slot,i*31+j,57)})).sort((a,b)=>a.h-b.h);
+    return {k,c,in:pool.slice(0,n).map(o=>o.x.id)};
+  });
+}
+function traderSlot(){const s=Math.floor(Date.now()/TR_SLOT);if(!S.trader||S.trader.slot!==s)S.trader={slot:s,done:{}};return s;}
+function traderPick(ids){   // the weakest copy of each fish, bucket first
+  const used={};return ids.map(id=>{const cs=allInst().filter(x=>x.o.id===id&&!used[x.o.u]).sort((a,b)=>(a.w===b.w?0:a.w==="b"?-1:1)||instX(a.o)-instX(b.o));const x=cs[0]||null;if(x)used[x.o.u]=1;return x;});
+}
+function traderHTML(){
+  const slot=traderSlot(),offers=traderOffers(slot),left=(slot+1)*TR_SLOT-Date.now();
+  let h=`<div class="box machine"><div class="mi"><img class="pix" src="${iconURL("coin")}" alt=""></div><div style="min-width:0"><div class="ut" style="color:var(--gold)">Dockside Trader</div><div class="ud">New offers in ${fmtLeft(left)}</div></div></div>
+   <p class="intro">A shortcut for craft fish: swap a few lower-rarity fish for a craft fish right away. Nothing passes on, so it is a plain swap, no mutations or traits.</p>`;
+  offers.forEach(of=>{
+    const f=FISH_BY[of.c.id],fi=FISH.indexOf(f),pk2=traderPick(of.in),have=pk2.every(Boolean),done=!!S.trader.done[of.k];
+    h+=`<div class="box"><div class="crow"><div class="cs">${spriteImg(fi,null,!S.dex[f.id],66,f.n,44)}</div><div class="tx"><div class="cname">${f.n}</div>
+      <div class="cmeta"><span style="color:${TIERS[f.t].c}">${TIERS[f.t].n}</span>. Pays <b>${fmt(f.inc*payMult())}/s</b></div></div></div>
+      <div class="cins">${of.in.map((id,k)=>insChip(id,pk2[k])).join("")}</div>
+      <button class="btn wide${have&&!done?"":" ghost"}" data-v="trade:${of.k}" ${have&&!done?"":"disabled"}>${done?"Traded this round":have?"Trade":"Missing fish"}</button></div>`;
+  });
+  return h;
+}
+function doTrade(k){
+  const slot=traderSlot(),of=traderOffers(slot)[+k];if(!of||S.trader.done[of.k])return;
+  const pk2=traderPick(of.in);if(!pk2.every(Boolean))return;
+  pk2.forEach(x=>removeInst(x.o.u));S.trader.done[of.k]=1;giveFish(of.c.id,null,[]);
+}
+
+/* --- Rods (unlock by rebirth) --- */
+const RODS=[{n:"Driftwood Rod",rb:0,k:1},{n:"Bamboo Rod",rb:1,k:1.15},{n:"Carbon Rod",rb:2,k:1.3},{n:"Tidal Rod",rb:4,k:1.5},{n:"Aether Rod",rb:6,k:2}];
+const rodObj=()=>{let r=RODS[0];RODS.forEach(x=>{if((S.rb||0)>=x.rb)r=x;});return r;};
+const rodK=()=>rodObj().k;
+/* --- rebirth also asks for a fish --- */
+const rbFishT=()=>[3,4,5,5,5,6][Math.min(5,S.rb||0)];
+const rbHasFish=()=>allInst().some(x=>FISH_BY[x.o.id].t>=rbFishT());
+
+/* --- Lure Lab --- */
+const LAB_UP=[
+ {id:"spd",n:"Faster Brewing",base:20000,g:2.25,d:l=>`Brewing takes ${fmtTime(brewTime(l))}`},
+ {id:"luck",n:"Rare Lures",base:25000,g:2.3,d:l=>l?`Lures of x3 or more are ${Math.round(30*l)}% more likely`:"Better lures are more likely"},
+ {id:"mut",n:"Mutation Brew",base:30000,g:2.3,d:l=>`Mutation chance from lures +${12*l}%`}];
+const LAB_MAX=8,LAB_CAST=30;
+const brewTime=l=>Math.max(10,90*Math.pow(.85,l));
+const brewCost=()=>Math.round(Math.max(4000,income()*45));
+const labCost=(u,l)=>Math.ceil(u.base*Math.pow(u.g,l));
+const LURE_T=[[1.5,52,"Basic","#b9c2d0"],[2,28,"Fine","#7bd88f"],[3,12,"Rare","#5aa9ff"],[4,5,"Epic","#b77cff"],[6,2.2,"Mythic","#ff5d8f"],[8,.8,"Divine","#ffd45a"]];
+const lureInfo=k=>LURE_T.find(t=>t[0]===k)||LURE_T[0];
+function rollLure(){
+  const lv=S.lure.lv.luck,w=LURE_T.map(t=>[t[0],t[0]>=3?t[1]*(1+.3*lv):t[1]]);let r=Math.random()*w.reduce((a,b)=>a+b[1],0);
+  for(const x of w){if(r<x[1])return x[0];r-=x[1];}return 1.5;
+}
+const lureOn=()=>!!(S.lure&&S.lure.active&&S.lure.active.left>0);
+const lureK=()=>lureOn()?Math.pow(S.lure.active.k,.75):1;
+const lureMut=()=>lureOn()?(1+.35*(S.lure.active.k-1))*(1+.12*S.lure.lv.mut):1;
+function useLure(){if(!lureOn())return;S.lure.active.left--;if(S.lure.active.left<=0)S.lure.active=null;}
+function labHTML(){
+  const L=S.lure,j=L.job,ready=!!(j&&Date.now()>=j.end),a=L.active,cost=brewCost();
+  let h=`<div class="box lab${ready?" hot":""}"><div class="crow"><div class="cs"><img class="pix" src="${iconURL("u_bait")}" alt="" width="40" height="40"></div><div class="tx"><div class="cname" style="color:#7ae0b0">Lure Lab</div>
+    <div class="cmeta" id="labstat">${a?`Active lure <b style="color:${lureInfo(a.k)[3]}">x${a.k}</b>: ${a.left} cast${a.left>1?"s":""} left`:"No lure active"}</div></div></div>
+    <p class="small muted" style="margin:4px 0 6px">A lure boosts your rare-fish luck and mutation chance for ${LAB_CAST} casts. Brewing keeps going while you are away.</p>`;
+  if(j){
+    const left=(j.end-Date.now())/1000;
+    h+=ready?`<button class="btn wide" data-v="collectlure:">Collect your lure</button>`
+      :`<div class="cmeta">Brewing: <b id="labtime">${fmtTime(left)}</b> left</div><div class="bar" style="margin:6px 0"><i id="labbar" style="width:${Math.min(100,100*(1-left/j.len)).toFixed(1)}%"></i></div>`;
+  }else h+=`<button class="btn wide teal" data-v="brew:" ${S.coins>=cost?"":"disabled"}>${coinImg()}${fmt(cost)} · Brew a lure</button>`;
+  LAB_UP.forEach(u=>{const l=L.lv[u.id],mx=l>=LAB_MAX,c=labCost(u,l);
+    h+=`<div class="labup"><div style="min-width:0"><b>${u.n}</b> <span class="lv">Lv ${l}</span><div class="small muted">${u.d(l)}</div></div><button class="btn teal${mx?" max":""}" data-v="labup:${u.id}" ${mx||S.coins<c?"disabled":""}>${mx?"Max":coinImg()+fmt(c)}</button></div>`;});
+  return h+`</div>`;
+}
+function brewLure(){
+  const L=S.lure;if(L.job)return;const c=brewCost();if(S.coins<c)return;
+  S.coins-=c;const len=brewTime(L.lv.spd);L.job={end:Date.now()+len*1000,len};sfx.buy();save();refreshAll();
+}
+function collectLure(){
+  const L=S.lure,j=L.job;if(!j||Date.now()<j.end)return;
+  const k=rollLure(),I=lureInfo(k);L.job=null;
+  let msg;
+  if(L.active&&L.active.left>0&&L.active.k>=k){L.active.left+=LAB_CAST;msg=`It is no better than your running lure, so it adds ${LAB_CAST} more casts to it.`;}
+  else{L.active={k,left:LAB_CAST};msg=`Your next ${LAB_CAST} casts get <b>x${k}</b> luck pull and a mutation boost.`;}
+  sfx.catch(k>=4?5:3);buzz(80);save();refreshAll();
+  showModal(`<h3 style="color:${I[3]}">${I[2]} Lure!</h3><div class="bigpic" style="--rc:${I[3]}"><img class="pix" src="${iconURL("u_bait")}" width="72" height="72" alt=""></div><p>${msg}</p><button class="btn wide" id="mclose">Let's fish</button>`,I[3]);
+}
+function refreshLab(){
+  const j=S.lure&&S.lure.job,ready=!!(j&&Date.now()>=j.end);
+  if(S.tab!=="up")return;
+  const t=$("#labtime");if(t){const left=(j.end-Date.now())/1000;if(left<=0){renderPanel();return;}t.textContent=fmtTime(left);$("#labbar").style.width=Math.min(100,100*(1-left/j.len)).toFixed(1)+"%";}
+  else if(ready&&!document.querySelector("button[data-v='collectlure:']"))renderPanel();
+}
+
+/* --- Daily calendar --- */
+const CAL_N=28,CAL_PRIZE={3:"charge",7:"block",14:"rush",21:"eclipse",28:"mega"};
+const CAL_LAB={3:"Trait Charge",7:"Lucky Block",14:"Craft Rush",21:"Eclipse Charge",28:"Mega Chest"};
+const calRecoverCost=()=>Math.round(Math.max(20000,income()*1800));
+function calInfo(){
+  const t=dayNum(),c=S.cal,claimed=c.last===t,gap=t-c.last,broken=c.streak>0&&gap>1;
+  const upTo=c.streak?((c.streak-1)%CAL_N)+1:0;
+  return {t,claimed,broken,upTo,next:broken?1:(claimed?(upTo%CAL_N)+1:(upTo%CAL_N)+1)};
+}
+function calReward(pos){
+  const inc=income(),id=CAL_PRIZE[pos];
+  if(id)return grantPrize({id});
+  const n=Math.round(Math.max(400*pos,inc*(4+pos)*60));S.coins+=n;return `+${fmt(n)} coins`;
+}
+function claimDaily(recover){
+  const c=S.cal,I=calInfo();if(I.claimed)return;
+  if(I.broken){if(recover){const cost=calRecoverCost();if(S.coins<cost)return;S.coins-=cost;}else c.streak=0;}
+  c.streak++;c.best=Math.max(c.best||0,c.streak);c.last=I.t;
+  const pos=((c.streak-1)%CAL_N)+1,msg=calReward(pos);
+  sfx.catch(pos%7===0?5:3);buzz(60);flash("#ffc845");save();refreshAll();
+  showModal(`<h3 style="color:var(--gold)">Day ${pos} reward</h3><div class="bigpic" style="--rc:#ffc845"><img class="pix" src="${iconURL(CAL_PRIZE[pos]?PRIZE_IC[CAL_PRIZE[pos]]:"coin")}" width="64" height="64" alt=""></div><p>${msg}</p><p class="small muted">Streak: ${c.streak} day${c.streak>1?"s":""}. Come back tomorrow!</p><button class="btn wide" id="mclose">Nice</button>`);
+}
+function calHTML(){
+  const I=calInfo(),c=S.cal;let cells="";
+  for(let d=1;d<=CAL_N;d++){
+    const done=!I.broken&&d<=I.upTo,isNext=!I.claimed&&d===I.next,hl=!!CAL_PRIZE[d];
+    cells+=`<i class="cp${done?" done":""}${isNext?" next":""}${hl?" hl":""}"></i>`;
+  }
+  const nh=[3,7,14,21,28].find(d=>d>I.next-(I.claimed?1:0)&&d>(I.broken?0:I.upTo)),nxt=nh?`Day ${nh}: ${CAL_LAB[nh]}`:"";
+  let btn;
+  if(I.claimed)btn=`<button class="btn wide ghost" disabled>Claimed today. Back tomorrow</button>`;
+  else if(I.broken){const cost=calRecoverCost();
+    btn=`<div class="small muted" style="margin-bottom:6px">You missed a day. Your ${c.streak}-day streak can be saved.</div><div class="mbtnrow"><button class="btn teal" data-v="daily:r" ${S.coins>=cost?"":"disabled"}>${coinImg()}${fmt(cost)} Save</button><button class="btn ghost" data-v="daily:n">Start over</button></div>`;}
+  else btn=`<button class="btn wide" data-v="daily:n">Claim day ${I.next}${CAL_PRIZE[I.next]?": "+CAL_LAB[I.next]:""}</button>`;
+  return `<div class="box cal${!I.claimed?" hot":""}"><div class="ut" style="color:var(--gold)">Daily Rewards <span class="lv">Streak ${c.streak||0}${c.best>1?" · best "+c.best:""}</span></div><div class="calp">${cells}</div>${nxt?`<div class="small muted" style="margin-bottom:6px">Next big prize: ${nxt}</div>`:""}${btn}</div>`;
+}
+const calReady=()=>{const I=calInfo();return !I.claimed;};
+
+/* --- Event wheel: fish during a Tide Event and spin a wheel when it ends --- */
+const EVW=[
+ {id:"pouch",n:"Coin Pouch",lab:"Pouch",w:28,c:"#6fd08c",d:"5 minutes of your income"},
+ {id:"chest",n:"Coin Chest",lab:"Chest",w:18,c:"#4fd0c0",d:"20 minutes of your income"},
+ {id:"luck",n:"2x Luck",lab:"2x Luck",w:14,c:"#7ab8ff",d:"Double luck for 15 minutes"},
+ {id:"block",n:"Lucky Block",lab:"Block",w:12,c:"#5ad27a",d:"A Silver, Gold or Diamond Lucky Block"},
+ {id:"charge",n:"Trait Charge",lab:"Trait",w:10,c:"#c9a6ff",d:"Your next catch is guaranteed a trait"},
+ {id:"lure",n:"Super Lure",lab:"Lure",w:8,c:"#7ae0b0",d:"A x3 lure for 30 casts"},
+ {id:"rush",n:"Craft Rush",lab:"Rush",w:6,c:"#ffb454",d:"Halves the time of one craft"},
+ {id:"evfish",n:"Event Fish",lab:"Fish!",w:4,c:"#ff5d8f",d:"A rare fish with the event's own mutation and trait",rare:1}];
+const EV_PRIZE={meteor:["galaxy","starfall"],redtide:["redtide",null],glow:["rainbow","glowing"],frenzy:["golden","frenzy"],kraken:["glitch","inked"]};
+let curW="eclipse",spinEv=null;
+const wheelList=()=>curW==="eclipse"?WHEEL:EVW;
+const wspins=()=>curW==="eclipse"?S.wheel.spins:S.evw.length;
+function evFishPrize(ev){
+  const e=EV_PRIZE[ev]||EV_PRIZE.meteor,t=2+Math.floor(Math.random()*3),pool=FISH.filter(f=>f.t===t&&canBite(f)),f=pool[Math.floor(Math.random()*pool.length)];
+  const o=newInst(f.id,e[0],e[1]?[e[1]]:[]),mult=instX(o),rc=record(o),pl=receive(o),fi=FISH.indexOf(f);
+  S.log.unshift({fi,mut:o.m,tr:o.tr.slice(),kind:pl.w,gain:pl.gain||0,nw:rc.isNew?1:rc.newVar?2:0});if(S.log.length>40)S.log.length=40;
+  return `${MUT_BY[o.m].n} ${f.n} x${xm(mult)} (${pl.w==="display"?"on display":pl.w==="sold"?"sold":"in your bucket"})`;
+}
+function checkEvc(){
+  const c=S.evc;if(!c)return;
+  if(!EV_BY[c.e]){S.evc=null;return;}
+  if(Date.now()>=evSlot(c.k).en||c.k<Math.floor(Date.now()/EV_EVERY)){
+    S.evw.push(c.e);if(S.evw.length>6)S.evw.shift();S.evc=null;save();
+    if(!menuOpen){gainFx("Event Wheel spin!",EV_BY[c.e].c);sfx.buy();}
+    if(S.tab==="up")renderPanel();
+  }
+}
+function evWheelHTML(){
+  const n=S.evw.length,E=n?EV_BY[S.evw[0]]:null;
+  return `<div class="box wbox evwb${n?" ready hot":""}"><div class="tx"><div class="wt" style="color:${E?E.c:"var(--muted)"}">Event Wheel</div><div class="wd">${n?`${E.n} spin ready${n>1?` (${n} saved)`:""}`:"Cast during a Tide Event to earn a spin when it ends"}</div></div>
+    <button class="btn" data-v="evwheel:" ${n?"":"disabled"}>Spin${n?`<span class="badge">${n}</span>`:""}</button></div>`;
+}
+const upAlert=()=>!!(S.evw.length||calReady()||(S.lure&&S.lure.job&&Date.now()>=S.lure.job.end));
+
+/* --- click routing --- */
+const V10={
+  csub(k){csub=k;renderPanel();},
+  offer(){offerRitual();},cauldron(){openCauldron();},chef(){openChef();},
+  trade(k){doTrade(k);},
+  brew(){brewLure();},collectlure(){collectLure();},
+  labup(id){const u=LAB_UP.find(x=>x.id===id),l=S.lure.lv[id],c=labCost(u,l);if(l<LAB_MAX&&S.coins>=c){S.coins-=c;S.lure.lv[id]++;sfx.buy();save();refreshAll();}},
+  daily(m){claimDaily(m==="r");},
+  evwheel(){openWheel("event");}
+};
+panel.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b||b.disabled)return;const i=b.dataset.v.indexOf(":"),a=b.dataset.v.slice(0,i),x=b.dataset.v.slice(i+1);if(V10[a]){beep(520,.04,"square",.03);V10[a](x,b);}});
+
 /* ---------- title screen ---------- */
 const menu=$("#menu"),mctx=$("#menuScene").getContext("2d");mctx.imageSmoothingEnabled=false;
 function hasProgress(){return S.casts>0||Object.keys(S.dex).length>0;}
@@ -2832,6 +3400,8 @@ $("#mHow").onclick=()=>{
     <li><b>Album sets</b>: collect enough different fish in one mutation to unlock a permanent income bonus and a tank style for your Base.</li>
     <li>The sky follows your real clock. <b>Tides</b> turn every 5 minutes: high tide brings sea fish, low tide lake fish.</li>
     <li>The <b>Eclipse Wheel</b> (Gear tab) gives a free spin every 30 minutes you spend playing.</li>
+    <li>The <b>Lure Lab</b> (Gear tab) brews lures: 30 casts of extra luck and mutation chance. <b>Daily Rewards</b> give a prize every day, and a streak of 3, 7, 14, 21 and 28 days gives bigger ones. Fish during a Tide Event to earn an <b>Event Wheel</b> spin.</li>
+    <li>The Craft tab also has the <b>Dockside Trader</b> (quick swaps every 2 hours), secret <b>Rituals</b>, and <b>Specials</b>: Chef Barnacle on Tuesdays and the Haunted Cauldron during Spooky season. Each rebirth unlocks a better <b>rod</b>.</li>
     <li>The <b>Craft</b> tab turns fish you own into stronger craft-only fish. The fish you use are lost, but their mutations and traits can pass on.</li>
     <li><b>Tidal Rebirth</b> starts you over with a permanent income bonus and more tanks. Your album stays.</li></ol>
     <button class="btn wide" id="mclose">Got it</button>`);
@@ -2860,7 +3430,7 @@ $("#mCode").onclick=()=>{
   };
 };
 $("#mNew").onclick=function(){
-  if(this.dataset.armed){S=fresh();S.seenV="9";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
+  if(this.dataset.armed){S=fresh();S.seenV="10";save();lastWall=Date.now();hideCard();refreshAll();$("#hint").hidden=false;refreshMenu();}
   else{this.dataset.armed=1;this.classList.remove("ghost");this.classList.add("coral");this.textContent="Tap again to erase everything";}
 };
 
@@ -2882,17 +3452,22 @@ if(S.seenV==="8"){S.seenV="9";SETS.filter(setDone).forEach(st=>setQ.push(st.k));
   <p><b>Tide Events</b> every 30 minutes: Meteor Shower, Red Tide, Glow Bloom, Feeding Frenzy and Kraken Rising, each with its own trait or mutation. Plus 4 new mutations: Twilight, Phantom, Crystal and Red Tide.</p>
   <p><b>Album sets</b>: collect enough different fish in one mutation for a permanent income bonus and a new tank style.</p>
   <p class="small muted">Traits now add up instead of multiplying, and 4 or more get a stack bonus. Your save carried over.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
-if(!S.seenV){S.seenV="9";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
+if(S.seenV==="9"){S.seenV="10";showModal(`<h3 data-defer style="color:var(--gold)">Tidewater v10</h3><div class="bigpic" style="--rc:#ffc845;display:flex;gap:18px;justify-content:center;align-items:center">${fishImg(SAMPLE,"golden",["dapper","sunny"],false,80,40)}${fishImg(KOI,"galaxy",["shimmer","cosmic"],false,80,40)}</div><p><b>New soft 3D look</b> for every fish, hat and icon.</p><p>New: <b>Lure Lab</b>, <b>Rituals</b>, the <b>Dockside Trader</b>, <b>Chef Barnacle</b> (Tuesdays), the <b>Haunted Cauldron</b> (Spooky season), <b>Daily Rewards</b>, rods that unlock with rebirth, an <b>Event Wheel</b> and 1-of-1 Primordial fish.</p><p class="small muted">Red Tide and other big mutations are much rarer now, but pay the same. Your save carried over.</p><button class="btn wide" id="mclose">Let's fish</button>`);}
+if(!S.seenV){S.seenV="10";if(wasReset)S.wheel.spins=Math.max(S.wheel.spins,1);}
 save();
 let lastUI=0,lastSave=0,lastEv=evNow();
-function eventBanner(E){
+function eventBanner(E,soon){
   const st=$("#stage"),d=document.createElement("div");d.className="evban";d.style.setProperty("--ec",E.c);
-  d.innerHTML=`<b>${E.n}!</b><span>${E.s}</span>`;st.appendChild(d);setTimeout(()=>d.remove(),2900);
+  d.innerHTML=soon?`<b>${E.n} ${soon}</b><span>${E.s}</span>`:`<b>${E.n} has started!</b><span>${E.s}</span>`;st.appendChild(d);setTimeout(()=>d.remove(),soon?3400:2900);
+  if(soon){beep(520,.1,"triangle",.04);setTimeout(()=>beep(660,.1,"triangle",.04),130);return;}
   flash(E.c);[330,440,554,659,880].forEach((fq,k)=>setTimeout(()=>beep(fq,.14,"triangle",.05),k*90));buzz(80);
 }
 // keeps the event chip, banner and the Traits tab event box current
+let evWarned=0;
 function refreshEvents(){
-  const ea=evNow();
+  checkEvc();
+  const ea=evNow(),nx=eventInfo(Date.now());
+  if(!nx.active&&nx.in<=60&&nx.in>0&&!menuOpen){const key=Math.round(Date.now()/1000+nx.in);if(evWarned!==key){evWarned=key;eventBanner(EV_BY[nx.id],"coming in 1 minute");}}
   if(ea!==lastEv){lastEv=ea;if(ea&&!menuOpen)eventBanner(EV_BY[ea]);if(S.tab==="traits")renderPanel();return;}
   if(S.tab==="traits"){const el=$("#evt");if(el){const e=eventInfo(Date.now());el.textContent=clock(e.active?e.left:e.in);}}
 }
@@ -2900,13 +3475,13 @@ function frame(){
   const now=performance.now(),t=now/1000;
   stepPhase(now);drawScene(t,now);if(menuOpen)drawMenuBg(t);
   lvTick(now);
-  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();refreshBase();refreshEvents();
+  if(now-lastUI>250){const d=Math.min(1,(now-lastUI)/1000);lastUI=now;if(!menuOpen)gameTick(d);econTick();refreshHead();if(S.tab==="up")refreshUpButtons();refreshEnv();refreshCraft();refreshWheel();refreshLab();refreshBase();refreshEvents();
     if(setQ.length&&!menuOpen&&!revealing&&now>setHold&&$("#modal").hidden)showSetDone(setQ.shift());}
   if(now-lastSave>5000){save();lastSave=now;}
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__tw={fishImg,fishGrid,lvGet,lvFrame,EVENTS,eventInfo,SETS,setHave,setDone,albumMult,showSetDone,bigReveal,WEAR,stackBonus,BLOCKS,BLOCK_BY,giveBlock,catchBlock,openBlock,crackBlock,rollBlockType,rollPool,SORTS,FILTS,canBite,receive,record,placeBest,placeIn,collectAll,collectSpot,sellPlain,openSpot,openInst,instPay,instX,spotCount,bucketCap,pendingTotal,newInst,dexCount,runCount,renderBase,
+window.__tw={V10,RITUALS,ritMatch,traderOffers,calInfo,claimDaily,brewLure,collectLure,spookyInfo,giveFish,openCauldron,openChef,EVW,rollLure,lureOn,lureK,lureMut,rodObj,checkEvc,offerRitual,doTrade,chowderFish,fishImg,fishGrid,lvGet,lvFrame,EVENTS,eventInfo,SETS,setHave,setDone,albumMult,showSetDone,bigReveal,WEAR,stackBonus,BLOCKS,BLOCK_BY,giveBlock,catchBlock,openBlock,crackBlock,rollBlockType,rollPool,SORTS,FILTS,canBite,receive,record,placeBest,placeIn,collectAll,collectSpot,sellPlain,openSpot,openInst,instPay,instX,spotCount,bucketCap,pendingTotal,newInst,dexCount,runCount,renderBase,
   WHEEL,grantPrize,openWheel,doSpin,gameTick,CMUTS,XMUTS,CRAFTS,CR_BY,FISH_BY,craftToday,craftOdds,craftRoll,craftIns,startCraft,collectCraft,owns,openCraft,renderCraft,
   pityMult,rbMult,rbReady,doRebirth,hook,pop,dayInfo,DAILY,saveCode,readCode,setHookF(v){hookF=v;},TRAITS,TR_BY,rollTraits,traitCtx,traitMult,seasonInfo,SEASONS,ICONS,iconURL,
   get S(){return S;},FISH,TIERS,MUTS,WMUTS,ALL_MUTS,tideInfo,weatherInfo,fishChance,rollFish,rollMut,tierWeights,income,upCost,UPS,getSprite,doCatch,startCast,showCard,celebrate,
